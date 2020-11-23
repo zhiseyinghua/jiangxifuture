@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>当前最新count值为：{{ $store.state.test.count }}</p>
+    <p>当前最新count值为：{{ $store.test.state }}</p>
   </div>
 </template>
 
