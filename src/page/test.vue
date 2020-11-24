@@ -1,5 +1,5 @@
 <template>
-  <div>黄文强</div>
+  <div>123456</div>
 </template>
 
 <script>

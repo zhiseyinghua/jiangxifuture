@@ -1,7 +1,7 @@
-import Test from "../../page/test.vue";
+import Test from "@/page/test.vue";
 
 export default {
-  path: "test",
-  name: "Test",
-  conpontent: Test
+  path: "/test",
+  name: "test",
+  component: Test
 };

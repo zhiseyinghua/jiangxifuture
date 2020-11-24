@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <p>dfdf</p>
-    <el-button>默认按钮</el-button>
+  <v-app>
     <router-view></router-view>
-  </div>
+  </v-app>
 </template>
 
 <style>
@@ -27,4 +25,8 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+body {
+  margin: 0px;
+}
 </style>
+
