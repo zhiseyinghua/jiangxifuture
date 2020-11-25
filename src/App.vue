@@ -1,6 +1,8 @@
 <template>
-  <v-app>
-    <router-view></router-view>
+  <v-app id="inspire">
+    <v-main>
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
@@ -29,4 +31,3 @@ body {
   margin: 0px;
 }
 </style>
-

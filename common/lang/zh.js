@@ -1,6 +1,9 @@
 // 中文包
 
 export const lang = {
-  homeOverview: "首页概览"
-}
-
+  home: {
+    homeOverview: "首页概览",
+    newCenter: "新闻中心",
+    cutLanguage: "切换语言"
+  },
+};

@@ -1,23 +1,28 @@
 <template>
   <div>
-    <v-app-bar>
+    <!-- 这是一个导航栏 -->
+    <v-app-bar style=" position: fixed; z-index:4">
+      <div></div>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>
         <v-btn v-on:click="gopagehome" text>
-          首页
+          {{ $t("lang.home.homeOverview") }}
+          <!-- 首页概括 -->
         </v-btn>
       </v-toolbar-title>
 
       <v-toolbar-title>
         <v-btn v-on:click="gopagehomepage" text>
-          新闻中心
+          {{ $t("lang.home.newCenter") }}
+          <!-- 新闻中心 -->
         </v-btn>
       </v-toolbar-title>
       <v-toolbar-title>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              解决方案
+              {{ $t("lang.home.newCenter") }}
+              <!-- 新闻中心 -->
             </v-btn>
           </template>
           <v-card>
@@ -39,16 +44,22 @@
         </v-menu>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn v-on:click="changeLangEvent" text>
+        {{ $t("lang.home.cutLanguage") }}
+        <!-- 切换语言 -->
+      </v-btn>
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
+
     <router-view></router-view>
   </div>
 </template>
 <script>
 import router from "@/router";
 export default {
+  
   name: "home",
   data() {
     return {};
@@ -58,26 +69,20 @@ export default {
      * 去首页的方法
      */
     gopagehomepage() {
-      router.push("news");
+      router.push("newHomePage");
     },
     gopagehome() {
       router.push("homepage");
     },
 
     changeLangEvent() {
-      this.$confirm("你确定切换语言吗？", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      }).then(() => {
-        if (this.$i18n.locale === "zh-CN") {
-          this.$i18n.locale = "en-US"; //关键语句
-          console.log("en-US");
-        } else {
-          this.$i18n.locale = "zh-CN"; //关键语句
-          console.log("zh-CN");
-        }
-      });
+      if (this.$i18n.locale === "zh-CN") {
+        this.$i18n.locale = "en-US"; //关键语句
+        console.log("en-US");
+      } else {
+        this.$i18n.locale = "zh-CN"; //关键语句
+        console.log("zh-CN");
+      }
     },
   },
 };
