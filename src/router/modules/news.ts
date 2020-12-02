@@ -1,7 +1,7 @@
-import NewHomePage from "@/page/news/newHomePage.vue";
+import news from "@/page/news/news.vue";
 
 export default {
-    path: '/newHomePage',
-    name:'newHomePage',
-    component: NewHomePage
+    path: '/news',
+    name:'news',
+    component: news
 }
