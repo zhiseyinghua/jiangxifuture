@@ -1,0 +1,23 @@
+<template>
+  <div>
+    <div>
+    </div>
+    <v-form>
+           <v-text-field
+            placeholder="请输入手机号或邮箱"
+            outlined
+            prepend-inner-icon="mdi-map-marker"
+          ></v-text-field>
+          <v-text-field
+            placeholder="密码为4-20位英文+数字"
+            outlined
+            prepend-inner-icon="mdi-map-marker"
+          ></v-text-field>
+          <v-text-field
+            placeholder="请输入验证码"
+            outlined
+            prepend-inner-icon="mdi-map-marker"
+          ></v-text-field>
+    </v-form>
+  </div>
+</template>

@@ -1,0 +1,13 @@
+<template>
+  <div>
+    <div>
+      <v-button>微信</v-button>
+    </div>
+    <v-form>
+      <v-text-field
+            label="请输入手机号或邮箱"
+            prepend-inner-icon="mdi-map-marker"
+          ></v-text-field>
+    </v-form>
+  </div>
+</template>

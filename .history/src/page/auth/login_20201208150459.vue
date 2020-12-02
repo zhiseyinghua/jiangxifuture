@@ -1,0 +1,36 @@
+<template>
+  <v-row no-gutters>
+    <v-col>
+      <v-img
+        src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+      >
+    </v-col>
+    <v-col>
+      <v-card>
+        <v-tabs-items v-model="tabs">
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-title class="headline"> An awesome title </v-card-title>
+          <v-card-text>
+            <p class="mb-0">
+              Ut leo. Suspendisse potenti. Duis vel nibh at velit scelerisque
+              suscipit. Fusce pharetra convallis urna.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
+      </v-card>
+    </v-col>
+  </v-row>
+</template>
