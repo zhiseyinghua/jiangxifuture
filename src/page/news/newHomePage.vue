@@ -23,6 +23,7 @@
     <p style="text-align:right;">
     <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1644266269,902528338&fm=26&gp=0.jpg" weight="20px" height="300px" ></p>
     <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3216580012,3595411567&fm=26&gp=0.jpg" weight="200px" height="300px" >
+    <vm-deviceCard :devicemsg="devicemsg" ></vm-deviceCard>
 </div>
   <div class="anSlogan">行业新闻</div>
     <p ><a herf="" id="a">新闻1</a><br></p>
