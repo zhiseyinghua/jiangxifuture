@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- <div class="min_container" @scroll="scrollEvent"></div>
+    <div class="go_more" v-if="more_show" @click="GoMore">加载更多</div>
+    <div class="go_more" v-else>没有更多评价了</div> -->
     <!-- 这是一个轮播图 -->
     <v-carousel hide-delimiters cycle>
       <v-carousel-item
@@ -21,9 +24,8 @@
       </div>
     </div>
 
-   <!-- 我们的产品 -->
-    <vm-deviceCard :devicemsg="devicemsg" ></vm-deviceCard>
-    
+    <!-- 我们的产品 -->
+    <vm-deviceCard :devicemsg="devicemsg"></vm-deviceCard>
   </div>
 </template>
 <script>
@@ -32,15 +34,19 @@
  */
 import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
+  
+  // mounted() {
+  //   window.addEventListener("scroll", this.handleScroll, true);
+  // },
   components: {
     "vm-deviceCard": deviceCard,
   },
   name: "homepage",
   data() {
     return {
-      
-      devicemsg:{
-        url:'http',
+      scrollTop: 111,
+      devicemsg: {
+        url: "http",
       },
       items: [
         {
@@ -62,8 +68,10 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-
-    
+    // handleScroll(e) {
+    //   this.scrollTop =
+    //     e.target.documentElement.scrollTop || e.target.body.scrollTop; // 执行代码
+    // },
   },
 };
 </script>

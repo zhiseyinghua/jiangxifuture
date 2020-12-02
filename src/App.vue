@@ -4,13 +4,29 @@
       <tabbar></tabbar>
       <router-view></router-view>
     </v-main>
+    <!-- <div class="min_container" @scroll="scrollEvent"></div>
+    <div class="go_more" v-if="more_show" @click="GoMore">加载更多</div>
+    <div class="go_more" v-else>没有更多评价了</div> -->
   </v-app>
 </template>
 
 <script>
 import tabbar from "@/components/tabbar";
 export default {
+  data() {
+    return {
+     scrolled: false
+    };
+  },
   components: { tabbar },
+  methods: {
+    handleScroll() {
+      this.scrolled = window.scrollY > 0;
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll,true);
+  },
 };
 </script>
 
@@ -19,7 +35,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-ul,ol{
+ul,
+ol {
   list-style: none;
 }
 #app {

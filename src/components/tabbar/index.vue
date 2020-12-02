@@ -5,19 +5,19 @@
       <div></div>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title>
-        <v-btn v-on:click="handleGoHome" text>
+        <v-btn router-link to="home" text>
           {{ $t("lang.home.homeOverview") }}
           <!-- 首页概括 -->
         </v-btn>
       </v-toolbar-title>
 
       <v-toolbar-title>
-        <v-btn v-on:click="handleGoNews" text>
+        <v-btn router-link to="news" text>
           {{ $t("lang.home.newCenter") }}
           <!-- 新闻中心 -->
         </v-btn>
       </v-toolbar-title>
-      
+
       <v-toolbar-title>
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
@@ -45,6 +45,7 @@
         </v-menu>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-avatar color="primary" size="45"></v-avatar>
       <v-btn v-on:click="changeLangEvent" text>
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
@@ -53,14 +54,11 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
-
-    <router-view></router-view>
   </div>
 </template>
 <script>
 import router from "@/router";
 export default {
-  
   name: "home",
   data() {
     return {};
