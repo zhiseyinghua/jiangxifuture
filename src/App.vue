@@ -4,9 +4,6 @@
       <tabbar></tabbar>
       <router-view></router-view>
     </v-main>
-    <!-- <div class="min_container" @scroll="scrollEvent"></div>
-    <div class="go_more" v-if="more_show" @click="GoMore">加载更多</div>
-    <div class="go_more" v-else>没有更多评价了</div> -->
   </v-app>
 </template>
 

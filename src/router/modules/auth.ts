@@ -1,7 +1,7 @@
-import home from "@/page/home/home.vue";
+import auth from "@/page/auth/login.vue";
 
 export default {
     path: "/auth",
     name: 'auth',
-    component: home,   
+    component: auth,   
 };
