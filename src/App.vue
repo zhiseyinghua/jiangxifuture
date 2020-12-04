@@ -1,16 +1,28 @@
 <template>
   <v-app id="inspire">
+    <tabbar></tabbar>
     <v-main>
-      <tabbar></tabbar>
-      <router-view></router-view>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
     </v-main>
+    <!-- <v-navigation-drawer app> 呜呜呜 </v-navigation-drawer> -->
+    <foot></foot>
   </v-app>
 </template>
 
 <script>
 import tabbar from "@/components/tabbar";
+import foot from "@/components/foot";
+// import test from "@/components/test"
 export default {
-  components: { tabbar },
+  data() {
+    return {};
+  },
+  components: { tabbar, foot },
+  mounted(){
+    console.log(this.$vuetify.application.top)
+  }
 };
 </script>
 
@@ -19,9 +31,14 @@ export default {
   margin: 0;
   padding: 0;
 }
-ul,ol{
+ul,
+ol {
   list-style: none;
 }
+li {
+  list-style: none;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
