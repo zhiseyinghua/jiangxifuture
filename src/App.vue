@@ -10,7 +10,20 @@
 <script>
 import tabbar from "@/components/tabbar";
 export default {
+  data() {
+    return {
+     scrolled: false
+    };
+  },
   components: { tabbar },
+  methods: {
+    handleScroll() {
+      this.scrolled = window.scrollY > 0;
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll,true);
+  },
 };
 </script>
 
@@ -19,7 +32,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-ul,ol{
+ul,
+ol {
   list-style: none;
 }
 #app {
