@@ -7,10 +7,10 @@ import '@mdi/font/css/materialdesignicons.css'
 
 Vue.use(Vuetify);
 
-const opts = {
-    
-};
+const opts = new Vuetify({
+    scrollBarWidth: 100
+});
 
-export default new Vuetify(opts);
+export default opts;
 
 

@@ -1,7 +1,8 @@
 <template>
   <div>
+    
     <!-- 这是一个轮播图 -->
-    <v-carousel hide-delimiters cycle>
+    <v-carousel cycle>
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
@@ -20,7 +21,7 @@
         </div>
       </div>
     </div>
-
+    
    <!-- 我们的产品 -->
     <vm-deviceCard :devicemsg="devicemsg" ></vm-deviceCard>
     

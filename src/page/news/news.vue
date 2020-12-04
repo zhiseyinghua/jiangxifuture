@@ -1,5 +1,7 @@
 <template>
-  <div>新闻</div>
+  <div>
+    xinwen
+  </div>
 </template>
 
 <script>
