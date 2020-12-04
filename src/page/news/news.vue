@@ -7,29 +7,38 @@
         :key="i"
         :src="item.src"
       ></v-carousel-item>
-    </v-carousel>
-  <div class="anSlogan">公司简章</div>
-  <div class="center">
-  <img src="http://file06.16sucai.com/2018/0509/c947a1cafcb9d5b5b2bec9128df554e8.jpg" weight="300px" height="300px" >
-  <textarea rows="10" cols="50" class="input">测绘服务，建筑劳务分包，海员外派业务，职业中介活动，施工专业作业，建设工程勘察，地质灾害治理工程勘查（依法须经批准的项目，经相关部门批准后方可开展经营活动） 一般项目：软件开发，网络技术服务，信息系统集成服务，软件销售，计算机软硬件及辅助设备零售，物联网设备销售，集成电路销售，互联网设备销售，信息技术咨询服务，智能控制系统集成，地理遥感信息服务，电子产品销售，仪器仪表销售，计量服务，国内贸易代理，会议及展览服务，信息系统运行维护服务，地质勘探和地震专用仪器销售，劳务服务（不含劳务派遣），绘图、计算及测量仪器销售（除许可业务外，可自主依法经营法律法规非禁止或限制的项目）</textarea>
-  <a herf="" id="a">查看详情</a>
-    </div> 
-  <div class="anSlogan">集团新闻</div>
-  
-<div class="container">
-  <p style="text-align:right;">
-    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3323229334,1212626492&fm=26&gp=0.jpg" weight="20px" height="300px" ></p>
-    <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=242524239,3606885721&fm=26&gp=0.jpg" weight="200px" height="300px" >
-    <p style="text-align:right;">
-    <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1644266269,902528338&fm=26&gp=0.jpg" weight="20px" height="300px" ></p>
-    <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3216580012,3595411567&fm=26&gp=0.jpg" weight="200px" height="300px" >
-    <vm-deviceCard :devicemsg="devicemsg" ></vm-deviceCard>
-</div>
-  <div class="anSlogan">行业新闻</div>
-    <p ><a herf="" id="a">新闻1</a><br></p>
-    <p ><a herf="" id="a">新闻2</a><br></p>
-    <p ><a herf="" id="a">新闻3</a><br></p>
-</div>
+    </v-carousel>S
+    <div style="background:#DDDDDD;">
+      <div class="anSlogan">公司简章</div>
+      <v-content>
+        <v-container>
+          <v-layout align-center justify-center >
+            <v-flex md12 lg8 xl4 >
+              <div class="flex">
+                   <v-img src="http://file06.16sucai.com/2018/0509/c947a1cafcb9d5b5b2bec9128df554e8.jpg" weight="800px" height="300px" ></v-img>
+                   <textarea rows="4" cols="30" class="input" type="font-family:fantasy;">江西未来时刻科技有限公司隶属于敖岸集团资产，集团创业于2017年12月，是一家在赣江新区的科技类公司。敖岸集团，公司2017与美国Esri公司建立合作关系。是国内，首批将地理信息系统技术应用到日常生活、日常工作当中的科技型综合性公司</textarea>
+                   <p style="text-align:left; margin-left:10px;"><a>查看更多</a></P>
+              </div>   
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </div>
+      <div class="anSlogan">集团新闻</div>
+      <div class="flex"></div>
+     <v-row justify="center">
+      <v-col v-for="n in 2" :key="n" cols="auto">      
+        <v-card :elevation="n" height="300" width="600" class="secondary">
+          <v-img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3216580012,3595411567&fm=26&gp=0.jpg" weight="200px" height="300px" ></v-img>
+          <v-row
+            class="fill-height"
+            align="center"
+            justify="center"  
+          ></v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+ </div>
 </template>
 
 <script>
@@ -37,10 +46,7 @@ import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
   name: "newhomepage",
   data() {
-    return {   
-      devicemsg:{
-        url:'http',
-      },
+    return {     
       items: [
         {
           src: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1045539846,4150480572&fm=26&gp=0.jpg',
@@ -69,20 +75,14 @@ export default {
 <style>
 .anSlogan {
   color:black;
-  font-size:25px;
+  font-size:40px;
   margin-top: 20px;
   text-align:center;
   font-weight:bold;
+  font-family:fantasy;
 }
 .anSlogan:hover{
   color:blue;
-}
-.center{
-  margin-top: 20px;;
-  display:flex;
-  justify-content:space-evenly;
-  align-items: center;
-  padding:20px;
 }
 .input {
 border:0; 
@@ -91,24 +91,18 @@ font-size:medium;
 width:800px;
 outline: none;
 resize: none;
+
 }
 input:focus { 
     outline: none;
     box-shadow:none;
     resize: none;
 }
-.a:link{
-  text-decoration: none;
-  color:gray;
-  font-size:20px;
-  ;
-}
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 1px;
-  grid-row-gap: 20px;
-  grid-column-gap: 20px;
-  justify-content: center;
+.flex {
+  display: flex;
+  flex-flow: wrap;
+  grid-row-gap: 40px;
+  grid-column-gap: 10px;
+  padding: 20px;
 }
 </style>
