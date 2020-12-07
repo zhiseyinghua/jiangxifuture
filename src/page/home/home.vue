@@ -1,3 +1,6 @@
+/**
+  *官网首页
+ */
 <template>
   <div>
     <!-- <div class="min_container" @scroll="scrollEvent"></div>
@@ -29,9 +32,6 @@
   </div>
 </template>
 <script>
-/**
- * 这个是网站的首页
- */
 import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
   
@@ -68,15 +68,11 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    // handleScroll(e) {
-    //   this.scrollTop =
-    //     e.target.documentElement.scrollTop || e.target.body.scrollTop; // 执行代码
-    // },
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .enSlogan {
   margin: auto;
   display: block;
