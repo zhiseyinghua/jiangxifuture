@@ -1,69 +1,56 @@
 <template>
   <!-- 这是一个导航栏 -->
-  <v-app-bar app style="position: fixed; z-index: 4" hide-on-scroll>
-    <!-- <v-toolbar> -->
-    <v-toolbar-title>
-      <img
-        src="http://www.southsurvey.com//www/south/e3459703-8341-4919-9956-0d8a856af19e.png"
-        alt=""
-      />
-    </v-toolbar-title>
-
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-
-    <v-toolbar>
-      <v-toolbar-title>
-        <router-link to="/home" tag="li">{{
-          $t("lang.home.homeOverview")
-        }}</router-link>
-      </v-toolbar-title>
+  <v-app-bar app>
+    <v-container class="py-0 fill-height">
+      <div><!-- 放公司logo图标 --></div>
+      <v-app-bar-nav-icon  @click.stop="handleChangeDrawer"></v-app-bar-nav-icon>
+      <v-toolbar
+        dense
+        flat
+        max-width="500"
+        class="d-none d-md-flex transparent"
+      >
+        <v-toolbar-title>
+          <v-btn to="home" text>
+            {{ $t("lang.home.homeOverview") }}
+            <!-- 首页概括 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="news" text>
+            {{ $t("lang.home.newCenter") }}
+            <!-- 新闻中心 -->
+          </v-btn>
+        </v-toolbar-title>
+      </v-toolbar>
+      <v-spacer></v-spacer>
+      <!-- 搜索框 -->
+      <v-responsive max-width="800" min-widht="200">
+        <v-text-field
+          dense
+          flat
+          hide-details
+          rounded
+          solo-inverted
+        ></v-text-field>
+      </v-responsive>
 
       <v-spacer></v-spacer>
-
-      <v-toolbar-title>
-        <router-link to="/news" tag="li">{{
-          $t("lang.home.newCenter")
-        }}</router-link>
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar-title>
-        <router-link to="/solution" tag="li">解决方案</router-link>
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar-title>
-        <router-link to="/product" tag="li">产品中心</router-link>
-      </v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-toolbar-title>
-        <router-link to="/aboutUS" tag="li">关于我们</router-link>
-      </v-toolbar-title>
-    </v-toolbar>
-    
-
-    <v-spacer></v-spacer>
-    <v-text-field label="Main input" hide-details="auto"></v-text-field>
-    <v-btn v-on:click="changeLangEvent" text>
-      {{ $t("lang.home.cutLanguage") }}
-      <!-- 切换语言 -->
-    </v-btn>
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
-    <!-- 头像 -->
-    <v-avatar>
-      <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-    </v-avatar>
+      
+      <v-avatar color="primary" size="45"></v-avatar>
+      <v-btn v-on:click="changeLangEvent" text>
+        {{ $t("lang.home.cutLanguage") }}
+        <!-- 切换语言 -->
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+    </v-container>
   </v-app-bar>
 </template>
 <script>
 export default {
+  name: "home",
   data() {
     return {};
   },
@@ -77,9 +64,10 @@ export default {
         console.log("zh-CN");
       }
     },
+    //改变navigation-drawer显示和隐藏的函数
+    handleChangeDrawer(){
+      this.$store.commit("changeDrawer");
+    }
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

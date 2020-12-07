@@ -1,8 +1,10 @@
+/**
+  *官网首页
+ */
 <template>
   <div>
-    
     <!-- 这是一个轮播图 -->
-    <v-carousel cycle>
+    <v-carousel hide-delimiters cycle>
       <v-carousel-item
         v-for="(item, i) in items"
         :key="i"
@@ -21,16 +23,12 @@
         </div>
       </div>
     </div>
-    
-   <!-- 我们的产品 -->
-    <vm-deviceCard :devicemsg="devicemsg" ></vm-deviceCard>
-    
+
+    <!-- 我们的产品 -->
+    <vm-deviceCard :devicemsg="devicemsg"></vm-deviceCard>
   </div>
 </template>
 <script>
-/**
- * 这个是网站的首页
- */
 import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
   components: {
@@ -39,9 +37,9 @@ export default {
   name: "homepage",
   data() {
     return {
-      
-      devicemsg:{
-        url:'http',
+      scrollTop: 111,
+      devicemsg: {
+        url: "http",
       },
       items: [
         {
@@ -63,13 +61,11 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-
-    
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .enSlogan {
   margin: auto;
   display: block;
