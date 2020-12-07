@@ -1,16 +1,25 @@
 <template>
   <v-app id="inspire">
+    <tabbar></tabbar>
+    <slidebar></slidebar>
     <v-main>
-      <tabbar></tabbar>
-      <router-view></router-view>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import tabbar from "@/components/tabbar";
+import slidebar from "@/components/slidebar";
 export default {
-  components: { tabbar },
+  data() {
+    return {
+      scrolled: false,
+    };
+  },
+  components: { tabbar, slidebar },
 };
 </script>
 
@@ -19,7 +28,8 @@ export default {
   margin: 0;
   padding: 0;
 }
-ul,ol{
+ul,
+ol {
   list-style: none;
 }
 #app {
