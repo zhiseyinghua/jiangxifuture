@@ -1,50 +1,42 @@
 <template>
-  <div>
-    <!-- 这是一个导航栏 -->
-    <v-app-bar style=" position: fixed; z-index:4">
-      <div></div>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <v-btn router-link to="home" text>
-          {{ $t("lang.home.homeOverview") }}
-          <!-- 首页概括 -->
-        </v-btn>
-      </v-toolbar-title>
-
-      <v-toolbar-title>
-        <v-btn router-link to="news" text>
-          {{ $t("lang.home.newCenter") }}
-          <!-- 新闻中心 -->
-        </v-btn>
-      </v-toolbar-title>
-
-      <v-toolbar-title>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              {{ $t("lang.home.newCenter") }}
-              <!-- 新闻中心 -->
-            </v-btn>
-          </template>
-          <v-card>
-            <a
-              ><v-list-item>
-                <v-list-item-title link>
-                  <v-btn>123</v-btn>
-                </v-list-item-title>
-              </v-list-item>
-            </a>
-            <a
-              ><v-list-item>
-                <v-list-item-title link>
-                  <v-btn>123</v-btn>
-                </v-list-item-title>
-              </v-list-item>
-            </a>
-          </v-card>
-        </v-menu>
-      </v-toolbar-title>
+  <!-- 这是一个导航栏 -->
+  <v-app-bar app>
+    <v-container class="py-0 fill-height">
+      <div><!-- 放公司logo图标 --></div>
+      <v-app-bar-nav-icon  @click.stop="handleChangeDrawer"></v-app-bar-nav-icon>
+      <v-toolbar
+        dense
+        flat
+        max-width="500"
+        class="d-none d-md-flex transparent"
+      >
+        <v-toolbar-title>
+          <v-btn to="home" text>
+            {{ $t("lang.home.homeOverview") }}
+            <!-- 首页概括 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="news" text>
+            {{ $t("lang.home.newCenter") }}
+            <!-- 新闻中心 -->
+          </v-btn>
+        </v-toolbar-title>
+      </v-toolbar>
       <v-spacer></v-spacer>
+      <!-- 搜索框 -->
+      <v-responsive max-width="800" min-widht="200">
+        <v-text-field
+          dense
+          flat
+          hide-details
+          rounded
+          solo-inverted
+        ></v-text-field>
+      </v-responsive>
+
+      <v-spacer></v-spacer>
+      
       <v-avatar color="primary" size="45"></v-avatar>
       <v-btn v-on:click="changeLangEvent" text>
         {{ $t("lang.home.cutLanguage") }}
@@ -53,27 +45,16 @@
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
-    </v-app-bar>
-  </div>
+    </v-container>
+  </v-app-bar>
 </template>
 <script>
-import router from "@/router";
 export default {
   name: "home",
   data() {
     return {};
   },
   methods: {
-    /**
-     * 去首页的方法
-     */
-    handleGoHome() {
-      router.push("/home");
-    },
-    handleGoNews() {
-      router.push("/news");
-    },
-
     changeLangEvent() {
       if (this.$i18n.locale === "zh-CN") {
         this.$i18n.locale = "en-US"; //关键语句
@@ -83,6 +64,10 @@ export default {
         console.log("zh-CN");
       }
     },
+    //改变navigation-drawer显示和隐藏的函数
+    handleChangeDrawer(){
+      this.$store.commit("changeDrawer");
+    }
   },
 };
 </script>

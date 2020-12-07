@@ -1,29 +1,25 @@
 <template>
   <v-app id="inspire">
+    <tabbar></tabbar>
+    <slidebar></slidebar>
     <v-main>
-      <tabbar></tabbar>
-      <router-view></router-view>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import tabbar from "@/components/tabbar";
+import slidebar from "@/components/slidebar";
 export default {
   data() {
     return {
-     scrolled: false
+      scrolled: false,
     };
   },
-  components: { tabbar },
-  methods: {
-    handleScroll() {
-      this.scrolled = window.scrollY > 0;
-    },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll,true);
-  },
+  components: { tabbar, slidebar },
 };
 </script>
 
