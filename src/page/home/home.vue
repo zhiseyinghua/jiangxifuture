@@ -3,6 +3,9 @@
  */
 <template>
   <div>
+    <!-- <div class="min_container" @scroll="scrollEvent"></div>
+    <div class="go_more" v-if="more_show" @click="GoMore">加载更多</div>
+    <div class="go_more" v-else>没有更多评价了</div> -->
     <!-- 这是一个轮播图 -->
     <v-carousel hide-delimiters cycle>
       <v-carousel-item
@@ -31,6 +34,10 @@
 <script>
 import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
+  
+  // mounted() {
+  //   window.addEventListener("scroll", this.handleScroll, true);
+  // },
   components: {
     "vm-deviceCard": deviceCard,
   },
