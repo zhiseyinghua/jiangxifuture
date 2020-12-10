@@ -1,17 +1,11 @@
 <template>
 <v-container>
-    <tabbar>
-
+  <!-- 导航栏 -->
+  <tabbar />
+  <!-- 左侧导航栏 -->
     <leftdrawer />
-
-    <rightdrawer />
-    </tabbar>
-
     <v-main>
-      <!--  -->
     </v-main>
-
-    <footerbar />
     </v-container>
 
 </template>
@@ -19,23 +13,16 @@
 
 <script lang="ts">
 
-import tabbar from './menu/tabbar.vue'
+import tabbar from '@/components/tabbar/index.vue'
 import leftdrawer from './menu/leftdrawer.vue';
-import rightdrawer from './menu/rightdrawer.vue';
-import footerbar from './menu/footerbar.vue';
+// import rightdrawer from './menu/rightdrawer.vue';
 
 export default({
-  name: 'App',
+  name: 'userpage',
 
   components: {
     tabbar,
     leftdrawer,
-    rightdrawer,
-    footerbar
   },
-  // @Component({
-  // components: {
-  //   HelloWorld,
-  // },
 });
 </script>
