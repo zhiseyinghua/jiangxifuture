@@ -94,11 +94,38 @@
 <script>
 import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
+<<<<<<< HEAD
+  components: {
+    "vm-deviceCard": deviceCard,
+  },
+  name: "homepage",
+  data() {
+    return {
+      scrollTop: 111,
+      devicemsg: {
+        url: "http",
+      },
+      items: [
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        },
+      ],
+=======
   name: "home",
   data() {
     return {
       expand: false,
       expand2: false,
+>>>>>>> 08c7e80 (merge)
     };
   },
   methods: {

@@ -31,10 +31,17 @@ export default({
     return {
       drawer: null,
       links: [
+<<<<<<< HEAD
+        ['mdi-inbox-arrow-down', '账号信息'],
+        ['mdi-send', '管理中心'],
+        ['mdi-delete', '我的订单'],
+        ['mdi-alert-octagon', '账号设置'],
+=======
         ['mdi-inbox-arrow-down', 'Inbox'],
         ['mdi-send', 'Send'],
         ['mdi-delete', 'Trash'],
         ['mdi-alert-octagon', 'Spam'],
+>>>>>>> e
       ],
     };
   },

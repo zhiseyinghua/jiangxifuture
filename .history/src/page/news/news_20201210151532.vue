@@ -10,7 +10,10 @@
     </v-carousel>S
     <div style="background:#DDDDDD;">
       <div class="anSlogan">公司简章</div>
+<<<<<<< HEAD
+=======
       <v-content>
+>>>>>>> e
         <v-container>
           <v-layout align-center justify-center >
             <v-flex md12 lg8 xl4 >
@@ -22,7 +25,10 @@
             </v-flex>
           </v-layout>
         </v-container>
+<<<<<<< HEAD
+=======
       </v-content>
+>>>>>>> e
     </div>
       <div class="anSlogan">集团新闻</div>
       <div class="flex"></div>

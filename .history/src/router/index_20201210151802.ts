@@ -11,6 +11,7 @@ export default new Router({
     auth,
     home,
     news,
+    user,
     {
       path:"/",
       redirect:home

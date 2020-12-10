@@ -22,7 +22,10 @@
             </v-flex>
           </v-layout>
         </v-container>
+<<<<<<< HEAD
+=======
       </v-content>
+>>>>>>> e
     </div>
       <div class="anSlogan">集团新闻</div>
       <div class="flex"></div>
