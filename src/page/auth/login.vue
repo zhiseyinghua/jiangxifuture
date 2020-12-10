@@ -1,71 +1,99 @@
-<template>
-  <div>
-    <div style="height:150px"></div>
-    <v-container>
-      <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
-          <p>江西敖岸数据</p>
-          <v-card>
-            <v-toolbar dark color="primary">
-             
-              <v-tabs v-model="tab" align-with-title>
-                <v-tabs-slider color="yellow"></v-tabs-slider>
-
-                <v-tab :key="items[0]">登录/注册</v-tab>
-                <v-tab :key="items[1]">免密登录</v-tab>
-              </v-tabs>
-              <v-spacer></v-spacer>
-            </v-toolbar>
-            <v-card-text>
-              <v-tabs-items v-model="tab">
-                <v-tab-item :key="items[0]">
-                  <v-form>
-                    <v-text-field
-                      prepend-icon="person"
-                      name="login"
-                      label="手机号"
-                      type="text"
-                    ></v-text-field>
-                    <v-text-field
-                      id="password"
-                      prepend-icon="lock"
-                      name="password"
-                      label="密码"
-                      type="password"
-                    ></v-text-field>
-                    <v-btn style="float: right" text color="#D32F2F"
-                      >忘记密码</v-btn
-                    >
-                  </v-form>
-                </v-tab-item>
-                <v-tab-item :key="items[1]">
-                  手机号注册
-                </v-tab-item>
-              </v-tabs-items>
-
-              <br />
-              <br />
-              <v-btn block color="primary">登录/注册</v-btn>
-            </v-card-text>
-
-            <v-spacer></v-spacer>
-          </v-card>
-        </v-flex>
-      </v-layout>
+<template style="clear:both">
+  <v-card class="mx-auto my-16" max-width="600" min-width="300" shaped >
+    <v-container fluid>
+      <v-row no-gutters>
+        <v-form class="mx-auto my-16">
+          <v-text-field
+            placeholder="请输入手机号"
+            color="info"
+            outlined
+            clearable
+            dense
+            required
+            prepend-inner-icon="mdi-map-marker"
+            class="rounded-pill"
+          ></v-text-field>
+          <v-text-field
+            color="info"
+            prepend-inner-icon="mdi-map-marker"
+            placeholder="密码为8-20位英文+数字"
+            outlined
+            clearable
+            dense
+            required
+            :counter="20"
+            v-model="password"
+            :append-icon="isshow ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min, rules.max]"
+            :type="isshow ? 'text' : 'password'"
+            @click:append="isshow = !isshow"
+            class="rounded-pill"
+          ></v-text-field>
+          <v-row no-gutters relative>
+            <v-col cols="8">
+              <v-text-field
+                color="info"
+                placeholder="请输入验证码"
+                outlined
+                clearable
+                dense
+                required
+                prepend-inner-icon="mdi-map-marker"
+                class="rounded-pill ma-0"
+              ></v-text-field
+            ></v-col>
+            <v-col>
+              <v-btn
+                class="rounded-pill float-right"
+                color="info"
+                dense
+                outlined
+                >获取验证码</v-btn
+              >
+            </v-col>
+          </v-row>
+          <v-checkbox v-model="checkbox" class="ma-0 pa-0"  color="info">
+            <template v-slot:label>
+              <div class="caption">
+                我同意
+                <a target="_blank" href="http://vuetifyjs.com" @click.stop>
+                  《注册协议》
+                </a>
+              </div>
+            </template>
+          </v-checkbox>
+          <v-btn block class="rounded-pill" color="info" bottom> 注册 </v-btn>
+          <div class="text-center caption">
+            已有账号？
+            <a target="_blank" href="http://vuetifyjs.com" @click.stop>
+              直接登录
+            </a>
+          </div>
+        </v-form>
+      </v-row>
     </v-container>
-  </div>
+  </v-card>
 </template>
-
-<script>
+          <script>
 export default {
-  name: "login",
   data() {
     return {
-      items: ["login", "seedSMS"],
-      tab: null,
-      number: 111,
-      name: "",
+      isshow: false,
+      checkbox: false,
+      password: "",
+      rules: {
+        required: (value) => !!value || "必填项",
+        min: (v) => v.length >= 8 || "至少八位",
+        max: (v) => v.length <= 20 || "最多二十位",
+      },
     };
   },
 };
+//
 </script>
+// <style lang="sass" scoped>
+// .btn {
+//   float:right;
+// }
+// 
+</style>
