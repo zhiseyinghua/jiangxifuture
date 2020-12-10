@@ -3,6 +3,31 @@
  */
 <template>
   <div>
+<<<<<<< HEAD
+    <!-- 这是一个轮播图 -->
+    <v-carousel hide-delimiters cycle>
+      <v-carousel-item
+        v-for="(item, i) in items"
+        :key="i"
+        :src="item.src"
+      ></v-carousel-item>
+    </v-carousel>
+
+    <!-- 一段文字介绍 -->
+    <div class="bannerSlogan">
+      <div>
+        <div class="enSlogan">
+          了解我们的产品
+        </div>
+        <div class="cnSlogan">
+          专业专注，提供涵盖测绘地理信息全产业链的产品和服务
+        </div>
+      </div>
+    </div>
+
+    <!-- 我们的产品 -->
+    <vm-deviceCard :devicemsg="devicemsg"></vm-deviceCard>
+=======
     <!-- 这是一个导航栏 -->
     <v-row justify="center" style="min-height: 160px;">
       <v-col class="shrink">
@@ -89,16 +114,44 @@
       </v-col>
     </v-row>
     <router-view></router-view>
+>>>>>>> 08c7e80 (merge)
   </div>
 </template>
 <script>
 import deviceCard from "@/page/home/library/deviceCard.vue";
 export default {
+<<<<<<< HEAD
+  components: {
+    "vm-deviceCard": deviceCard,
+  },
+  name: "homepage",
+  data() {
+    return {
+      scrollTop: 111,
+      devicemsg: {
+        url: "http",
+      },
+      items: [
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        },
+        {
+          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        },
+      ],
+=======
   name: "home",
   data() {
     return {
       expand: false,
       expand2: false,
+>>>>>>> 08c7e80 (merge)
     };
   },
   methods: {
