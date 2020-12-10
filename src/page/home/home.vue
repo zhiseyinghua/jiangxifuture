@@ -5,7 +5,7 @@
   <div>
     <v-row>
       <v-col cols="12">
-        <v-carousel hide-delimiters cycle>
+        <v-carousel hide-delimiters cycle height="100%">
           <v-carousel-item
             v-for="(item, i) in items"
             :key="i"

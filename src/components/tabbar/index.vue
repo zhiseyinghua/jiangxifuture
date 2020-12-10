@@ -44,7 +44,7 @@
       <v-spacer></v-spacer>
       
       <v-avatar color="primary" size="45"></v-avatar>
-      <v-btn v-on:click="changeLangEvent" text>
+      <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
       </v-btn>
