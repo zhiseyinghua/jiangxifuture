@@ -1,5 +1,5 @@
 <template>
-  <v-container app>
+  <v-container>
     <v-row>
       <v-col>
         <h2 class="text-h5 text-sm-h4 text-md-h3 transition-swing" style="text-align: center">

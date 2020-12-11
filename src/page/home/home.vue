@@ -2,7 +2,7 @@
   *官网首页
  */
 <template>
-  <div>
+  <v-container fluid>
     <v-row>
       <v-col cols="12">
         <v-carousel hide-delimiters cycle height="100%">
@@ -18,7 +18,7 @@
     <news />
     <!-- 解决方案组件 -->
     <solutions />
-  </div>
+  </v-container>
 </template>
 <script>
 import news from "./news-com";
