@@ -10,14 +10,14 @@ export default {
         }
     },
     mutations:{
-        login(state: any,token:string){
+        loginMutations(state: any,token:string){
             state.login = true
             state.idtoken = token
         }
     },
-    action:{
-        login(context:any,token:string) {
-            context.commit('login',token)
+    actions:{
+        loginAction(context:any,token:string) {
+            context.commit('loginMutations',token)
         }
     }
 }

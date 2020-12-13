@@ -8,10 +8,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 
   modules:{
-    login,
+    login:login ,
   },
-  
-
 
   state:{
     drawer:false,   //控制navigation-drawer显示和隐藏

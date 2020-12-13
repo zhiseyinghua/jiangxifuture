@@ -1,4 +1,4 @@
-import auth from "@/page/auth/login.vue";
+import auth from "@/page/auth/signin.vue";
 
 export default {
     path: "/auth",

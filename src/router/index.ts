@@ -3,7 +3,7 @@ import Router from "vue-router";
 import home from "./modules/home";
 import news from "./modules/news";
 import auth from "./modules/auth";
-import Auth from "@/page/auth/login.vue";
+import Auth from "@/page/auth/signin.vue";
 import user from './modules/user';
 import solution from "./modules/solution";
 Vue.use(Router);
