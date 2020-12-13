@@ -1,30 +1,32 @@
 <template style="clear:both">
-  <v-card class="mx-auto my-16" max-width="600" min-width="300" shaped >
+  <v-card class="mx-auto my-16" max-width="600" min-width="300" shaped>
     <v-container fluid>
       <v-row no-gutters>
-        <v-form class="mx-auto my-16">
+        <v-form class="mx-auto my-16" ref="form">
           <v-text-field
             placeholder="请输入手机号"
             color="info"
             outlined
             clearable
             dense
-            required
-            prepend-inner-icon="mdi-map-marker"
+            v-model="moblie"
+            :rules="[rules.required, rules.moblie]"
+            prepend-inner-icon="mdi-account"
             class="rounded-pill"
           ></v-text-field>
           <v-text-field
             color="info"
-            prepend-inner-icon="mdi-map-marker"
-            placeholder="密码为8-20位英文+数字"
+            prepend-inner-icon="mdi-lock"
+            placeholder="密码为6-18位英文+数字"
             outlined
             clearable
             dense
-            required
-            :counter="20"
             v-model="password"
+            counter
+            minlength="6"
+            maxlength="18"
+            :rules="[rules.required, rules.counter, rules.password]"
             :append-icon="isshow ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min, rules.max]"
             :type="isshow ? 'text' : 'password'"
             @click:append="isshow = !isshow"
             class="rounded-pill"
@@ -37,8 +39,9 @@
                 outlined
                 clearable
                 dense
-                required
-                prepend-inner-icon="mdi-map-marker"
+                v-model="check"
+                :rules="[rules.required]"
+                prepend-inner-icon="mdi-marker-check"
                 class="rounded-pill ma-0"
               ></v-text-field
             ></v-col>
@@ -52,7 +55,7 @@
               >
             </v-col>
           </v-row>
-          <v-checkbox v-model="checkbox" class="ma-0 pa-0"  color="info">
+          <v-checkbox class="ma-0 pa-0" color="info" :rules="[rules.required]" v-model="checkbox">
             <template v-slot:label>
               <div class="caption">
                 我同意
@@ -62,7 +65,7 @@
               </div>
             </template>
           </v-checkbox>
-          <v-btn block class="rounded-pill" color="info" bottom> 注册 </v-btn>
+          <v-btn block class="rounded-pill" color="info" bottom @click="validate"> 注册 </v-btn>
           <div class="text-center caption">
             已有账号？
             <a target="_blank" href="http://vuetifyjs.com" @click.stop>
@@ -74,26 +77,35 @@
     </v-container>
   </v-card>
 </template>
-          <script>
+<script>
 export default {
   data() {
     return {
-      isshow: false,
-      checkbox: false,
+      isshow: true,
+      moblie: "",
       password: "",
+      check: "",
+      checkbox: "",
       rules: {
         required: (value) => !!value || "必填项",
-        min: (v) => v.length >= 8 || "至少八位",
-        max: (v) => v.length <= 20 || "最多二十位",
+        counter: (value) =>
+          (value&& value.length >= 6 && value.length <= 18) ||
+          "密码必须为6-18位英文+数字",
+        moblie: (value) => {
+          const pattern = /^[1]([3-9])[0-9]{9}$/;
+          return pattern.test(value) || "请输入正确的手机号";
+        },
+        password: (value) => {
+          const pattern = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+          return pattern.test(value) || "请填写正确格式的密码";
+        },
       },
-    };
+    }
   },
-};
-//
+ methods: {
+      validate () {
+        this.$refs.form.validate()
+      },
+    },
+  }
 </script>
-// <style lang="sass" scoped>
-// .btn {
-//   float:right;
-// }
-// 
-</style>
