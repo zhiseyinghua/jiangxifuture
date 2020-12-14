@@ -4,7 +4,7 @@
     <v-container class="py-0 fill-height" app>
       <div>{{$store.state.login}}</div>
       <div><!-- 放公司logo图标 --></div>
-      <v-app-bar-nav-icon  @click.stop="handleChangeDrawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon class="d-flex d-md-none"  @click.stop="handleChangeDrawer"></v-app-bar-nav-icon>
       <v-toolbar
         dense
         flat
@@ -32,7 +32,7 @@
       </v-toolbar>
       <v-spacer></v-spacer>
       <!-- 搜索框 -->
-      <v-responsive max-width="800" min-widht="200">
+      <v-responsive class="d-none d-sm-flex" max-width="800" min-widht="200">
         <v-text-field
           dense
           flat
@@ -44,13 +44,10 @@
 
       <v-spacer></v-spacer>
       
-      <v-avatar color="primary" size="45"></v-avatar>
+      <v-avatar color="primary d-none d-sm-flex" size="45"></v-avatar>
       <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-container>
   </v-app-bar>

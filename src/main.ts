@@ -7,9 +7,7 @@ import VueI18n from "vue-i18n";
 import authServies from './page/auth/auth.servies'
 
 Vue.config.productionTip = false;
-
 Vue.use(VueI18n);
-
 const i18n = new VueI18n({
   locale: "zh-CN", // 语言标识, 通过切换locale的值来实现语言切换,this.$i18n.locale
   messages: {

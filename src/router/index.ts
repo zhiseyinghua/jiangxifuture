@@ -25,20 +25,5 @@ export default new Router({
       path:"*",
       redirect:home
     },
-    // {
-    //   path:"/",
-    //   component:Auth
-    // },
-
-    solution,
-    
-    // {
-    //   path:"/",
-    //   redirect:home
-    // },
-    // {
-    //   path:"*",
-    //   redirect:home
-    // }
   ]
 });

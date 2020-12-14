@@ -2,23 +2,25 @@
   *官网首页
  */
 <template>
-  <div>
+  <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <v-carousel hide-delimiters cycle height="100%">
-          <v-carousel-item
-            v-for="(item, i) in items"
-            :key="i"
-            :src="item.src"
-          ></v-carousel-item>
-        </v-carousel>
+        <v-responsive :aspect-ratio="16 / 9">
+          <v-carousel hide-delimiters cycle height="100%">
+            <v-carousel-item
+              v-for="(item, i) in items"
+              :key="i"
+              :src="item.src"
+            ></v-carousel-item>
+          </v-carousel>
+        </v-responsive>
       </v-col>
     </v-row>
     <!-- 新闻中心组件 -->
     <news />
     <!-- 解决方案组件 -->
     <solutions />
-  </div>
+  </v-container>
 </template>
 <script>
 import news from "./news-com";
