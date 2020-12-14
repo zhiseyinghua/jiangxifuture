@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    <tabbar></tabbar>
-    <slidebar></slidebar>
+
     <v-main>
       <v-container fluid>
         <router-view></router-view>
@@ -11,15 +10,12 @@
 </template>
 
 <script>
-import tabbar from "@/components/tabbar";
-import slidebar from "@/components/slidebar";
 export default {
   data() {
     return {
       scrolled: false,
     };
   },
-  components: { tabbar, slidebar },
 };
 </script>
 
