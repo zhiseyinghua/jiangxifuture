@@ -1,6 +1,5 @@
 <template style="clear:both">
-  <v-card class="mx-auto my-16" max-width="600" min-width="300" shaped>
-    <v-btn v-on:click="vertest" >1234596</v-btn>
+  <v-card class="mx-auto my-16" max-width="600" min-width="300" shaped >
     <v-container fluid>
       <v-row no-gutters>
         <v-form class="mx-auto my-16">
@@ -53,7 +52,7 @@
               >
             </v-col>
           </v-row>
-          <v-checkbox v-model="checkbox" class="ma-0 pa-0" color="info">
+          <v-checkbox v-model="checkbox" class="ma-0 pa-0"  color="info">
             <template v-slot:label>
               <div class="caption">
                 我同意
@@ -75,8 +74,7 @@
     </v-container>
   </v-card>
 </template>
-<script>
-import authServies from './auth.servies'
+          <script>
 export default {
   data() {
     return {
@@ -90,24 +88,12 @@ export default {
       },
     };
   },
-  methods: {
-    vertest: function(){
-       authServies.SendPhoneSMSInterface("18779868511","phone").subscribe(
-         (data=>{
-          //  if(data['data'] ==)
-           console.log(data);
-         })
-       )
-      // this.$store.dispatch("login/loginAction", "123456789")
-    }
-  },
 };
 //
 </script>
-//
-<style lang="sass" scoped>
+// <style lang="sass" scoped>
 // .btn {
 //   float:right;
 // }
-//
+// 
 </style>
