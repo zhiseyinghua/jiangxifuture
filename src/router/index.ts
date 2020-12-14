@@ -7,7 +7,7 @@ import user from "./modules/user";
 Vue.use(Router);
 // 这是一个路由管理的模块，是各个路由的出口
 export default new Router({
-  mode:"history",
+  // mode:"history",
   routes: [
     auth,
     home,
