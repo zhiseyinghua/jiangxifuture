@@ -13,13 +13,13 @@ export default new Router({
     home,
     news,
     user,
-    {
-      path:"/",
-      redirect:home
-    },
-    {
-      path:"*",
-      redirect:home
-    }
+    // {
+    //   path:"/",
+    //   redirect:home
+    // },
+    // {
+    //   path:"*",
+    //   redirect:home
+    // }
   ]
 });
