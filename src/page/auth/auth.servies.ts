@@ -4,6 +4,7 @@ import { map } from "rxjs/operators";
 import { httpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
+import Axios from "axios";
 
 export default class AuthServies {
   /**
@@ -14,7 +15,7 @@ export default class AuthServies {
 
   }
 
-  public static SendPhoneSMSInterface(mobile:string,devices: string) : Observable<any>{
+  public static SendPhoneSMSInterface(mobile:string,devices: string) : any{
     // return Axios.post(httpHost.localHost+ '/' +httpHost.auth.zone+ '/'+ httpHost.auth.seedjpushsms).pipe(
     //   map((data) => {
     //     return data
@@ -28,5 +29,15 @@ export default class AuthServies {
         devices: "phone",
       }
     );
+    // return Axios.post('/api/auth/seedjpushsms', {
+    //   "mobile": "18779868511",
+    // "devices": "phone"
+    // } )
+    // .then(function (response) {
+    //   return 1
+    // })
+    // .catch(function (error) {
+    //   return 1
+    // });
   }
 }
