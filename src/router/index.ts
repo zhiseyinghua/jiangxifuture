@@ -5,6 +5,7 @@ import news from "./modules/news";
 import auth from "./modules/auth";
 import login from "./modules/login";
 import solution from "./modules/solution";
+import test from "./modules/test";
 Vue.use(Router);
 // 这是一个路由管理的模块，是各个路由的出口
 export default new Router({
@@ -14,6 +15,7 @@ export default new Router({
     auth,
     login,
     solution,
+    test,
     {
       path:"/",
       redirect:home
