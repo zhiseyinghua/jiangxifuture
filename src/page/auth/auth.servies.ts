@@ -14,7 +14,7 @@ export default class AuthServies {
     store.dispatch("login/loginAction", "123456789")
   }
 
-  public static SendPhoneSMSInterface(mobile:string,devices: string) : any{
+  public static SendPhoneSMSInterface(mobile:string,devices: string) :Observable<any>{
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,

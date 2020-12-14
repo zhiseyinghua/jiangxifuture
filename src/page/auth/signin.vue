@@ -92,7 +92,11 @@ export default {
   },
   methods: {
     vertest: function(){
-       authServies.SendPhoneSMSInterface("18779868511","phone",)
+       authServies.SendPhoneSMSInterface("18779868511","phone").subscribe(
+         (data=>{
+           console.log(data);
+         })
+       )
       // this.$store.dispatch("login/loginAction", "123456789")
     }
   },
