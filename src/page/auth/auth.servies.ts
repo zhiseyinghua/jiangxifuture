@@ -12,15 +12,9 @@ export default class AuthServies {
    */
   public static logintest() {
     store.dispatch("login/loginAction", "123456789")
-
   }
 
   public static SendPhoneSMSInterface(mobile:string,devices: string) : any{
-    // return Axios.post(httpHost.localHost+ '/' +httpHost.auth.zone+ '/'+ httpHost.auth.seedjpushsms).pipe(
-    //   map((data) => {
-    //     return data
-    //   })
-    // )
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
@@ -29,15 +23,6 @@ export default class AuthServies {
         devices: "phone",
       }
     );
-    // return Axios.post('/api/auth/seedjpushsms', {
-    //   "mobile": "18779868511",
-    // "devices": "phone"
-    // } )
-    // .then(function (response) {
-    //   return 1
-    // })
-    // .catch(function (error) {
-    //   return 1
-    // });
+    
   }
 }

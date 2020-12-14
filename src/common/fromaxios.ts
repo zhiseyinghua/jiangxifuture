@@ -1,16 +1,15 @@
-import { Observable, from, of, throwError } from 'rxjs';
-import { switchMap, catchError } from 'rxjs/operators';
-import axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
-import { httpHost } from './api';
+import { Observable, from, of, throwError } from "rxjs";
+import { switchMap, catchError } from "rxjs/operators";
+import axios, { AxiosInstance, AxiosRequestConfig, Method } from "axios";
+import { httpHost } from "./api";
 
 // const axios = require('axios');
-
 
 /**
  * 这是一个请求负责处理
  */
 export class AxiosElasticService {
-  logg = 'DbElasticService';
+  logg = "DbElasticService";
 
   /**
    * 这是一个数据库服务 注意body传入的是一个
@@ -22,28 +21,22 @@ export class AxiosElasticService {
     method: Method,
     urlstr: string,
     body?: any,
-    headers?:any,
+    headers?: any,
     params?: any
   ): Observable<any> {
-    console.log(
-      method,
-      body,
-      urlstr,
-    );
+    console.log(method, body, urlstr);
     let axiosData: AxiosRequestConfig = {
       method: method,
       url: httpHost.localHost + urlstr,
       data: body,
       headers: {
-          ...headers,
-        'Content-Type': 'application/json',
+        ...headers,
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      params
+      params,
     };
     // console.log('DbElasticService ' + 'executeInEs axiosData' + JSON.stringify(axiosData));
-    return from(
-      axios(axiosData),
-    ).pipe(
+    return from(axios(axiosData)).pipe(
       catchError((error) => {
         // console.log('DbElasticService ' + 'executeInEs' + error);
         // return throwError(error);
@@ -52,7 +45,7 @@ export class AxiosElasticService {
       switchMap((result) => {
         // console.log(result);
         return of(result);
-      }),
+      })
     );
   }
 }
