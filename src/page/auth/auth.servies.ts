@@ -15,13 +15,14 @@ export default class AuthServies {
   }
 
   public static SendPhoneSMSInterface(mobile:string,devices: string) :Observable<any>{
+    let a = {
+      mobile: "18779868511",
+      devices: "phone",
+    }
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
-      {
-        mobile: "18779868511",
-        devices: "phone",
-      }
+      a
     );
     
   }

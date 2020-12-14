@@ -94,6 +94,7 @@ export default {
     vertest: function(){
        authServies.SendPhoneSMSInterface("18779868511","phone").subscribe(
          (data=>{
+          //  if(data['data'] ==)
            console.log(data);
          })
        )

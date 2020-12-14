@@ -31,11 +31,11 @@ export class AxiosElasticService {
       data: body,
       headers: {
         ...headers,
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
       params,
     };
-    // console.log('DbElasticService ' + 'executeInEs axiosData' + JSON.stringify(axiosData));
+    console.log('DbElasticService ' + 'executeInEs axiosData' + JSON.stringify(axiosData));
     return from(axios(axiosData)).pipe(
       catchError((error) => {
         // console.log('DbElasticService ' + 'executeInEs' + error);
