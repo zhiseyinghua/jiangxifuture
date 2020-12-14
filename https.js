@@ -32,7 +32,7 @@ axios.interceptors.request.use(
       } else if (chicktokentime < 12 && chicktokentime > 0) {
         console.log('进入刷新token的方法里面吗')
         // 就刷新token
-        // :TODO
+        // TODO:刷新token
       } else {
         console.log('没登录')
         isTokenExpired = false

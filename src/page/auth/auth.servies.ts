@@ -15,15 +15,23 @@ export default class AuthServies {
   }
 
   public static SendPhoneSMSInterface(mobile:string,devices: string) :Observable<any>{
+    // TODO:电话号码修改
     let a = {
       mobile: "18779868511",
       devices: "phone",
     }
     return AxiosElasticService.AxiosService(
-      "POST",
+      'POST',
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
       a
-    );
-    
+    ); 
   }
+
+  public static bytokengettoken() : Observable<any>{
+    return AxiosElasticService.AxiosService(
+      'POST',
+      AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
+    )
+  }
+
 }
