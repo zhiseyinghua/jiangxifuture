@@ -1,7 +1,8 @@
 <template>
   <!-- 这是一个导航栏 -->
   <v-app-bar app>
-    <v-container class="py-0 fill-height">
+    <v-container class="py-0 fill-height" app>
+      <div>{{$store.state.login}}</div>
       <div><!-- 放公司logo图标 --></div>
       <v-app-bar-nav-icon  @click.stop="handleChangeDrawer"></v-app-bar-nav-icon>
       <v-toolbar
@@ -22,6 +23,12 @@
             <!-- 新闻中心 -->
           </v-btn>
         </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="solution" text>
+            解决方案
+            <!-- 解决方案 -->
+          </v-btn>
+        </v-toolbar-title>
       </v-toolbar>
       <v-spacer></v-spacer>
       <!-- 搜索框 -->
@@ -38,7 +45,7 @@
       <v-spacer></v-spacer>
       
       <v-avatar color="primary" size="45"></v-avatar>
-      <v-btn v-on:click="changeLangEvent" text>
+      <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
       </v-btn>

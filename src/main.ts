@@ -4,12 +4,11 @@ import router from "@/router";
 import store from "@/store";
 import vuetify from "@/plugins/vuetify";
 import VueI18n from "vue-i18n";
-import { ValidationProvider } from 'vee-validate';
+import authServies from './page/auth/auth.servies'
 
 Vue.config.productionTip = false;
 
 Vue.use(VueI18n);
-Vue.component('ValidationProvider', ValidationProvider);
 
 const i18n = new VueI18n({
   locale: "zh-CN", // 语言标识, 通过切换locale的值来实现语言切换,this.$i18n.locale
