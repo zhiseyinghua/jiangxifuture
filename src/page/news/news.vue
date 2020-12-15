@@ -31,10 +31,8 @@
           </v-breadcrumbs>
         </v-col>
         <v-col cols="12" md="6">
-          <v-toolbar dense flat
-          class="d-flex justify-end"
-
-            ><v-toolbar-title class="mr-5">
+          <v-toolbar dense flat class="d-flex justify-sm-space-between justify-md-end"
+            ><v-toolbar-title class="mr-md-5">
               <v-btn> <v-icon>mdi-email-newsletter</v-icon>集团新闻 </v-btn>
             </v-toolbar-title>
             <v-toolbar-title>
@@ -44,11 +42,27 @@
         </v-col>
       </v-row>
     </v-container>
+    
+    <v-divider></v-divider>
+
+    <!-- 新闻列表组件 -->
+    <newlist></newlist>
+
+    <div class="d-flex justify-center align-center">
+      <v-btn text>&lt; 上一页</v-btn>
+      <v-responsive max-width="50" class="d-flex justify-center mx-5">
+        <v-text-field  outlined dense hide-details="auto"></v-text-field>
+      </v-responsive>
+      <span class="mr-5">/{{18}}</span>
+      <v-btn text>下一页 &gt;</v-btn>
+    </div>
   </v-container>
 </template>
 
 <script>
+import newlist from "./neslist-com"
 export default {
+  components:{ newlist },
   data: () => ({
     items: [
       {
@@ -67,7 +81,7 @@ export default {
         href: "breadcrumbs_link_2",
       },
     ],
-    toggleExclusive: undefined,
+    // toggleExclusive: undefined,
   }),
 };
 </script>
