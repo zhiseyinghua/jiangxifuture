@@ -7,7 +7,7 @@
         <router-view></router-view>
       </v-container>
     </v-main>
-    <foot></foot>
+    <foot v-if="$store.state.isShow"></foot>
   </v-app>
 </template>
 
@@ -21,7 +21,7 @@ export default {
       scrolled: false
     };
   },
-  // components: { tabbar, slidebar,foot },
+  components: { tabbar, slidebar,foot },
 };
 </script>
 
