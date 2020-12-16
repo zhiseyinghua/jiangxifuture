@@ -5,6 +5,7 @@ import store from "@/store";
 import vuetify from "@/plugins/vuetify";
 import VueI18n from "vue-i18n";
 import authServies from './page/auth/auth.servies'
+import axios from './https.js'
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
@@ -15,6 +16,9 @@ const i18n = new VueI18n({
     "en-US": require("../common/lang/en.js") // 英文语言包
   }
 });
+
+Vue.prototype.axios = axios
+
 
 new Vue({
   router,
