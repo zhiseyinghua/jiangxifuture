@@ -21,7 +21,7 @@ export default {
       scrolled: false
     };
   },
-  components: { tabbar, slidebar,foot },
+  // components: { tabbar, slidebar,foot },
 };
 </script>
 
