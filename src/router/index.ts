@@ -4,9 +4,10 @@ import home from "./modules/home";
 import news from "./modules/news";
 import auth from "./modules/auth";
 import login from "./modules/login";
-import Auth from "@/page/auth/signin.vue";
+// import Auth from "@/page/auth/signin.vue";
 import solution from "./modules/solution";
 import test from "./modules/test";
+import user from "./modules/user";
 Vue.use(Router);
 // 这是一个路由管理的模块，是各个路由的出口
 export default new Router({
@@ -17,6 +18,7 @@ export default new Router({
     login,
     solution,
     test,
+    user,
     {
       path:"/",
       redirect:home
