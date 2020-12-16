@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <tabbar></tabbar>
+    <tabbar v-if="$store.state.isShow"></tabbar>
     <slidebar></slidebar>
     <v-main>
       <v-container fluid>
@@ -18,7 +18,7 @@ import foot from "@/components/foot";
 export default {
   data() {
     return {
-      scrolled: false,
+      scrolled: false
     };
   },
   components: { tabbar, slidebar,foot },
