@@ -5,6 +5,5 @@ export const lang = {
     homeOverview: "huangw",
     newCenter: "qingq",
     cutLanguage: "des sf",
-    knowProduct:"了解我的产品"
   },
 };
