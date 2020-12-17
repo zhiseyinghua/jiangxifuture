@@ -165,9 +165,9 @@ export default {
   },
 
   methods: {
-
     tianxiebiaodantest() {
-      
+      this.moblie = "18779868511";
+      this.password= "q123456"
     },
 
     /**
