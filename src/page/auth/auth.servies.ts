@@ -1,6 +1,6 @@
 import store from "@/store";
 import { from, Observable, throwError } from "rxjs";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 import { httpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
@@ -61,7 +61,9 @@ export default class AuthServies {
           console.log("signupAuth signupAuth data", data);
           return AuthServies.logintest(data.idtoken);
         }
-      })
+      }),
+      delay(2000)
+      
     );
   }
 

@@ -196,8 +196,9 @@ export default {
         console.log(this.text);
         this.errorsnackbar = true;
       } else {
+        console.log("111111111111111111111111111111111", this.overlayvalue);
         this.overlayvalue = true;
-        console.log('111111111111111111111111111111111',this.overlayvalue)
+        console.log("111111111111111111111111111111111", this.overlayvalue);
         let signData = {
           code: "883461",
           provider: "phone",
@@ -209,11 +210,13 @@ export default {
           platform: "string",
         };
         authServies.signupAuth(signData).subscribe((data) => {
-          console.log(data);
+          // console.log(data);
           this.overlayvalue = false;
+          console.log("111111111111111111111111111111111", this.overlayvalue);
           (err) => {
-            this.$data.errorsnackbar = true;
-            this.$data.test = err
+            this.overlayvalue = false;
+            this.test = err.state;
+            this.errorsnackbar = true;
             console.log("signin.vue signup err", err);
           };
         });
