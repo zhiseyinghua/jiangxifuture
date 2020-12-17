@@ -56,7 +56,7 @@ export default class AuthServies {
       map((data: SignsuccessInterface) => {
         //后端返回错误结果
         if (data.data.status != "success") {
-          console.log('1111111111111112',data.data.status)
+          console.log('1111111111111112',data.data)
           return throwError(new Error(data.data.status))
         } else {
           console.log("signupAuth signupAuth data", data);

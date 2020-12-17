@@ -6,11 +6,15 @@ export interface SendPhoneSMSInterface {
   devices: "phone" | "web";
 }
 
-export interface SignsuccessInterface{
-  data:{
-    "status":"success"| '',
-  "idtoken": string
-  }
+/**
+ * 注册返回的错误木马
+ */
+export interface SignsuccessInterface {
+  data: {
+    idtoken: string;
+    code?: string;
+    status?: "success" | "";
+  };
 }
 
 /**
@@ -18,11 +22,11 @@ export interface SignsuccessInterface{
  * msg_id为调用发送验证码API的返回值
  */
 export interface LoginInWithSMSVerifyCodeInput {
-  phone:string
+  phone: string;
   msg_id: string;
   code: string;
-  provider: 'phone' | 'web';
-  encodepossword: string
+  provider: "phone" | "web";
+  encodepossword: string;
   device: string;
-  platform: string
+  platform: string;
 }
