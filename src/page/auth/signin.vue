@@ -2,7 +2,9 @@
   <v-row class="my-16">
     <v-col cols="10" md="6" offset="1" sm="8" offset-sm="2" offset-md="3">
       <v-card shaped>
-        <v-btn v-on:click="vertest" >1234596</v-btn>
+        
+        <v-btn v-on:click="vertest">1234596</v-btn>
+        <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-row no-gutters>
           <v-col cols="8" offset="2">
             <v-form ref="form" class="my-16">
@@ -92,7 +94,7 @@
   </v-row>
 </template>
 <script>
-import authServies from './auth.servies'
+import authServies from "./auth.servies";
 export default {
   data() {
     return {
@@ -121,15 +123,26 @@ export default {
     validate() {
       this.$refs.form.validate();
     },
-    vertest: function(){
-       authServies.SendPhoneSMSInterface("18779868511","phone").subscribe(
-         (data=>{
+    vertest: function() {
+      authServies
+        .SendPhoneSMSInterface("18779868511", "phone")
+        .subscribe((data) => {
           //  if(data['data'] ==)
-           console.log(data);
-         })
-       )
+          console.log(data);
+        });
       // this.$store.dispatch("login/loginAction", "123456789")
-    }
+    },
+    /**
+     * 通过token换token
+     */
+    rbytokengettoken: function() {
+      authServies
+        .bytokengettoken()
+        .subscribe((data) => {
+          //  if(data['data'] ==)
+          console.log(data);
+        });
+    },
   },
 };
 </script>

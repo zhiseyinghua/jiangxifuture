@@ -30,8 +30,9 @@ export default class AuthServies {
   public static bytokengettoken() : Observable<any>{
     return AxiosElasticService.AxiosService(
       'POST',
-      AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
+      AuthConfig.zone + "/" + AuthConfig.bytokengettoken,
     )
   }
+  
 
 }
