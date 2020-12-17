@@ -1,10 +1,29 @@
 <template style="clear:both">
   <v-row class="my-16">
+    <!-- 消息提示 -->
+
+    <v-snackbar v-model="errorsnackbar" top color="pink">
+      {{ text }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-col cols="10" md="6" offset="1" sm="8" offset-sm="2" offset-md="3">
       <v-card shaped>
         <v-btn v-on:click="vertest">发验证码</v-btn>
         <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-btn v-on:click="signup">注册</v-btn>
+
+        <!-- 遮罩层 -->
+        <div class="text-center">
+          
+          <v-overlay :value="overlayvalue">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+          </v-overlay>
+        </div>
+
         <v-row no-gutters>
           <v-col cols="8" offset="2">
             <v-form ref="form" class="my-16">
@@ -45,15 +64,23 @@
                     clearable
                     dense
                     v-model="check"
-                    :rules="[rules.required]"
+                    :rules="[rules.required, rules.verificationcode]"
                     prepend-inner-icon="mdi-marker-check"
                     class="rounded-pill"
                   ></v-text-field
                 ></v-col>
                 <v-col cols="12" sm="4" class="text-xs-caption offset-sm-1">
-                  <v-btn class="rounded-pill" color="info" block dense outlined
-                    >获取短信码</v-btn
+                  <v-btn
+                    v-on:click="sendYanzhengma"
+                    :disabled="isDisabled"
+                    class="rounded-pill"
+                    color="info"
+                    block
+                    dense
+                    outlined
                   >
+                    {{ buttonName }}
+                  </v-btn>
                 </v-col>
               </v-row>
               <v-checkbox
@@ -98,7 +125,17 @@ import authServies from "./auth.servies";
 export default {
   data() {
     return {
-      isshow: true,
+      // 遮罩层的状态
+      overlayvalue: false,
+      // 倒计时
+      time: 3,
+      buttonName: "发送短信",
+      // 按钮
+      isDisabled: false,
+      //消息提示
+      errorsnackbar: false,
+      text: "",
+      isshow: false,
       moblie: "",
       password: "",
       check: "",
@@ -107,29 +144,63 @@ export default {
         required: (value) => !!value || "必填项",
         counter: (value) =>
           (value && value.length >= 6 && value.length <= 18) ||
-          "密码必须为6-18位英文+数字",
+          "密码必须包含字母和数字",
         moblie: (value) => {
-          const pattern = /^[1]([3-9])[0-9]{9}$/;
+          const pattern = /^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$/;
           return pattern.test(value) || "请输入正确的手机号";
         },
         password: (value) => {
           const pattern = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
           return pattern.test(value) || "请填写正确格式的密码";
         },
+        verificationcode: (value) => {
+          const pattern = /^\d{6}$/;
+          return pattern.test(value) || "请填写正确格式的密码";
+        },
       },
     };
   },
+
   methods: {
-    validate() {
-      this.$refs.form.validate();
+    /**
+     * 发送验证码
+     */
+    sendYanzhengma() {
+      this.sendSMSTime();
     },
 
+    sendSMSTime() {
+      console.log("sendSMSTime");
+      let interval = window.setInterval(() => {
+        this.buttonName = "（" + this.time + "秒）";
+        --this.time;
+        if (this.time < 0) {
+          this.buttonName = "重新发送";
+          this.time = 3;
+          this.isDisabled = false;
+          window.clearInterval(interval);
+        }
+      }, 1000);
+    },
+
+    validate() {
+      if (!this.$refs.form.validate()) {
+        this.text = "请认真填写表单";
+        console.log(this.text);
+        this.errorsnackbar = true;
+      } else {
+        this.overlayvalue = true;
+      }
+      console.log(this.$refs.form.validate());
+      console.log(this.moblie, this.password, this.check);
+    },
     signup: function() {
+      
       let signData = {
-        code: "166713",
+        code: "883461",
         provider: "phone",
         // eslint-disable-next-line @typescript-eslint/camelcase
-        msg_id: "299916947630080",
+        msg_id: "299926273665024",
         encodepossword: "123456",
         phone: "18779868511",
         device: "string",
@@ -137,12 +208,11 @@ export default {
       };
       authServies.signupAuth(signData).subscribe((data) => {
         console.log(data);
-        (err)=>{
-          console.log(err)
-        }
-      }
-      
-      );
+        (err) => {
+          (this.$data.errorsnackbar = true), (this.$data.test = err);
+          console.log("signin.vue signup err", err);
+        };
+      });
     },
     vertest: function() {
       authServies

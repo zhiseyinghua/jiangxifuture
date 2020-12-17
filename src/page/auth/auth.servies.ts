@@ -1,11 +1,14 @@
 import store from "@/store";
-import { from, Observable } from "rxjs";
+import { from, Observable, throwError } from "rxjs";
 import { map } from "rxjs/operators";
 import { httpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
 import Axios from "axios";
-import { LoginInWithSMSVerifyCodeInput, SignsuccessInterface } from "./auth.interface";
+import {
+  LoginInWithSMSVerifyCodeInput,
+  SignsuccessInterface,
+} from "./auth.interface";
 let jwt = require("jsonwebtoken");
 
 export default class AuthServies {
@@ -13,8 +16,8 @@ export default class AuthServies {
   /**
    * 改变前端state状态的方法
    */
-  public static logintest(token:string) {
-    store.dispatch("login/loginAction",token);
+  public static logintest(token: string) {
+    store.dispatch("login/loginAction", token);
   }
 
   public static SendPhoneSMSInterface(
@@ -42,7 +45,7 @@ export default class AuthServies {
 
   /**
    * 用户注册
-   * @param signData 
+   * @param signData
    */
   static signupAuth(signData: LoginInWithSMSVerifyCodeInput): Observable<any> {
     return AxiosElasticService.AxiosService(
@@ -50,10 +53,16 @@ export default class AuthServies {
       AuthConfig.zone + "/" + AuthConfig.verifysmscoderegister,
       signData
     ).pipe(
-      map((data:SignsuccessInterface)=>{
-        return AuthServies.logintest(data.idtoken)
+      map((data: SignsuccessInterface) => {
+        //后端返回错误结果
+        if (data.status == "success") {
+          return throwError(new Error(data.status))
+        } else {
+          console.log("signupAuth signupAuth data", data);
+          return AuthServies.logintest(data.idtoken);
+        }
       })
-    )
+    );
   }
 
   /**

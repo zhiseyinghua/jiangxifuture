@@ -11,12 +11,12 @@ export default new Vuex.Store({
     login:login ,
   },
 
-  // state:{
-  //   drawer:false,   //控制navigation-drawer显示和隐藏
-  // },
-  // mutations:{
-  //   changeDrawer(state){
-  //     state.drawer = !state.drawer;
-  //   }
-  // }
+  state:{
+    drawer:false,   //控制navigation-drawer显示和隐藏
+  },
+  mutations:{
+    changeDrawer(state){
+      state.drawer = !state.drawer;
+    }
+  }
 });
