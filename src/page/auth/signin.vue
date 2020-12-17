@@ -18,7 +18,6 @@
 
         <!-- 遮罩层 -->
         <div class="text-center">
-          
           <v-overlay :value="overlayvalue">
             <v-progress-circular indeterminate size="64"></v-progress-circular>
           </v-overlay>
@@ -103,7 +102,7 @@
                 class="rounded-pill"
                 color="info"
                 bottom
-                @click="validate"
+                @click="signUp"
               >
                 注册
               </v-btn>
@@ -167,7 +166,7 @@ export default {
   methods: {
     tianxiebiaodantest() {
       this.moblie = "18779868511";
-      this.password= "q123456"
+      this.password = "q123456";
     },
 
     /**
@@ -191,19 +190,38 @@ export default {
       }, 1000);
     },
 
-    validate() {
+    signUp() {
       if (!this.$refs.form.validate()) {
         this.text = "请认真填写表单";
         console.log(this.text);
         this.errorsnackbar = true;
       } else {
         this.overlayvalue = true;
+        console.log('111111111111111111111111111111111',this.overlayvalue)
+        let signData = {
+          code: "883461",
+          provider: "phone",
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          msg_id: "299926273665024",
+          encodepossword: "123456",
+          phone: "18779868511",
+          device: "string",
+          platform: "string",
+        };
+        authServies.signupAuth(signData).subscribe((data) => {
+          console.log(data);
+          this.overlayvalue = false;
+          (err) => {
+            this.$data.errorsnackbar = true;
+            this.$data.test = err
+            console.log("signin.vue signup err", err);
+          };
+        });
       }
       console.log(this.$refs.form.validate());
       console.log(this.moblie, this.password, this.check);
     },
     signup: function() {
-      
       let signData = {
         code: "883461",
         provider: "phone",
@@ -214,13 +232,6 @@ export default {
         device: "string",
         platform: "string",
       };
-      authServies.signupAuth(signData).subscribe((data) => {
-        console.log(data);
-        (err) => {
-          (this.$data.errorsnackbar = true), (this.$data.test = err);
-          console.log("signin.vue signup err", err);
-        };
-      });
     },
     vertest: function() {
       authServies
