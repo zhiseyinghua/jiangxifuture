@@ -55,7 +55,7 @@ export default class AuthServies {
     ).pipe(
       map((data: SignsuccessInterface) => {
         //后端返回错误结果
-        if (data.data.status != "success") {
+        if (!data.data.status || data.data.status != "success") {
           console.log('1111111111111112',data.data)
           return throwError(new Error(data.data.status))
         } else {
