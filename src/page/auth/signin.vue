@@ -116,6 +116,9 @@
             </v-form>
           </v-col>
         </v-row>
+        <v-btn @click="tianxiebiaodantest">
+          填写表单test
+        </v-btn>
       </v-card>
     </v-col>
   </v-row>
@@ -162,6 +165,11 @@ export default {
   },
 
   methods: {
+
+    tianxiebiaodantest() {
+      
+    },
+
     /**
      * 发送验证码
      */
