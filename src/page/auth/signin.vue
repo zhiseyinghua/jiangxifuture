@@ -210,8 +210,8 @@ export default {
           platform: "string",
         };
         authServies.signupAuth(signData).subscribe((data) => {
-          // console.log(data);
           this.overlayvalue = false;
+          console.log('auth signUp data',data);
           console.log("111111111111111111111111111111111", this.overlayvalue);
           (err) => {
             this.overlayvalue = false;

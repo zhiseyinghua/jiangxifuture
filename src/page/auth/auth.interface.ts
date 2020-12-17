@@ -7,8 +7,10 @@ export interface SendPhoneSMSInterface {
 }
 
 export interface SignsuccessInterface{
-  "status":"success"| '',
+  data:{
+    "status":"success"| '',
   "idtoken": string
+  }
 }
 
 /**

@@ -55,15 +55,15 @@ export default class AuthServies {
     ).pipe(
       map((data: SignsuccessInterface) => {
         //后端返回错误结果
-        if (data.status == "success") {
-          return throwError(new Error(data.status))
+        if (data.data.status != "success") {
+          console.log('1111111111111112',data.data.status)
+          return throwError(new Error(data.data.status))
         } else {
           console.log("signupAuth signupAuth data", data);
-          return AuthServies.logintest(data.idtoken);
+          return AuthServies.logintest(data.data.idtoken);
         }
       }),
       delay(2000)
-      
     );
   }
 
