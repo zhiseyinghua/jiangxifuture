@@ -12,7 +12,7 @@ export class AxiosElasticService {
   logg = "DbElasticService";
 
   /**
-   * 这是一个数据库服务 注意body传入的是一个
+   * 这是一个后台服务 注意body传入的是一个
    * @param method 请求的Method，它是Metod类型
    * @param body   z'AA
    * @param url    请求的url

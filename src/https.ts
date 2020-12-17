@@ -17,44 +17,44 @@ let isTokenExpired = false
 axios.interceptors.request.use(
   config => {
     console.log('isTokenExpired1', isTokenExpired)
-
-    console.log('222222222222222222', (!(store.state.login.token === null)) && isTokenExpired === false)
-    // if ((!(store.state.login.token === null)) && isTokenExpired === false) {
-    //   isTokenExpired = true
-    //   console.log('isTokenExpired', isTokenExpired)
-    //   // 判断token是否需要刷新
-    //   let _stoken = store.state.login.token
-    //   let chicktokentime = authServicer.chicktokenTime(_stoken)
-    //   // let chicktokentime = 3
-    //   if (chicktokentime >= 12) {
-    //     isTokenExpired = false
-    //     console.log('已经登录')
-    //   } else if (chicktokentime < 12 && chicktokentime > 0) {
-    //     console.log('进入刷新token的方法里面吗')
-    //     // 就刷新token
-    //     // TODO:
-    //   } else {
-    //     console.log('没登录')
-    //     isTokenExpired = false
-    //     // confirm.log('没登录')
-    //   }
-    //   // }
-    // } else {
-    //   // TODO: 错误处理
-    //   console.log('error1234')
-    // }
+    console.log('isTokenExpired1 store.state', store.state.login.idtoken)
+    console.log('222222222222222222', (!(store.state === null)) && isTokenExpired === false)
+    if ((!(store.state.login.idtoken === null)) && isTokenExpired === false) {
+      isTokenExpired = true
+      console.log('isTokenExpired', isTokenExpired)
+      // 判断token是否需要刷新
+      let _stoken = store.state.login.idtoken
+      // let chicktokentime = authServicer.chicktokenTime(_stoken)
+      let chicktokentime = 3
+      if (chicktokentime >= 12) {
+        isTokenExpired = false
+        console.log('已经登录')
+      } else if (chicktokentime < 12 && chicktokentime > 0) {
+        console.log('进入刷新token的方法里面吗')
+        // 就刷新token
+        // TODO:
+      } else {
+        console.log('没登录')
+        isTokenExpired = false
+        // confirm.log('没登录')
+      }
+      // }
+    } else {
+      // TODO: 错误处理
+      console.log('error1234')
+    }
     // 判断所发的请求是否要加token
-    // if (
+    if (
 
-    //   config.url === CONFIG.refreshtoken ||
-    //   config.url === CONFIG.uppersoninfo ||
-    //   config.url === CONFIG.putwenzhang
-    // ) {
-    //   config.headers.Token = store.state.login.token
-    // } else {
-    //   console.log('不需要加token')
-    // }
-    // console.log(config)
+      config.url === CONFIG.refreshtoken ||
+      config.url === CONFIG.uppersoninfo ||
+      config.url === CONFIG.putwenzhang
+    ) {
+      config.headers.Token = store.state.login.token
+    } else {
+      console.log('不需要加token')
+    }
+    console.log(config)
     return config
   },
   err => {
