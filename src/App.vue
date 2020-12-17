@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <!-- <tabbar></tabbar>
-    <slidebar></slidebar> -->
+    <tabbar></tabbar>
+    <slidebar></slidebar>
     <v-main>
       <v-container fluid>
         <router-view></router-view>
       </v-container>
     </v-main>
-    <!-- <foot></foot> -->
+    <foot></foot>
   </v-app>
 </template>
 

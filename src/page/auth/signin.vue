@@ -2,9 +2,9 @@
   <v-row class="my-16">
     <v-col cols="10" md="6" offset="1" sm="8" offset-sm="2" offset-md="3">
       <v-card shaped>
-        
-        <v-btn v-on:click="vertest">1234596</v-btn>
+        <v-btn v-on:click="vertest">发验证码</v-btn>
         <v-btn v-on:click="rbytokengettoken">换token</v-btn>
+        <v-btn v-on:click="signup">注册</v-btn>
         <v-row no-gutters>
           <v-col cols="8" offset="2">
             <v-form ref="form" class="my-16">
@@ -123,6 +123,27 @@ export default {
     validate() {
       this.$refs.form.validate();
     },
+
+    signup: function() {
+      let signData = {
+        code: "166713",
+        provider: "phone",
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        msg_id: "299916947630080",
+        encodepossword: "123456",
+        phone: "18779868511",
+        device: "string",
+        platform: "string",
+      };
+      authServies.signupAuth(signData).subscribe((data) => {
+        console.log(data);
+        (err)=>{
+          console.log(err)
+        }
+      }
+      
+      );
+    },
     vertest: function() {
       authServies
         .SendPhoneSMSInterface("18779868511", "phone")
@@ -136,12 +157,10 @@ export default {
      * 通过token换token
      */
     rbytokengettoken: function() {
-      authServies
-        .bytokengettoken()
-        .subscribe((data) => {
-          //  if(data['data'] ==)
-          console.log(data);
-        });
+      authServies.bytokengettoken().subscribe((data) => {
+        //  if(data['data'] ==)
+        console.log(data);
+      });
     },
   },
 };

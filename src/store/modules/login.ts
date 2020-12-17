@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state:{
         login: false,
-        idtoken: '123'
+        idtoken: null
     },
     getters: {
         getLogin: (state:any) =>{

@@ -3,5 +3,8 @@ export const AuthConfig = {
     // 发送极光验证码短信
     seedjpushsms:'seedjpushsms',
     // token换token
-    bytokengettoken:'bytokengettoken'
+    bytokengettoken:'bytokengettoken',
+    // 注册
+    verifysmscoderegister:'verifysmscoderegister'
 }
+

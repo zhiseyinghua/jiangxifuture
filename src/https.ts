@@ -4,14 +4,13 @@
  */
 
 import axios from 'axios'
+import AuthServies from './page/auth/auth.servies'
 import store from './store'
 // import authServicer from './serves/auth.services'
 // import { CONFIG } from './rconfig'
 // import router from './router'
 
 // axios 配置
-axios.defaults.timeout = 8084
-axios.defaults.baseURL = 'http://localhost'
 let isTokenExpired = false
 // http request 拦截器
 axios.interceptors.request.use(
@@ -24,8 +23,9 @@ axios.interceptors.request.use(
       console.log('isTokenExpired', isTokenExpired)
       // 判断token是否需要刷新
       let _stoken = store.state.login.idtoken
-      // let chicktokentime = authServicer.chicktokenTime(_stoken)
-      let chicktokentime = 3
+      let chicktokentime = AuthServies.chicktokenTime(_stoken)
+      console.log('http chicktokentime',chicktokentime)
+      // let chicktokentime = 3
       if (chicktokentime >= 12) {
         isTokenExpired = false
         console.log('已经登录')
@@ -44,16 +44,16 @@ axios.interceptors.request.use(
       console.log('error1234')
     }
     // 判断所发的请求是否要加token
-    if (
+    // if (
 
-      config.url === CONFIG.refreshtoken ||
-      config.url === CONFIG.uppersoninfo ||
-      config.url === CONFIG.putwenzhang
-    ) {
-      config.headers.Token = store.state.login.token
-    } else {
-      console.log('不需要加token')
-    }
+    //   config.url === CONFIG.refreshtoken ||
+    //   config.url === CONFIG.uppersoninfo ||
+    //   config.url === CONFIG.putwenzhang
+    // ) {
+    //   config.headers.Token = store.state.login.token
+    // } else {
+    //   console.log('不需要加token')
+    // }
     console.log(config)
     return config
   },
