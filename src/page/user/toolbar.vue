@@ -90,7 +90,7 @@ export default {
       { text: "发票", route: "/" },
     ],
     links3: [
-      { text: "账号信息", icon: "mdi-account", route: "/user/account" },
+      { text: "账号信息", icon: "mdi-account", route: "account" },
       { text: "退出账号", icon: "mdi-location-exit", route: "/" },
     ],
   }),
