@@ -6,7 +6,7 @@
         <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-btn v-on:click="signup">注册</v-btn>
         <v-btn v-on:click="sendMsg">运行</v-btn>
-
+        <v-btn v-on:click="sendMsgguandiao">运行</v-btn>
         <!-- 遮罩层 -->
         <div class="text-center">
           <v-overlay :value="overlayvalue">
@@ -115,7 +115,7 @@
 </template>
 <script>
 import authServies from "./auth.servies";
-import Bus from '../../common/bus.js';  
+import Bus from "../../common/bus.js";
 export default {
   data() {
     return {
@@ -158,8 +158,24 @@ export default {
   methods: {
     sendMsg() {
       console.log("signin运行");
-      Bus.$emit("aMsg", "来自A页面的消息");
+      Bus.$emit("aMsg", {
+        overlayvalue: true,
+        errorsnackbar: true,
+        text: "密码错误",
+      });
     },
+
+    /**
+     * 关掉
+     */
+    sendMsgguandiao() {
+      console.log("signin运行");
+      Bus.$emit("aMsg", {
+        overlayvalue: false,
+        errorsnackbar: false,
+      });
+    },
+
     tianxiebiaodantest() {
       this.moblie = "18779868511";
       this.password = "q123456";
