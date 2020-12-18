@@ -9,6 +9,7 @@ import VueAxios from 'vue-axios'
 import axios from './https'
 
 
+
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
 const i18n = new VueI18n({

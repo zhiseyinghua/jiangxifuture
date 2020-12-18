@@ -1,20 +1,11 @@
 <template style="clear:both">
   <v-row class="my-16">
-    <!-- 消息提示 -->
-
-    <v-snackbar v-model="errorsnackbar" top color="pink">
-      {{ text }}
-      <template v-slot:action="{ attrs }">
-        <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
     <v-col cols="10" md="6" offset="1" sm="8" offset-sm="2" offset-md="3">
       <v-card shaped>
         <v-btn v-on:click="vertest">发验证码</v-btn>
         <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-btn v-on:click="signup">注册</v-btn>
+        <v-btn v-on:click="sendMsg">运行</v-btn>
 
         <!-- 遮罩层 -->
         <div class="text-center">
@@ -124,6 +115,7 @@
 </template>
 <script>
 import authServies from "./auth.servies";
+import Bus from '../../common/bus.js';  
 export default {
   data() {
     return {
@@ -164,6 +156,10 @@ export default {
   },
 
   methods: {
+    sendMsg() {
+      console.log("signin运行");
+      Bus.$emit("aMsg", "来自A页面的消息");
+    },
     tianxiebiaodantest() {
       this.moblie = "18779868511";
       this.password = "q123456";
@@ -209,17 +205,26 @@ export default {
           device: "string",
           platform: "string",
         };
-        authServies.signupAuth(signData).subscribe((data) => {
-          this.overlayvalue = false;
-          console.log('auth signUp data',data);
-          console.log("111111111111111111111111111111111", this.overlayvalue);
-          (err) => {
+        authServies.signupAuth(signData).subscribe(
+          (data) => {
+            his.overlayvalue = false;
+            if (data.status || data.status == "success") {
+              console.log("登录成功");
+            } else if (data.code && code == "00004") {
+              console.log("signupAuth signupAuth data", data);
+              return AuthServies.logintest(data.data.idtoken);
+            } else if (data.code && code == "00004") {
+            } else {
+              console.log("服务器错误");
+            }
+          },
+          (error) => {
+            console.log("服务器错误");
+            console.log("signin.vue signup err", error);
             this.overlayvalue = false;
-            this.test = err.state;
             this.errorsnackbar = true;
-            console.log("signin.vue signup err", err);
-          };
-        });
+          }
+        );
       }
       console.log(this.$refs.form.validate());
       console.log(this.moblie, this.password, this.check);

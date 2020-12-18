@@ -1,6 +1,6 @@
 import store from "@/store";
 import { from, Observable, throwError } from "rxjs";
-import { delay, map } from "rxjs/operators";
+import { catchError, delay, map } from "rxjs/operators";
 import { httpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
@@ -55,15 +55,10 @@ export default class AuthServies {
     ).pipe(
       map((data: SignsuccessInterface) => {
         //后端返回错误结果
-        if (!data.data.status || data.data.status != "success") {
-          console.log('1111111111111112',data.data)
-          return throwError(new Error(data.data.status))
-        } else {
-          console.log("signupAuth signupAuth data", data);
-          return AuthServies.logintest(data.data.idtoken);
-        }
+        return data.data
+        
       }),
-      delay(2000)
+      delay(1000),
     );
   }
 
