@@ -2,10 +2,10 @@
   <div>
     <!-- 消息提示 -->
 
-    <v-snackbar v-model="errorsnackbar" top color="pink">
+    <v-snackbar v-model="errorsnackbar " top :color=color>
       {{ text }}
       <template v-slot:action="{ attrs }">
-        <v-btn color=pink text v-bind="attrs" @click="snackbar = false">
+        <v-btn  text v-bind="attrs" @click="snackbar = false">
           Close
         </v-btn>
       </template>
@@ -25,7 +25,7 @@ import Bus from "../common/bus.js";
 export default {
   data() {
     return {
-      pink:"pink",
+      color:"green",
       // 遮罩层的状态
       overlayvalue: false,
       //错误 消息提示
@@ -36,11 +36,10 @@ export default {
   mounted() {
     Bus.$on("aMsg", (msg) => {
       console.log(msg);
-      this.text = msg.text;
-      // A发送来的消息
+      this.text  = msg.text;
+      this.color = msg.color;
       this.overlayvalue = msg.overlayvalue;
-      //错误 消息提示
-      this.errorsnackbar = msg.overlayvalue;
+       this.errorsnackbar = msg.errorsnackbar;
     });
   },
 };

@@ -6,7 +6,7 @@
         <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-btn v-on:click="signup">注册</v-btn>
         <v-btn v-on:click="sendMsg">运行</v-btn>
-        <v-btn v-on:click="sendMsgguandiao">运行</v-btn>
+        <!-- <v-btn v-on:click="sendMsgguandiao">运行</v-btn> -->
         <!-- 遮罩层 -->
         <div class="text-center">
           <v-overlay :value="overlayvalue">
@@ -116,6 +116,7 @@
 <script>
 import authServies from "./auth.servies";
 import Bus from "../../common/bus.js";
+import colors from "vuetify/es5/util/colors";
 export default {
   data() {
     return {
@@ -161,7 +162,8 @@ export default {
       Bus.$emit("aMsg", {
         overlayvalue: true,
         errorsnackbar: true,
-        text: "密码错误",
+        text: "密码错",
+        color: "green",
       });
     },
 
@@ -169,11 +171,13 @@ export default {
      * 关掉
      */
     sendMsgguandiao() {
-      console.log("signin运行");
-      Bus.$emit("aMsg", {
-        overlayvalue: false,
-        errorsnackbar: false,
-      });
+      // console.log("signin运行");
+      // Bus.$emit("aMsg", {
+      //   overlayvalue: false,
+      //   errorsnackbar: false,
+      //   text: "密码错",
+      //   color: "green",
+      // });
     },
 
     tianxiebiaodantest() {
