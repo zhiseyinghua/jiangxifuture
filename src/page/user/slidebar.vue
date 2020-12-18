@@ -1,48 +1,57 @@
 <template>
-  <v-navigation-drawer permanent absolute class="mt-12"  >
-    <v-list>
-      <v-list-item v-for="link in links"
-          :key="link.text"
+  <v-navigation-drawer
+    permanent
+    absolute
+    width="110"
+    :mini-variant.sync="mini"
+    v-model="drawer"
+  >
+    <!-- expand-on-hover 目前无发做到按钮和悬停可以同时控制侧边栏-->
+    <v-btn text block @click.stop="mini = !mini"> |||</v-btn>
+    <v-list flat nav dense>
+        <v-list-item
+          v-for="link1 in links"
+          :key="link1.text"
           router
-          :to="link.route">
-          <v-list-item-icon>
-          <v-icon>{{ link.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-  <v-list-item-title>{{ link.text }}</v-list-item-title>
-  </v-list-item-content>
-      </v-list-item>
+          :to="link1.route"
+        >
+          <v-icon small left>{{ link1.icon }}</v-icon>
+          <v-list-item-title>{{ link1.text }} </v-list-item-title>
+        </v-list-item>
     </v-list>
-    <!-- <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" link>
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ item.text }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list> -->
   </v-navigation-drawer>
-</template>
+</template> 
 <script>
 export default {
   data() {
     return {
-       links: [
-      { text: "提交工单", route: "/" },
-      { text: "我的工单", route: "/" },
-    ],
-      // items: [
-      //   { text: "账号信息", icon: "mdi-view-dashboard" },
-      //   { text: "在线支持", icon: "mdi-help-box" },
-      //   { text: "工单", icon: "mdi-image" },
-      //   { text: "订单", icon: "mdi-help-box" },
-      //   { text: "收支明细", icon: "mdi-help-box" },
-      //   { text: "账单", icon: "mdi-help-box" },
-      //   { text: "发票", icon: "mdi-help-box" },
-      // ],
-      right: null,
+      mini: false,
+      drawer: true,
+      links: [
+        {
+          text: "账号信息",
+          icon: "mdi-account-cog-outline",
+          route: "/account",
+        },
+        { text: "在线支持", icon: "mdi-chat-outline", route: "/" },
+        {
+          text: "工单",
+          icon: "mdi-file-document-multiple-outline",
+          route: "/",
+        },
+        {
+          text: "订单",
+          icon: "mdi-file-check-outline",
+          route: "/",
+        },
+        { text: "账单", icon: "mdi-wallet-outline", route: "/" },
+        {
+          text: "收支明细",
+          icon: "mdi-file-document-multiple-outline",
+          route: "/",
+        },
+        { text: "发票", icon: "mdi-newspaper-variant-multiple", route: "/" },
+      ],
     };
   },
 };
