@@ -34,12 +34,11 @@ export default {
     };
   },
   mounted() {
-    Bus.$on("aMsg", (msg) => {
+    Bus.$on("overlayvalue", (msg) => {
       console.log(msg);
       this.text  = msg.text;
       this.color = msg.color;
       this.overlayvalue = msg.overlayvalue;
-       this.errorsnackbar = msg.errorsnackbar;
     });
   },
 };
