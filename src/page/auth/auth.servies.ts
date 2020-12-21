@@ -1,10 +1,9 @@
 import store from "@/store";
-import { from, Observable, throwError } from "rxjs";
-import { catchError, delay, map } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { map, tap } from "rxjs/operators";
 import { httpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
-import Axios from "axios";
 import {
   LoginInWithSMSVerifyCodeInput,
   SignsuccessInterface,
@@ -14,20 +13,29 @@ let jwt = require("jsonwebtoken");
 export default class AuthServies {
   static log = "AuthServies";
   /**
-   * 改变前端state状态的方法
+   * 将token存储到localstore并改变前端state状态的方法
    */
-  public static logintest(token: string) {
+  public static dispatchlogintoken(token: string) {
     store.dispatch("login/loginAction", token);
+  }
+
+  /**
+   * 将用户token存到本地 异步方法
+   * @param {*} Token
+   * @param {*} email
+   */
+  public static setlocalStorageToken(token: string) {
+    console.log("getlocalStorageToken");
+    localStorage.setItem("token", token);
   }
 
   public static SendPhoneSMSInterface(
     mobile: string,
     devices: string
   ): Observable<any> {
-    // TODO:电话号码修改
     let a = {
-      mobile: "18779868511",
-      devices: "phone",
+      mobile: mobile,
+      devices: devices,
     };
     return AxiosElasticService.AxiosService(
       "POST",
@@ -55,10 +63,22 @@ export default class AuthServies {
     ).pipe(
       map((data: SignsuccessInterface) => {
         //后端返回错误结果
-        return data.data
-        
+        return data.data;
       }),
-      delay(1000),
+      tap((data) => {
+        if (data.idtoken) {
+          AuthServies.dispatchlogintoken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      }),
+      tap((data) => {
+        if (data.idtoken) {
+          AuthServies.setlocalStorageToken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      })
     );
   }
 
@@ -70,8 +90,6 @@ export default class AuthServies {
     let decoded = jwt.decode(token);
     console.log(this.log + "  " + "decoded", decoded);
     return decoded["exp"];
-
-    // return true
   }
 
   /**

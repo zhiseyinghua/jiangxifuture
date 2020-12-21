@@ -2,17 +2,11 @@
   <v-row class="my-16">
     <v-col cols="10" md="6" offset="1" sm="8" offset-sm="2" offset-md="3">
       <v-card shaped>
-        <v-btn v-on:click="vertest">发验证码</v-btn>
         <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-btn v-on:click="signup">注册</v-btn>
-        <v-btn v-on:click="sendMsg">运行</v-btn>
-        <!-- <v-btn v-on:click="sendMsgguandiao">运行</v-btn> -->
-        <!-- 遮罩层 -->
-        <div class="text-center">
-          <v-overlay :value="overlayvalue">
-            <v-progress-circular indeterminate size="64"></v-progress-circular>
-          </v-overlay>
-        </div>
+        <v-btn v-on:click="sendMsg">loading</v-btn>
+        <v-btn v-on:click="sendMsgtishyi">提示</v-btn>
+        <v-btn v-on:click="storeButton">storetest</v-btn>
 
         <v-row no-gutters>
           <v-col cols="8" offset="2">
@@ -94,6 +88,7 @@
                 color="info"
                 bottom
                 @click="signUp"
+                :disabled="signInButton"
               >
                 注册
               </v-btn>
@@ -117,19 +112,18 @@
 import authServies from "./auth.servies";
 import Bus from "../../common/bus.js";
 import colors from "vuetify/es5/util/colors";
+import { AuthConfig } from "./auth.common";
 export default {
   data() {
     return {
-      // 遮罩层的状态
-      overlayvalue: false,
+      signInButton: true,
+      // 用于发送验证码的msgd,默认为空
+      msg_id: "",
       // 倒计时
       time: 3,
       buttonName: "发送短信",
       // 按钮
       isDisabled: false,
-      //消息提示
-      errorsnackbar: false,
-      text: "",
       isshow: false,
       moblie: "",
       password: "",
@@ -157,42 +151,77 @@ export default {
   },
 
   methods: {
+    storeButton() {
+      authServies
+        .logintest('d1s2d123a1ds23a1d231321564165sdad41sad41as5d41as65d4as5d4as54ds5a4d5sa').subscribe((
+          success=>{
+            console.log('成功')
+          }
+        ))
+    },
     sendMsg() {
       console.log("signin运行");
-      Bus.$emit("aMsg", {
+      Bus.$emit("overlayvalue", {
         overlayvalue: true,
-        errorsnackbar: true,
-        text: "密码错",
-        color: "green",
       });
     },
-
-    /**
-     * 关掉
-     */
-    sendMsgguandiao() {
-      // console.log("signin运行");
-      // Bus.$emit("aMsg", {
-      //   overlayvalue: false,
-      //   errorsnackbar: false,
-      //   text: "密码错",
-      //   color: "green",
-      // });
+    sendMsgtishyi() {
+      console.log("snackbar运行");
+      Bus.$emit("snackbar", {
+        text: "提示",
+        color: "green",
+        timeout: 2000,
+        errorsnackbar: true,
+      });
     },
 
     tianxiebiaodantest() {
       this.moblie = "18779868511";
       this.password = "q123456";
+      this.check = "123456";
     },
 
     /**
      * 发送验证码
      */
     sendYanzhengma() {
+      this.signInButton = false
       this.sendSMSTime();
+      authServies
+        .SendPhoneSMSInterface(this.moblie, AuthConfig.jiguangDevice)
+        .subscribe((data) => {
+          if (data["data"]) {
+            this.msg_id = data["data"]["msg_id"];
+            Bus.$emit("snackbar", {
+              text: "发送验证码成功",
+              color: "green",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
+          } else {
+            Bus.$emit("snackbar", {
+              text: "验证码发送错误，请重新发送",
+              color: "green",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
+          }
+          (error) => {
+            Bus.$emit("snackbar", {
+              text: "验证码发送错误，请重新发送",
+              color: "green",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
+          };
+        });
     },
 
+    /**
+     * 用于发送验证码的倒计时的函数
+     */
     sendSMSTime() {
+      this.isDisabled = true;
       console.log("sendSMSTime");
       let interval = window.setInterval(() => {
         this.buttonName = "（" + this.time + "秒）";
@@ -208,41 +237,81 @@ export default {
 
     signUp() {
       if (!this.$refs.form.validate()) {
-        this.text = "请认真填写表单";
-        console.log(this.text);
-        this.errorsnackbar = true;
+        // 提示框：请认真填写表单
+        Bus.$emit("snackbar", {
+          text: "请认真填写表单",
+          color: "pink",
+          timeout: 2000,
+          errorsnackbar: true,
+        });
       } else {
-        console.log("111111111111111111111111111111111", this.overlayvalue);
-        this.overlayvalue = true;
-        console.log("111111111111111111111111111111111", this.overlayvalue);
+        Bus.$emit("overlayvalue", {
+          overlayvalue: true,
+        });
         let signData = {
-          code: "883461",
-          provider: "phone",
+          code: this.check,
+          provider: AuthConfig.jiguangDevice,
           // eslint-disable-next-line @typescript-eslint/camelcase
-          msg_id: "299926273665024",
-          encodepossword: "123456",
-          phone: "18779868511",
-          device: "string",
-          platform: "string",
+          msg_id: this.msg_id,
+          encodepossword: this.password,
+          phone: this.moblie,
+          device: AuthConfig.device,
+          platform: AuthConfig.platform,
         };
         authServies.signupAuth(signData).subscribe(
           (data) => {
-            his.overlayvalue = false;
-            if (data.status || data.status == "success") {
-              console.log("登录成功");
-            } else if (data.code && code == "00004") {
-              console.log("signupAuth signupAuth data", data);
-              return AuthServies.logintest(data.data.idtoken);
-            } else if (data.code && code == "00004") {
+            Bus.$emit("overlayvalue", {
+              overlayvalue: false,
+            });
+            console.log(data.code, data);
+            if (data.status && data.status == "success") {
+              Bus.$emit("snackbar", {
+                text: "登录成功",
+                color: "green",
+                timeout: 2000,
+                errorsnackbar: true,
+              });
+              // authServies.logintest(data.data.idtoken);
+            } else if (data.code && data.code == "000001") {
+              Bus.$emit("snackbar", {
+                text: "该用户已存在",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+              });
+            } else if (data.code && data.code == "000002") {
+              Bus.$emit("snackbar", {
+                text: "验证码错误,请输入正确的验证码",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+              });
+            } else if (data.code && data.code == "000007") {
+              Bus.$emit("snackbar", {
+                text: "请重新发送验证码",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+              });
             } else {
-              console.log("服务器错误");
+              Bus.$emit("snackbar", {
+                text: "服务器错误，请重试",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+              });
             }
           },
           (error) => {
-            console.log("服务器错误");
-            console.log("signin.vue signup err", error);
-            this.overlayvalue = false;
-            this.errorsnackbar = true;
+            Bus.$emit("overlayvalue", {
+              overlayvalue: false,
+            });
+            Bus.$emit("snackbar", {
+              text: "服务器错误，请重试",
+              color: "pink",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
           }
         );
       }
@@ -255,21 +324,13 @@ export default {
         provider: "phone",
         // eslint-disable-next-line @typescript-eslint/camelcase
         msg_id: "299926273665024",
-        encodepossword: "123456",
-        phone: "18779868511",
-        device: "string",
-        platform: "string",
+        encodepossword: this.password,
+        phone: this.moblie,
+        device: AuthConfig.device,
+        platform: AuthConfig.platform,
       };
     },
-    vertest: function() {
-      authServies
-        .SendPhoneSMSInterface("18779868511", "phone")
-        .subscribe((data) => {
-          //  if(data['data'] ==)
-          console.log(data);
-        });
-      // this.$store.dispatch("login/loginAction", "123456789")
-    },
+
     /**
      * 通过token换token
      */
