@@ -12,9 +12,9 @@
       <v-col cols="12" sm="6" md="6" lg="4">
         <v-img
           :aspect-ratio="16 / 9"
-          src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+          :src="require('@/assets/home/news/1.png')"
         ></v-img>
-        <h3 class="mx-5 title my-16 text-h5 text-sm-h4">一段标题一段标题一段标题</h3>
+        <h3 class="mx-5 title my-16 text-h5 text-sm-h4">地球科学研究院召开工作研讨会</h3>
         <div class="text-h6 text-sm-h5 mb-5 mx-5">
           查看详情 ->
         </div>

@@ -1,10 +1,15 @@
 <template>
   <!-- 这是一个导航栏 -->
   <v-app-bar app>
-    <v-container class="py-0 fill-height" app>
+    <v-container class="d-flex align-center" app fluid>
       <!-- <div>{{$store.state.login}}</div> -->
-      <div><!-- 放公司logo图标 --></div>
-      <v-app-bar-nav-icon class="d-flex d-md-none"  @click.stop="handleChangeDrawer"></v-app-bar-nav-icon>
+      <div>
+        <v-img
+          :src="require('@/assets/logo.png')"
+          aspect-ratio="1"
+          width="56"
+        ></v-img>
+      </div>
       <v-toolbar
         dense
         flat
@@ -32,23 +37,27 @@
       </v-toolbar>
       <v-spacer></v-spacer>
       <!-- 搜索框 -->
-      <v-responsive class="d-none d-sm-flex" max-width="800" min-widht="200">
-        <v-text-field
-          dense
-          flat
-          hide-details
-          rounded
-          solo-inverted
-        ></v-text-field>
-      </v-responsive>
+      <v-text-field
+        class="white"
+        flat
+        dense
+        hide-details="auto"
+        label="Search"
+        prepend-inner-icon="mdi-magnify"
+        solo-inverted
+      ></v-text-field>
 
       <v-spacer></v-spacer>
-      
+
       <v-avatar color="primary d-none d-sm-flex" size="45"></v-avatar>
       <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
       </v-btn>
+      <v-app-bar-nav-icon
+        class="d-flex d-md-none"
+        @click.stop="handleChangeDrawer"
+      ></v-app-bar-nav-icon>
     </v-container>
   </v-app-bar>
 </template>
@@ -69,9 +78,9 @@ export default {
       }
     },
     //改变navigation-drawer显示和隐藏的函数
-    handleChangeDrawer(){
+    handleChangeDrawer() {
       this.$store.commit("changeDrawer");
-    }
+    },
   },
 };
 </script>

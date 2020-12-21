@@ -4,4 +4,5 @@ export default {
     path: "/user",
     name: 'user',
     component: user,
+    
 }

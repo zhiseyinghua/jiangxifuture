@@ -5,15 +5,14 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <v-responsive :aspect-ratio="16 / 9">
-          <v-carousel hide-delimiters cycle height="100%">
-            <v-carousel-item
-              v-for="(item, i) in items"
-              :key="i"
-              :src="item.src"
-            ></v-carousel-item>
-          </v-carousel>
-        </v-responsive>
+        <v-carousel hide-delimiters cycle height="100%">
+          <v-carousel-item
+            :aspect-ratio="16 / 7"
+            v-for="(item, i) in items"
+            :key="i"
+            :src="item.src"
+          ></v-carousel-item>
+        </v-carousel>
       </v-col>
     </v-row>
     <!-- 新闻中心组件 -->
@@ -33,16 +32,16 @@ export default {
       // 轮播图
       items: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+          src: require("@/assets/home/banner/1.png"),
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+          src: require("@/assets/home/banner/2.png"),
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+          src: require("@/assets/home/banner/3.png"),
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+          src: require("@/assets/home/banner/4.png"),
         },
       ],
     };
