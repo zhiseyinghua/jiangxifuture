@@ -20,7 +20,7 @@ export default class AuthServies {
   }
 
   /**
-   * 将用户token存到本地 异步方法
+   * 将用户token存到本地 方法
    * @param {*} Token
    * @param {*} email
    */
@@ -110,4 +110,7 @@ export default class AuthServies {
     console.log("还有多久过期gap", gap);
     return gap;
   }
+
+  public staticPasswordLogin()
+
 }
