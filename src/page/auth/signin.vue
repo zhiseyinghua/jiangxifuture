@@ -6,7 +6,7 @@
         <v-btn v-on:click="signup">注册</v-btn>
         <v-btn v-on:click="sendMsg">loading</v-btn>
         <v-btn v-on:click="sendMsgtishyi">提示</v-btn>
-        <v-btn v-on:click="storeButton">storetest</v-btn>
+        <!-- <v-btn v-on:click="storeButton">storetest</v-btn> -->
 
         <v-row no-gutters>
           <v-col cols="8" offset="2">
@@ -151,14 +151,14 @@ export default {
   },
 
   methods: {
-    storeButton() {
-      authServies
-        .logintest('d1s2d123a1ds23a1d231321564165sdad41sad41as5d41as65d4as5d4as54ds5a4d5sa').subscribe((
-          success=>{
-            console.log('成功')
-          }
-        ))
-    },
+    // storeButton() {
+    //   authServies
+    //     .logintest('d1s2d123a1ds23a1d231321564165sdad41sad41as5d41as65d4as5d4as54ds5a4d5sa').subscribe((
+    //       success=>{
+    //         console.log('成功')
+    //       }
+    //     ))
+    // },
     sendMsg() {
       console.log("signin运行");
       Bus.$emit("overlayvalue", {

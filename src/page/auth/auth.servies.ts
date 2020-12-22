@@ -9,6 +9,8 @@ import {
   SignsuccessInterface,
 } from "./auth.interface";
 let jwt = require("jsonwebtoken");
+var md5 = require('js-md5');
+
 
 export default class AuthServies {
   static log = "AuthServies";
@@ -56,6 +58,7 @@ export default class AuthServies {
    * @param signData
    */
   static signupAuth(signData: LoginInWithSMSVerifyCodeInput): Observable<any> {
+    signData.encodepossword = md5(signData.encodepossword); 
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.verifysmscoderegister,
@@ -111,13 +114,5 @@ export default class AuthServies {
     return gap;
   }
 
-  /**
-   * 密码登录
-   */
-  public staticPasswordLogin(): Observable<any> {
-    return AxiosElasticService.AxiosService(
-      "POST",
-      AuthConfig.zone + "/" + AuthConfig.byusermimalogin
-    );
-  }
+
 }

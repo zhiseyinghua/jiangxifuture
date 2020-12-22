@@ -2,6 +2,8 @@
   <v-row class="my-16">
     <v-col cols="10" md="4" offset="1" sm="8" offset-sm="2" offset-md="4">
       <v-card shaped>
+        <v-btn @click="testjoin">test填写</v-btn>
+        <v-btn @click="logintest">登录</v-btn>
         <v-row no-gutters>
           <v-col cols="8" offset="2">
             <v-toolbar flat> </v-toolbar>
@@ -159,6 +161,7 @@
 </template>
 
 <script>
+import loginServe from "./login.serve";
 export default {
   data() {
     return {
@@ -186,6 +189,29 @@ export default {
     };
   },
   methods: {
+    testjoin() {
+      (this.moblie = "18779868511"), (this.password = "1234561q");
+      // console.log('testjoin start')
+      // loginServe.userLogin(this.moblie,this.moblie).subscribe(
+      //   success=>{
+      //     console.log('success',success)
+      //   },
+      //   err=>{
+      //     console.log('errrrrrrrrrrrr',err)
+      //   }
+      // )
+    },
+    logintest() {
+      console.log("testjoin start");
+      loginServe.userLogin(this.moblie, this.moblie).subscribe(
+        (success) => {
+          console.log("success", success);
+        },
+        (err) => {
+          console.log("errrrrrrrrrrrr", err);
+        }
+      );
+    },
     validate() {
       this.$refs.form.validate();
     },

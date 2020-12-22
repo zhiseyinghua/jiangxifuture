@@ -9,6 +9,6 @@ export const AuthConfig = {
   bytokengettoken: "bytokengettoken",
   // 注册
   verifysmscoderegister: "verifysmscoderegister",
-  byusermimalogin: "byusermimalogin",
   // 手机号和密码登录
+  byusermimalogin: "byusermimalogin",
 };
