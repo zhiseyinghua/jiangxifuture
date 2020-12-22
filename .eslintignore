@@ -1,0 +1,4 @@
+build/*.js
+config/*.ts
+src/assetc
+src/
