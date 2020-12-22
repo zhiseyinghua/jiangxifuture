@@ -33,14 +33,14 @@ export default class AuthServies {
     mobile: string,
     devices: string
   ): Observable<any> {
-    let a = {
+    let data = {
       mobile: mobile,
       devices: devices,
     };
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
-      a
+      data
     );
   }
 
@@ -111,6 +111,14 @@ export default class AuthServies {
     return gap;
   }
 
-  public staticPasswordLogin()
+  /**
+   * 密码登录
+   */
+  public staticPasswordLogin(): Observable<any> {
+    return AxiosElasticService.AxiosService(
+      "POST",
+      AuthConfig.zone + "/" + AuthConfig.bytokengettoken
+    );
+  }
 
 }
