@@ -1,10 +1,8 @@
 <template>
-  <v-container fluid>
+  <v-container>
     <toolbar />
     <slidebar />
-    <v-container>
-    <router-view></router-view>
-    </v-container>
+    <router-view />
   </v-container>
 </template>
 <script>

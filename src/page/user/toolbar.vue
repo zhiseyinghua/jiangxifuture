@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat dense app>
+  <v-app-bar dark flat dense app color="#384762">
     <v-icon large>mdi-map</v-icon>
     <!-- <v-responsive :aspect-ratio="1"> -->
     <!-- <span >
@@ -27,7 +27,9 @@
             router
             :to="link.route"
           >
-            <v-list-item-title>{{ link.text }}</v-list-item-title>
+            <v-list-item-title class="text-caption">{{
+              link.text
+            }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -47,7 +49,9 @@
             router
             :to="link.route"
           >
-            <v-list-item-title>{{ link.text }}</v-list-item-title>
+            <v-list-item-title class="text-caption">{{
+              link.text
+            }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -55,6 +59,7 @@
         <!-- 菜单按钮 -->
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-on="on" text v-bind="attrs">
+            <!-- <v-icon left>mdi-account-circle</v-icon> -->
             <span>用户</span>
             <v-icon>expand_more</v-icon>
           </v-btn>
@@ -66,8 +71,10 @@
             :key="link.text"
             router
             :to="link.route"
-            ><v-icon left>{{ link.icon }}</v-icon>
-            <v-list-item-title>{{ link.text }}</v-list-item-title>
+            ><v-icon left small>{{ link.icon }}</v-icon>
+            <v-list-item-title class="text-caption">{{
+              link.text
+            }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -90,7 +97,7 @@ export default {
       { text: "发票", route: "/" },
     ],
     links3: [
-      { text: "账号信息", icon: "mdi-account", route: "account" },
+      { text: "账号信息", icon: "mdi-account", route: "/user/account" },
       { text: "退出账号", icon: "mdi-location-exit", route: "/" },
     ],
   }),

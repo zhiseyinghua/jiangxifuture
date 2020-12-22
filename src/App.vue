@@ -3,9 +3,7 @@
     <!-- <tabbar></tabbar>
     <slidebar></slidebar> -->
     <v-main>
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-main>
     <!-- <foot></foot> -->
   </v-app>
@@ -24,7 +22,5 @@ export default {
   // components: { tabbar, slidebar,foot },
 };
 </script>
-
 <style lang="scss">
-
 </style>
