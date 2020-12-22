@@ -117,8 +117,7 @@ export default class AuthServies {
   public staticPasswordLogin(): Observable<any> {
     return AxiosElasticService.AxiosService(
       "POST",
-      AuthConfig.zone + "/" + AuthConfig.bytokengettoken
+      AuthConfig.zone + "/" + AuthConfig.byusermimalogin
     );
   }
-
 }
