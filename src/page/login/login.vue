@@ -162,6 +162,7 @@
 
 <script>
 import loginServe from "./login.serve";
+import Bus from "../../common/bus.js";
 export default {
   data() {
     return {
@@ -202,12 +203,42 @@ export default {
       // )
     },
     logintest() {
-      console.log("testjoin start");
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
       loginServe.userLogin(this.moblie, this.moblie).subscribe(
-        (success) => {
-          console.log("success", success);
+        (data) => {
+          if (data && data.code == "000006") {
+            Bus.$emit("snackbar", {
+              text: "用户名不存在",
+              color: "pink",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
+          } else if (data && data.code == "000004") {
+            Bus.$emit("snackbar", {
+              text: "密码或用户名错误，请重试",
+              color: "pink",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
+          } else {
+            Bus.$emit("snackbar", {
+              text: "服务器错误",
+              color: "pink",
+              timeout: 2000,
+              errorsnackbar: true,
+            });
+          }
+          Bus.$emit("overlayvalue", {
+            overlayvalue: false,
+          });
+          console.log("success", data);
         },
         (err) => {
+          Bus.$emit("overlayvalue", {
+            overlayvalue: false,
+          });
           console.log("errrrrrrrrrrrr", err);
         }
       );

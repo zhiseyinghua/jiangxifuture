@@ -1,6 +1,6 @@
 import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
-import { tap } from "rxjs/operators";
+import { delay, map, tap } from "rxjs/operators";
 import { AuthConfig } from "../auth/auth.common";
 
 export default class loginServe {
@@ -12,7 +12,7 @@ export default class loginServe {
   static userLogin(password: string, account: string): Observable<any> {
     return AxiosElasticService.AxiosService(
       "post",
-      AuthConfig.zone + '/'+ AuthConfig.byusermimalogin,
+      AuthConfig.zone + "/" + AuthConfig.byusermimalogin,
       {
         phone: account,
         encodepossword: password,
@@ -20,9 +20,10 @@ export default class loginServe {
         platform: AuthConfig.platform,
       }
     ).pipe(
-        tap(data=>{
-            
-        })
-    )
+      map((data) => {
+        return data["data"];
+      }),
+      delay(1000)
+    );
   }
 }
