@@ -174,7 +174,7 @@ import { AuthConfig } from "../auth/auth.common";
 export default {
   data() {
     return {
-      signInButton: true,
+      signInButton: false,
       // 用于发送短信的按钮
       isDisabled: false,
       // 用于发送短信的msgid
@@ -347,9 +347,10 @@ export default {
           errorsnackbar: true,
         });
       } else {
-        Bus.$emit("overlayvalue", {
-          overlayvalue: true,
-        });
+        console.log('OK')
+        // Bus.$emit("overlayvalue", {
+        //   overlayvalue: true,
+        // });
         let signData = {
           code: this.check,
           provider: AuthConfig.jiguangDevice,

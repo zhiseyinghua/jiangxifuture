@@ -24,6 +24,7 @@ export default class loginServe {
       map((data) => {
         return data["data"];
       }),
+      // TODO:
       delay(1000)
     );
   }
