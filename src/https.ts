@@ -4,6 +4,7 @@
  */
 
 import axios from 'axios'
+import { HttpHost } from './common/api'
 import AuthServies from './page/auth/auth.servies'
 import store from './store'
 // import authServicer from './serves/auth.services'
@@ -17,7 +18,7 @@ axios.interceptors.request.use(
   config => {
     console.log('isTokenExpired1', isTokenExpired)
     console.log('isTokenExpired1 store.state', store.state.login.idtoken)
-    // console.log('222222222222222222', (!(store.state === null)) && isTokenExpired === false)
+    console.log('222222222222222222', (!(store.state === null)) && isTokenExpired === false)
     if ((!(store.state.login.idtoken === null)) && isTokenExpired === false) {
       isTokenExpired = true
       console.log('isTokenExpired', isTokenExpired)
@@ -43,17 +44,14 @@ axios.interceptors.request.use(
       // TODO: 错误处理
       console.log('error1234')
     }
-    // 判断所发的请求是否要加token
-    // if (
 
-    //   config.url === CONFIG.refreshtoken ||
-    //   config.url === CONFIG.uppersoninfo ||
-    //   config.url === CONFIG.putwenzhang
-    // ) {
-    //   config.headers.Token = store.state.login.token
-    // } else {
-    //   console.log('不需要加token')
-    // }
+    if (
+      config.url == HttpHost.check_url_with_token.bytokengettoken 
+    ) {
+      config.headers.Token = store.state.login.token
+    } else {
+      console.log('不需要加token')
+    }
     console.log(config)
     return config
   },
