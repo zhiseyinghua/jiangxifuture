@@ -207,17 +207,17 @@ export default {
     };
   },
   methods: {
-    passwordLogin(){
-       if (!this.$refs.form.validate()) {
+    passwordLogin() {
+      if (!this.$refs.form.validate()) {
         Bus.$emit("snackbar", {
           text: "请认真填写帐号密码",
           color: "pink",
           timeout: 2000,
           errorsnackbar: true,
-          top:true
+          top: true,
         });
       } else {
-        this.passwordlogin()
+        this.passwordlogin();
       }
     },
     testjoin() {
@@ -240,15 +240,23 @@ export default {
       Bus.$emit("overlayvalue", {
         overlayvalue: true,
       });
-      loginServe.userLogin(this.moblie, this.moblie).subscribe(
+      loginServe.userLogin(this.password, this.moblie).subscribe(
         (data) => {
-          if (data && data.code == "000006") {
+          if (data.status && data.status == "success") {
+            Bus.$emit("snackbar", {
+              text: "登录成功",
+              color: "green",
+              timeout: 2000,
+              errorsnackbar: true,
+              top: true,
+            });
+          } else if (data && data.code == "000006") {
             Bus.$emit("snackbar", {
               text: "用户名不存在",
               color: "pink",
               timeout: 2000,
               errorsnackbar: true,
-               top:true
+              top: true,
             });
           } else if (data && data.code == "000004") {
             Bus.$emit("snackbar", {
@@ -263,25 +271,24 @@ export default {
               color: "pink",
               timeout: 2000,
               errorsnackbar: true,
-               top:true
+              top: true,
             });
           }
           Bus.$emit("overlayvalue", {
             overlayvalue: false,
           });
-          console.log("success", data);
         },
         (err) => {
           Bus.$emit("overlayvalue", {
             overlayvalue: false,
           });
           Bus.$emit("snackbar", {
-              text: "服务器错误",
-              color: "pink",
-              timeout: 2000,
-              errorsnackbar: true,
-               top:true
-            });
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
           console.log("errrrrrrrrrrrr", err);
         }
       );
@@ -318,7 +325,7 @@ export default {
               color: "green",
               timeout: 2000,
               errorsnackbar: true,
-              top:true
+              top: true,
             });
           } else {
             Bus.$emit("snackbar", {
@@ -346,9 +353,12 @@ export default {
           color: "pink",
           timeout: 2000,
           errorsnackbar: true,
-          top:true
+          top: true,
         });
       } else {
+        Bus.$emit("overlayvalue", {
+          overlayvalue: true,
+        });
         let signData = {
           code: this.check,
           provider: AuthConfig.jiguangDevice,
@@ -358,20 +368,19 @@ export default {
           device: AuthConfig.device,
           platform: AuthConfig.platform,
         };
-        loginServe
-        .sMSLoginf(signData).subscribe(
-          data=>{
+        loginServe.sMSLoginf(signData).subscribe(
+          (data) => {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
-            console.log('login.vue sMSLogin data', data);
+            console.log("login.vue sMSLogin data", data);
             if (data.status && data.status == "success") {
               Bus.$emit("snackbar", {
                 text: "登录成功",
                 color: "green",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
               // authServies.logintest(data.data.idtoken);
             } else if (data.code && data.code == "000001") {
@@ -380,7 +389,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             } else if (data.code && data.code == "000002") {
               Bus.$emit("snackbar", {
@@ -388,7 +397,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             } else if (data.code && data.code == "000007") {
               Bus.$emit("snackbar", {
@@ -396,7 +405,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             } else {
               Bus.$emit("snackbar", {
@@ -404,11 +413,11 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             }
           },
-          err=>{
+          (err) => {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
@@ -417,10 +426,10 @@ export default {
               color: "pink",
               timeout: 2000,
               errorsnackbar: true,
-              top:true
+              top: true,
             });
           }
-        )
+        );
       }
     },
   },

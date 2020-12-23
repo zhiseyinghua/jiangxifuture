@@ -3,6 +3,8 @@ import { Observable } from "rxjs";
 import { delay, map, switchMap, tap } from "rxjs/operators";
 import { AuthConfig } from "../auth/auth.common";
 import { LoginInWithSMSVerifyCodeInput } from "../auth/auth.interface";
+import authServies from "../auth/auth.servies";
+var md5 = require('js-md5');
 
 export default class loginServe {
   /**
@@ -16,7 +18,7 @@ export default class loginServe {
       AuthConfig.zone + "/" + AuthConfig.byusermimalogin,
       {
         phone: account,
-        encodepossword: password,
+        encodepossword: md5(password),
         device: AuthConfig.device,
         platform: AuthConfig.platform,
       }
@@ -24,8 +26,20 @@ export default class loginServe {
       map((data) => {
         return data["data"];
       }),
-      // TODO:
-      delay(1000)
+      tap((data) => {
+        if (data.idtoken) {
+          authServies.dispatchlogintoken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      }),
+      tap((data) => {
+        if (data.idtoken) {
+          authServies.setlocalStorageToken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      })
     );
   }
 
@@ -54,8 +68,20 @@ export default class loginServe {
       map(data=>{
         return data['data']
       }),
-      // TODO:
-      delay(1000)
+      tap((data) => {
+        if (data.idtoken) {
+          authServies.dispatchlogintoken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      }),
+      tap((data) => {
+        if (data.idtoken) {
+          authServies.setlocalStorageToken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      }),
     )
   }
 }
