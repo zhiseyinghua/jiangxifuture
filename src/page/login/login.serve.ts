@@ -29,12 +29,18 @@ export default class loginServe {
   }
 
   static SMSLogin(SMSLogin: LoginInWithSMSVerifyCodeInput): Observable<any> {
-    let SMSLoginData: LoginInWithSMSVerifyCodeInput ={
-
-    }
+    let SMSLoginData: LoginInWithSMSVerifyCodeInput = {
+      phone: "string",
+      msg_id: "string",
+      code: "string",
+      provider: AuthConfig.,
+      encodepossword: "string",
+      device: "string",
+      platform: "string",
+    };
     return AxiosElasticService.AxiosService(
-      'POST',
-      AuthConfig.zone + '/' + AuthConfig.byphoneresetpossword
-    )
+      "POST",
+      AuthConfig.zone + "/" + AuthConfig.byphoneresetpossword
+    );
   }
 }
