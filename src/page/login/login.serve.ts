@@ -1,6 +1,6 @@
 import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
-import { delay, map, tap } from "rxjs/operators";
+import { delay, map, switchMap, tap } from "rxjs/operators";
 import { AuthConfig } from "../auth/auth.common";
 import { LoginInWithSMSVerifyCodeInput } from "../auth/auth.interface";
 
@@ -29,20 +29,22 @@ export default class loginServe {
     );
   }
 
-  static SMSLogin(SMSLogin: LoginInWithSMSVerifyCodeInput): Observable<any> {
+  static sMSLoginf(SMSLogin: LoginInWithSMSVerifyCodeInput): Observable<any> {
     let SMSLoginData: LoginInWithSMSVerifyCodeInput = {
       phone: SMSLogin.phone,
       msg_id: SMSLogin.msg_id,
       code: SMSLogin.code,
       provider: 'web',
-      encodepossword: SMSLogin.encodepossword,
       device: AuthConfig.device,
       platform: AuthConfig.platform,
     };
+    console.log('11111111111111111',SMSLoginData)
     return AxiosElasticService.AxiosService(
       "POST",
-      AuthConfig.zone + "/" + AuthConfig.byphoneresetpossword,
+      AuthConfig.zone + "/" + AuthConfig.verificationcodelogin,
       SMSLoginData
-    );
+    ).pipe(
+      delay(1000)
+    )
   }
 }

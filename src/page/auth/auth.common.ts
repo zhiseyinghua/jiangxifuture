@@ -12,5 +12,5 @@ export const AuthConfig = {
   // 手机号和密码登录
   byusermimalogin: "byusermimalogin",
   // 手机验证码登录
-  byphoneresetpossword:'byphoneresetpossword'
+  verificationcodelogin:'verificationcodelogin'
 };

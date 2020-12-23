@@ -138,7 +138,7 @@
                           class="rounded-pill"
                           color="info"
                           bottom
-                          @click="SMSLogin"
+                          @click="sMSLogin"
                           :disabled="signInButton"
                         >
                           登录
@@ -318,6 +318,7 @@ export default {
               color: "green",
               timeout: 2000,
               errorsnackbar: true,
+              top:true
             });
           } else {
             Bus.$emit("snackbar", {
@@ -338,29 +339,90 @@ export default {
         });
     },
 
-    SMSLogin() {
+    sMSLogin() {
       if (!this.$refs.form.validate()) {
         Bus.$emit("snackbar", {
-          text: "请认真填写表单",
+          text: "请填写帐号和验证码",
           color: "pink",
           timeout: 2000,
           errorsnackbar: true,
+          top:true
         });
       } else {
+        console.log('11111111111111111',this.moblie, this.msg_id,this.check)
         console.log('OK')
-        // Bus.$emit("overlayvalue", {
-        //   overlayvalue: true,
-        // });
         let signData = {
           code: this.check,
           provider: AuthConfig.jiguangDevice,
           // eslint-disable-next-line @typescript-eslint/camelcase
           msg_id: this.msg_id,
-          encodepossword: this.password,
           phone: this.moblie,
           device: AuthConfig.device,
           platform: AuthConfig.platform,
         };
+        loginServe
+        .sMSLoginf(signData).subscribe(
+          data=>{
+            Bus.$emit("overlayvalue", {
+              overlayvalue: false,
+            });
+            console.log(data.code, data);
+            if (data.status && data.status == "success") {
+              Bus.$emit("snackbar", {
+                text: "登录成功",
+                color: "green",
+                timeout: 2000,
+                errorsnackbar: true,
+                top:true
+              });
+              // authServies.logintest(data.data.idtoken);
+            } else if (data.code && data.code == "000001") {
+              Bus.$emit("snackbar", {
+                text: "该用户已存在",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+                top:true
+              });
+            } else if (data.code && data.code == "000002") {
+              Bus.$emit("snackbar", {
+                text: "验证码错误,请输入正确的验证码",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+                top:true
+              });
+            } else if (data.code && data.code == "000007") {
+              Bus.$emit("snackbar", {
+                text: "请重新发送验证码",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+                top:true
+              });
+            } else {
+              Bus.$emit("snackbar", {
+                text: "服务器错误，请重试",
+                color: "pink",
+                timeout: 2000,
+                errorsnackbar: true,
+                top:true
+              });
+            }
+          },
+          err=>{
+            Bus.$emit("overlayvalue", {
+              overlayvalue: false,
+            });
+            Bus.$emit("snackbar", {
+              text: "服务器错误，请重试",
+              color: "pink",
+              timeout: 2000,
+              errorsnackbar: true,
+              top:true
+            });
+          }
+        )
       }
     },
   },
