@@ -17,7 +17,7 @@ axios.interceptors.request.use(
   config => {
     console.log('isTokenExpired1', isTokenExpired)
     console.log('isTokenExpired1 store.state', store.state.login.idtoken)
-    console.log('222222222222222222', (!(store.state === null)) && isTokenExpired === false)
+    // console.log('222222222222222222', (!(store.state === null)) && isTokenExpired === false)
     if ((!(store.state.login.idtoken === null)) && isTokenExpired === false) {
       isTokenExpired = true
       console.log('isTokenExpired', isTokenExpired)

@@ -29,21 +29,32 @@ export default class loginServe {
     );
   }
 
-  static sMSLoginf(SMSLogin: LoginInWithSMSVerifyCodeInput): Observable<any> {
+  // code: this.check,
+  // provider: AuthConfig.jiguangDevice,
+  // // eslint-disable-next-line @typescript-eslint/camelcase
+  // msg_id: this.msg_id,
+  // phone: this.moblie,
+  // device: AuthConfig.device,
+  // platform: AuthConfig.platform,
+  static sMSLoginf(SMSLogindata: LoginInWithSMSVerifyCodeInput): Observable<any> {
     let SMSLoginData: LoginInWithSMSVerifyCodeInput = {
-      phone: SMSLogin.phone,
-      msg_id: SMSLogin.msg_id,
-      code: SMSLogin.code,
+      phone: SMSLogindata.phone,
+      msg_id: SMSLogindata.msg_id,
+      code: SMSLogindata.code,
       provider: 'web',
       device: AuthConfig.device,
       platform: AuthConfig.platform,
     };
-    console.log('11111111111111111',SMSLoginData)
+    
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.verificationcodelogin,
       SMSLoginData
     ).pipe(
+      map(data=>{
+        return data['data']
+      }),
+      // TODO:
       delay(1000)
     )
   }

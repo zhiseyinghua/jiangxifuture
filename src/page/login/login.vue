@@ -349,8 +349,6 @@ export default {
           top:true
         });
       } else {
-        console.log('11111111111111111',this.moblie, this.msg_id,this.check)
-        console.log('OK')
         let signData = {
           code: this.check,
           provider: AuthConfig.jiguangDevice,
@@ -366,7 +364,7 @@ export default {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
-            console.log(data.code, data);
+            console.log('login.vue sMSLogin data', data);
             if (data.status && data.status == "success") {
               Bus.$emit("snackbar", {
                 text: "登录成功",
