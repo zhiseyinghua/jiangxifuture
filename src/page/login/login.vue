@@ -4,6 +4,7 @@
       <v-card shaped>
         <v-btn @click="testjoin">test填写</v-btn>
         <v-btn @click="logintest">登录</v-btn>
+        <v-btn @click="msmlogintest">短信登录</v-btn>
         <v-row no-gutters>
           <v-col cols="8" offset="2">
             <v-toolbar flat> </v-toolbar>
@@ -243,6 +244,10 @@ export default {
         }
       );
     },
+    /**
+     * 短信验证
+     */
+   
     validate() {
       this.$refs.form.validate();
     },
