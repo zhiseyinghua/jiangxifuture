@@ -123,10 +123,10 @@ export default class AuthServies {
   }
 
   /**
-   * 从本地获取token
+   * 从本地获取token 它是一个异步的方法
    */
-  public static getLocalstore() {
-    return localStorage.getItem("token");
+  public static getLocalstore() :Observable<any>{
+    return of(localStorage.getItem("token"));
   }
 
 
