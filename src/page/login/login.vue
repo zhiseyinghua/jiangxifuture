@@ -167,6 +167,12 @@ import Bus from "../../common/bus.js";
 export default {
   data() {
     return {
+      // 用于发送短信的msgid
+      msg_id: "",
+      // 倒计时
+      time: 3,
+      // 发短信的按钮
+      buttonName: "发送短信",
       tabs: null,
       items: ["密码登录", "短信码登陆"],
       isshow: true,
@@ -192,7 +198,8 @@ export default {
   },
   methods: {
     testjoin() {
-      (this.moblie = "18779868511"), (this.password = "1234561q");
+      this.moblie = "18779868511"; 
+      this.password = "1234561q";
       // console.log('testjoin start')
       // loginServe.userLogin(this.moblie,this.moblie).subscribe(
       //   success=>{

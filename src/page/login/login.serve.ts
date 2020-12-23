@@ -40,7 +40,8 @@ export default class loginServe {
     };
     return AxiosElasticService.AxiosService(
       "POST",
-      AuthConfig.zone + "/" + AuthConfig.byphoneresetpossword
+      AuthConfig.zone + "/" + AuthConfig.byphoneresetpossword,
+      SMSLoginData
     );
   }
 }
