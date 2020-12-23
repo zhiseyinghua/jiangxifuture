@@ -1,7 +1,7 @@
 import { Observable, from, of, throwError } from "rxjs";
 import { switchMap, catchError } from "rxjs/operators";
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from "axios";
-import { httpHost } from "./api";
+import { HttpHost } from "./api";
 
 // const axios = require('axios');
 
@@ -27,7 +27,7 @@ export class AxiosElasticService {
     console.log(method, body, urlstr);
     let axiosData: AxiosRequestConfig = {
       method: method,
-      url: httpHost.localHost + urlstr,
+      url: HttpHost.localHost + urlstr,
       data: body,
       headers: {
         ...headers,
@@ -35,7 +35,9 @@ export class AxiosElasticService {
       },
       params,
     };
-    console.log('DbElasticService ' + 'executeInEs axiosData' + JSON.stringify(axiosData));
+    console.log(
+      "DbElasticService " + "executeInEs axiosData" + JSON.stringify(axiosData)
+    );
     return from(axios(axiosData)).pipe(
       catchError((error) => {
         // console.log('DbElasticService ' + 'executeInEs' + error);
@@ -47,5 +49,18 @@ export class AxiosElasticService {
         return of(result);
       })
     );
+  }
+
+  /**
+   * 这是一个负责处理前端请求是否要在header里加入url的方法
+   */
+  public static checkfuctionUrlIdtoken(url: any) :Boolean{
+    //
+    if (url && url == HttpHost.check_url_with_token.bytokengettoken) {
+      return true
+    } else {
+      return false
+    }
+      
   }
 }

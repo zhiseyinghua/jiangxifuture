@@ -1,7 +1,7 @@
 import store from "@/store";
 import { Observable, of } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { httpHost } from "@/common/api";
+import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
 import {
