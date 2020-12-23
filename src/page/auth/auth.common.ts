@@ -11,4 +11,6 @@ export const AuthConfig = {
   verifysmscoderegister: "verifysmscoderegister",
   // 手机号和密码登录
   byusermimalogin: "byusermimalogin",
+  // 手机验证码登录
+  byphoneresetpossword:'byphoneresetpossword'
 };
