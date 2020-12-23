@@ -2,6 +2,7 @@ import { Observable, from, of, throwError } from "rxjs";
 import { switchMap, catchError } from "rxjs/operators";
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from "axios";
 import { HttpHost } from "./api";
+import { AuthConfig } from "@/page/auth/auth.common";
 
 // const axios = require('axios');
 
@@ -54,13 +55,29 @@ export class AxiosElasticService {
   /**
    * 这是一个负责处理前端请求是否要在header里加入url的方法
    */
-  public static checkfuctionUrlIdtoken(url: any) :Boolean{
+  public static checkfuctionUrlIdtoken(url: any): Boolean {
+    let api = "api/";
+    console.log(
+      "fromaxios checkfuctionUrlIdtoken url",
+      url,
+      api +
+        "/" +
+        AuthConfig.zone +
+        "/" +
+        HttpHost.check_url_with_token.bytokengettoken
+    );
     //
-    if (url && url == HttpHost.check_url_with_token.bytokengettoken) {
-      return true
+    if (
+      url &&
+      url ==
+        api +
+          AuthConfig.zone +
+          "/" +
+          HttpHost.check_url_with_token.bytokengettoken
+    ) {
+      return true;
     } else {
-      return false
+      return false;
     }
-      
   }
 }

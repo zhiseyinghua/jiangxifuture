@@ -58,6 +58,7 @@ export default {
   data() {
     return {};
   },
+  
   methods: {
     changeLangEvent() {
       if (this.$i18n.locale === "zh-CN") {

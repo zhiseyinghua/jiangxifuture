@@ -114,5 +114,20 @@ export default class AuthServies {
     return gap;
   }
 
+  /**
+   * 判断一个token是否过
+   * @param toekn 
+   */
+  public static checkTokenIsExpired(token:string) {
+
+  }
+
+  /**
+   * 从本地获取token
+   */
+  public static getLocalstore() {
+    return localStorage.getItem("token");
+  }
+
 
 }

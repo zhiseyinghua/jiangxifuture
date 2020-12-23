@@ -10,7 +10,6 @@
     </v-main>
     <!-- <foot></foot> -->
   </v-app>
-
 </template>
 
 <script>
@@ -24,10 +23,18 @@ export default {
       scrolled: false,
     };
   },
-  components: { tabbar, slidebar,foot,overlay },
+  created: function() {
+    // 在程序初始化获取本地的token，如果本地不存在token则跳转至登录页面
+    console.log(
+      "app.vue this.$store.state.login.token == null",
+      this.$store.state.login.token == null
+    );
+    if (this.$store.state.login.token == null) {
+      
+    }
+  },
+  components: { tabbar, slidebar, foot, overlay },
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

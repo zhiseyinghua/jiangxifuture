@@ -49,7 +49,7 @@ axios.interceptors.request.use(
       console.log("error1234");
     }
 
-    //
+    // 判断请求是否加token
     if (AxiosElasticService.checkfuctionUrlIdtoken(config.url)) {
       console.log("http 需要加token");
       config.headers.Token = store.state.login.token;
