@@ -1,53 +1,40 @@
 <template>
   <v-container>
-    <v-btn v-on:click="getuserdata"> get user data</v-btn>
-    <v-row>
-      <v-col>
-        <v-card
-          ><v-card-title>
-            <span class="title font-weight-light">基本信息</span>
-          </v-card-title>
-          <v-card-text>
+
+
             <v-simple-table>
               <template v-slot:default>
-
+                <thead>
                   <tr>
-                    <th class="text-left">登陆账号</th>
+                    <th>基本信息</th>
+                    <th>登陆账号</th>
+                    <th>登陆密码</th>
+                    <th>手机</th>
+                    <th>邮箱</th>
+                    <th>注册时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>111</td>
+                    <td>111</td>
+                    <td>111</td>
+                    <td>111</td>
                     <td>111</td>
                   </tr>
-                  <tr>
-                    <th class="text-left">登陆密码</th>
-                    <td>111</td>
-                  </tr>
+                </tbody>
               </template>
             </v-simple-table>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+
+    
   </v-container>
 </template> 
 <script>
 // import authServies from "./auth.servies";
-
-import UserServe from '../user.serve'
+// import UserServe from "../user.serve";
 export default {
   data() {
-    return {
-    };
-    
+    return {};
   },
-  methods:{
-       getuserdata() {
-        UserServe.byuseridgetUserDate('key').subscribe(
-          success=>{
-            console.log('11111111111111111111',success)
-          },
-          err =>{
-            console.log('2222222222222222222222',err)
-          }
-        )
-      }
-    }
 };
 </script>
