@@ -2,7 +2,16 @@
   <div>
     <!-- 消息提示 -->
 
-    <v-snackbar :timeout="timeout" v-model="errorsnackbar" top :color="color">
+    <v-snackbar
+      :timeout="timeout"
+      v-model="errorsnackbar"
+      :bottom="bottom"
+      :centered="centered"
+      :right="right"
+      :left="left"
+      :top="top"
+      :color="color"
+    >
       {{ text }}
       <template v-slot:action="{ attrs }">
         <v-btn text v-bind="attrs" @click="snackbar = false">
@@ -25,6 +34,11 @@ import Bus from "../common/bus.js";
 export default {
   data() {
     return {
+      right: false,
+      bottom: false,
+      centered: false,
+      left: false,
+      top: true,
       color: "green",
       // 遮罩层的状态
       overlayvalue: false,
@@ -42,7 +56,11 @@ export default {
     });
     // 提示的时间
     Bus.$on("snackbar", (msg) => {
-      console.log(msg);
+      this.right = msg.right;
+      this.bottom = msg.bottom;
+      this.centered = msg.centered;
+      this.left = msg.left;
+      this.top = msg.top;
       this.text = msg.text;
       this.color = msg.color;
       this.timeout = msg.timeout;

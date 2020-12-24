@@ -1,7 +1,7 @@
 import store from "@/store";
 import { Observable, of } from "rxjs";
 import { map, tap } from "rxjs/operators";
-import { httpHost } from "@/common/api";
+import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
 import {
@@ -9,18 +9,19 @@ import {
   SignsuccessInterface,
 } from "./auth.interface";
 let jwt = require("jsonwebtoken");
+var md5 = require("js-md5");
 
 export default class AuthServies {
   static log = "AuthServies";
   /**
-   * 将token存储到localstore并改变前端state状态的方法
+   * 改变前端state状态的方法
    */
   public static dispatchlogintoken(token: string) {
     store.dispatch("login/loginAction", token);
   }
 
   /**
-   * 将用户token存到本地 异步方法
+   * 将用户token存到本地 方法
    * @param {*} Token
    * @param {*} email
    */
@@ -29,25 +30,53 @@ export default class AuthServies {
     localStorage.setItem("token", token);
   }
 
+  /**
+   * 发短信
+   * @param mobile
+   * @param devices
+   */
   public static SendPhoneSMSInterface(
     mobile: string,
     devices: string
   ): Observable<any> {
-    let a = {
+    let data = {
       mobile: mobile,
       devices: devices,
     };
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
-      a
+      data
     );
   }
 
+  /**
+   * 刷新token
+   */
   public static bytokengettoken(): Observable<any> {
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.bytokengettoken
+    ).pipe(
+      map((data: SignsuccessInterface) => {
+        //后端返回错误结果
+        return data.data;
+      }),
+
+      tap((data) => {
+        if (data.idtoken) {
+          AuthServies.dispatchlogintoken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      }),
+      tap((data) => {
+        if (data.idtoken) {
+          AuthServies.setlocalStorageToken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      })
     );
   }
 
@@ -56,6 +85,7 @@ export default class AuthServies {
    * @param signData
    */
   static signupAuth(signData: LoginInWithSMSVerifyCodeInput): Observable<any> {
+    signData.encodepossword = md5(signData.encodepossword);
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.verifysmscoderegister,
@@ -110,4 +140,13 @@ export default class AuthServies {
     console.log("还有多久过期gap", gap);
     return gap;
   }
+
+  /**
+   * 从本地获取token 它是一个异步的方法
+   */
+  public static getLocalstore(): Observable<any> {
+    return of(localStorage.getItem("token"));
+  }
+
+  
 }
