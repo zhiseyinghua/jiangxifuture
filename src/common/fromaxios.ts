@@ -68,12 +68,17 @@ export class AxiosElasticService {
     );
     //
     if (
-      url &&
+      (url &&
+        url ==
+          api +
+            AuthConfig.zone +
+            "/" +
+            HttpHost.check_url_with_token.bytokengettoken) ||
       url ==
         api +
           AuthConfig.zone +
           "/" +
-          HttpHost.check_url_with_token.bytokengettoken
+          HttpHost.check_url_with_token.byusermimalogin
     ) {
       return true;
     } else {

@@ -21,28 +21,31 @@ axios.interceptors.request.use(
     console.log("isTokenExpired1 store.state", store.state.login.idtoken);
     console.log(
       "222222222222222222",
-      !(store.state === null) && isTokenExpired === false
+      !(store.state === null) && isTokenExpired === false,store.state.login.idtoken,isTokenExpired
     );
-    if (!(store.state.login.idtoken === null) && isTokenExpired === false) {
+    if (!(store.state.login.idtoken == null) && isTokenExpired == false) {
       isTokenExpired = true;
       console.log("isTokenExpired", isTokenExpired);
       // 判断token是否需要刷新;
       let _stoken = store.state.login.idtoken;
       // let chicktokentime = AuthServies.chicktokenTime(_stoken);
-      // console.log("http chicktokentime", chicktokentime);
       let chicktokentime = 3;
+      console.log("http chicktokentime", chicktokentime);
       if (chicktokentime >= 12) {
         isTokenExpired = false;
         console.log("已经登录");
       } else if (chicktokentime < 12 && chicktokentime > 0) {
         console.log("进入刷新token的方法里面吗");
         // 就刷新token
-        AuthServies.bytokengettoken();
+        AuthServies.bytokengettoken().subscribe((success) => {
+          console.log("https 刷新token成功", success);
+        });
       } else {
         console.log("没登录");
         isTokenExpired = false;
       }
     } else {
+      
       // TODO: 错误处理
       console.log("error1234");
     }
