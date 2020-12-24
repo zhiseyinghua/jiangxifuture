@@ -28,8 +28,8 @@ axios.interceptors.request.use(
       console.log("isTokenExpired", isTokenExpired);
       // 判断token是否需要刷新;
       let _stoken = store.state.login.idtoken;
-      // let chicktokentime = AuthServies.chicktokenTime(_stoken);
-      let chicktokentime = 3;
+      let chicktokentime = AuthServies.chicktokenTime(_stoken);
+      // let chicktokentime = 3;
       console.log("http chicktokentime", chicktokentime);
       if (chicktokentime >= 12) {
         isTokenExpired = false;
