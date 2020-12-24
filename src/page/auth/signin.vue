@@ -172,7 +172,7 @@ export default {
         color: "green",
         timeout: 2000,
         errorsnackbar: true,
-        top:true
+        top: true,
       });
     },
 
@@ -186,7 +186,7 @@ export default {
      * 发送验证码
      */
     sendYanzhengma() {
-      this.signInButton = false
+      this.signInButton = false;
       this.sendSMSTime();
       authServies
         .SendPhoneSMSInterface(this.moblie, AuthConfig.jiguangDevice)
@@ -198,7 +198,7 @@ export default {
               color: "green",
               timeout: 2000,
               errorsnackbar: true,
-              top:true
+              top: true,
             });
           } else {
             Bus.$emit("snackbar", {
@@ -206,7 +206,7 @@ export default {
               color: "green",
               timeout: 2000,
               errorsnackbar: true,
-              top:true
+              top: true,
             });
           }
           (error) => {
@@ -215,7 +215,7 @@ export default {
               color: "green",
               timeout: 2000,
               errorsnackbar: true,
-              top:true
+              top: true,
             });
           };
         });
@@ -247,7 +247,7 @@ export default {
           color: "pink",
           timeout: 2000,
           errorsnackbar: true,
-          top:true
+          top: true,
         });
       } else {
         Bus.$emit("overlayvalue", {
@@ -275,7 +275,7 @@ export default {
                 color: "green",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
               // authServies.logintest(data.data.idtoken);
             } else if (data.code && data.code == "000001") {
@@ -284,7 +284,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             } else if (data.code && data.code == "000002") {
               Bus.$emit("snackbar", {
@@ -292,7 +292,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             } else if (data.code && data.code == "000007") {
               Bus.$emit("snackbar", {
@@ -300,7 +300,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             } else {
               Bus.$emit("snackbar", {
@@ -308,7 +308,7 @@ export default {
                 color: "pink",
                 timeout: 2000,
                 errorsnackbar: true,
-                top:true
+                top: true,
               });
             }
           },
@@ -321,7 +321,7 @@ export default {
               color: "pink",
               timeout: 2000,
               errorsnackbar: true,
-              top:true
+              top: true,
             });
           }
         );

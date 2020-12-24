@@ -15,7 +15,7 @@ var md5 = require('js-md5');
 export default class AuthServies {
   static log = "AuthServies";
   /**
-   * 将token存储到localstore并改变前端state状态的方法
+   * 改变前端state状态的方法
    */
   public static dispatchlogintoken(token: string) {
     store.dispatch("login/loginAction", token);
@@ -31,6 +31,7 @@ export default class AuthServies {
     localStorage.setItem("token", token);
   }
 
+  
   public static SendPhoneSMSInterface(
     mobile: string,
     devices: string
@@ -43,7 +44,22 @@ export default class AuthServies {
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
       data
-    );
+    ).pipe(
+       tap((data) => {
+        if (data.idtoken) {
+          AuthServies.dispatchlogintoken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      }),
+      tap((data) => {
+        if (data.idtoken) {
+          AuthServies.setlocalStorageToken(data.idtoken);
+        } else {
+          console.log("error登录失败111111179");
+        }
+      })
+    )
   }
 
   public static bytokengettoken(): Observable<any> {
@@ -115,7 +131,7 @@ export default class AuthServies {
   }
 
   /**
-   * 判断一个token是否过
+   * 判断一个token是否过期
    * @param toekn 
    */
   public static checkTokenIsExpired(token:string) {
@@ -128,6 +144,4 @@ export default class AuthServies {
   public static getLocalstore() :Observable<any>{
     return of(localStorage.getItem("token"));
   }
-
-
 }

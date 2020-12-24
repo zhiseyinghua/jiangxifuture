@@ -51,7 +51,7 @@ axios.interceptors.request.use(
 
     // 判断请求是否加token
     if (AxiosElasticService.checkfuctionUrlIdtoken(config.url)) {
-      console.log(store.state.login.idtoken)
+      console.log(store.state.login.idtoken);
       console.log("http 需要加token");
       config.headers.authorization = store.state.login.idtoken;
     } else {
