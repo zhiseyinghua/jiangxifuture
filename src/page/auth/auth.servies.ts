@@ -9,8 +9,7 @@ import {
   SignsuccessInterface,
 } from "./auth.interface";
 let jwt = require("jsonwebtoken");
-var md5 = require('js-md5');
-
+var md5 = require("js-md5");
 
 export default class AuthServies {
   static log = "AuthServies";
@@ -31,7 +30,11 @@ export default class AuthServies {
     localStorage.setItem("token", token);
   }
 
-  
+  /**
+   * 发短信
+   * @param mobile
+   * @param devices
+   */
   public static SendPhoneSMSInterface(
     mobile: string,
     devices: string
@@ -44,8 +47,23 @@ export default class AuthServies {
       "POST",
       AuthConfig.zone + "/" + AuthConfig.seedjpushsms,
       data
+    );
+  }
+
+  /**
+   * 刷新token
+   */
+  public static bytokengettoken(): Observable<any> {
+    return AxiosElasticService.AxiosService(
+      "POST",
+      AuthConfig.zone + "/" + AuthConfig.bytokengettoken
     ).pipe(
-       tap((data) => {
+      map((data: SignsuccessInterface) => {
+        //后端返回错误结果
+        return data.data;
+      }),
+      
+      tap((data) => {
         if (data.idtoken) {
           AuthServies.dispatchlogintoken(data.idtoken);
         } else {
@@ -59,13 +77,6 @@ export default class AuthServies {
           console.log("error登录失败111111179");
         }
       })
-    )
-  }
-
-  public static bytokengettoken(): Observable<any> {
-    return AxiosElasticService.AxiosService(
-      "POST",
-      AuthConfig.zone + "/" + AuthConfig.bytokengettoken
     );
   }
 
@@ -74,7 +85,7 @@ export default class AuthServies {
    * @param signData
    */
   static signupAuth(signData: LoginInWithSMSVerifyCodeInput): Observable<any> {
-    signData.encodepossword = md5(signData.encodepossword); 
+    signData.encodepossword = md5(signData.encodepossword);
     return AxiosElasticService.AxiosService(
       "POST",
       AuthConfig.zone + "/" + AuthConfig.verifysmscoderegister,
@@ -132,16 +143,14 @@ export default class AuthServies {
 
   /**
    * 判断一个token是否过期
-   * @param toekn 
+   * @param toekn
    */
-  public static checkTokenIsExpired(token:string) {
-
-  }
+  public static checkTokenIsExpired(token: string) {}
 
   /**
    * 从本地获取token 它是一个异步的方法
    */
-  public static getLocalstore() :Observable<any>{
+  public static getLocalstore(): Observable<any> {
     return of(localStorage.getItem("token"));
   }
 }
