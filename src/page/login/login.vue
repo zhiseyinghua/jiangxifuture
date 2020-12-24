@@ -222,7 +222,7 @@ export default {
     },
     testjoin() {
       this.moblie = "18779868511";
-      this.password = "1234561q";
+      this.password = "q123456";
       // console.log('testjoin start')
       // loginServe.userLogin(this.moblie,this.moblie).subscribe(
       //   success=>{
