@@ -26,24 +26,22 @@ axios.interceptors.request.use(
     if (!(store.state.login.idtoken === null) && isTokenExpired === false) {
       isTokenExpired = true;
       console.log("isTokenExpired", isTokenExpired);
-      // 判断token是否需要刷新
+      // 判断token是否需要刷新;
       let _stoken = store.state.login.idtoken;
-      let chicktokentime = AuthServies.chicktokenTime(_stoken);
-      console.log("http chicktokentime", chicktokentime);
-      // let chicktokentime = 3
+      // let chicktokentime = AuthServies.chicktokenTime(_stoken);
+      // console.log("http chicktokentime", chicktokentime);
+      let chicktokentime = 3;
       if (chicktokentime >= 12) {
         isTokenExpired = false;
         console.log("已经登录");
       } else if (chicktokentime < 12 && chicktokentime > 0) {
         console.log("进入刷新token的方法里面吗");
         // 就刷新token
-        // TODO:
+        AuthServies.bytokengettoken();
       } else {
         console.log("没登录");
         isTokenExpired = false;
-        // confirm.log('没登录')
       }
-      // }
     } else {
       // TODO: 错误处理
       console.log("error1234");

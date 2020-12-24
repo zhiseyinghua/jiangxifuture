@@ -62,7 +62,7 @@ export default class AuthServies {
         //后端返回错误结果
         return data.data;
       }),
-      
+
       tap((data) => {
         if (data.idtoken) {
           AuthServies.dispatchlogintoken(data.idtoken);
@@ -142,15 +142,11 @@ export default class AuthServies {
   }
 
   /**
-   * 判断一个token是否过期
-   * @param toekn
-   */
-  public static checkTokenIsExpired(token: string) {}
-
-  /**
    * 从本地获取token 它是一个异步的方法
    */
   public static getLocalstore(): Observable<any> {
     return of(localStorage.getItem("token"));
   }
+
+  
 }
