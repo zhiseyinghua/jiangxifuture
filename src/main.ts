@@ -6,9 +6,7 @@ import vuetify from "@/plugins/vuetify";
 import VueI18n from "vue-i18n";
 import authServies from './page/auth/auth.servies'
 import VueAxios from 'vue-axios'
-// import axios from './https'
-
-
+import axios from './https'
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
@@ -20,8 +18,8 @@ const i18n = new VueI18n({
   }
 });
 
-// Vue.prototype.axios = axios
-// Vue.prototype.$vueaxios = VueAxios
+Vue.prototype.axios = axios
+Vue.prototype.$vueaxios = VueAxios
 
 
 new Vue({

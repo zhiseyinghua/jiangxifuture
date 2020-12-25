@@ -13,7 +13,7 @@
 <script>
 // import tabbar from "@/components/tabbar";
 // import slidebar from "@/components/slidebar";
-// import foot from "@/components/foot";
+import foot from "@/components/foot";
 import overlay from "@/components/overlay";
 import authServies from "@/page/auth/auth.servies";
 import Bus from "@/common/bus";
@@ -48,7 +48,10 @@ export default {
       );
     }
   },
-  components: { tabbar, slidebar, foot, overlay },
+  components: {
+  //    tabbar, 
+  // slidebar,
+   foot, overlay },
 };
 </script>
 
