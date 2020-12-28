@@ -1,5 +1,16 @@
 export const AuthConfig = {
-    zone: 'auth',
-    // 发送极光验证码短信
-    seedjpushsms:'seedjpushsms'
-}
+  jiguangDevice: "phone",
+  device: "web",
+  platform: "future time",
+  zone: "auth",
+  // 发送极光验证码短信
+  seedjpushsms: "seedjpushsms",
+  // token换token
+  bytokengettoken: "bytokengettoken",
+  // 注册
+  verifysmscoderegister: "verifysmscoderegister",
+  // 手机号和密码登录
+  byusermimalogin: "byusermimalogin",
+  // 手机验证码登录
+  verificationcodelogin:'verificationcodelogin'
+};
