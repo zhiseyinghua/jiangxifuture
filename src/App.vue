@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <overlay></overlay>
-    <tabbar></tabbar>
-    <slidebar></slidebar>
+    <!-- <tabbar></tabbar>
+    <slidebar></slidebar> -->
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import tabbar from "@/components/tabbar";
-import slidebar from "@/components/slidebar";
+// import tabbar from "@/components/tabbar";
+// import slidebar from "@/components/slidebar";
 import foot from "@/components/foot";
 import overlay from "@/components/overlay";
 import authServies from "@/page/auth/auth.servies";
@@ -49,8 +49,8 @@ export default {
     }
   },
   components: {
-     tabbar, 
-  slidebar,
+  //    tabbar, 
+  // slidebar,
    foot, overlay },
 };
 </script>

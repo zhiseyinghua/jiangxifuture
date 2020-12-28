@@ -91,13 +91,14 @@ export default {
       { text: "我的工单", route: "/" },
     ],
     links2: [
-      { text: "订单合同", route: "/" },
+      { text: "我的订单·", route: "/" },
       { text: "收支明细", route: "/" },
-      { text: "账单", route: "/" },
-      { text: "发票", route: "/" },
+      { text: "费用账单", route: "/" },
+      { text: "合同管理", route: "/" },
     ],
     links3: [
-      { text: "账号信息", icon: "mdi-account", route: "/user/account" },
+      { text: "账号信息", icon: "mdi-account-outline", route: "/user/account" },
+      { text: "团队管理", icon: "mdi-account-group-outline", route: "/" },
       { text: "退出账号", icon: "mdi-location-exit", route: "/" },
     ],
   }),

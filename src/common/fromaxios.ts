@@ -15,8 +15,8 @@ export class AxiosElasticService {
   /**
    * 这是一个http请求服务 注意body传入的是一个
    * @param method 请求的Method，它是Metod类型
-   * @param body   z'AA
    * @param url    请求的url
+   * @param body   body
    */
   public static AxiosService(
     method: Method,
