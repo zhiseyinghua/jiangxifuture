@@ -46,10 +46,7 @@
         prepend-inner-icon="mdi-magnify"
         solo-inverted
       ></v-text-field>
-
-      <v-spacer></v-spacer>
-
-      <v-avatar color="primary d-none d-sm-flex" size="45"></v-avatar>
+      
       <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
@@ -58,6 +55,7 @@
         class="d-flex d-md-none"
         @click.stop="handleChangeDrawer"
       ></v-app-bar-nav-icon>
+      <div class="d-none d-md-flex"><v-btn text to="login">登陆</v-btn><v-btn text to="auth">注册</v-btn></div>
     </v-container>
   </v-app-bar>
 </template>
