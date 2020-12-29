@@ -160,7 +160,7 @@ export default class AuthServies {
           "authServies getServeS3authority type",
           typeof data["data"]["Expiration"]
         );
-        localStorage.setItem("s3authority", data);
+        localStorage.setItem("s3authority", JSON.stringify(data['data']));
       })
     );
   }
@@ -170,16 +170,17 @@ export default class AuthServies {
    */
   public static getS3authority(): Observable<any> {
     return of(localStorage.getItem("s3authority")).pipe(
-      map(s3authority=>{
-        console.log('authServies getS3authority s3authority',s3authority)
-        AuthServies.checkoutS3thorityTime(s3authority)
+      map((s3authority:any)=>{
+        let _s3authority= JSON.parse(s3authority)
+        console.log('authServies getS3authority s3authority',_s3authority)
+        AuthServies.checkoutS3thorityTime(_s3authority)
         return s3authority
       })
     );
   }
 
   public static checkoutS3thorityTime(S3authority:any){
-    console.log('authServies checkoutS3thorityTime S3authority',JSON.stringify(S3authority))
+    console.log('authServies checkoutS3thorityTime S3authority',S3authority)
     let _S3timestamp = Date.parse(S3authority['Expiration'])
     let nowTimestamp = Date.now()
     console.log('authServies checkoutS3thorityTime _S3timestamp nowTimestamp',_S3timestamp,nowTimestamp)
