@@ -148,5 +148,7 @@ export default class AuthServies {
     return of(localStorage.getItem("token"));
   }
 
-  
+  public static getS3authority(): Observable<any> {
+    return AxiosElasticService.AxiosService("post", AuthConfig.assumeRole);
+  }
 }
