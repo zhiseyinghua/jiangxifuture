@@ -165,10 +165,14 @@ export default class AuthServies {
     );
   }
 
+  /**
+   * 获取s3的凭证
+   */
   public static getS3authority(): Observable<any> {
     return of(localStorage.getItem("s3authority")).pipe(
       map(s3authority=>{
         AuthServies.checkoutS3thorityTime(s3authority)
+        return s3authority
       })
     );
   }
