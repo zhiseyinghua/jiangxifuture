@@ -93,7 +93,8 @@ export class AxiosElasticService {
    * @param routerPath 
    */
   public static checkrouterlogin(routerPath:string) :boolean{
-    let _stoken = store.state.login.idtoken;
+    console.log(store.state.login.idtoken)
+    let _stoken = localStorage.getItem("token");
     let checkoutPath =[
       '/news',
       '/home'
@@ -104,4 +105,6 @@ export class AxiosElasticService {
       return false
     }
   }
+
+ 
 }

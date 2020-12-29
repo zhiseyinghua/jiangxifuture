@@ -19,13 +19,13 @@ export default new Router({
     solution,
     test,
     user,
-    {
-      path:"/",
-      redirect:home
-    },
-    {
-      path:"*",
-      redirect:home
-    },
+    // {
+    //   path:"/",
+    //   redirect:home
+    // },
+    // {
+    //   path:"*",
+    //   redirect:home
+    // },
   ]
 });

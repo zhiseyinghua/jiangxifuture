@@ -23,14 +23,13 @@ Vue.prototype.$vueaxios = VueAxios;
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  // console.log("main.ts to,from,next", to, from, next);
-  console.log(AxiosElasticService.checkrouterlogin(to.path))
+  console.log("main.ts to,from,next", to, from, next);
   if (AxiosElasticService.checkrouterlogin(to.path) && to.path != '/login') {
     next({
       path: "/login",
-      query: {
-        redirect: to.fullPath,
-      },
+      // query: {
+      //   redirect: to.fullPath,
+      // },
     });
   }else{
     console.log('main.ts 已经登录')

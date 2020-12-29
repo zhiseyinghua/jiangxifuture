@@ -8,6 +8,7 @@ import {
   LoginInWithSMSVerifyCodeInput,
   SignsuccessInterface,
 } from "./auth.interface";
+import { AliyunConfig } from "./aliyun.common";
 let jwt = require("jsonwebtoken");
 var md5 = require("js-md5");
 
@@ -168,5 +169,40 @@ export default class AuthServies {
     return of(localStorage.getItem("token"));
   }
 
-  
+  public static getServeS3authority(): Observable<any> {
+    return AxiosElasticService.AxiosService(
+      "post",
+      AliyunConfig.zone + "/" + AliyunConfig.assumerole
+    ).pipe(
+      tap((data) => {
+        console.log("authServies getServeS3authority", data);
+        console.log(
+          "authServies getServeS3authority type",
+          typeof data["data"]["Expiration"]
+        );
+        localStorage.setItem("s3authority", JSON.stringify(data['data']));
+      })
+    );
+  }
+
+  /**
+   * 获取s3的凭证
+   */
+  public static getS3authority(): Observable<any> {
+    return of(localStorage.getItem("s3authority")).pipe(
+      map((s3authority:any)=>{
+        let _s3authority= JSON.parse(s3authority)
+        console.log('authServies getS3authority s3authority',_s3authority)
+        AuthServies.checkoutS3thorityTime(_s3authority)
+        return s3authority
+      })
+    );
+  }
+
+  public static checkoutS3thorityTime(S3authority:any){
+    console.log('authServies checkoutS3thorityTime S3authority',S3authority)
+    let _S3timestamp = Date.parse(S3authority['Expiration'])
+    let nowTimestamp = Date.now()
+    console.log('authServies checkoutS3thorityTime _S3timestamp nowTimestamp',_S3timestamp,nowTimestamp)
+  }
 }
