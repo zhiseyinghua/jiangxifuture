@@ -122,10 +122,24 @@ export default class AuthServies {
     return decoded["exp"];
   }
 
+  /**
+   * 
+   * @param token 
+   */
   public static asyncJwtDecjeck(token: string) :Observable<any>{
     let decoded = jwt.decode(token);
     console.log(this.log + "  " + "decoded", decoded);
     return of(decoded["exp"]);
+  }
+
+  /**
+   * 解析一个token
+   * @param token 
+   */
+  public static asyncjiexiJwtDecjeck(token:string):Observable<any>{
+    let decoded = jwt.decode(token);
+    console.log(this.log + "  " + "decoded", decoded);
+    return of(decoded);
   }
 
   /**

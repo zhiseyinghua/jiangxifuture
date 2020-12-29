@@ -1,62 +1,52 @@
-<template>
-  <v-card class="mx-auto" width="300">
-    <v-list>
-      <v-list-group v-for="item in items" :key="item.text" link>
-        <template v-slot:activator>
-          <v-icon left>{{ item.icon }}</v-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </template>
-        <v-list-group sub-group>
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>Admin</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item v-for="([title, icon], i) in admins" :key="i" link>
-            <v-list-item-title v-text="title"></v-list-item-title>
-
-            <v-list-item-icon>
-              <v-icon v-text="icon"></v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-        </v-list-group>
-      </v-list-group>
-    </v-list>
-  </v-card>
-</template>
 <script>
+import authServies from "@/page/auth/auth.servies";
+// import UserServe from "../user.serve";
+import accountserves from "@/page/user/account/account.serve";
+import { switchMap } from "rxjs/operators";
 export default {
-  data: () => ({
-    items: [
-      {
-         title:"账号中心",
-        icon:"mdi-account-cog-outline",
-        route: "/user/account",
-          items:[
-          {
-            title: "账号信息",
-            route: "/user/account",
-          },
-          {
-            title: "成员管理",
-            route: "/",
-          },
-          {
-            title: "账号安全",
-            route: "/",
-          }
-        ],
-      },
-      { title:"工单系统", icon:"mdi-file-document-multiple"},
-      { title:"费用中心", icon:"mdi-clipboard-file"},
-    ],
-    admins: [
-      ["Management", "mdi-account-multiple-outline"],
-      ["Settings", "mdi-cog-outline"],
-    ],
-  }),
+  data() {
+    return {
+      
+    };
+  },
+  created: function () {
+    var authkeyToken = this.$store.state.login.idtoken;
+    console.log("account.vue token", userkeyToken);
+    authServies
+      .asyncJwtDecjeck(authkeyToken)
+      .pipe(
+        switchMap((userkeyToken) => {
+          console.log("1111111111111111111", authkeyToken);
+          return accountserves.byuseridgetUserDate({
+            hash: userkeyToken.hash,
+            range: userkeyToken.range,
+            index: userkeyToken.index,
+          });
+        }),
+        switchMap((data) => {
+          console.log(data);
+        }),
+        switchMap((data) => {
+          console.log(data);
+        })
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
+    from(authServies.jwtDecodecheck(userkeyToken)).pipe(
+      switchMap((userdata)=>{
+        return accountserves.byuseridgetUserDate({
+          hash:userdata.hash,
+          range:userdata.range,
+          index:userdata.index
+        })
+      })
+    ).subscribe(
+      data=>{
+        console.log(data)
+      }
+    )
+    Accountserves.byuseridgetUserDate()
+  },
 };
 </script>

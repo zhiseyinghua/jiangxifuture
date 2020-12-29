@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container >
     <v-navigation-drawer
       permanent
       absolute
@@ -10,7 +10,7 @@
     >
       <!-- expand-on-hover 目前无发做到按钮和悬停可以同时控制侧边栏-->
 
-      <v-list nav flat dense>
+      <v-list nav dense>
         <v-list-group v-for="item in items" :key="item.title">
           <template v-slot:activator>
             <v-icon left>{{ item.icon }}</v-icon>

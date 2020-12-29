@@ -1,78 +1,84 @@
 <template>
-  <v-container>
-    <v-simple-table>
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th >基本信息</th>
-            <th>登陆账号</th>
-            <th>登陆密码</th>
-            <th>手机</th>
-            <th>邮箱</th>
-            <th>注册时间</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>111</td>
-            <td>111</td>
-            <td>111</td>
-            <td>111</td>
-            <td>111</td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
-  </v-container>
+  <v-row>
+    <v-col>
+      <v-card>
+        <v-card-actions>
+          <v-card-title>基本信息</v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn icon>
+            <v-icon>mdi-account-edit-outline</v-icon>
+          </v-btn>
+        </v-card-actions>
+        <v-divider class="mx-6"></v-divider>
+        <v-card-actions class="justify-center mt-10">
+          <v-btn icon x-large >
+            <v-avatar size="100">
+              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+            </v-avatar>
+          </v-btn>
+        </v-card-actions>
+
+        <v-row class="mx-16 mt-2">
+          <v-col class="d-flex" cols="8">
+            <v-card-text> uid </v-card-text>
+            <v-card-text> {{uuid}} </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row class="mx-16">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 登陆密码 </v-card-text>
+            <v-card-text class="pt-0"> 111 </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row class="mx-16">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 手机 </v-card-text>
+            <v-card-text class="pt-0"> 111 </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row class="mx-16">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 邮箱 </v-card-text>
+            <v-card-text class="pt-0"> 111 </v-card-text>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-col>
+    <v-col>
+      <v-card>
+        111
+      </v-card>
+    </v-col>
+  </v-row>
 </template> 
-<script>
-import authServies from "@/page/auth/auth.servies";
-// import UserServe from "../user.serve";
-import accountserves from "@/page/user/account/account.serve";
+
+<script lang="ts">
+import Vue from 'vue'
+import authServies from '@/page/auth/auth.servies'
 import { switchMap } from 'rxjs/operators';
-export default {
+import { of } from 'rxjs';
+import Accountserves from './account.serve';
+export default Vue.extend({
   data() {
-    return {};
+    return {
+      uuid:null
+    };
   },
-  created: function () {
+  created(){
     var authkeyToken = this.$store.state.login.idtoken;
-    console.log("account.vue token", userkeyToken);
-    authServies
-      .asyncJwtDecjeck(authkeyToken)
-      .pipe(
-        switchMap((userkeyToken) => {
-          console.log('1111111111111111111',authkeyToken)
-          return accountserves.byuseridgetUserDate({
-            hash: userkeyToken.hash,
-            range: userkeyToken.range,
-            index: userkeyToken.index,
-          });
-        }),
-        switchMap((data)=>{
-          console.log(data)
-        }),
-         switchMap((data)=>{
-          console.log(data)
-        }),
-        
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
-    // from(authServies.jwtDecodecheck(userkeyToken)).pipe(
-    //   switchMap((userdata)=>{
-    //     return accountserves.byuseridgetUserDate({
-    //       hash:userdata.hash,
-    //       range:userdata.range,
-    //       index:userdata.index
-    //     })
-    //   })
-    // ).subscribe(
-    //   data=>{
-    //     console.log(data)
-    //   }
-    // )
-    // Accountserves.byuseridgetUserDate()
-  },
-};
+    authServies.asyncjiexiJwtDecjeck(authkeyToken).pipe(
+      switchMap(data=>{
+        console.log(data)
+        this.uuid =  data.range
+        // TODO:
+        // return of('11')
+        return Accountserves.byuseridgetUserDate
+      })
+    ).subscribe(
+      data=>{
+        console.log(data)
+      }
+    )
+  }
+})
 </script>

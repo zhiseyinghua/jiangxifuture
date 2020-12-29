@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar dark flat dense app color="#384762">
+  <v-app-bar dark dense app color="#384762">
     <v-icon large>mdi-map</v-icon>
     <!-- <v-responsive :aspect-ratio="1"> -->
     <!-- <span >
@@ -20,7 +20,7 @@
           </v-btn>
         </template>
         <!-- 下拉列表 -->
-        <v-list flat>
+        <v-list>
           <v-list-item
             v-for="link in links1"
             :key="link.text"
@@ -42,7 +42,7 @@
           </v-btn>
         </template>
         <!-- 下拉列表 -->
-        <v-list flat>
+        <v-list>
           <v-list-item
             v-for="link in links2"
             :key="link.text"
