@@ -8,6 +8,7 @@ import {
   LoginInWithSMSVerifyCodeInput,
   SignsuccessInterface,
 } from "./auth.interface";
+import { AliyunConfig } from "./aliyun.common";
 let jwt = require("jsonwebtoken");
 var md5 = require("js-md5");
 
@@ -148,7 +149,33 @@ export default class AuthServies {
     return of(localStorage.getItem("token"));
   }
 
+  public static getServeS3authority(): Observable<any> {
+    return AxiosElasticService.AxiosService(
+      "post",
+      AliyunConfig.zone + "/" + AliyunConfig.assumerole
+    ).pipe(
+      tap((data) => {
+        console.log("authServies getServeS3authority", data);
+        console.log(
+          "authServies getServeS3authority type",
+          typeof data["data"]["credentials"]["Expiration"]
+        );
+        localStorage.setItem("s3authority", data);
+      })
+    );
+  }
+
   public static getS3authority(): Observable<any> {
-    return AxiosElasticService.AxiosService("post", AuthConfig.assumeRole);
+    return of(localStorage.getItem("s3authority")).pipe(
+      map(s3authority=>{
+        AuthServies.checkoutS3thorityTime(s3authority)
+      })
+    );
+  }
+
+  public static checkoutS3thorityTime(S3authority:any){
+    let _S3timestamp = Date.parse(S3authority['Expiration'])
+    let nowTimestamp = Date.now()
+    console.log('authServies checkoutS3thorityTime _S3timestamp nowTimestamp',_S3timestamp,nowTimestamp)
   }
 }

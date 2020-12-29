@@ -1,20 +1,31 @@
 <template>
-  <v-app-bar app flat>
-    <v-icon large>mdi-map</v-icon>
-    <v-btn text class="text-h6"> 敖岸测绘 </v-btn>
-
-    <v-spacer></v-spacer>
-
-      <v-btn text> News </v-btn>
-
-      <v-divider vertical></v-divider>
-
-      <v-btn text> Blog </v-btn>
-
-      <v-divider vertical></v-divider>
-
-      <v-btn text> Music </v-btn>
-
-      <v-divider vertical></v-divider>
-  </v-app-bar>
+  <div>
+    <div style="height:100px">test</div>
+    <div>test</div>
+    <v-btn @click="getauthass">颁发刷凭证</v-btn>
+  </div>
 </template>
+<script>
+import authServies from "@/page/auth/auth.servies";
+
+export default {
+  name: "test",
+  data() {
+    return {
+      
+    };
+  },
+  methods:{
+    getauthass() {
+      authServies.getServeS3authority().subscribe(
+        data=>{
+          console.log(data)
+        },
+        err=>{
+
+        }
+      )
+    }
+  }
+};
+</script>
