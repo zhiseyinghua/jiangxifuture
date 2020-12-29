@@ -95,7 +95,8 @@ export class AxiosElasticService {
   public static checkrouterlogin(routerPath:string) :boolean{
     let _stoken = store.state.login.idtoken;
     let checkoutPath =[
-      '/news'
+      '/news',
+      '/home'
     ]
     if(checkoutPath.indexOf(routerPath) &&(_stoken==null || _stoken=='')){
       return true

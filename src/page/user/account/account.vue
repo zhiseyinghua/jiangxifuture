@@ -72,7 +72,11 @@ export default Vue.extend({
         this.uuid =  data.range
         // TODO:
         // return of('11')
-        return Accountserves.byuseridgetUserDate
+        return Accountserves.byuseridgetUserDate({
+          hash:data.hash,
+          range:data.range,
+          index:data.index
+        })
       })
     ).subscribe(
       data=>{
