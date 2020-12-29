@@ -28,7 +28,7 @@ export default {
       )
     },
     getlocals3pingzheng() {
-      authServies.checkoutS3thorityTime().subscribe(
+      authServies.getS3authority().subscribe(
         data=>{
           console.log(data)
         }
