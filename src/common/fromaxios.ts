@@ -3,6 +3,8 @@ import { switchMap, catchError } from "rxjs/operators";
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from "axios";
 import { HttpHost } from "./api";
 import { AuthConfig } from "@/page/auth/auth.common";
+import store from "@/store";
+import router from "@/router";
 
 // const axios = require('axios');
 
@@ -85,4 +87,23 @@ export class AxiosElasticService {
       return false;
     }
   }
+
+  /**
+   * 判断当前路径是否转跳到login页面（路由守卫）,是的话返回true
+   * @param routerPath 
+   */
+  public static checkrouterlogin(routerPath:string) :boolean{
+    console.log(store.state.login.idtoken)
+    let _stoken = localStorage.getItem("token");
+    let checkoutPath =[
+      '/news'
+    ]
+    if(checkoutPath.indexOf(routerPath) &&(_stoken==null || _stoken=='')){
+      return true
+    } else {
+      return false
+    }
+  }
+
+ 
 }

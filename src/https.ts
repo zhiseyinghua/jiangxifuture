@@ -20,7 +20,7 @@ axios.interceptors.request.use(
     console.log("isTokenExpired1", isTokenExpired);
     console.log("isTokenExpired1 store.state", store.state.login.idtoken);
     console.log(
-      "222222222222222222",
+      "https.ts",
       !(store.state === null) && isTokenExpired === false,store.state.login.idtoken,isTokenExpired
     );
     if (!(store.state.login.idtoken == null) && isTokenExpired == false) {
@@ -63,7 +63,6 @@ axios.interceptors.request.use(
   },
   (err) => {
     console.log("err", err);
-    // return Promise.reject(err)
   }
 );
 

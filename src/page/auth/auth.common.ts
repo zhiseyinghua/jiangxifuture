@@ -12,5 +12,8 @@ export const AuthConfig = {
   // 手机号和密码登录
   byusermimalogin: "byusermimalogin",
   // 手机验证码登录
-  verificationcodelogin:'verificationcodelogin'
+  verificationcodelogin:'verificationcodelogin',
+  // 获取访问s3的凭证
+  assumeRole:'assumeRole'
+
 };
