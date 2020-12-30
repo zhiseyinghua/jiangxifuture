@@ -1,3 +1,5 @@
+<template> </template>
+
 <script>
 import authServies from "@/page/auth/auth.servies";
 // import UserServe from "../user.serve";
@@ -5,11 +7,9 @@ import accountserves from "@/page/user/account/account.serve";
 import { switchMap } from "rxjs/operators";
 export default {
   data() {
-    return {
-      
-    };
+    return {};
   },
-  created: function () {
+  created: function() {
     var authkeyToken = this.$store.state.login.idtoken;
     console.log("account.vue token", userkeyToken);
     authServies
@@ -33,20 +33,20 @@ export default {
       .subscribe((data) => {
         console.log(data);
       });
-    from(authServies.jwtDecodecheck(userkeyToken)).pipe(
-      switchMap((userdata)=>{
-        return accountserves.byuseridgetUserDate({
-          hash:userdata.hash,
-          range:userdata.range,
-          index:userdata.index
+    from(authServies.jwtDecodecheck(userkeyToken))
+      .pipe(
+        switchMap((userdata) => {
+          return accountserves.byuseridgetUserDate({
+            hash: userdata.hash,
+            range: userdata.range,
+            index: userdata.index,
+          });
         })
-      })
-    ).subscribe(
-      data=>{
-        console.log(data)
-      }
-    )
-    Accountserves.byuseridgetUserDate()
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
+    Accountserves.byuseridgetUserDate();
   },
 };
 </script>
