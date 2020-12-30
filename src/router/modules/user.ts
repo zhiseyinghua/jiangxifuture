@@ -3,10 +3,10 @@ import account from "@/page/user/account/account.vue";
 
 export default {
   path: "/user",
-  name: "user",
+  name: "user/:id",
   component: user,
   children: [
     { path: "account", name: "account", component: account }
-
+    
 ],
 };

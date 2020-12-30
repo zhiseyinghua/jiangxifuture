@@ -21,7 +21,7 @@
         <v-row class="mx-16 mt-2">
           <v-col class="d-flex" cols="8">
             <v-card-text> uid </v-card-text>
-            <v-card-text> {{ uuid }} </v-card-text>
+            <v-card-text> 111 </v-card-text>
           </v-col>
         </v-row>
         <v-row class="mx-16">
@@ -73,10 +73,10 @@ export default Vue.extend({
   methods: {
     editbtn() {
       let userdata: EditUserData = {
-        usernickname: "asr",
-        usermail: "1111",
+        usernickname: "aaaaa",
+        usermail: "1789@qq.com",
         userico: "222",
-        telephone: "333",
+        telephone: "15244449999",
       };
       accountserves.upUserDate(userdata).subscribe((data) => {
         console.log(data);
@@ -104,6 +104,8 @@ export default Vue.extend({
       )
       .subscribe((data) => {
         this.usernickname = data.usernickname;
+        this.telephone = data.telephone;
+        this.usermail = data.usermail;
         let _data = data as BaceUserdata;
         // this.name = _data.usernickname;
         console.log(data);
