@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <overlay></overlay>
-    <tabbar></tabbar>
+    <tabbar v-if="$store.state.isShow"></tabbar>
     <slidebar></slidebar>
     <v-main>
       <v-container fluid>
@@ -23,10 +23,10 @@ import Bus from "@/common/bus";
 export default {
   data() {
     return {
-      scrolled: false
+      scrolled: false,
     };
   },
-  created: function() {
+  created: function () {
     // 在程序初始化获取本地的token，如果本地不存在token则跳转至登录页面
     console.log(
       "app.vue this.$store.state.login.token == null",
