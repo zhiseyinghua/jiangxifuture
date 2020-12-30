@@ -1,7 +1,7 @@
-/**
- * Created by superman on 17/2/16.
- * http配置
- */
+// /**
+//  * Created by superman on 17/2/16.
+//  * http配置
+//  */
 
 import axios from "axios";
 import { HttpHost } from "./common/api";

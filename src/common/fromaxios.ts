@@ -17,8 +17,8 @@ export class AxiosElasticService {
   /**
    * 这是一个http请求服务 注意body传入的是一个
    * @param method 请求的Method，它是Metod类型
-   * @param body   z'AA
    * @param url    请求的url
+   * @param body   body
    */
   public static AxiosService(
     method: Method,
@@ -68,6 +68,7 @@ export class AxiosElasticService {
         "/" +
         HttpHost.check_url_with_token.bytokengettoken
     );
+  
     //
     if (
       (url &&
@@ -82,28 +83,27 @@ export class AxiosElasticService {
           "/" +
           HttpHost.check_url_with_token.byusermimalogin
     ) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   }
 
   /**
    * 判断当前路径是否转跳到login页面（路由守卫）,是的话返回true
-   * @param routerPath 
+   * @param routerPath
    */
-  public static checkrouterlogin(routerPath:string) :boolean{
-    console.log(store.state.login.idtoken)
+  public static checkrouterlogin(routerPath: string): boolean {
+    console.log(store.state.login.idtoken);
     let _stoken = localStorage.getItem("token");
-    let checkoutPath =[
-      '/news'
-    ]
-    if(checkoutPath.indexOf(routerPath) &&(_stoken==null || _stoken=='')){
-      return true
+    let checkoutPath = ["/news", "/home"];
+    if (
+      checkoutPath.indexOf(routerPath) &&
+      (_stoken == null || _stoken == "")
+    ) {
+      return true;
     } else {
-      return false
+      return false;
     }
   }
-
- 
 }

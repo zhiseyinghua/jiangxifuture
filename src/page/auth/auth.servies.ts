@@ -1,6 +1,11 @@
 import store from "@/store";
+<<<<<<< HEAD
 import { Observable, of } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
+=======
+import { from, Observable, of } from "rxjs";
+import { map, tap } from "rxjs/operators";
+>>>>>>> 4f91c79b5717025cdbad55ca2ba55a445fa61033
 import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
@@ -121,6 +126,26 @@ export default class AuthServies {
     let decoded = jwt.decode(token);
     console.log(this.log + "  " + "decoded", decoded);
     return decoded["exp"];
+  }
+
+  /**
+   * 
+   * @param token 
+   */
+  public static asyncJwtDecjeck(token: string) :Observable<any>{
+    let decoded = jwt.decode(token);
+    console.log(this.log + "  " + "decoded", decoded);
+    return of(decoded["exp"]);
+  }
+
+  /**
+   * 解析一个token
+   * @param token 
+   */
+  public static asyncjiexiJwtDecjeck(token:string):Observable<any>{
+    let decoded = jwt.decode(token);
+    console.log(this.log + "  " + "decoded", decoded);
+    return of(decoded);
   }
 
   /**

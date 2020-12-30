@@ -6,6 +6,7 @@ export interface SendPhoneSMSInterface {
   devices: "phone" | "web";
 }
 
+
 /**
  * 注册返回的错误木马
  */

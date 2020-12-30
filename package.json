@@ -12,6 +12,7 @@
     "@types/ali-oss": "^6.0.5",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "jsonwebtoken": "^8.5.1",
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.5.1",
     "rxjs": "^6.6.3",
