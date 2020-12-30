@@ -68,6 +68,7 @@ export class AxiosElasticService {
         "/" +
         HttpHost.check_url_with_token.bytokengettoken
     );
+  
     //
     if (
       (url &&
@@ -82,29 +83,27 @@ export class AxiosElasticService {
           "/" +
           HttpHost.check_url_with_token.byusermimalogin
     ) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   }
 
   /**
    * 判断当前路径是否转跳到login页面（路由守卫）,是的话返回true
-   * @param routerPath 
+   * @param routerPath
    */
-  public static checkrouterlogin(routerPath:string) :boolean{
-    console.log(store.state.login.idtoken)
+  public static checkrouterlogin(routerPath: string): boolean {
+    console.log(store.state.login.idtoken);
     let _stoken = localStorage.getItem("token");
-    let checkoutPath =[
-      '/news',
-      '/home'
-    ]
-    if(checkoutPath.indexOf(routerPath) &&(_stoken==null || _stoken=='')){
-      return true
+    let checkoutPath = ["/news", "/home"];
+    if (
+      checkoutPath.indexOf(routerPath) &&
+      (_stoken == null || _stoken == "")
+    ) {
+      return true;
     } else {
-      return false
+      return false;
     }
   }
-
- 
 }
