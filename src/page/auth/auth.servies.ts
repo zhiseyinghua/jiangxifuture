@@ -174,6 +174,9 @@ export default class AuthServies {
       "post",
       AliyunConfig.zone + "/" + AliyunConfig.assumerole
     ).pipe(
+      map(data=>{
+        return data[data]
+      }),
       tap((data) => {
         console.log("authServies getServeS3authority", data);
         console.log(

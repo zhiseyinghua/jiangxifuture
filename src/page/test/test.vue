@@ -1,56 +1,49 @@
 <template>
   <div>
-    <v-btn></v-btn>
+    <div style="height:100px">test</div>
+    <div>test</div>
+    <v-btn @click="getauthass">颁发刷凭证</v-btn>
+    <v-btn @click="getlocals3pingzheng">从本地拿凭证</v-btn>
+    <v-btn @click="putfileAliyunS3">上传一个文件到s3</v-btn>
   </div>
 </template>
-
 <script>
 import authServies from "@/page/auth/auth.servies";
-// import UserServe from "../user.serve";
-import accountserves from "@/page/user/account/account.serve";
-import { switchMap } from "rxjs/operators";
+import oSSServies from "@/common/oss.servies"
+
 export default {
+  name: "test",
   data() {
-    return {};
+    return {
+      
+    };
   },
-  created: function() {
-    var authkeyToken = this.$store.state.login.idtoken;
-    console.log("account.vue token", userkeyToken);
-    authServies
-      .asyncJwtDecjeck(authkeyToken)
-      .pipe(
-        switchMap((userkeyToken) => {
-          console.log("1111111111111111111", authkeyToken);
-          return accountserves.byuseridgetUserDate({
-            hash: userkeyToken.hash,
-            range: userkeyToken.range,
-            index: userkeyToken.index,
-          });
-        }),
-        switchMap((data) => {
-          console.log(data);
-        }),
-        switchMap((data) => {
-          console.log(data);
-        })
+  methods:{
+    getauthass() {
+      authServies.getServeS3authority().subscribe(
+        data=>{
+          console.log(data)
+        },
+        err=>{
+
+        }
       )
-      .subscribe((data) => {
-        console.log(data);
-      });
-    from(authServies.jwtDecodecheck(userkeyToken))
-      .pipe(
-        switchMap((userdata) => {
-          return accountserves.byuseridgetUserDate({
-            hash: userdata.hash,
-            range: userdata.range,
-            index: userdata.index,
-          });
-        })
+    },
+    putfileAliyunS3() {
+      oSSServies.putfileToAliyunS3().subscribe(
+        data=>{
+          console.log('test.vue putfileAliyunS3 data',data)
+        }
       )
-      .subscribe((data) => {
-        console.log(data);
-      });
-    Accountserves.byuseridgetUserDate();
-  },
+    },
+    getlocals3pingzheng() {
+      authServies.getS3authority().subscribe(
+        data=>{
+          console.log(data)
+        }
+      )
+    }
+    
+  }
 };
 </script>
