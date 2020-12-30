@@ -1,11 +1,6 @@
 import store from "@/store";
-<<<<<<< HEAD
 import { Observable, of } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
-=======
-import { from, Observable, of } from "rxjs";
-import { map, tap } from "rxjs/operators";
->>>>>>> 4f91c79b5717025cdbad55ca2ba55a445fa61033
 import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
