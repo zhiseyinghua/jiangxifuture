@@ -175,15 +175,16 @@ export default class AuthServies {
       AliyunConfig.zone + "/" + AliyunConfig.assumerole
     ).pipe(
       map(data=>{
-        return data[data]
+        console.log("authServies getServeS3authority", data);
+        return data['data']
       }),
       tap((data) => {
         console.log("authServies getServeS3authority", data);
         console.log(
           "authServies getServeS3authority type",
-          typeof data["data"]["Expiration"]
+          typeof data["Expiration"]
         );
-        localStorage.setItem("s3authority", JSON.stringify(data['data']));
+        localStorage.setItem("s3authority", JSON.stringify(data));
       })
     );
   }
