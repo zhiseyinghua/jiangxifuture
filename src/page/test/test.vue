@@ -1,4 +1,8 @@
-<template> </template>
+<template>
+  <div>
+    <v-btn></v-btn>
+  </div>
+</template>
 
 <script>
 import authServies from "@/page/auth/auth.servies";
