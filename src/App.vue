@@ -1,20 +1,18 @@
 <template>
   <v-app>
     <overlay></overlay>
-    <tabbar></tabbar>
-    <slidebar></slidebar>
+    <!-- <tabbar></tabbar>
+    <slidebar></slidebar> -->
     <v-main>
-      <v-container fluid>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-main>
     <!-- <foot></foot> -->
   </v-app>
 </template>
 
 <script>
-import tabbar from "@/components/tabbar";
-import slidebar from "@/components/slidebar";
+// import tabbar from "@/components/tabbar";
+// import slidebar from "@/components/slidebar";
 import foot from "@/components/foot";
 import overlay from "@/components/overlay";
 import authServies from "@/page/auth/auth.servies";
@@ -50,7 +48,10 @@ export default {
       );
     }
   },
-  components: { tabbar, slidebar, foot, overlay },
+  components: {
+  //    tabbar, 
+  // slidebar,
+   foot, overlay },
 };
 </script>
 

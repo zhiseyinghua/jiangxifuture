@@ -101,9 +101,7 @@
             </v-form>
           </v-col>
         </v-row>
-        <v-btn @click="tianxiebiaodantest">
-          填写表单test
-        </v-btn>
+        <v-btn @click="tianxiebiaodantest"> 填写表单test </v-btn>
       </v-card>
     </v-col>
   </v-row>
@@ -116,7 +114,7 @@ import { AuthConfig } from "./auth.common";
 export default {
   data() {
     return {
-      signInButton: true,
+      signInButton: false,
       // 用于发送验证码的msgd,默认为空
       msg_id: "",
       // 倒计时
@@ -149,7 +147,6 @@ export default {
       },
     };
   },
-
   methods: {
     // storeButton() {
     //   authServies
@@ -175,13 +172,11 @@ export default {
         top: true,
       });
     },
-
     tianxiebiaodantest() {
       this.moblie = "18779868511";
       this.password = "q123456";
       this.check = "123456";
     },
-
     /**
      * 发送验证码
      */
@@ -220,7 +215,6 @@ export default {
           };
         });
     },
-
     /**
      * 用于发送验证码的倒计时的函数
      */
@@ -238,7 +232,6 @@ export default {
         }
       }, 1000);
     },
-
     signUp() {
       if (!this.$refs.form.validate()) {
         // 提示框：请认真填写表单
@@ -329,7 +322,7 @@ export default {
       console.log(this.$refs.form.validate());
       console.log(this.moblie, this.password, this.check);
     },
-    signup: function() {
+    signup: function () {
       let signData = {
         code: "883461",
         provider: "phone",
@@ -341,11 +334,10 @@ export default {
         platform: AuthConfig.platform,
       };
     },
-
     /**
      * 通过token换token
      */
-    rbytokengettoken: function() {
+    rbytokengettoken: function () {
       authServies.bytokengettoken().subscribe((data) => {
         //  if(data['data'] ==)
         console.log(data);
