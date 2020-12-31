@@ -78,13 +78,24 @@ export default Vue.extend({
         userico: "222",
         telephone: "15244449999",
       };
-      accountserves.upUserDate(userdata).subscribe((data) => {
-        console.log(data);
-      });
+      // accountserves.upUserDate(userdata).subscribe((data) => {
+      //   console.log(data);
+      // });
     },
   },
 
   created() {
+
+    // authServies
+    //   .asyncjiexiJwtDecjeck(this.$store.state.login.idtoken)
+    //   .subscribe((data) => {
+    //     console.log("user.vue asyncjiexiJwtDecjeck data", data);
+    //     // let passkey = {
+    //     //   hash: string,
+    //     // };
+    //   });
+    console.log();
+    console.log('',this.$route.query);
     var authkeyToken = this.$store.state.login.idtoken;
     authServies
       .asyncjiexiJwtDecjeck(authkeyToken)

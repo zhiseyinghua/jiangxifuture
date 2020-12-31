@@ -24,7 +24,7 @@ export default {
         index:''
       }
       
-      router.push({path: 'user', query:key})
+      router.push({path: 'user/account', query:key})
     }
   },
   // created: function () {
