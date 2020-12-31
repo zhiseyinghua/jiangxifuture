@@ -5,7 +5,7 @@
         <v-card-actions>
           <v-card-title>基本信息</v-card-title>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon @click="editbtn">
             <v-icon>mdi-account-edit-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -28,7 +28,6 @@
           <v-col class="d-flex mt-2 pt-0" cols="8">
             <v-card-text> 昵称 </v-card-text>
             <v-card-text> {{ usernickname }} </v-card-text>
-            <v-btn text @click="editbtn">修改</v-btn>
           </v-col>
         </v-row>
         <v-row class="mx-16">
@@ -73,7 +72,7 @@ export default Vue.extend({
   methods: {
     editbtn() {
       let userdata: EditUserData = {
-        usernickname: "aaaaa",
+        usernickname: "bbbbb",
         usermail: "1789@qq.com",
         userico: "222",
         telephone: "15244449999",
