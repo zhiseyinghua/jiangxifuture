@@ -1,9 +1,9 @@
-import oss from "ali-oss";
 import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
 import { Observable, of } from "rxjs";
 import { AccessS3Token } from "./common.interface";
-import OSS from "ali-oss";
+var OSS = require("ali-oss");
+
 let client;
 export default class OSSServies {
   static log = "OSSServies";
