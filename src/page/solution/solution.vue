@@ -12,7 +12,6 @@
     <v-container>
       <v-tabs class="white" light show-arrows grow v-model="tab">
         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
-
         <v-tab v-for="item in sltList" :key="item.id">
           {{ item.title }}
         </v-tab>
@@ -22,12 +21,16 @@
           <v-row>
             <v-col v-for="item1 in item.picList" :key="item1.title" cols="6">
               <v-card>
-                <v-img :src="item1.picUrl" aspect-ratio="1.6"> </v-img>
-                <v-card-title >
-                  <v-btn class="text-button text-sm-boby1" text>{{ item1.title }}</v-btn>
+                <v-img :src="item1.src" aspect-ratio="1.6"> </v-img>
+                <v-card-title>
+                  <v-btn class="text-button text-sm-boby1" text>{{
+                    item1.title
+                  }}</v-btn>
                 </v-card-title>
-                <v-card-text >
-                  <v-btn class="text-caption text-sm-boby2" text>{{ item1.subTitle }}</v-btn>
+                <v-card-text>
+                  <v-btn class="text-caption text-sm-boby2" text>{{
+                    item1.subTitle
+                  }}</v-btn>
                 </v-card-text>
               </v-card>
             </v-col>
@@ -49,17 +52,17 @@ export default {
           id: 1,
           picList: [
             {
-              picUrl: "https://pic1.zhimg.com/v2-a13187c882c74b8a8c58801344277f23_1440w.jpg?source=172ae18b",
+              src: require("@/assets/solution/1.png"),
               title: "无人机倾斜三维摄影测量",
               subTitle: "三维地形测绘",
             },
             {
-              picUrl: "https://pic1.zhimg.com/v2-a13187c882c74b8a8c58801344277f23_1440w.jpg?source=172ae18b",
+              src: require("@/assets/solution/1.png"),
               title: "专业的无人机航空测量方案",
               subTitle: "地形图测绘",
             },
             {
-              picUrl: "https://pic1.zhimg.com/v2-a13187c882c74b8a8c58801344277f23_1440w.jpg?source=172ae18b",
+              src: require("@/assets/solution/1.png"),
               title: "北京市某地区地质灾害航飞项目",
               subTitle: "地质灾害航飞",
             },
@@ -70,7 +73,7 @@ export default {
           id: 2,
           picList: [
             {
-              picUrl: "https://file.elecfans.com/web1/M00/BA/F3/pIYBAF6eT7WAQ8fDAAICZ5va3q4826.jpg",
+              src: require("@/assets/solution/2.png"),
               title: "移动测量系统大比例尺地形图测绘",
               subTitle: "推动城市信息化建设新型项目",
             },
@@ -81,7 +84,7 @@ export default {
           id: 3,
           picList: [
             {
-              picUrl: "https://www.masters.tw/wp-content/uploads/2019/04/indoor-positioning.jpg",
+              src: require("@/assets/solution/3.png"),
               title: "引领新的三维数据革命",
               subTitle: "室内数字化及定位导航系统",
             },
@@ -92,7 +95,7 @@ export default {
           id: 4,
           picList: [
             {
-              picUrl: "https://img95.699pic.com/photo/40090/4320.jpg_wh300.jpg",
+              src: require("@/assets/solution/4.png"),
               title: "电力行业解决方案",
               subTitle: "致力于电力行业信息化",
             },
@@ -103,7 +106,7 @@ export default {
           id: 5,
           picList: [
             {
-              picUrl: "https://lh3.googleusercontent.com/proxy/WgUPB3VFHijppki4rEZQNst-JUVCnusuB1xTThMP0rtJZVrnAE_8Qv7-IK2AfaVbTkq9AceocJEOP_JA4ugqoVIT3pA_4UM",
+              src: require("@/assets/solution/5.png"),
               title: "精密检测多行业应用解决方案",
               subTitle: "为行业提供优质的解决方案",
             },
@@ -114,7 +117,7 @@ export default {
           id: 6,
           picList: [
             {
-              picUrl: "https://pic.17qq.com/uploads/ijegehdfijz.jpeg",
+              src: require("@/assets/solution/6.png"),
               title: "轨道交通精密测量",
               subTitle:
                 "面向高速铁路、城市轨道和城际轨道三大领域的智慧施工、大数据管理、智慧运维",
