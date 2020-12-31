@@ -9,6 +9,9 @@ export default {
         },
         {
             path:"progresses",name: "progresses", component: () => import('@/page/task_systems/taskDetail/progresses.vue')
+        },
+        {
+            path:"group", name: "group", component: () => import('@/page/task_systems/taskDetail/group.vue')
         }
     ]
 }

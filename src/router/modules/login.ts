@@ -1,7 +1,7 @@
-import login from "@/page/login/login.vue";
+// import login from "@/page/login/login.vue";
 
 export default {
     path: "/login",
     name: 'login',
-    component: login,
+    component: () => import('@/page/login/login.vue'),
 };

@@ -1,7 +1,7 @@
-import groupChat from "@/page/groupChat/index.vue";
+// import groupChat from "@/page/groupChat/index.vue";
 
 export default{
     path:"/groupChat",
     name:"groupChat",
-    component:groupChat
+    component: () => import('@/page/groupChat/index.vue')
 }

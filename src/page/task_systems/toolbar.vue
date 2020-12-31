@@ -67,7 +67,7 @@ export default {
       { title: "汇报", link: "/", id: 5 },
       { divider: true, id: 6 },
       { title: "动态", link: "/", id: 7 },
-      { title: "团队", link: "/", id: 8 },
+      { title: "团队", link: "/taskSystems/group", id: 8 },
       { title: "我自己", link: "/", id: 9 },
     ],
     setDate: [
