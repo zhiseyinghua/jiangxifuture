@@ -94,7 +94,7 @@ export class AxiosElasticService {
    * @param routerPath
    */
   public static checkrouterlogin(routerPath: string): boolean {
-    // @ts-nocheck
+    //@ts-nocheck
     console.log(store.state.login.idtoken);
     let _stoken = localStorage.getItem("token");
     let checkoutPath = ["/news", "/home"];
