@@ -18,12 +18,14 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  "types": ["node"],
+  "typeRoots": ["../node_modules/@types"],
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/https.js"  ],
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
 import store from "@/store";
-import { from, Observable, of } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { map, switchMap, tap } from "rxjs/operators";
 import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
@@ -190,19 +190,31 @@ export default class AuthServies {
    */
   public static getS3authority(): Observable<any> {
     return of(localStorage.getItem("s3authority")).pipe(
-      map((s3authority:any)=>{
+      switchMap((s3authority:any)=>{
         let _s3authority= JSON.parse(s3authority)
         console.log('authServies getS3authority s3authority',_s3authority)
-        AuthServies.checkoutS3thorityTime(_s3authority)
-        return s3authority
+        if(AuthServies.checkoutS3thorityTime(_s3authority)){
+          return AuthServies.getServeS3authority()
+        }
+        return of(s3authority)
       })
     );
   }
 
-  public static checkoutS3thorityTime(S3authority:any){
+  /**
+   * 判断是否要刷新s3token
+   * @param S3authority 
+   */
+  public static checkoutS3thorityTime(S3authority:any) :boolean{
     console.log('authServies checkoutS3thorityTime S3authority',S3authority)
     let _S3timestamp = Date.parse(S3authority['Expiration'])
     let nowTimestamp = Date.now()
+    // console.log((_S3timestamp - nowTimestamp)/1000/60)
     console.log('authServies checkoutS3thorityTime _S3timestamp nowTimestamp',_S3timestamp,nowTimestamp)
+    if(((_S3timestamp - nowTimestamp)/1000/60) >=5){
+      return false
+    } else {
+      return true
+    }
   }
 }

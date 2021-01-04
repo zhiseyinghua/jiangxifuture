@@ -1,18 +1,18 @@
 <template>
   <v-app>
     <overlay></overlay>
-    <!-- <tabbar></tabbar>
-    <slidebar></slidebar> -->
+    <tabbar v-if="$store.state.isShow"></tabbar>
+    <slidebar></slidebar>
     <v-main>
       <router-view></router-view>
     </v-main>
-    <!-- <foot></foot> -->
+    <foot v-if="$store.state.isShow"></foot>
   </v-app>
 </template>
 
 <script>
-// import tabbar from "@/components/tabbar";
-// import slidebar from "@/components/slidebar";
+import tabbar from "@/components/tabbar";
+import slidebar from "@/components/slidebar";
 import foot from "@/components/foot";
 import overlay from "@/components/overlay";
 import authServies from "@/page/auth/auth.servies";
@@ -24,7 +24,7 @@ export default {
       scrolled: false,
     };
   },
-  created: function() {
+  created: function () {
     // 在程序初始化获取本地的token，如果本地不存在token则跳转至登录页面
     console.log(
       "app.vue this.$store.state.login.token == null",
@@ -49,9 +49,11 @@ export default {
     }
   },
   components: {
-  //    tabbar, 
-  // slidebar,
-   foot, overlay },
+    tabbar,
+    slidebar,
+    foot,
+    overlay,
+  },
 };
 </script>
 
