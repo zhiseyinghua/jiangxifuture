@@ -197,10 +197,12 @@ export default class AuthServies {
       switchMap((s3authority:any)=>{
         let _s3authority= JSON.parse(s3authority)
         console.log('authServies getS3authority s3authority',_s3authority)
-        if(AuthServies.checkoutS3thorityTime(_s3authority)){
+        if(AuthServies.checkoutS3thorityTime(_s3authority) || _s3authority == undefined  ){
           return AuthServies.getServeS3authority()
+        } else {
+          return of(_s3authority)
         }
-        return of(s3authority)
+        
       })
     );
   }
