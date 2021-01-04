@@ -5,7 +5,7 @@
     <v-btn @click="getauthass">颁发刷凭证</v-btn>
     <v-btn @click="getlocals3pingzheng">从本地拿凭证</v-btn>
     <v-btn @click="putfileAliyunS3">上传一个文件到s3</v-btn>
-
+    <v-btn @click="ups3">上传一个文件到s3</v-btn>
 
       <v-container fluid>
         <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
@@ -85,7 +85,10 @@ export default {
     },
 
     // 上传文件到s3
-    ups3(){},
+    ups3(){
+      console.log('ups3 this.imageFile',this.imageFile);
+      oSSServies
+    },
     getauthass() {
       authServies.getServeS3authority().subscribe(
         (data) => {
