@@ -39,7 +39,7 @@
           <v-col sm="4" lg="12">
             <v-card style="height: 140px">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+                 :src="require('@/assets/home/news/2.png')"
                 style="height: 100%"
               ></v-img>
             </v-card>
@@ -47,7 +47,7 @@
           <v-col sm="4" lg="12">
             <v-card style="height: 140px">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+               :src="require('@/assets/home/news/3.png')"
                 style="height: 100%"
               ></v-img>
             </v-card>
@@ -55,7 +55,7 @@
           <v-col sm="4" lg="12">
             <v-card style="height: 140px">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
+               :src="require('@/assets/home/news/4.png')"
                 style="height: 100%"
               >
               </v-img>
