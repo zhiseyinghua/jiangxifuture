@@ -77,11 +77,9 @@ export default {
       console.log("onFilePicked start files", files);
       if (files[0] !== undefined) {
         this.imageName = files[0].name;
-        console.log("222222222222222222222222222");
         if (this.imageName.lastIndexOf["."] <= 0) {
           return;
         }
-        console.log("222222222222222222222222222");
         const fr = new FileReader();
         fr.readAsDataURL(files[0]);
         fr.addEventListener("load", () => {
