@@ -1,8 +1,7 @@
 <template>
   <v-container fluid>
-    <v-responsive aspect-ratio="2">
-      <v-img :src="require('@/assets/home/news/6.jpg')" max-height="100%"></v-img>
-    </v-responsive>
+   
+      <v-img :src="require('@/assets/home/news/6.jpg')" aspect-ratio="3"></v-img>
     <div class="text-center my-4">
       <h2 class="text-h4 pa-2">专业专注，精益求精</h2>
       <h3 class="text-subtitle-1 pa-2">为行业持续提供优质的解决方案</h3>
