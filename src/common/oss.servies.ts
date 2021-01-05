@@ -2,7 +2,10 @@ import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
 import { Observable, of } from "rxjs";
 import { AccessS3Token } from "./common.interface";
+import { AliyunConfig } from "@/page/auth/aliyun.common";
 var OSS = require("ali-oss");
+
+
 
 /**
  * 这是一个关于阿里云s3文件存储桶的服务
@@ -14,13 +17,17 @@ export default class OSSServies {
    * @param file 
    * @param bukcket 
    */
-  public static putfileToAliyunS3(file: any,bukcket:string,isPubilc:boolean): Observable<any> {
+  public static putfileToAliyunS3(file: any,bukcket:string,isPubilc?:string): Observable<any> {
+    let bucket = AliyunConfig.s3bucket
+    if(isPubilc && isPubilc == 'public'){
+      bucket = AliyunConfig.s3bucketPubilc
+    }
     return authServies.getS3authority().pipe(
       switchMap((data) => {
         let _s3Token = data as AccessS3Token;
         console.log(this.log + "putfileToAliyunS3 data", _s3Token.AccessKeyId,_s3Token.AccessKeySecret);
         let client = new OSS({
-          bucket: "hwquser",
+          bucket: bucket,
           // region以杭州为例（oss-cn-hangzhou），其他region按实际情况填写。
           region: "oss-cn-beijing",
           // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录RAM控制台创建RAM账号。
