@@ -4,10 +4,17 @@ import { Observable, of } from "rxjs";
 import { AccessS3Token } from "./common.interface";
 var OSS = require("ali-oss");
 
+/**
+ * 这是一个关于阿里云s3文件存储桶的服务
+ */
 export default class OSSServies {
   static log = "OSSServies";
-  public static putfileToAliyunS3(file: any,bukcket:string): Observable<any> {
-    console.log('name1111111111111111111',bukcket)
+  /**
+   * 向阿里云s3put一个文件
+   * @param file 
+   * @param bukcket 
+   */
+  public static putfileToAliyunS3(file: any,bukcket:string,isPubilc:boolean): Observable<any> {
     return authServies.getS3authority().pipe(
       switchMap((data) => {
         let _s3Token = data as AccessS3Token;
@@ -22,7 +29,6 @@ export default class OSSServies {
           stsToken: _s3Token.SecurityToken,
         });
         let name = OSSServies.fuwenbenfileName(file)  
-        console.log('name1111111111111111111',bukcket,name)
         return client.put(bukcket + '/'+name, file);
       }),
     );
