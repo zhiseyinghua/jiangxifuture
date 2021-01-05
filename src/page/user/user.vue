@@ -3,7 +3,7 @@
     <toolbar />
     <v-row no-gutters>
       <v-col cols="auto">
-        <slidebar />
+        <!-- <slidebar /> -->
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="10">
@@ -18,6 +18,7 @@ import { mapMutations } from "vuex";
 export default {
   components: { toolbar },
   data: () => ({}),
+  name:'user',
   methods: {
     ...mapMutations(["changeShow"]),
   },

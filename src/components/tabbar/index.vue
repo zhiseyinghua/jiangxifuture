@@ -1,7 +1,7 @@
 <template>
   <!-- 这是一个导航栏 -->
-  <v-app-bar app>
-    <v-container class="d-flex align-center" app fluid>
+  <v-app-bar app flat hide-on-scroll>
+    <v-container class="d-flex align-center" app fluid >
       <!-- <div>{{$store.state.login}}</div> -->
       <div>
         <v-img
@@ -30,8 +30,14 @@
         </v-toolbar-title>
         <v-toolbar-title>
           <v-btn to="solution" text>
-            解决方案
+            {{ $t("lang.home.totalSolution") }}
             <!-- 解决方案 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="software" text>
+            {{ $t("lang.home.softwareDept") }}
+            <!-- 软件部门 -->
           </v-btn>
         </v-toolbar-title>
       </v-toolbar>

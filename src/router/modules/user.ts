@@ -2,8 +2,8 @@ import user from "@/page/user/user.vue";
 import account from "@/page/user/account/account.vue";
 
 export default {
-  path: "/user",
-  name: "/user/:id",
+  path: "/user/:id",
+  name: "/user",
   component: user,
   children: [{ path: "account", name: "account", component: account }],
 };
