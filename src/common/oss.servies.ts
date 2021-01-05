@@ -6,7 +6,8 @@ var OSS = require("ali-oss");
 
 export default class OSSServies {
   static log = "OSSServies";
-  public static putfileToAliyunS3(file: any): Observable<any> {
+  public static putfileToAliyunS3(file: any,bukcket:string): Observable<any> {
+    console.log('name1111111111111111111',bukcket)
     return authServies.getS3authority().pipe(
       switchMap((data) => {
         let _s3Token = data as AccessS3Token;
@@ -20,16 +21,17 @@ export default class OSSServies {
           accessKeySecret: _s3Token.AccessKeySecret,
           stsToken: _s3Token.SecurityToken,
         });
-        return client.put("84", file);
+        let name = OSSServies.fuwenbenfileName(file)  
+        console.log('name1111111111111111111',bukcket,name)
+        return client.put(bukcket + '/'+name, file);
       }),
     );
   }
 
   public static fuwenbenfileName(file: any) {
-    console.log(file);
     let suijiname = OSSServies.randomWord(false, 32);
     let arr = file.type.split("/")[1];
-    var uuid = "fuwenbenfile" + "/" + suijiname + "." + arr;
+    var uuid =    suijiname + "." + arr;
     return uuid;
   }
 

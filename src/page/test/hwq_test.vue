@@ -109,7 +109,7 @@ export default {
     },
     putfileAliyunS3() {
       console.log("ups3 this.imageFile", );
-      oSSServies.putfileToAliyunS3(this.imageFile).subscribe((data) => {
+      oSSServies.putfileToAliyunS3(this.imageFile, public).subscribe((data) => {
         console.log("test.vue putfileAliyunS3 data", data);
       });
     },
