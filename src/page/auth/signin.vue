@@ -322,7 +322,7 @@ export default {
       console.log(this.$refs.form.validate());
       console.log(this.moblie, this.password, this.check);
     },
-    signup: function () {
+    signup: function() {
       let signData = {
         code: "883461",
         provider: "phone",
@@ -337,7 +337,7 @@ export default {
     /**
      * 通过token换token
      */
-    rbytokengettoken: function () {
+    rbytokengettoken: function() {
       authServies.bytokengettoken().subscribe((data) => {
         //  if(data['data'] ==)
         console.log(data);
