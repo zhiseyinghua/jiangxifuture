@@ -22,31 +22,11 @@
           type="file"
           style="display: none"
           ref="image"
-          
           @change="onFilePicked"
         />
       </v-flex>
-      <v-dialog v-model="dialog" max-width="290">
-        <v-card>
-          <v-card-title class="headline">Hello World!</v-card-title>
-          <v-card-text>
-            Image Upload Script in VUE JS
-            <hr />
-            Yubaraj Shrestha
-            <br />http://yubarajshrestha.com.np/
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="green darken-1"
-              flat="flat"
-              @click.native="dialog = false"
-              >Close</v-btn
-            >
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-container>
+    <v-btn @click="putfileAliyunS3">上传图片到s3</v-btn>
   </div>
 </template>
 <script>
