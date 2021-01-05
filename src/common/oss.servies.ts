@@ -37,11 +37,14 @@ export default class OSSServies {
           stsToken: _s3Token.SecurityToken,
         });
         let name = OSSServies.fuwenbenfileName(file)  
-        console.log('9999999999999999999',name)
         return client.put(bukcket + '/'+name, file);
       }),
     );
   }
+
+
+
+
 
   public static fuwenbenfileName(file: any) {
     let suijiname = OSSServies.randomWord(false, 32);
@@ -51,7 +54,7 @@ export default class OSSServies {
     let name = arr[arr.length -1 ]
     console.log(name) // jpeg
     console.log('fuwenbenfileName arr',arr) // jpeg
-    var uuid =    suijiname + "." + name;
+    var uuid =  suijiname + "." + name;
     return uuid;
   }
 
