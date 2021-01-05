@@ -5,7 +5,7 @@ export const lang = {
     homeOverview: "homeOverview",
     newCenter: "newCenter",
     totalSolution: "totalSolution",
-    softwareDept: "softwareDept",
+    aboutUs: "aboutUs",
     cutLanguage: "cutLanguage",
   },
 };

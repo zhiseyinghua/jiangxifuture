@@ -36,8 +36,8 @@
         </v-toolbar-title>
         <v-toolbar-title>
           <v-btn to="software" text>
-            {{ $t("lang.home.softwareDept") }}
-            <!-- 软件部门 -->
+            {{ $t("lang.home.aboutUs") }}
+            <!-- 关于我们-->
           </v-btn>
         </v-toolbar-title>
       </v-toolbar>
