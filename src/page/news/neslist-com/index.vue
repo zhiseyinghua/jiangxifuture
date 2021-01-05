@@ -3,7 +3,7 @@
     <v-list>
       <template v-for="(item, index) in items">
         <v-divider v-if="item.divider" :key="index"></v-divider>
-        <v-list-item v-else :key="item.title">
+        <v-list-item v-else :key="item.title" @click="handleClick(item.id)">
           <v-list-item-content class="d-flex justify-space-between">
             <v-list-item-title v-text="item.title"></v-list-item-title>
           </v-list-item-content>
@@ -22,31 +22,71 @@ export default {
   data: () => ({
     items: [
       {
-        title: "央广网：测量珠峰高程 国产测绘仪器装备大展身手",
-        time:"2020-12-12"
+        title: "45年來3次測量 珠峰長高了",
+        time:"2020/12/10",
+        id:0
       },
       { divider: true },
       {
-        title: "珠峰高程测量背后的广州科技力量：国产设备承受住极端环境考验",
-        time:"2020-12-11"
+        title: "上海2021年元旦将启用“上海2000坐标系",
+        time:"2020-12-29",
+        id:1
       },
       { divider: true },
       {
-        title: "广西测绘行业职业技能竞赛开赛 200余名队员参与角逐",
-        time:"2020-12-11"
+        title: "国家质检中心主编3部国家标准正式发布实施",
+        time:"2020-12-11",
+        id:2
       },
       { divider: true },
       {
-        title: "测绘装备“中国造”是这样炼成的",
-        time:"2020-12-11"
+        title: "我国成功发射遥感三十三号卫星 主要用于科学试验、国土资源普查、农产品估产及防灾减灾等领域",
+        time:"2020-12-28",
+        id:3
       },
       { divider: true },
       {
-        title: "2019年全国高职院校大学生测绘技能大赛在渝举办——青春逢盛世，奋斗正当时",
-        time:"2020-12-11"
+        title: "青海地质测绘院拓展省外市场",
+        time:"2020-12-23",
+        id:4
+      },
+      { divider: true },
+      {
+        title:"黑龙江省开展测绘统计网络培训",
+        time:"2020-12-24",
+        id:5
+      },
+      { divider: true },
+      {
+        title:"我国着手制定测绘标准外文版",
+        time:"2020-04-20",
+        id:6
+      },
+      { divider: true },
+      {
+        title:"自然资源部办公厅关于组织开展第51个世界地球日主题宣传活动周的通知",
+        time:"2020-04-20",
+        id:7
+      },
+      { divider: true },
+      {
+        title:"新华社 | “雪龙2”号完成首向和尾向破冰试验",
+        time:"2019-12-02",
+        id:8
+      },
+      { divider: true },
+      {
+        title:"《自然资源部信息化建设总体方案》公布",
+        time:"2019-12-02",
+        id:9
       },
       { divider: true },
     ],
   }),
+  methods: {
+     handleClick(id){
+       this.$router.push({path:'/newsDetail', query:{id}});
+     }
+  }
 };
 </script>

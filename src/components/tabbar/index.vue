@@ -51,11 +51,11 @@
         {{ $t("lang.home.cutLanguage") }}
         <!-- 切换语言 -->
       </v-btn>
-      <!-- <v-app-bar-nav-icon
+      <v-app-bar-nav-icon
         class="d-flex d-md-none"
         @click.stop="handleChangeDrawer"
       ></v-app-bar-nav-icon>
-      <div class="d-none d-md-flex"><v-btn text to="login">登陆</v-btn><v-btn text to="auth">注册</v-btn></div> -->
+      <!-- <div class="d-none d-md-flex"><v-btn text to="login">登陆</v-btn><v-btn text to="auth">注册</v-btn></div> -->
     </v-container>
   </v-app-bar>
 </template>

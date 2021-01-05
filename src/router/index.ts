@@ -14,6 +14,7 @@ import taskSystems from "./modules/task_systems"
 Vue.use(Router);
 // 这是一个路由管理的模块，是各个路由的出口
 const router = new Router({
+  mode: 'history',
   routes: [
     home,
     news,
@@ -24,15 +25,15 @@ const router = new Router({
     user,
     groupChat,
     newsDetail,
-    taskSystems,
-    {
-      path:"/",
-      redirect:'/home'
-    },
-    {
-      path:"*",
-      redirect:'/home'
-    },
+    taskSystems
+    // {
+    //   path:"/",
+    //   redirect:'/home'
+    // },
+    // {
+    //   path:"*",
+    //   redirect:'/home'
+    // },
   ]
 });
 

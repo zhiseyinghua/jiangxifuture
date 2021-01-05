@@ -3,13 +3,11 @@
     <v-card>
       <v-img
         src="https://img95.699pic.com/photo/40102/8199.jpg_wh300.jpg"
-        lazy-src="https://picsum.photos/id/11/100/60"
         aspect-ratio="3"
         class="grey lighten-2 d-flex align-center"
       >
         <v-row>
           <v-col cols="12" sm="6" offset-sm="3">
-            <!-- <v-responsive aspect-ratio="16"> -->
               <v-text-field
                 class="white"
                 flat
@@ -19,14 +17,14 @@
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
               ></v-text-field>
-            <!-- </v-responsive> -->
           </v-col>
         </v-row>
       </v-img>
     </v-card>
     <v-container>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" class="d-flex">
+          <v-icon>mdi-mailbox-outline</v-icon>
           <v-breadcrumbs :items="items" light>
             <template v-slot:divider>
               <v-icon>mdi-chevron-right</v-icon>
@@ -55,12 +53,11 @@
     <newlist></newlist>
 
     <div class="d-flex justify-center align-center">
-      <v-btn text>&lt; 上一页</v-btn>
-      <v-responsive max-width="50" class="mx-5">
-        <v-text-field outlined dense hide-details="auto"></v-text-field>
-      </v-responsive>
-      <span class="mr-5">/{{ 18 }}</span>
-      <v-btn text>下一页 &gt;</v-btn>
+      <v-pagination
+      v-model="page"
+      :length="2"
+    ></v-pagination>
+
     </div>
   </v-container>
 </template>
@@ -72,21 +69,22 @@ export default {
   data: () => ({
     items: [
       {
-        text: "Dashboard",
+        text: "首页",
+        disabled: false,
+        href: "home",
+      },
+      {
+        text: "新闻中心",
         disabled: false,
         href: "news",
       },
       {
-        text: "Link 1",
-        disabled: false,
-        href: "breadcrumbs_link_1",
-      },
-      {
-        text: "Link 2",
+        text: "媒体报道",
         disabled: true,
         href: "breadcrumbs_link_2",
       },
     ],
+     page: 1,
     // toggleExclusive: undefined,
   }),
 };
