@@ -13,9 +13,10 @@ var OSS = require("ali-oss");
 export default class OSSServies {
   static log = "OSSServies";
   /**
-   * 向阿里云s3put一个文件
-   * @param file 
-   * @param bukcket 
+   * 向阿里云0ssput一个文件,只能上传一个文件
+   * @param file 上传的文件
+   * @param bukcket 上传到oss的那个桶中
+   * @param isPubilc  是否公开(生成的文件url是否完全公开)，传入 string 'public' 则表明这个文件完全公开
    */
   public static putfileToAliyunS3(file: any,bukcket:string,isPubilc?:string): Observable<any> {
     let bucket = AliyunConfig.s3bucket
@@ -36,6 +37,7 @@ export default class OSSServies {
           stsToken: _s3Token.SecurityToken,
         });
         let name = OSSServies.fuwenbenfileName(file)  
+        console.log('9999999999999999999',name)
         return client.put(bukcket + '/'+name, file);
       }),
     );
@@ -43,8 +45,13 @@ export default class OSSServies {
 
   public static fuwenbenfileName(file: any) {
     let suijiname = OSSServies.randomWord(false, 32);
-    let arr = file.type.split("/")[1];
-    var uuid =    suijiname + "." + arr;
+    // let arr = file.type.split("/")[1];
+    let arr = file.name.split(".");
+    console.log('111111111111111111111111111111',arr,file.name)
+    let name = arr[arr.length -1 ]
+    console.log(name) // jpeg
+    console.log('fuwenbenfileName arr',arr) // jpeg
+    var uuid =    suijiname + "." + name;
     return uuid;
   }
 

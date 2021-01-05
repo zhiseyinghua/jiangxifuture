@@ -22,7 +22,7 @@
           type="file"
           style="display: none"
           ref="image"
-          accept="image/*"
+          
           @change="onFilePicked"
         />
       </v-flex>
@@ -107,7 +107,7 @@ export default {
     },
     putfileAliyunS3() {
       console.log("ups3 this.imageFile", );
-      oSSServies.putfileToAliyunS3(this.imageFile,'public').subscribe((data) => {
+      oSSServies.putfileToAliyunS3(this.imageFile,'public','public').subscribe((data) => {
         console.log("test.vue putfileAliyunS3 data", data);
       });
     },
