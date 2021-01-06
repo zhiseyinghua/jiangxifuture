@@ -27,11 +27,18 @@
       </v-flex>
     </v-container>
     <v-btn @click="putfileAliyunS3">上传图片到s3</v-btn>
+    <v-btn @click="putmessage">发event message</v-btn>
+    <v-btn @click="sub_w">订阅信息</v-btn>
   </div>
 </template>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 <script>
 import authServies from "@/page/auth/auth.servies";
 import oSSServies from "@/common/oss.servies";
+import io from 'socket.io-client';
+
+// const server = require('http').createServer();
+// const io = require('socket.io')(server);
 
 export default {
   name: "test",
@@ -42,9 +49,24 @@ export default {
       imageName: "",
       imageUrl: "",
       imageFile: "",
+      socket:null
     };
   },
+  created() {
+    console.log("created start")
+    this.socket = io("http://localhost:3000");
+    
+  },
   methods: {
+    sub_w(){
+      this.socket.on("events", (data) => {
+      console.log("链接成功");
+      l(data.msg);
+    });
+    },
+    putmessage(){
+       this.socket.emit('events','addCart');
+    },
     // 选择按钮
     pickFile() {
       this.$refs.image.click();
@@ -86,10 +108,12 @@ export default {
       );
     },
     putfileAliyunS3() {
-      console.log("ups3 this.imageFile", );
-      oSSServies.putfileToAliyunS3(this.imageFile,'public','public').subscribe((data) => {
-        console.log("test.vue putfileAliyunS3 data", data);
-      });
+      console.log("ups3 this.imageFile");
+      oSSServies
+        .putfileToAliyunS3(this.imageFile, "public", "public")
+        .subscribe((data) => {
+          console.log("test.vue putfileAliyunS3 data", data);
+        });
     },
     getlocals3pingzheng() {
       authServies.getS3authority().subscribe((data) => {

@@ -15,6 +15,7 @@
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.5.1",
     "rxjs": "^6.6.3",
+    "socket.io-client": "^3.0.5",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.0",
     "vue-class-component": "^7.2.3",
