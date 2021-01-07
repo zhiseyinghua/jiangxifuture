@@ -8,6 +8,14 @@ import authServies from "./page/auth/auth.servies";
 import VueAxios from "vue-axios";
 import axios from "./https";
 import { AxiosElasticService } from "./common/fromaxios";
+import VueSocketIO from 'vue-socket.io'
+Vue.use(new VueSocketIO({
+  debug: true,
+  // 服务器端地址
+  connection: 'http://localhost:3000',
+  vuex: {
+  }
+})) 
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
