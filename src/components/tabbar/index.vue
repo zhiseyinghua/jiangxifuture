@@ -35,7 +35,7 @@
           </v-btn>
         </v-toolbar-title>
         <v-toolbar-title>
-          <v-btn to="software" text>
+          <v-btn to="aboutUs" text>
             {{ $t("lang.home.aboutUs") }}
             <!-- 关于我们-->
           </v-btn>

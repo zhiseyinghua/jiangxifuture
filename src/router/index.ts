@@ -11,7 +11,7 @@ import test from "./modules/test";
 import user from "./modules/user";
 import newsDetail from "./modules/newsDetail";
 import taskSystems from "./modules/task_systems"
-import software from "./modules/software";
+import aboutUs from "./modules/aboutUs";
 Vue.use(Router);
 // 这是一个路由管理的模块，是各个路由的出口
 const router = new Router({
@@ -26,7 +26,7 @@ const router = new Router({
     groupChat,
     newsDetail,
     taskSystems,
-    software
+    aboutUs
     // {
     //   path:"/",
     //   redirect:'/home'
