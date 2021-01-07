@@ -34,6 +34,7 @@
 <script>
 import authServies from "@/page/auth/auth.servies";
 import oSSServies from "@/common/oss.servies";
+import producerServes from "@/common/producer.serves";
 // const io = require('socket.io');
 
 // import io from 'socket.io-client';
@@ -68,6 +69,13 @@ export default {
     //     l(data.msg);
     //   });
     // },
+    test() {
+      producerServes.putfileToAliyunS3().subscribe(
+        (data=>{
+          console.log(data)
+        })
+      )
+    },
     putmessage() {
       this.$socket.emit("events", {"ajanuw":"ajanuw"});
       //   console.log("created start");
