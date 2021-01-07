@@ -15,13 +15,13 @@
           :src="require('@/assets/home/news/1.png')"
         ></v-img>
         <h3 class="mx-5 title my-16 text-h5 text-sm-h4">地球科学研究院召开工作研讨会</h3>
-        <div class="text-h6 text-sm-h5 mb-5 mx-5" @click="handleClick(10)">
+        <div class="text-h6 text-sm-h5 mb-5 mx-5" @click="handleClick(10)" id="xq">
           查看详情 ->
         </div>
       </v-col>
       <!-- 新闻列表 -->
       <v-col cols="12" sm="6" md="6" lg="5">
-        <v-list class="mx-5" min-width="340px" flat two-line>
+        <v-list class="mx-5" flat two-line>
           <v-subheader>新闻</v-subheader>
           <v-list-item-group v-model="selectedItem" color="primary">
             <v-list-item v-for="(item, i) in newsList" :key="i" @click="handleClick(item.id)">
@@ -35,9 +35,9 @@
       </v-col>
       <!-- 卡片 -->
       <v-col cols="12" lg="3">
-        <v-row align-content="space-between" style="height: 100%">
+        <v-row  style="height: 100%" align-content="space-between">
           <v-col sm="4" lg="12">
-            <v-card style="height: 140px">
+            <v-card style="height:180px">
               <v-img
                 src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
                 style="height: 100%"
@@ -45,7 +45,7 @@
             </v-card>
           </v-col>
           <v-col sm="4" lg="12">
-            <v-card style="height: 140px">
+            <v-card style="height:180px">
               <v-img
                 src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
                 style="height: 100%"
@@ -53,7 +53,7 @@
             </v-card>
           </v-col>
           <v-col sm="4" lg="12">
-            <v-card style="height: 140px">
+            <v-card style="height:180px">
               <v-img
                 src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
                 style="height: 100%"
@@ -89,3 +89,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  #xq{
+    cursor:pointer;
+    &:hover{
+      color:red;
+    } 
+  }
+</style>

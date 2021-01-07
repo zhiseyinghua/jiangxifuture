@@ -25,7 +25,7 @@ const router = new Router({
     user,
     groupChat,
     newsDetail,
-    taskSystems
+    taskSystems,
     // {
     //   path:"/",
     //   redirect:'/home'

@@ -78,11 +78,6 @@ export default {
         disabled: false,
         href: "news",
       },
-      {
-        text: "媒体报道",
-        disabled: true,
-        href: "breadcrumbs_link_2",
-      },
     ],
      page: 1,
     // toggleExclusive: undefined,
