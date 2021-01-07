@@ -28,7 +28,6 @@
     </v-container>
     <v-btn @click="putfileAliyunS3">上传图片到s3</v-btn>
     <v-btn @click="putmessage">putmessage</v-btn>
-    <v-btn @click="testqweqwe">向阿里云队列发送信息</v-btn>
     <!-- <v-btn @click="sub_w">订阅信息</v-btn>  -->
   </div>
 </template>
@@ -56,13 +55,13 @@ export default {
     };
   },
   created() {},
-  sockets: {
-    'addCart': function(data) {
-      console.log(
-        'this method was fired by the socket server. eg: io.emit("customEmit", data)'
-      );
-    },
-  },
+  // sockets: {
+  //   'addCart': function(data) {
+  //     console.log(
+  //       'this method was fired by the socket server. eg: io.emit("customEmit", data)'
+  //     );
+  //   },
+  // },
   methods: {
     // sub_w() {
     //   this.socket.on("events", (data) => {
@@ -70,13 +69,13 @@ export default {
     //     l(data.msg);
     //   });
     // },
-    testqweqwe() {
-      producerServes.putfileToAliyunS3().subscribe(
-        (data=>{
-          console.log(data)
-        })
-      )
-    },
+    // testqweqwe() {
+    //   producerServes.putfileToAliyunS3().subscribe(
+    //     (data=>{
+    //       console.log(data)
+    //     })
+    //   )
+    // },
     putmessage() {
       this.$socket.emit("events", {"ajanuw":"ajanuw"});
       //   console.log("created start");
