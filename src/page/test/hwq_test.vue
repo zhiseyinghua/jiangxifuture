@@ -28,6 +28,7 @@
     </v-container>
     <v-btn @click="putfileAliyunS3">上传图片到s3</v-btn>
     <v-btn @click="putmessage">putmessage</v-btn>
+    <v-btn @click="testqweqwe">向阿里云队列发送信息</v-btn>
     <!-- <v-btn @click="sub_w">订阅信息</v-btn>  -->
   </div>
 </template>
@@ -69,7 +70,7 @@ export default {
     //     l(data.msg);
     //   });
     // },
-    test() {
+    testqweqwe() {
       producerServes.putfileToAliyunS3().subscribe(
         (data=>{
           console.log(data)
