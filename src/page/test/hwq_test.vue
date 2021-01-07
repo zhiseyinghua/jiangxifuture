@@ -55,27 +55,27 @@ export default {
     };
   },
   created() {},
-  // sockets: {
-  //   'addCart': function(data) {
-  //     console.log(
-  //       'this method was fired by the socket server. eg: io.emit("customEmit", data)'
-  //     );
-  //   },
-  // },
+  sockets: {
+    'addCart': function(data) {
+      console.log(
+        'this method was fired by the socket server. eg: io.emit("customEmit", data)'
+      );
+    },
+  },
   methods: {
-    // sub_w() {
-    //   this.socket.on("events", (data) => {
-    //     console.log("链接成功");
-    //     l(data.msg);
-    //   });
-    // },
-    // testqweqwe() {
-    //   producerServes.putfileToAliyunS3().subscribe(
-    //     (data=>{
-    //       console.log(data)
-    //     })
-    //   )
-    // },
+    sub_w() {
+      this.socket.on("events", (data) => {
+        console.log("链接成功");
+        l(data.msg);
+      });
+    },
+    testqweqwe() {
+      producerServes.putfileToAliyunS3().subscribe(
+        (data=>{
+          console.log(data)
+        })
+      )
+    },
     putmessage() {
       this.$socket.emit("events", {"ajanuw":"ajanuw"});
       //   console.log("created start");
