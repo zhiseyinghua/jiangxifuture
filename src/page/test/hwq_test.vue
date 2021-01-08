@@ -34,7 +34,9 @@
 <script>
 import authServies from "@/page/auth/auth.servies";
 import oSSServies from "@/common/oss.servies";
-import producerServes from "@/common/producer.serves";
+import sdk from "@/assets/js/jmessage-sdk-web.2.6.0.min.js";
+import md5 from "js-md5";
+
 // const io = require('socket.io');
 
 // import io from 'socket.io-client';
@@ -56,12 +58,96 @@ export default {
   },
   created() {},
   sockets: {
-    'addCart': function(data) {
+    addCart: function(data) {
       console.log(
         'this method was fired by the socket server. eg: io.emit("customEmit", data)'
       );
     },
   },
+  created() {
+    // 你的appkey
+    let appkey = "984b7e6efb3381de3b5bea5a";
+    // 随机20位字符
+    let random_str = "123456789";
+    // 当前时间戳
+    let timestamp = Date.parse(new Date());
+    // md5加密生成密匙
+    let signature = md5(
+      `appkey=${appkey}&timestamp=${timestamp}&random_str=${random_str}&key=9c8c4c41c17329a8b549def8`
+    );
+    var JIM = new sdk();
+    // 初始化sdk
+    JIM.init({
+      appkey: appkey,
+      random_str: random_str,
+      signature: signature,
+      timestamp: timestamp,
+      flag: 0,
+    })
+      .onSuccess(function(data) {
+        console.log("111111111111111111success");
+        // 初始化成功
+        // 用户账号
+        let username = "123456";
+        // 用户密码
+        let password = "qwert";
+        login();
+        function login() {
+          JIM.login({
+            username: username,
+            password: password,
+          })
+            .onSuccess(function(data) {
+              console.log("登陆成功,加入聊天室");
+              enterChatroom();
+            })
+            .onFail(function(data) {
+              console.log("登陆失败，进入注册");
+              register();
+            });
+        }
+        // 注册账号
+        function register() {
+          console.log("开始注册");
+          JIM.register({
+            username: username,
+            password: password,
+            is_md5: false,
+            extras: { 自定义json: "123456" },
+            address: "用户地址",
+          }).onSuccess(function(data) {
+            console.log("加入聊天室之后");
+            login();
+          });
+        }
+        // 加入聊天室
+        function enterChatroom() {
+          console.log('123456')
+          JIM.enterChatroom({
+            // 聊天室ID
+            id: "123456789",
+          })
+            .onSuccess(function(data) {
+              console.log("加入聊天室成功，持续抓取信息中...");
+              onRoomMsg();
+            })
+            .onFail(function(data) {
+              console.log(data);
+            });
+        }
+        // 监控聊天室消息
+        function onRoomMsg() {
+          JIM.onRoomMsg(function(data) {
+            console.log("发送人：" + data.from_username);
+            console.log("发送消息：" + data.content.msg_body.text);
+          });
+        }
+      })
+      .onFail(function(data) {
+        console.log(data);
+      });
+  },
+
   methods: {
     sub_w() {
       this.socket.on("events", (data) => {
@@ -70,14 +156,12 @@ export default {
       });
     },
     testqweqwe() {
-      producerServes.putfileToAliyunS3().subscribe(
-        (data=>{
-          console.log(data)
-        })
-      )
+      producerServes.putfileToAliyunS3().subscribe((data) => {
+        console.log(data);
+      });
     },
     putmessage() {
-      this.$socket.emit("events", {"ajanuw":"ajanuw"});
+      this.$socket.emit("events", { ajanuw: "ajanuw" });
       //   console.log("created start");
       //   this.socket = io("http://localhost:3000");
       //   this.socket.emit("events", "addCart");
