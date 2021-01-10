@@ -28,6 +28,8 @@
     </v-container>
     <v-btn @click="putfileAliyunS3">上传图片到s3</v-btn>
     <v-btn @click="putmessage">putmessage</v-btn>
+    <v-btn @click="createGroup">创建一个群组</v-btn>
+    <v-btn @click="tianjiaqunzu">创建一个群组</v-btn>
     <!-- <v-btn @click="sub_w">订阅信息</v-btn>  -->
   </div>
 </template>
@@ -54,6 +56,7 @@ export default {
       imageUrl: "",
       imageFile: "",
       socket: null,
+      JIM:null
     };
   },
   created() {},
@@ -75,9 +78,9 @@ export default {
     let signature = md5(
       `appkey=${appkey}&timestamp=${timestamp}&random_str=${random_str}&key=9c8c4c41c17329a8b549def8`
     );
-    var JIM = new sdk();
+    this.JIM = new sdk();
     // 初始化sdk
-    JIM.init({
+    this.JIM.init({
       appkey: appkey,
       random_str: random_str,
       signature: signature,
@@ -85,7 +88,7 @@ export default {
       flag: 0,
     })
       .onSuccess(function(data) {
-        console.log("111111111111111111success");
+        console.log("111111111111111111success",data);
         // 初始化成功
         // 用户账号
         let username = "123456";
@@ -93,7 +96,9 @@ export default {
         let password = "qwert";
         login();
         function login() {
-          JIM.login({
+          console.log('登录')
+          console.log(this)
+          $vm.JIM.login({
             username: username,
             password: password,
           })
@@ -109,7 +114,7 @@ export default {
         // 注册账号
         function register() {
           console.log("开始注册");
-          JIM.register({
+          this.JIM.register({
             username: username,
             password: password,
             is_md5: false,
@@ -122,8 +127,8 @@ export default {
         }
         // 加入聊天室
         function enterChatroom() {
-          console.log('123456')
-          JIM.enterChatroom({
+          console.log("加入聊天室方法");
+          this.JIM.enterChatroom({
             // 聊天室ID
             id: "123456789",
           })
@@ -137,7 +142,7 @@ export default {
         }
         // 监控聊天室消息
         function onRoomMsg() {
-          JIM.onRoomMsg(function(data) {
+          this.JIM.onRoomMsg(function(data) {
             console.log("发送人：" + data.from_username);
             console.log("发送消息：" + data.content.msg_body.text);
           });
@@ -149,6 +154,35 @@ export default {
   },
 
   methods: {
+    tianjiaqunzu() {
+      this.JIM.createGroup({
+        group_name: "s",
+        is_limit: true,
+      })
+        .onSuccess(function(data) {
+          console.log("success: 添加聊天室成功" + JSON.stringify(data));
+          appendToDashboard("success: " + JSON.stringify(data));
+        })
+        .onFail(function(data) {
+          console.log("error:" + JSON.stringify(data));
+          appendToDashboard("error: " + JSON.stringify(data));
+        });
+    },
+    // 创建一个群组
+    createGroup() {
+      this.JIM.createGroup({
+        group_name: "s",
+        is_limit: true,
+      })
+        .onSuccess(function(data) {
+          console.log("success:" + JSON.stringify(data));
+          appendToDashboard("success: " + JSON.stringify(data));
+        })
+        .onFail(function(data) {
+          console.log("error:" + JSON.stringify(data));
+          appendToDashboard("error: " + JSON.stringify(data));
+        });
+    },
     sub_w() {
       this.socket.on("events", (data) => {
         console.log("链接成功");
