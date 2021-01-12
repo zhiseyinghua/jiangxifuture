@@ -114,7 +114,7 @@ export default class AuthServies {
   }
 
   /**
-   * token解码
+   * 
    * @param {*}
    */
   public static jwtDecodecheck(token: string) {
@@ -134,13 +134,21 @@ export default class AuthServies {
   }
 
   /**
-   * 解析一个token
+   * 解析一个token 异步
    * @param token 
    */
   public static asyncjiexiJwtDecjeck(token:string):Observable<any>{
     let decoded = jwt.decode(token);
     // console.log(this.log + "  " + "decoded", decoded);
     return of(decoded);
+  }
+
+    /**
+   * 解析一个token
+   * @param token 
+   */
+  public static jiexiJwtDecjeck(token:string){
+    return jwt.decode(token);
   }
 
   /**

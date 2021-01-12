@@ -11,7 +11,6 @@ module.exports = {
       hotOnly: false, 
       proxy: {
         '/api': {
-            // target: 'http://192.168.31.77:3000/', //API服务器的地址
             target: 'http://192.168.31.237:3000/', //API服务器的地址
             // target: 'http://localhost:3000/', //API服务器的地址
             ws: true,  //代理websockets
@@ -22,5 +21,4 @@ module.exports = {
         }
     },
     },
-    
 };
