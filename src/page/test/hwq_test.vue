@@ -28,7 +28,8 @@
     </v-container>
     <v-btn @click="putfileAliyunS3">上传图片到s3</v-btn>
     <v-btn @click="putmessage">putmessage</v-btn>
-    <!-- <v-btn @click="createGroupfun">创建一个群组</v-btn> -->
+    <v-btn @click="enGroupfun">创建一个群组</v-btn>
+    <v-btn @click="addGroupfun">添加一个群组</v-btn>
     <!-- <v-btn @click="sub_w">订阅信息</v-btn>  -->
   </div>
 </template>
@@ -94,39 +95,37 @@ export default {
         // 用户密码
         let password = "qwert";
         console.log(this);
-        this.login()
+        this.login();
 
         // 注册账号
       })
       .onFail(function(data) {
         console.log(data);
       });
-
-
   },
 
   methods: {
     login() {
-          console.log("IM登录");
-          console.log(this);
-          this.JIM.login({
-            username: username,
-            password: password,
-          })
-            .onSuccess((data) => {
-              console.log("登陆成功,加入聊天室", this);
-              enterChatroom();
-            })
-            .onFail((data) => {
-              console.log("登陆失败，进入注册");
-              register();
-            });
+      console.log("IM登录");
+      console.log(this);
+      this.JIM.login({
+        username: "username",
+        password: "password",
+      })
+        .onSuccess((data) => {
+          console.log("登陆成功,加入聊天室", this);
+          this.enGroupfun();
+        })
+        .onFail((data) => {
+          console.log("登陆失败，进入注册");
+          this.register();
+        });
     },
-     register() {
+    register() {
       console.log("开始注册");
-      JIM.register({
-        username: username,
-        password: password,
+      this.JIM.register({
+        username: "username",
+        password: "password",
         is_md5: false,
         extras: { 自定义json: "123456" },
         address: "用户地址",
@@ -135,13 +134,25 @@ export default {
         this.login();
       });
     },
-    // 加入聊天室
-     enterChatroom() {
-      console.log("加入聊天室方法", this);
-      JIM.enterChatroom({
-        // 聊天室ID
-        id: "123456789",
+    // 添加聊天室
+    addGroupfun() {
+      this.JIM.createGroup({
+        group_name: "123456789",
+        is_limit: true,
       })
+        .onSuccess(function(data) {
+          console.log("success:" + JSON.stringify(data));
+          // appendToDashboard("success: " + JSON.stringify(data));
+        })
+        .onFail(function(data) {
+          console.log("error:" + JSON.stringify(data));
+          // appendToDashboard("error: " + JSON.stringify(data));
+        });
+    },
+    // 加入聊天室
+    enGroupfun() {
+      console.log("加入聊天室方法", this);
+      this.JIM.enterChatroom({ 'id': 46768436 })
         .onSuccess(function(data) {
           console.log("加入聊天室成功，持续抓取信息中...");
           onRoomMsg();
@@ -151,7 +162,7 @@ export default {
         });
     },
     // 监控聊天室消息
-     onRoomMsg() {
+    onRoomMsg() {
       JIM.onRoomMsg(function(data) {
         console.log("发送人：" + data.from_username);
         console.log("发送消息：" + data.content.msg_body.text);
