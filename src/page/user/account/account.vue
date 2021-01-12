@@ -6,7 +6,7 @@
         <v-card-actions>
           <v-card-title>基本信息</v-card-title>
           <v-spacer></v-spacer>
-          <v-btn icon :visible.sync="dialogVisable">
+          <v-btn @click="editbtn" icon :visible.sync="dialogVisable">
             <v-icon>mdi-account-edit-outline</v-icon>
           </v-btn>
         </v-card-actions>
