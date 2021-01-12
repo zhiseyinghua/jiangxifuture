@@ -30,14 +30,14 @@ export default class loginServe {
         if (data.idtoken) {
           authServies.dispatchlogintoken(data.idtoken);
         } else {
-          console.log("error登录失败111111179");
+          console.log("error登录失败1");
         }
       }),
       tap((data) => {
         if (data.idtoken) {
           authServies.setlocalStorageToken(data.idtoken);
         } else {
-          console.log("error登录失败111111179");
+          console.log("error登录失败2");
         }
       })
     );
@@ -72,14 +72,14 @@ export default class loginServe {
         if (data.idtoken) {
           authServies.dispatchlogintoken(data.idtoken);
         } else {
-          console.log("error登录失败111111179");
+          console.log("error登录失败3");
         }
       }),
       tap((data) => {
         if (data.idtoken) {
           authServies.setlocalStorageToken(data.idtoken);
         } else {
-          console.log("error登录失败111111179");
+          console.log("error登录失败4");
         }
       }),
     )

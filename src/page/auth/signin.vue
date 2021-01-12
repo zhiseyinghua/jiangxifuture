@@ -157,13 +157,13 @@ export default {
     //     ))
     // },
     sendMsg() {
-      console.log("signin运行");
+      // console.log("signin运行");
       Bus.$emit("overlayvalue", {
         overlayvalue: true,
       });
     },
     sendMsgtishyi() {
-      console.log("snackbar运行");
+      // console.log("snackbar运行");
       Bus.$emit("snackbar", {
         text: "提示",
         color: "green",
@@ -220,7 +220,7 @@ export default {
      */
     sendSMSTime() {
       this.isDisabled = true;
-      console.log("sendSMSTime");
+      // console.log("sendSMSTime");
       let interval = window.setInterval(() => {
         this.buttonName = "（" + this.time + "秒）";
         --this.time;
@@ -261,7 +261,7 @@ export default {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
-            console.log(data.code, data);
+            // console.log(data.code, data);
             if (data.status && data.status == "success") {
               Bus.$emit("snackbar", {
                 text: "登录成功",
@@ -319,8 +319,8 @@ export default {
           }
         );
       }
-      console.log(this.$refs.form.validate());
-      console.log(this.moblie, this.password, this.check);
+      // console.log(this.$refs.form.validate());
+      // console.log(this.moblie, this.password, this.check);
     },
     signup: function () {
       let signData = {
@@ -340,7 +340,7 @@ export default {
     rbytokengettoken: function () {
       authServies.bytokengettoken().subscribe((data) => {
         //  if(data['data'] ==)
-        console.log(data);
+        // console.log(data);
       });
     },
   },
