@@ -18,6 +18,7 @@ let isTokenExpired = false;
 axios.interceptors.request.use(
   (config) => {
     console.log("isTokenExpired1", isTokenExpired);
+    // @ts-ignore
     console.log("isTokenExpired1 store.state", store.state.login.idtoken);
     console.log(
       "https.ts",
