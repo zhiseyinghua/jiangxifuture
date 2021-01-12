@@ -1,23 +1,24 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <toolbar />
+    <slidebar />
     <v-row no-gutters>
-      <v-col cols="auto">
-        <slidebar />
-      </v-col>
-      <v-spacer></v-spacer>
+      <v-col> </v-col>
       <v-col cols="10">
         <router-view />
       </v-col>
+      <v-col> </v-col>
     </v-row>
   </v-container>
 </template>
 <script>
 import toolbar from "./toolbar.vue";
+import slidebar from "./slidebar.vue";
 import { mapMutations } from "vuex";
 export default {
-  components: { toolbar },
+  components: { toolbar, slidebar },
   data: () => ({}),
+  name: "user",
   methods: {
     ...mapMutations(["changeShow"]),
   },

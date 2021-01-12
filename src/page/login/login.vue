@@ -299,7 +299,7 @@ export default {
      */
     sendSMSTime() {
       this.isDisabled = true;
-      console.log("sendSMSTime");
+      // console.log("sendSMSTime");
       let interval = window.setInterval(() => {
         this.buttonName = "（" + this.time + "秒）";
         --this.time;
@@ -373,7 +373,7 @@ export default {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
-            console.log("login.vue sMSLogin data", data);
+            // console.log("login.vue sMSLogin data", data);
             if (data.status && data.status == "success") {
               Bus.$emit("snackbar", {
                 text: "登录成功",

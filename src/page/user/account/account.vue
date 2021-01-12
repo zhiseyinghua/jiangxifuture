@@ -1,11 +1,12 @@
 <template>
-  <v-row class="mt-14">
+<v-container>
+  <v-row>
     <v-col cols="6" offset="3">
-      <v-card>
+      <v-card >
         <v-card-actions>
           <v-card-title>基本信息</v-card-title>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon :visible.sync="dialogVisable">
             <v-icon>mdi-account-edit-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -21,14 +22,13 @@
         <v-row class="mx-16 mt-2">
           <v-col class="d-flex" cols="8">
             <v-card-text> uid </v-card-text>
-            <v-card-text> {{ uuid }} </v-card-text>
+            <v-card-text> 111 </v-card-text>
           </v-col>
         </v-row>
         <v-row class="mx-16">
           <v-col class="d-flex mt-2 pt-0" cols="8">
             <v-card-text> 昵称 </v-card-text>
             <v-card-text> {{ usernickname }} </v-card-text>
-            <v-btn text @click="editbtn">修改</v-btn>
           </v-col>
         </v-row>
         <v-row class="mx-16">
@@ -52,6 +52,12 @@
       </v-card>
     </v-col>
   </v-row>
+  <!-- 修改信息弹框 -->
+  <v-row
+    ><v-col>
+      <v-card>1111</v-card> </v-col
+  ></v-row>
+  </v-container>
 </template> 
 
 <script lang="ts">
@@ -68,46 +74,69 @@ export default Vue.extend({
       usernickname: "",
       telephone: "",
       usermail: "",
+      userico: "",
+      position: "",
+      startdate: "",
+      companyname: "",
+      dialogVisable :false
     };
   },
   methods: {
     editbtn() {
       let userdata: EditUserData = {
-        usernickname: "asr",
-        usermail: "1111",
+        usernickname: "这是修改",
+        usermail: "1789@qq.com",
         userico: "222",
-        telephone: "333",
+        telephone: "15244449999",
+        position: "",
+        startdate: "",
+        companyname: "",
       };
       accountserves.upUserDate(userdata).subscribe((data) => {
         console.log(data);
+        console.warn("消息内容！");
       });
     },
   },
 
-  created() {
-    var authkeyToken = this.$store.state.login.idtoken;
-    authServies
-      .asyncjiexiJwtDecjeck(authkeyToken)
-      .pipe(
-        switchMap((data) => {
-          console.log(data);
-          this.uuid = data.range;
+  // created() {
+  //   // authServies
+  //   //   .asyncjiexiJwtDecjeck(this.$store.state.login.idtoken)
+  //   //   .subscribe((data) => {
+  //   //     console.log("user.vue asyncjiexiJwtDecjeck data", data);
+  //   //     // let passkey = {
+  //   //     //   hash: string,
+  //   //     // };
+  //   //   });
+  //   // console.log();
+  //   // console.log('',this.$route.query);
+  //   var authkeyToken = this.$store.state.login.idtoken;
+  //   authServies
+  //     .asyncjiexiJwtDecjeck(authkeyToken)
+  //     .pipe(
+  //       switchMap((data) => {
+  //         // console.log(data);
+          
+  //         this.uuid = data.range;
 
-          // TODO:
-          // return of('11')
-          return accountserves.byuseridgetUserDate({
-            hash: data.hash,
-            range: data.range,
-            index: data.index,
-          });
-        })
-      )
-      .subscribe((data) => {
-        this.usernickname = data.usernickname;
-        let _data = data as BaceUserdata;
-        // this.name = _data.usernickname;
-        console.log(data);
-      });
-  },
+  //         // TODO:
+  //         // return of('11')
+  //         return accountserves.byuseridgetUserDate({
+  //           hash: data.hash,
+  //           range: data.range,
+  //           index: data.index,
+  //         });
+  //       })
+  //     )
+  //     .subscribe((data) => {
+  //       this.usernickname = data.usernickname;
+  //       this.telephone = data.telephone;
+  //       this.usermail = data.usermail;
+  //       let _data = data as BaceUserdata;
+  //       // this.name = _data.usernickname;
+  //       // console.log(data);
+  //       // console.warn('消息内容！');
+  //     });
+  // },
 });
 </script>

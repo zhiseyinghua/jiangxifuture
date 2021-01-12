@@ -1,6 +1,6 @@
 import store from "@/store";
 import { Observable, of } from "rxjs";
-import { map, switchMap, tap } from "rxjs/operators";
+import { delay, map, switchMap, tap } from "rxjs/operators";
 import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
