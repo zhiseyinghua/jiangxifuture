@@ -21,10 +21,14 @@
                 <v-card-title class="headline grey lighten-5"
                   >修改基本信息</v-card-title
                 >
-                <v-card-text>1111</v-card-text>
-                <v-card-text>1111</v-card-text>
-                <v-card-text>1111</v-card-text>
-                <v-card-text>1111</v-card-text>
+                <v-card class="ma-10">
+                  <v-text-field
+                  label="昵称"
+                  outlined
+                  clearable
+                  dense
+                ></v-text-field>              
+                </v-card>
                 <v-divider></v-divider>
                 <v-card-actions>
                   <v-btn color="primary" text @click="dialog = false">
@@ -87,13 +91,12 @@
 </template> 
 
 <script lang="ts">
-import Vue from "vue";
 import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 import accountserves from "./account.serve";
 import { BaceUserdata, EditUserData } from "../user.interface";
-export default Vue.extend({
+export default {
   data() {
     return {
       uuid: null,
@@ -104,7 +107,7 @@ export default Vue.extend({
       position: "",
       startdate: "",
       companyname: "",
-      dialog: false,
+      dialog: true,
     };
   },
   methods: {
@@ -118,25 +121,9 @@ export default Vue.extend({
         startdate: "",
         companyname: "",
       };
-      accountserves.upUserDate(userdata).subscribe((data) => {
-        // console.log(data);
-        // console.warn("消息内容！");
-      });
     },
   },
-
   created() {
-    
-    // authServies
-    //   .asyncjiexiJwtDecjeck(this.$store.state.login.idtoken)
-    //   .subscribe((data) => {
-    //     console.log("user.vue asyncjiexiJwtDecjeck data", data);
-    //     // let passkey = {
-    //     //   hash: string,
-    //     // };
-    //   });
-    // console.log();
-    // console.log('',this.$route.query);
     var authkeyToken = this.$store.state.login.idtoken;
     authServies
       .asyncjiexiJwtDecjeck(authkeyToken)
@@ -164,6 +151,7 @@ export default Vue.extend({
         // console.log(data);
         // console.warn('消息内容！');
       });
+    console.warn(authkeyToken);
   },
-});
+};
 </script>

@@ -23,6 +23,7 @@ export default {
     ...mapMutations(["changeShow"]),
   },
   created: function () {
+    // console.log('user create this.$route.params.id',this.$route.params.id)
     if (this.$route.path === "/user") {
       this.changeShow();
     }
