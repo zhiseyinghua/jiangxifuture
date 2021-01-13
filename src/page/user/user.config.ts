@@ -6,5 +6,4 @@ export const UserConfig = {
   // 根据auth的key 查询一个用户
   searchbyauthkey: "searchbyauthkey",
   updateuserinfo: "updateuserinfo",
-  insertuserinfo: "insertuserinfo",
 };
