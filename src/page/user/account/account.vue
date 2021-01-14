@@ -166,7 +166,6 @@ export default {
 
     //     //   this.uuid = data.range;
 
-<<<<<<< HEAD
     //     //   // TODO:
     //     //   // return of('11')
     //     //   return accountserves.byuseridgetUserDate({
@@ -190,31 +189,6 @@ export default {
     //     // console.warn("消息内容！");
     //   });
     // // console.warn(authkeyToken);
-=======
-          // TODO:
-          // return of('11')
-          return accountserves.byuseridgetUserDate({
-            hash: data.hash,
-            range: data.range,
-            index: data.index,
-          });
-        })
-      )
-      .subscribe((data) => {
-        this.usernickname = data.usernickname;
-        this.telephone = data.telephone;
-        this.usermail = data.usermail;
-        this.userico = data.userico;
-        this.position = data.position;
-        this.startdate = data.startdate;
-        this.companyname = data.companyname;
-        let _data = data as BaceUserdata;
-        // this.name = _data.usernickname;
-        console.log(data);
-        // console.warn("消息内容！");
-      });
-    // console.warn(authkeyToken);
->>>>>>> 789cb0068ca80819c59bef01739dca5573a62f58
   },
 };
 </script>
