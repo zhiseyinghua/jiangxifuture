@@ -22,7 +22,7 @@
                   修改基本信息</v-card-title
                 >
                  <v-card class="ma-10" flat>  
-                  <v-text-field
+                  <!-- <v-text-field
                     v-for="item in items"
                   :key="item"
                     :label="item"
@@ -30,6 +30,17 @@
                     clearable
                     dense
                   >
+                  </v-text-field>  -->
+                  <v-text-field
+                    v-for="item in userInfo"
+                    :key="item.name"
+                    :label="item.name"
+                    :value="item.data"
+                    outlined
+                    clearable
+                    dense
+                  >
+                  {{item.data}}
                   </v-text-field>
                  </v-card>
                  <v-divider></v-divider>
@@ -68,13 +79,6 @@
               <v-card-text class="pt-0"> *** </v-card-text>
             </v-col>
           </v-row>
-          <!-- <v-row class="mx-16" v-for="link in links"
-            :key="link.text">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text class="pt-0"> {{link.text}} </v-card-text>
-              <v-card-text class="pt-0"> {{ link.message }} </v-card-text>
-            </v-col>
-          </v-row> -->
           <v-row class="mx-16">
             <v-col class="d-flex mt-2 pt-0" cols="8">
               <v-card-text class="pt-0"> 邮箱 </v-card-text>
@@ -122,30 +126,35 @@ export default {
       position: "",
       startdate: "",
       companyname: "",
-      dialog: false,
-     items: ["姓名", "手机", "邮箱", "位置", "公司"],
-      // links: [
-      //   { text: "手机", message: " telephone" },
-      //   { text: "邮箱", message: "usermail" },
-      //    { text: "位置", message: " position" },
-      //   { text: "公司名称", message: "companyname" },
-      //    { text: "注册时间", message: " startdate" },
-      // ]
+      dialog: true,
     };
+  },
+  computed: {
+    userInfo: function () { 
+      let _this = this;
+      const items =  [
+       {name:"姓名",data:_this.usernickname}, 
+       {name:"手机",data:_this.telephone},
+       {name:"邮箱",data:_this.usermail},
+       {name:"位置",data:_this.position},
+       {name:"公司",data:_this.companyname},
+       ]
+      return items;
+      console.warn(this.usernickname)
+    }
   },
   methods: {
     editbtn() {
       let userdata: EditUserData = {
-        usernickname: "这是修改123",
-        usermail: "1789@qq.com",
-        userico: "444",
-        telephone: "15244449999",
-        position: "111",
-        startdate: "222",
-        companyname: "333",
+        usernickname: "",
+        usermail: "",
+        userico: "",
+        telephone: "",
+        position: "",
+        startdate: "",
+        companyname: "",
       };
     },
-
   },
   created() {
     var authkeyToken = this.$store.state.login.idtoken;
@@ -177,7 +186,7 @@ export default {
         let _data = data as BaceUserdata;
         // this.name = _data.usernickname;
         console.log(data);
-        console.warn("消息内容！");
+        // console.warn("消息内容！");
       });
     // console.warn(authkeyToken);
   },
