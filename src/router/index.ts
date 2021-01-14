@@ -29,14 +29,14 @@ const router = new Router({
     newsDetail,
     taskSystems,
     order,
-    // {
-    //   path:"/",
-    //   redirect:'/home'
-    // },
-    // {
-    //   path:"*",
-    //   redirect:'/home'
-    // },
+    {
+      path:"/",
+      redirect:'/home'
+    },
+    {
+      path:"*",
+      redirect:'/home'
+    },
   ]
 });
 
