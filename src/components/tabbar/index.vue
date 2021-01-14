@@ -52,11 +52,11 @@
         prepend-inner-icon="mdi-magnify"
         solo-inverted
       ></v-text-field> -->
-      
-      <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
+      <!-- 切换语言 -->
+      <!-- <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
-        <!-- 切换语言 -->
-      </v-btn>
+        
+      </v-btn> -->
       <v-app-bar-nav-icon
         class="d-flex d-md-none"
         @click.stop="handleChangeDrawer"
