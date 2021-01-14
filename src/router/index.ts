@@ -18,6 +18,7 @@ Vue.use(Router);
 const router = new Router({
   // mode: 'history',
   routes: [
+    aboutUs,
     home,
     news,
     // auth,
