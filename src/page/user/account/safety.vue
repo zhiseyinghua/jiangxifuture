@@ -14,57 +14,55 @@
           </v-btn>
         </v-card-actions>
 
-        <v-row class="mx-16 mt-2">
-          <v-col class="d-flex" cols="8">
-            <v-card-text> uid </v-card-text>
-          </v-col>
-        </v-row>
-        <v-row class="mx-16">
+        <!-- <v-row class="mx-16" v-for="link in links" :key="link.text">
           <v-col class="d-flex mt-2 pt-0" cols="8">
-            <v-card-text> 昵称 </v-card-text>
+            <v-card-text class="pt-0"> {{ link.text }} </v-card-text>
+            <v-card-text class="pt-0"> {{ link.message }} </v-card-text>
           </v-col>
-        </v-row>
-        <v-row class="mx-16">
+        </v-row> -->
+
+        <v-row class="mx-16" v-for="link in menuList" :key="link.text">
           <v-col class="d-flex mt-2 pt-0" cols="8">
-            <v-card-text class="pt-0"> 登陆密码 </v-card-text>
-          </v-col>
-        </v-row>
-        <v-row class="mx-16">
-          <v-col class="d-flex mt-2 pt-0" cols="8">
-            <v-card-text class="pt-0"> 手机 </v-card-text>
-          </v-col>
-        </v-row>
-        <v-row class="mx-16">
-          <v-col class="d-flex mt-2 pt-0" cols="8">
-            <v-card-text class="pt-0"> 邮箱 </v-card-text>
+            <v-card-text class="pt-0"> {{  }} </v-card-text>
+            <v-card-text class="pt-0"> {{ link.message }} </v-card-text>
           </v-col>
         </v-row>
       </v-card>
     </v-col>
   </v-row>
-</template> 
+</template>
 <script>
-import axios from "axios";
-export default {
-  data: function(){
-    return {
-
-    }
-  },
-  created: function () {
-    const authorization = localStorage.getItem("token");
-    axios({
-      method: "post",
-      url: "api/team/insertteaminfo",
-      headers: { authorization },
-      data: {
-        teamname: "future time",
-        projectname: "web3",
-        projectprogress: "0",
-      },
-    }).then( res => {
-      console.log(res);
-    });
-  },
+import axios from "axios";
+export default {
+  // data: function () {
+  //   return {
+  //     // items: ["姓名", "手机", "邮箱", "位置", "公司"],
+  //     // links: [
+  //     //   { text: "手机", message: " telephone" },
+  //     //   { text: "邮箱", message: "usermail" },
+  //     //   { text: "位置", message: " position" },
+  //     //   { text: "公司名称", message: "companyname" },
+  //     //   { text: "注册时间", message: " startdate" },
+  //     // ],   
+  //   };
+  // },
+  // created: function () {
+  //   const authorization = localStorage.getItem("token");
+  //   axios({
+  //     headers: {authorization},
+  //     method: "post",
+  //     url: "/api/user/searchbyauthkey",
+  //   }).then((res) => {
+  //     console.warn(res.data);
+  //   });
+  // },
+  data() {
+    menuList: []
+  },
+  created() {
+    this.getMenuList ()
+  },
+  methods() {
+  }
 };
 </script>

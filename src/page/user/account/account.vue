@@ -123,14 +123,14 @@ export default {
       startdate: "",
       companyname: "",
       dialog: false,
-     items: ["昵称", "手机", "邮箱", "位置", "公司"],
-      links: [
-        { text: "手机", message: " telephone" },
-        { text: "邮箱", message: "usermail" },
-         { text: "位置", message: " position" },
-        { text: "公司名称", message: "companyname" },
-         { text: "注册时间", message: " startdate" },
-      ]
+     items: ["姓名", "手机", "邮箱", "位置", "公司"],
+      // links: [
+      //   { text: "手机", message: " telephone" },
+      //   { text: "邮箱", message: "usermail" },
+      //    { text: "位置", message: " position" },
+      //   { text: "公司名称", message: "companyname" },
+      //    { text: "注册时间", message: " startdate" },
+      // ]
     };
   },
   methods: {
@@ -145,6 +145,7 @@ export default {
         companyname: "333",
       };
     },
+
   },
   created() {
     var authkeyToken = this.$store.state.login.idtoken;
