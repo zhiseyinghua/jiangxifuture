@@ -37,14 +37,11 @@ export default {
   data () {
     return {
        menuList: [],
-      items: ["姓名", "手机", "邮箱", "位置", "公司"],
-      links: [
-        { text: "手机", message: " telephone" },
-        { text: "邮箱", message: "usermail" },
-        { text: "位置", message: " position" },
-        { text: "公司名称", message: "companyname" },
-        { text: "注册时间", message: " startdate" },
-      ],   
+       items: [{name:"姓名",data:""}, 
+       {name:"手机",data:""},
+       {name:"邮箱",data:""},
+       {name:"位置",data:""},
+       {name:"公司",data:""},]
     };
   },
   created () {
@@ -58,20 +55,5 @@ export default {
       console.warn(res.data);
     });
   },
-  // data() {
-  //   menuList: []
-  // },
-  // created() {
-  //   this.getMenuList ()
-  // },
-  // methods() {
-  //   async getMenuList() {
-  //     // 发送请求获取左侧菜单数据
-  //     const { data: res } = await this.$http.post('user/searchbyauthkey')
-  //     // if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
-  //     this.menuList = res.data
-  //     console.log(res)
-  // }
-  // }
 };
 </script>
