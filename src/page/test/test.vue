@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <v-btn @click="goutouser">进入别人页面</v-btn>
@@ -37,7 +38,9 @@ export default {
       console.log("进入user");
       this.$router.push({
         path: "user",
-        query: { hash: "auth-2020-12-23", range: "a7689e6e-f1d6-45b1-a85c-b3ead4c091b5", index: "a7689e6e-f1d6-45b1-a85c-b3ead4c091b5" },
+        query: { "hash": "auth-2020-12-24",
+  "range": "682c4b8f-2749-4d65-aaa1-488e7f53d403",
+  "index": "682c4b8f-2749-4d65-aaa1-488e7f53d403", },
       });
     },
   },

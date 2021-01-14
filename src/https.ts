@@ -20,18 +20,18 @@ axios.interceptors.request.use(
     console.log("isTokenExpired1", isTokenExpired);
     // @ts-ignore
     console.log("isTokenExpired1 store.state", store.state.login.idtoken);
-    console.log(
-      "https.ts",
-      !(store.state === null) && isTokenExpired === false,store.state.login.idtoken,isTokenExpired
-    );
+    // console.log(
+    //   "https.ts",
+    //   !(store.state === null) && isTokenExpired === false,store.state.login.idtoken,isTokenExpired
+    // );
     if (!(store.state.login.idtoken == null) && isTokenExpired == false) {
       isTokenExpired = true;
-      console.log("isTokenExpired", isTokenExpired);
+      // console.log("isTokenExpired", isTokenExpired);
       // 判断token是否需要刷新;
       let _stoken = store.state.login.idtoken;
       let chicktokentime = AuthServies.chicktokenTime(_stoken);
       // let chicktokentime = 3;
-      console.log("http chicktokentime", chicktokentime);
+      // console.log("http chicktokentime", chicktokentime);
       if (chicktokentime >= 12) {
         isTokenExpired = false;
         console.log("已经登录");
