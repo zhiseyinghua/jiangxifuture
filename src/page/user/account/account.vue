@@ -148,38 +148,38 @@ export default {
 
   },
   created() {
-    var authkeyToken = this.$store.state.login.idtoken;
-    authServies
-      .asyncjiexiJwtDecjeck(authkeyToken)
-      .pipe(
-        switchMap((data) => {
-          // console.log(data);
+    // var authkeyToken = this.$store.state.login.idtoken;
+    // authServies
+    //   .asyncjiexiJwtDecjeck(authkeyToken)
+    //   .pipe(
+    //     // switchMap((data) => {
+    //     //   // console.log(data);
 
-          this.uuid = data.range;
+    //     //   this.uuid = data.range;
 
-          // TODO:
-          // return of('11')
-          return accountserves.byuseridgetUserDate({
-            hash: data.hash,
-            range: data.range,
-            index: data.index,
-          });
-        })
-      )
-      .subscribe((data) => {
-        this.usernickname = data.usernickname;
-        this.telephone = data.telephone;
-        this.usermail = data.usermail;
-        this.userico = data.userico;
-        this.position = data.position;
-        this.startdate = data.startdate;
-        this.companyname = data.companyname;
-        let _data = data as BaceUserdata;
-        // this.name = _data.usernickname;
-        console.log(data);
-        console.warn("消息内容！");
-      });
-    // console.warn(authkeyToken);
+    //     //   // TODO:
+    //     //   // return of('11')
+    //     //   return accountserves.byuseridgetUserDate({
+    //     //     hash: data.hash,
+    //     //     range: data.range,
+    //     //     index: data.index,
+    //     //   });
+    //     // })
+    //   )
+    //   .subscribe((data) => {
+    //     // this.usernickname = data.usernickname;
+    //     // this.telephone = data.telephone;
+    //     // this.usermail = data.usermail;
+    //     // this.userico = data.userico;
+    //     // this.position = data.position;
+    //     // this.startdate = data.startdate;
+    //     // this.companyname = data.companyname;
+    //     // let _data = data as BaceUserdata;
+    //     // // this.name = _data.usernickname;
+    //     // console.log(data);
+    //     // console.warn("消息内容！");
+    //   });
+    // // console.warn(authkeyToken);
   },
 };
 </script>
