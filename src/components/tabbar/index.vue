@@ -55,13 +55,8 @@
       <!-- 切换语言 -->
       <!-- <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
-<<<<<<< HEAD
-        <!-- 切换语言 -->
-      </v-btn>
-=======
         
       </v-btn> -->
->>>>>>> c260211d4138053f7b28bb84951ea4028390f0c7
       <v-app-bar-nav-icon
         class="d-flex d-md-none"
         @click.stop="handleChangeDrawer"
