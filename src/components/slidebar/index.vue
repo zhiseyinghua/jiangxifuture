@@ -28,6 +28,7 @@ export default {
       { title: "首页概述", link: "home" },
       { title: "新闻中心", link: "news" },
       { title: "解决方案", link: "solution" },
+      { title: "关于我们", link: "software" },
     ],
   }),
   methods: {

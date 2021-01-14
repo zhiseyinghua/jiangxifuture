@@ -1,6 +1,6 @@
 import store from "@/store";
 import { Observable, of } from "rxjs";
-import { map, switchMap, tap } from "rxjs/operators";
+import { delay, map, switchMap, tap } from "rxjs/operators";
 import { HttpHost } from "@/common/api";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { AuthConfig } from "./auth.common";
@@ -27,7 +27,7 @@ export default class AuthServies {
    * @param {*} email
    */
   public static setlocalStorageToken(token: string) {
-    console.log("getlocalStorageToken");
+    // console.log("getlocalStorageToken");
     localStorage.setItem("token", token);
   }
 
@@ -114,12 +114,12 @@ export default class AuthServies {
   }
 
   /**
-   * token解码
+   * 
    * @param {*}
    */
   public static jwtDecodecheck(token: string) {
     let decoded = jwt.decode(token);
-    console.log(this.log + "  " + "decoded", decoded);
+    // console.log(this.log + "  " + "decoded", decoded);
     return decoded["exp"];
   }
 
@@ -129,18 +129,26 @@ export default class AuthServies {
    */
   public static asyncJwtDecjeck(token: string) :Observable<any>{
     let decoded = jwt.decode(token);
-    console.log(this.log + "  " + "decoded", decoded);
+    // console.log(this.log + "  " + "decoded", decoded);
     return of(decoded["exp"]);
   }
 
   /**
-   * 解析一个token
+   * 解析一个token 异步
    * @param token 
    */
   public static asyncjiexiJwtDecjeck(token:string):Observable<any>{
     let decoded = jwt.decode(token);
-    console.log(this.log + "  " + "decoded", decoded);
+    // console.log(this.log + "  " + "decoded", decoded);
     return of(decoded);
+  }
+
+    /**
+   * 解析一个token
+   * @param token 
+   */
+  public static jiexiJwtDecjeck(token:string){
+    return jwt.decode(token);
   }
 
   /**
@@ -148,17 +156,17 @@ export default class AuthServies {
    * @param {*} token
    */
   public static chicktokenTime(token: string) {
-    console.log("chicktokenTime start");
+    // console.log("chicktokenTime start");
     let time = AuthServies.jwtDecodecheck(token);
-    console.log(time);
+    // console.log(time);
     let timestamp = Date.now();
-    console.log(time);
+    // console.log(time);
     let date = parseInt(time) * 1000;
 
-    console.log(date);
-    console.log(timestamp);
+    // console.log(date);
+    // console.log(timestamp);
     let gap = (date - timestamp) / (3600 * 1000);
-    console.log("还有多久过期gap", gap);
+    // console.log("还有多久过期gap", gap);
     return gap;
   }
 
@@ -174,13 +182,17 @@ export default class AuthServies {
       "post",
       AliyunConfig.zone + "/" + AliyunConfig.assumerole
     ).pipe(
+      map(data=>{
+        // console.log("authServies getServeS3authority", data);
+        return data['data']
+      }),
       tap((data) => {
-        console.log("authServies getServeS3authority", data);
-        console.log(
-          "authServies getServeS3authority type",
-          typeof data["data"]["Expiration"]
-        );
-        localStorage.setItem("s3authority", JSON.stringify(data['data']));
+        // console.log("authServies getServeS3authority", data);
+        // console.log(
+        //   "authServies getServeS3authority type",
+        //   typeof data["Expiration"]
+        // );
+        localStorage.setItem("s3authority", JSON.stringify(data));
       })
     );
   }
@@ -193,10 +205,12 @@ export default class AuthServies {
       switchMap((s3authority:any)=>{
         let _s3authority= JSON.parse(s3authority)
         console.log('authServies getS3authority s3authority',_s3authority)
-        if(AuthServies.checkoutS3thorityTime(_s3authority)){
+        if(AuthServies.checkoutS3thorityTime(_s3authority) || _s3authority == undefined  ){
           return AuthServies.getServeS3authority()
+        } else {
+          return of(_s3authority)
         }
-        return of(s3authority)
+        
       })
     );
   }
@@ -206,11 +220,11 @@ export default class AuthServies {
    * @param S3authority 
    */
   public static checkoutS3thorityTime(S3authority:any) :boolean{
-    console.log('authServies checkoutS3thorityTime S3authority',S3authority)
+    // console.log('authServies checkoutS3thorityTime S3authority',S3authority)
     let _S3timestamp = Date.parse(S3authority['Expiration'])
     let nowTimestamp = Date.now()
     // console.log((_S3timestamp - nowTimestamp)/1000/60)
-    console.log('authServies checkoutS3thorityTime _S3timestamp nowTimestamp',_S3timestamp,nowTimestamp)
+    // console.log('authServies checkoutS3thorityTime _S3timestamp nowTimestamp',_S3timestamp,nowTimestamp)
     if(((_S3timestamp - nowTimestamp)/1000/60) >=5){
       return false
     } else {
