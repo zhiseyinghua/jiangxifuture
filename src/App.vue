@@ -1,12 +1,12 @@
 <template>
   <v-app>
     <overlay></overlay>
-    <!-- <tabbar v-if="$store.state.isShow"></tabbar>
-    <slidebar></slidebar> -->
+    <tabbar v-if="$store.state.isShow"></tabbar>
+    <slidebar></slidebar>
     <v-main>
       <router-view></router-view>
     </v-main>
-    <!-- <foot v-if="$store.state.isShow"></foot> -->
+    <foot v-if="$store.state.isShow"></foot>
   </v-app>
 </template>
 
