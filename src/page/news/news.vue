@@ -1,7 +1,6 @@
 <template>
   <v-container fluid>
     <v-card>
-<<<<<<< HEAD
       <v-responsive width="100%" aspect-ratio="3" >
         <v-img
           :src="require('@/assets/home/news/5.jpg')"
@@ -12,15 +11,6 @@
           <v-row>
             <v-col cols="12" sm="6" offset-sm="3">
               <!-- <v-responsive aspect-ratio="16"> -->
-=======
-      <v-img
-        src="https://img95.699pic.com/photo/40102/8199.jpg_wh300.jpg"
-        aspect-ratio="3"
-        class="grey lighten-2 d-flex align-center"
-      >
-        <v-row>
-          <v-col cols="12" sm="6" offset-sm="3">
->>>>>>> 0fa60731413475042c639ac879dd488d7058792d
               <v-text-field
                 class="white"
                 flat
@@ -30,17 +20,11 @@
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
               ></v-text-field>
-<<<<<<< HEAD
               <!-- </v-responsive> -->
             </v-col>
           </v-row>
         </v-img>
       </v-responsive>
-=======
-          </v-col>
-        </v-row>
-      </v-img>
->>>>>>> 0fa60731413475042c639ac879dd488d7058792d
     </v-card>
     <v-container>
       <v-row>
@@ -93,16 +77,11 @@ export default {
       {
         text: "首页",
         disabled: false,
-<<<<<<< HEAD
         href: "news"
-=======
-        href: "home",
->>>>>>> 0fa60731413475042c639ac879dd488d7058792d
       },
       {
         text: "新闻中心",
         disabled: false,
-<<<<<<< HEAD
         href: "breadcrumbs_link_1"
       },
       {
@@ -111,12 +90,6 @@ export default {
         href: "breadcrumbs_link_2"
       }
     ]
-=======
-        href: "news",
-      },
-    ],
-     page: 1,
->>>>>>> 0fa60731413475042c639ac879dd488d7058792d
     // toggleExclusive: undefined,
   })
 };
