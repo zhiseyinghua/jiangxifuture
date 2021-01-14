@@ -9,10 +9,16 @@ export interface BaceUserdata {
   userico: string;
   usermail: string;
   usernickname: string;
+  position: string;
+  startdate: string;
+  companyname: string;
 }
 export interface EditUserData {
-    usernickname: string,
-    telephone: string,
-    usermail: string,
-    userico: string
+  usernickname: string;
+  telephone: string;
+  usermail: string;
+  userico: string;
+  position: string;
+  startdate: string;
+  companyname: string;
 }

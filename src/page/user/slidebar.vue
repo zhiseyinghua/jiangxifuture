@@ -80,7 +80,6 @@ export default {
         {
           icon: "mdi-account-cog-outline",
           title: "账号中心",
-          route: "/user/account",
           items: [
             {
               title: "账号信息",
@@ -92,7 +91,7 @@ export default {
             },
             {
               title: "账号安全",
-              route: "/",
+              route: "/user/safety",
             },
           ],
         },

@@ -1,7 +1,7 @@
 <template>
   <!-- 这是一个导航栏 -->
-  <v-app-bar app>
-    <v-container class="d-flex align-center" app fluid>
+  <v-app-bar app flat hide-on-scroll>
+    <v-container class="d-flex align-center" app fluid >
       <!-- <div>{{$store.state.login}}</div> -->
       <div>
         <v-img
@@ -30,8 +30,14 @@
         </v-toolbar-title>
         <v-toolbar-title>
           <v-btn to="solution" text>
-            解决方案
+            {{ $t("lang.home.totalSolution") }}
             <!-- 解决方案 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="aboutUs" text>
+            {{ $t("lang.home.aboutUs") }}
+            <!-- 关于我们-->
           </v-btn>
         </v-toolbar-title>
       </v-toolbar>
@@ -46,16 +52,16 @@
         prepend-inner-icon="mdi-magnify"
         solo-inverted
       ></v-text-field> -->
-      
-      <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
+      <!-- 切换语言 -->
+      <!-- <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
-        <!-- 切换语言 -->
-      </v-btn>
-      <!-- <v-app-bar-nav-icon
+        
+      </v-btn> -->
+      <v-app-bar-nav-icon
         class="d-flex d-md-none"
         @click.stop="handleChangeDrawer"
       ></v-app-bar-nav-icon>
-      <div class="d-none d-md-flex"><v-btn text to="login">登陆</v-btn><v-btn text to="auth">注册</v-btn></div> -->
+      <!-- <div class="d-none d-md-flex"><v-btn text to="login">登陆</v-btn><v-btn text to="auth">注册</v-btn></div> -->
     </v-container>
   </v-app-bar>
 </template>

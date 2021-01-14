@@ -9,29 +9,21 @@
     <v-container>
       <v-tabs class="white" light show-arrows grow v-model="tab">
         <v-tabs-slider color="teal lighten-3"></v-tabs-slider>
-        <v-tab v-for="item in sltList" :key="item.id">{{ item.title }}</v-tab>
+        <v-tab v-for="item in sltList" :key="item.id" class="text-caption">
+          {{ item.title }}
+        </v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in sltList" :key="item.id">
           <v-row>
-            <v-col v-for="item1 in item.picList" :key="item1.title" cols="6">
-              <v-card>
-                <v-img :src="item1.src" aspect-ratio="1.6"></v-img>
-                <v-card-title>
-                  <v-btn class="text-button text-sm-boby1" text>
-                    {{
-                    item1.title
-                    }}
-                  </v-btn>
-                </v-card-title>
-                <v-card-text>
-                  <v-btn class="text-caption text-sm-boby2" text>
-                    {{
-                    item1.subTitle
-                    }}
-                  </v-btn>
-                </v-card-text>
-              </v-card>
+            <v-col v-for="item1 in item.picList" :key="item1.title" cols="6" class="text-center">
+                <v-img :src="item1.src" aspect-ratio="1.6"> </v-img>
+                <div class="text-subtitle-2 text-md-h5 text-truncate">
+                  {{item1.title}}
+                </div>
+                <div class="text-subtitle-2 text-md-h6 text-truncate" width="100%">
+                  {{item1.subTitle}}
+                </div>
             </v-col>
           </v-row>
         </v-tab-item>

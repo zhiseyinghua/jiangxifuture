@@ -1,4 +1,4 @@
-// import test from "@/page/test/test.vue";
+import test from "@/page/test/test.vue";
 
 export default {
     path: "/test",

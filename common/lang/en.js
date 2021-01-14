@@ -2,8 +2,10 @@
 
 export const lang = {
   home: {
-    homeOverview: "huangw",
-    newCenter: "qingq",
-    cutLanguage: "des sf",
+    homeOverview: "homeOverview",
+    newCenter: "newCenter",
+    totalSolution: "totalSolution",
+    aboutUs: "aboutUs",
+    cutLanguage: "cutLanguage",
   },
 };

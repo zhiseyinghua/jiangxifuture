@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
     <v-card>
+<<<<<<< HEAD
       <v-responsive width="100%" aspect-ratio="3" >
         <v-img
           :src="require('@/assets/home/news/5.jpg')"
@@ -11,6 +12,15 @@
           <v-row>
             <v-col cols="12" sm="6" offset-sm="3">
               <!-- <v-responsive aspect-ratio="16"> -->
+=======
+      <v-img
+        src="https://img95.699pic.com/photo/40102/8199.jpg_wh300.jpg"
+        aspect-ratio="3"
+        class="grey lighten-2 d-flex align-center"
+      >
+        <v-row>
+          <v-col cols="12" sm="6" offset-sm="3">
+>>>>>>> 0fa60731413475042c639ac879dd488d7058792d
               <v-text-field
                 class="white"
                 flat
@@ -20,15 +30,22 @@
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
               ></v-text-field>
+<<<<<<< HEAD
               <!-- </v-responsive> -->
             </v-col>
           </v-row>
         </v-img>
       </v-responsive>
+=======
+          </v-col>
+        </v-row>
+      </v-img>
+>>>>>>> 0fa60731413475042c639ac879dd488d7058792d
     </v-card>
     <v-container>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" class="d-flex">
+          <v-icon>mdi-mailbox-outline</v-icon>
           <v-breadcrumbs :items="items" light>
             <template v-slot:divider>
               <v-icon>mdi-chevron-right</v-icon>
@@ -58,12 +75,11 @@
     <newlist></newlist>
 
     <div class="d-flex justify-center align-center">
-      <v-btn text>&lt; 上一页</v-btn>
-      <v-responsive max-width="50" class="mx-5">
-        <v-text-field outlined dense hide-details="auto"></v-text-field>
-      </v-responsive>
-      <span class="mr-5">/{{ 18 }}</span>
-      <v-btn text>下一页 &gt;</v-btn>
+      <v-pagination
+      v-model="page"
+      :length="2"
+    ></v-pagination>
+
     </div>
   </v-container>
 </template>
@@ -75,13 +91,18 @@ export default {
   data: () => ({
     items: [
       {
-        text: "Dashboard",
+        text: "首页",
         disabled: false,
+<<<<<<< HEAD
         href: "news"
+=======
+        href: "home",
+>>>>>>> 0fa60731413475042c639ac879dd488d7058792d
       },
       {
-        text: "Link 1",
+        text: "新闻中心",
         disabled: false,
+<<<<<<< HEAD
         href: "breadcrumbs_link_1"
       },
       {
@@ -90,6 +111,12 @@ export default {
         href: "breadcrumbs_link_2"
       }
     ]
+=======
+        href: "news",
+      },
+    ],
+     page: 1,
+>>>>>>> 0fa60731413475042c639ac879dd488d7058792d
     // toggleExclusive: undefined,
   })
 };

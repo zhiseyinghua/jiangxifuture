@@ -1,52 +1,48 @@
+
+<template>
+  <div>
+    <v-btn @click="goutouser">进入别人页面</v-btn>
+     <v-btn @click="goutouserziji">进入自己页面</v-btn>
+  </div>
+</template>
 <script>
-import authServies from "@/page/auth/auth.servies";
-// import UserServe from "../user.serve";
-import accountserves from "@/page/user/account/account.serve";
-import { switchMap } from "rxjs/operators";
+import axios from "axios";
 export default {
-  data() {
-    return {
-      
-    };
+  data: function() {
+    return {};
   },
-  created: function () {
-    var authkeyToken = this.$store.state.login.idtoken;
-    console.log("account.vue token", userkeyToken);
-    authServies
-      .asyncJwtDecjeck(authkeyToken)
-      .pipe(
-        switchMap((userkeyToken) => {
-          console.log("1111111111111111111", authkeyToken);
-          return accountserves.byuseridgetUserDate({
-            hash: userkeyToken.hash,
-            range: userkeyToken.range,
-            index: userkeyToken.index,
-          });
-        }),
-        switchMap((data) => {
-          console.log(data);
-        }),
-        switchMap((data) => {
-          console.log(data);
-        })
-      )
-      .subscribe((data) => {
-        console.log(data);
+  created: function() {
+    const authorization = localStorage.getItem("token");
+    axios({
+      method: "post",
+      url: "api/team/insertteaminfo",
+      headers: { authorization },
+      data: {
+        teamname: "future time",
+        projectname: "web3",
+        projectprogress: "0",
+      },
+    }).then((res) => {
+      console.log(res);
+    });
+  },
+  methods: {
+    goutouser() {
+      console.log("进入user");
+      this.$router.push({
+        path: "user",
+        query: { hash: "1", range: "1", index: "1" },
       });
-    from(authServies.jwtDecodecheck(userkeyToken)).pipe(
-      switchMap((userdata)=>{
-        return accountserves.byuseridgetUserDate({
-          hash:userdata.hash,
-          range:userdata.range,
-          index:userdata.index
-        })
-      })
-    ).subscribe(
-      data=>{
-        console.log(data)
-      }
-    )
-    Accountserves.byuseridgetUserDate()
+    },
+    goutouserziji() {
+      console.log("进入user");
+      this.$router.push({
+        path: "user",
+        query: { "hash": "auth-2020-12-24",
+  "range": "682c4b8f-2749-4d65-aaa1-488e7f53d403",
+  "index": "682c4b8f-2749-4d65-aaa1-488e7f53d403", },
+      });
+    },
   },
 };
 </script>

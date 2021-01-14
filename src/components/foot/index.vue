@@ -1,17 +1,18 @@
 <template>
-  <v-footer color="245, 246, 246" padless app absolute>
+  <v-footer padless app absolute>
     <v-row justify="center" no-gutters>
       <v-btn
-        v-for="link in links"
-        :key="link"
+        v-for="item in links"
+        :key="item.link"
         color="73, 73, 73"
+        :to="item.link"
         text
         rounded
-        class="my-2"
+        class="my-4"
       >
-        {{ link }}
+        {{ item.title }}
       </v-btn>
-      <v-col class="245, 246, 246 py-4 text-center" cols="12">
+      <v-col class="py-4 text-center" cols="12">
         {{ new Date().getFullYear() }} — <strong>FutureTime</strong>
       </v-col>
     </v-row>
@@ -22,14 +23,11 @@
 export default {
   data: () => ({
     links: [
-      "首页概览",
-      "新闻中心",
-      "解决方案",
-      "产品中心",
-      "下载中心",
-      "关于我们",
+      {title:"首页概览",link:"/home"},
+      {title:"新闻中心",link:"/news"},
+      {title:"解决方案",link:"/solution"},
+      {title:"关于我们",link:"/aboutUs"}
     ],
   }),
 };
 </script>
- 

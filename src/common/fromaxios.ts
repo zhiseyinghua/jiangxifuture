@@ -27,7 +27,7 @@ export class AxiosElasticService {
     headers?: any,
     params?: any
   ): Observable<any> {
-    console.log(method, body, urlstr);
+    // console.log(method, body, urlstr);
     let axiosData: AxiosRequestConfig = {
       method: method,
       url: HttpHost.localHost + urlstr,
@@ -38,17 +38,17 @@ export class AxiosElasticService {
       },
       params,
     };
-    console.log(
-      "DbElasticService " + "executeInEs axiosData" + JSON.stringify(axiosData)
-    );
+    // console.log(
+    //   "DbElasticService " + "executeInEs axiosData" + JSON.stringify(axiosData)
+    // );
     return from(axios(axiosData)).pipe(
       catchError((error) => {
-        // console.log('DbElasticService ' + 'executeInEs' + error);
+        // console.error('DbElasticService ' + 'executeInEs' + error);
         // return throwError(error);
         return throwError(error);
       }),
       switchMap((result) => {
-        // console.log(result);
+        // console.error(result);
         return of(result);
       })
     );
@@ -59,15 +59,15 @@ export class AxiosElasticService {
    */
   public static checkfuctionUrlIdtoken(url: any): Boolean {
     let api = "api/";
-    console.log(
-      "fromaxios checkfuctionUrlIdtoken url",
-      url,
-      api +
-        "/" +
-        AuthConfig.zone +
-        "/" +
-        HttpHost.check_url_with_token.bytokengettoken
-    );
+    // console.log(
+    //   "fromaxios checkfuctionUrlIdtoken url",
+    //   url,
+    //   api +
+    //     "/" +
+    //     AuthConfig.zone +
+    //     "/" +
+    //     HttpHost.check_url_with_token.bytokengettoken
+    // );
   
     //
     if (
@@ -94,7 +94,8 @@ export class AxiosElasticService {
    * @param routerPath
    */
   public static checkrouterlogin(routerPath: string): boolean {
-    console.log(store.state.login.idtoken);
+    //@ts-nocheck
+    // console.log(store.state.login.idtoken);
     let _stoken = localStorage.getItem("token");
     let checkoutPath = ["/news", "/home"];
     if (
