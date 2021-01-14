@@ -18,23 +18,23 @@ const router = new Router({
   routes: [
     home,
     news,
-    auth,
-    login,
+    // auth,
+    // login,
     solution,
-    test,
-    user,
-    groupChat,
+    // test,
+    // user,
+    // groupChat,
     newsDetail,
     taskSystems,
-    aboutUs
-    // {
-    //   path:"/",
-    //   redirect:'/home'
-    // },
-    // {
-    //   path:"*",
-    //   redirect:'/home'
-    // },
+    aboutUs,
+    {
+      path:"/",
+      redirect:'/home'
+    },
+    {
+      path:"*",
+      redirect:'/home'
+    },
   ]
 });
 
