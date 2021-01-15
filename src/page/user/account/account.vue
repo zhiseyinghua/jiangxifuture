@@ -145,7 +145,7 @@ export default {
           //   { name: "公司", data: data.companyname },
           // ];
           
-          console.log(this.companyname);
+          // console.log(this.companyname);
         });
     }
   },

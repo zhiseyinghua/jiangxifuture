@@ -19,7 +19,7 @@ const router = new Router({
   // mode: 'history',
   routes: [
     // aboutUs,
-    home,
+    // home,
     // news,
     auth,
     login,
@@ -30,14 +30,14 @@ const router = new Router({
     // newsDetail,
     taskSystems,
     order,
-    {
-      path:"/",
-      redirect:'/home'
-    },
-    {
-      path:"*",
-      redirect:'/home'
-    },
+    // {
+    //   path:"/",
+    //   redirect:'/user'
+    // },
+    // {
+    //   path:"*",
+    //   redirect:'/home'
+    // },
   ]
 });
 
