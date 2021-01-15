@@ -98,14 +98,14 @@
   </v-container>
 </template>
 
-<script lang="ts">
+<script >
 import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
 import { of } from "rxjs";
 import accountserves from "./account.serve";
 import { BaceUserdata, EditUserData } from "../user.interface";
 import store from "@/store";
-// import router from "@/router";
+import router from "@/router";
 
 export default {
   data() {
@@ -127,25 +127,25 @@ export default {
       var authkeyToken = store.state.login.idtoken;
       authServies
         .asyncjiexiJwtDecjeck(authkeyToken)
-        // .pipe(
-        //   switchMap((data) => {
-        //     return accountserves.byuseridgetUserDate({
-        //       hash: data.hash,
-        //       range: data.range,
-        //       index: data.index,
-        //     });
-        //   })
-        // )
+        .pipe(
+          switchMap((data) => {
+            return accountserves.byuseridgetUserDate({
+              hash: data.hash,
+              range: data.range,
+              index: data.index,
+            });
+          })
+        )
         .subscribe((data) => {
-          // this.useritems = [
-          //   { name: "姓名", data: data.usernickname },
-          //   { name: "手机", data: data.telephone },
-          //   { name: "邮箱", data: data.usermail },
-          //   { name: "位置", data: data.position },
-          //   { name: "公司", data: data.companyname },
-          // ];
+          this.useritems = [
+            { name: "姓名", data: data.usernickname },
+            { name: "手机", data: data.telephone },
+            { name: "邮箱", data: data.usermail },
+            { name: "位置", data: data.position },
+            { name: "公司", data: data.companyname },
+          ];
           
-          // console.log(this.companyname);
+          console.log(this.companyname);
         });
     }
   },

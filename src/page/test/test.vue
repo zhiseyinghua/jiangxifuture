@@ -50,31 +50,7 @@ export default {
           index: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
         },
       });
-    },
-    upuserdata() {
-      var authkeyToken = store.state.login.idtoken;
-      authServies
-        .asyncjiexiJwtDecjeck(authkeyToken)
-        // .pipe(
-        //   switchMap((data) => {
-        //     return accountserves.byuseridgetUserDate({
-        //       hash: data.hash,
-        //       range: data.range,
-        //       index: data.index,
-        //     });
-        //   })
-        // )
-        .subscribe((data) => {
-          // this.useritems = [
-          //   { name: "姓名", data: data.usernickname },
-          //   { name: "手机", data: data.telephone },
-          //   { name: "邮箱", data: data.usermail },
-          //   { name: "位置", data: data.position },
-          //   { name: "公司", data: data.companyname },
-          // ];
-          console.log(this.companyname);
-        });
-    },
-  },
+    }
+  }
 };
 </script>
