@@ -46,7 +46,7 @@
             </v-dialog>
           </v-card-actions>
           <v-divider class="mx-6"></v-divider>
-          <v-card-actions class="justify-center mt-10">
+          <v-card-actions class="justify-start mt-12">
             <v-btn icon x-large>
               <v-avatar size="100">
                 <img
@@ -54,6 +54,7 @@
                   alt="John"
                 />
               </v-avatar>
+               
             </v-btn>
           </v-card-actions>
           <v-row class="mx-16 mt-1">
