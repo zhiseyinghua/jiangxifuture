@@ -24,10 +24,10 @@
                   <div v-for="(user, i) in useritems" :key="i">
                     <v-text-field
                       :label="user.name"
-                      :value="user.data"
                       outlined
                       clearable
                       dense
+                      v-model="user.data"
                     >
                     </v-text-field>
                   </div>
@@ -134,12 +134,13 @@ export default {
         startdate: this.startdate,
         companyname: this.useritems[4].data,
       };
-      accountserves.upUserDate(userdata).subscribe(
-        data=>{
-          // location.reload();
-          console.log(data)
-        }
-      )
+      console.log(this.useritems)
+      // accountserves.upUserDate(userdata).subscribe(
+      //   data=>{
+      //     // location.reload();
+      //     console.log(data)
+      //   }
+      // )
     },
     // 给定于的循环数组定值
     suzufunction() {
