@@ -10,7 +10,7 @@
             <v-card-title headline grey lighten-5>基本信息</v-card-title>
             <v-spacer></v-spacer>
             <!-- 修改框弹窗 -->
-            <v-dialog  v-model="dialog" width="500">
+            <v-dialog v-model="dialog" width="500">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
                   <v-icon>mdi-account-edit-outline</v-icon>
@@ -125,7 +125,6 @@ export default {
   },
   methods: {
     upuserdata() {
-      
       // console.log('修改基本信息');
       let userdata = {
         usernickname: this.useritems[0].data,
@@ -140,9 +139,36 @@ export default {
         overlayvalue: true,
       });
       accountserves.upUserDate(userdata).subscribe((data) => {
+        Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
         if (data.range) {
+          this.dialog = false;
+          Bus.$emit("snackbar", {
+            text: "修改成功",
+            color: "green",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+          location.reload();
+        } else if ((data.code = "000116")) {
+          Bus.$emit("snackbar", {
+            text: "没有修改任何信息，请认真填写",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        }else {
+          Bus.$emit("snackbar", {
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
         }
-        // location.reload();
         console.log(data);
       });
     },
@@ -174,6 +200,7 @@ export default {
       console.log("account.vue 进入别的user主页");
     } else {
     }
+    // 重定义数组
     this.suzufunction();
     var authkeyToken = store.state.login.idtoken;
     authServies
