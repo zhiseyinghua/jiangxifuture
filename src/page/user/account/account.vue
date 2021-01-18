@@ -125,17 +125,18 @@ export default {
   methods: {
     upuserdata() {
       // console.log('修改基本信息');
-      let a = {
-        usernickname: "123456789",
-        telephone: "184d134533",
-        usermail: "3534dsdsm",
-        userico: "uso",
-        position: "string",
-        startdate: "date",
-        companyname: "1",
+      let userdata = {
+        usernickname: this.useritems[0].data,
+        telephone: this.useritems[1].data,
+        usermail: this.useritems[2].data,
+        userico: this.userico,
+        position: this.useritems[3].data,
+        startdate: this.startdate,
+        companyname: this.useritems[4].data,
       };
-      accountserves.upUserDate(a).subscribe(
+      accountserves.upUserDate(userdata).subscribe(
         data=>{
+          // location.reload();
           console.log(data)
         }
       )
