@@ -38,7 +38,7 @@
                     暂不修改
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" text @click="dialog = false ">
+                  <v-btn color="primary" text @click="dialog = false">
                     确认修改
                   </v-btn>
                 </v-card-actions>
@@ -98,7 +98,7 @@
   </v-container>
 </template>
 
-<script >
+<script>
 import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
 import { of } from "rxjs";
@@ -124,8 +124,18 @@ export default {
   },
   methods: {
     upuserdata() {
-      console.log()
-    }
+      console.log();
+    },
+    // 给定于的循环数组定值
+    suzufunction() {
+     this.useritems = [
+          { name: "姓名", data: null },
+          { name: "手机", data: null },
+          { name: "邮箱", data: null },
+          { name: "位置", data: null },
+          { name: "公司", data: null },
+        ];
+    },
   },
 
   created() {
@@ -144,6 +154,7 @@ export default {
       console.log("account.vue 进入别的user主页");
     } else {
     }
+    this.suzufunction()
     var authkeyToken = store.state.login.idtoken;
     authServies
       .asyncjiexiJwtDecjeck(authkeyToken)
@@ -173,6 +184,7 @@ export default {
         this.startdate = data.startdate;
         this.companyname = data.companyname;
       });
+    (err) => {};
   },
 };
 </script>
