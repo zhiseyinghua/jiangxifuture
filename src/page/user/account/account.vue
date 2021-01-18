@@ -38,7 +38,7 @@
                     暂不修改
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" text @click="dialog = false">
+                  <v-btn color="primary" text @click="dialog = false ">
                     确认修改
                   </v-btn>
                 </v-card-actions>
@@ -124,77 +124,55 @@ export default {
   },
   methods: {
     upuserdata() {
-      var authkeyToken = store.state.login.idtoken;
-      authServies
-        .asyncjiexiJwtDecjeck(authkeyToken)
-        .pipe(
-          switchMap((data) => {
-            return accountserves.byuseridgetUserDate({
-              hash: data.hash,
-              range: data.range,
-              index: data.index,
-            });
-          })
-        )
-        .subscribe((data) => {
-          this.useritems = [
-            { name: "姓名", data: data.usernickname },
-            { name: "手机", data: data.telephone },
-            { name: "邮箱", data: data.usermail },
-            { name: "位置", data: data.position },
-            { name: "公司", data: data.companyname },
-          ];
-          
-          console.log(this.companyname);
-        });
+      console.log()
     }
   },
 
   created() {
-    // if (this.$route.path === "/user") {
-    //   this.changeShow();
-    // }
-    // console.log(this['$route'].query);
-    // let authdata = authServies.jiexiJwtDecjeck(store.state.login.idtoken);
-    // console.log("11111111111111", this, router.app.$route.query);
-    // let storeRange = authdata.range;
-    // let routeRange = router.app.$route.query;
-    // console.log("1111111111111", storeRange, routeRange);
-    // if (storeRange == routeRange) {
-    //   console.log("account.vue 进入了自己的user页面");
-    // } else if (storeRange !== routeRange) {
-    //   console.log("account.vue 进入别的user主页");
-    // } else {
-    // }
+    if (this.$route.path === "/user") {
+      this.changeShow();
+    }
+    console.log(this.$route.query);
+    let authdata = authServies.jiexiJwtDecjeck(store.state.login.idtoken);
+    console.log("11111111111111", this, router.app.$route.query);
+    let storeRange = authdata.range;
+    let routeRange = router.app.$route.query;
+    console.log("1111111111111", storeRange, routeRange);
+    if (storeRange == routeRange) {
+      console.log("account.vue 进入了自己的user页面");
+    } else if (storeRange !== routeRange) {
+      console.log("account.vue 进入别的user主页");
+    } else {
+    }
     var authkeyToken = store.state.login.idtoken;
-    // authServies
-    //   .asyncjiexiJwtDecjeck(authkeyToken)
-    //   .pipe(
-    //     switchMap((data) => {
-    //       return accountserves.byuseridgetUserDate({
-    //         hash: data.hash,
-    //         range: data.range,
-    //         index: data.index,
-    //       });
-    //     })
-    //   )
-    //   .subscribe((data) => {
-    //     this.useritems = [
-    //       { name: "姓名", data: data.usernickname },
-    //       { name: "手机", data: data.telephone },
-    //       { name: "邮箱", data: data.usermail },
-    //       { name: "位置", data: data.position },
-    //       { name: "公司", data: data.companyname },
-    //     ];
+    authServies
+      .asyncjiexiJwtDecjeck(authkeyToken)
+      .pipe(
+        switchMap((data) => {
+          return accountserves.byuseridgetUserDate({
+            hash: data.hash,
+            range: data.range,
+            index: data.index,
+          });
+        })
+      )
+      .subscribe((data) => {
+        this.useritems = [
+          { name: "姓名", data: data.usernickname },
+          { name: "手机", data: data.telephone },
+          { name: "邮箱", data: data.usermail },
+          { name: "位置", data: data.position },
+          { name: "公司", data: data.companyname },
+        ];
 
-    //     this.usernickname = data.usernickname;
-    //     this.telephone = data.telephone;
-    //     this.usermail = data.usermail;
-    //     this.userico = data.userico;
-    //     this.position = data.position;
-    //     this.startdate = data.startdate;
-    //     this.companyname = data.companyname;
-    //   });
+        this.usernickname = data.usernickname;
+        this.telephone = data.telephone;
+        this.usermail = data.usermail;
+        this.userico = data.userico;
+        this.position = data.position;
+        this.startdate = data.startdate;
+        this.companyname = data.companyname;
+      });
   },
 };
 </script>
