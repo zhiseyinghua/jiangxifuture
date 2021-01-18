@@ -21,7 +21,7 @@ const router = new Router({
     home,
     news,
     // auth,
-    // login,
+    login,
     solution,
     // test,
     // user,
@@ -29,6 +29,7 @@ const router = new Router({
     newsDetail,
     taskSystems,
     order,
+    aboutUs,
     // {
     //   path:"/",
     //   redirect:'/home'
