@@ -105,6 +105,7 @@ import { BaceUserdata, EditUserData } from "../user.interface";
 import store from "@/store";
 import router from "@/router";
 import Bus from "@/common/bus";
+import Moment from "moment"
 
 export default {
   data() {
@@ -196,8 +197,8 @@ export default {
     } else {
       this.isAdmain = false;
     }
-    console.warn("authdata", authdata);
-    console.log("11111111111111", this, router.app.$route.query);
+    this.startdate = Moment(authdata.timestamp).format("L")
+    console.log(this.startdate)
     let storeRange = authdata.range;
     let routeRange = router.app.$route.query;
     console.log("1111111111111", storeRange, routeRange);
@@ -235,7 +236,6 @@ export default {
         this.usermail = data.usermail;
         this.userico = data.userico;
         this.position = data.position;
-        this.startdate = data.startdate;
         this.companyname = data.companyname;
       });
     (err) => {};
