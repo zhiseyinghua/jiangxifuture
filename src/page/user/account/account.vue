@@ -124,7 +124,8 @@ export default {
   },
   methods: {
     upuserdata() {
-      console.log('修改基本信息');
+      // console.log('修改基本信息');
+      
     },
     // 给定于的循环数组定值
     suzufunction() {
