@@ -4,86 +4,99 @@
     <v-row no-gutters>
       <v-col md="6" sm="8" cols="11" offset-md="3" offset-sm="2">
         <!-- 信息框 -->
-          <v-card-actions>
-            <v-card-title headline grey lighten-5>基本信息</v-card-title>
-            <v-spacer></v-spacer>
-            <!-- 修改框弹窗 -->
-            <v-dialog v-model="dialog" width="500">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                  <v-icon>mdi-account-edit-outline</v-icon>
-                </v-btn>
-              </template>
-              <v-card>
-                <v-card-title class="headline grey lighten-5">
-                  修改基本信息</v-card-title
-                >
-                <v-card class="ma-10" flat>
-                  <div v-for="(user, i) in useritems" :key="i">
-                    <v-text-field
-                      :label="user.name"
-                      outlined
-                      clearable
-                      dense
-                      v-model="user.data"
-                    >
-                    </v-text-field>
-                  </div>
-                </v-card>
-                <v-divider></v-divider>
-                <v-card-actions>
-                  <v-btn color="primary" text @click="dialog = false">
-                    暂不修改
-                  </v-btn>
-                  <v-spacer></v-spacer>
-                  <v-btn color="primary" text @click="upuserdata()">
-                    确认修改
-                  </v-btn>
-                </v-card-actions>
+        <v-card-actions>
+          <v-card-title headline grey lighten-5>基本信息</v-card-title>
+          <v-spacer></v-spacer>
+          <!-- 修改框弹窗 -->
+          <v-dialog v-model="dialog" width="500">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on">
+                <v-icon>mdi-account-edit-outline</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline grey lighten-5">
+                修改基本信息</v-card-title
+              >
+              <v-card class="ma-10" flat>
+                <div v-for="(user, i) in useritems" :key="i">
+                  <v-text-field
+                    :label="user.name"
+                    outlined
+                    clearable
+                    dense
+                    v-model="user.data"
+                  >
+                  </v-text-field>
+                </div>
               </v-card>
-            </v-dialog>
-          </v-card-actions>
-          <v-divider class="mx-6 "></v-divider>
-          <v-card-actions class="justify-start mt-12 mx-16">
-            <v-btn icon x-large>
-              <v-avatar  size="100">
-                <img
-                  src="https://cdn.vuetifyjs.com/images/john.jpg"
-                  alt="John"
-                />
-              </v-avatar> 
-            </v-btn>
-          </v-card-actions>
-          <v-row class="mx-5 mt-1">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text> 昵称 </v-card-text>
-              <v-card-text> {{ usernickname }} </v-card-text>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text class="pt-0"> 邮箱 </v-card-text>
-              <v-card-text class="pt-0"> {{ usermail }} </v-card-text>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text class="pt-0"> 位置 </v-card-text>
-              <v-card-text class="pt-0"> {{ position }} </v-card-text>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text class="pt-0"> 公司 </v-card-text>
-              <v-card-text class="pt-0"> {{ companyname }} </v-card-text>
-            </v-col>
-          </v-row>
-          <v-row class="mx-5">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text class="pt-0"> 注册时间 </v-card-text>
-              <v-card-text class="pt-0"> {{ startdate }} </v-card-text>
-            </v-col>
-          </v-row>
+              <v-divider></v-divider>
+              <v-card-actions>
+                <v-btn color="primary" text @click="dialog = false">
+                  暂不修改
+                </v-btn>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="upuserdata()">
+                  确认修改
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </v-card-actions>
+        <v-divider class="mx-6 "></v-divider>
+        <v-card-actions class="justify-start ">
+          <!-- <v-btn>
+            <v-avatar size="100">
+              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+            </v-avatar>
+          </v-btn> -->
+          <v-card-title>
+            <v-avatar size="100">
+              <img
+                alt="user"
+                src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
+              />
+            </v-avatar>
+            <v-row class="mt-3">
+              <v-col>
+                <p class="ml-6 ">
+                  {{ usernickname }}
+                </p>
+                <v-chip v-show="!isAdmain" class="ml-6 ">
+                 管理员
+                </v-chip>
+                 <v-chip v-show="isAdmain" class="ml-4">
+                 普通用户
+                </v-chip>
+              </v-col>
+            </v-row>
+          </v-card-title>
+        </v-card-actions>
+
+        <v-row class="mx-1">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 邮箱 </v-card-text>
+            <v-card-text class="pt-0"> {{ usermail }} </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row class="mx-1">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 位置 </v-card-text>
+            <v-card-text class="pt-0"> {{ position }} </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row class="mx-1">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 公司 </v-card-text>
+            <v-card-text class="pt-0"> {{ companyname }} </v-card-text>
+          </v-col>
+        </v-row>
+        <v-row class="mx-1">
+          <v-col class="d-flex mt-2 pt-0" cols="8">
+            <v-card-text class="pt-0"> 注册时间 </v-card-text>
+            <v-card-text class="pt-0"> {{ startdate }} </v-card-text>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
@@ -112,6 +125,7 @@ export default {
       companyname: "",
       dialog: false,
       useritems: [{}],
+      isAdmain:false
     };
   },
   methods: {
@@ -151,7 +165,7 @@ export default {
             errorsnackbar: true,
             top: true,
           });
-        }else {
+        } else {
           Bus.$emit("snackbar", {
             text: "服务器错误",
             color: "pink",
@@ -181,6 +195,13 @@ export default {
     }
     console.log(this.$route.query);
     let authdata = authServies.jiexiJwtDecjeck(store.state.login.idtoken);
+    // 判断用户是否是管理员
+    if(authdata.role = 'admin'){
+      this.isAdmain = true
+    } else {
+      this.isAdmain = false
+    }
+    console.warn('authdata',authdata);
     console.log("11111111111111", this, router.app.$route.query);
     let storeRange = authdata.range;
     let routeRange = router.app.$route.query;
