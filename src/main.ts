@@ -8,7 +8,7 @@ import authServies from "./page/auth/auth.servies";
 import VueAxios from "vue-axios";
 import axios from "./https";
 import { AxiosElasticService } from "./common/fromaxios";
-import VueAMap from "vue-amap";
+import VueAMap from "vue-amap"
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   // 高德的key
