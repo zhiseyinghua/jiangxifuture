@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <overlay></overlay>
+    <overlay style="z-index:500"></overlay>
     <tabbar v-if="$store.state.isShow"></tabbar>
     <slidebar></slidebar>
     <v-main>

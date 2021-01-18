@@ -1,7 +1,7 @@
 import { CommonInterfaceElact } from "@/common/common.interface";
 import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 import { UserConfig } from "../user.config";
 import { EditUserData } from "../user.interface";
 
@@ -30,7 +30,8 @@ export default class Accountserves{
       map((data)=>{
         // console.error('Accountserves data upUserDate',data)
         return data['data']
-      })
+      }),
+      delay(2000)
     )
   }
 }

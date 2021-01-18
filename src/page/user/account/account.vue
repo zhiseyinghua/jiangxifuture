@@ -10,7 +10,7 @@
             <v-card-title headline grey lighten-5>基本信息</v-card-title>
             <v-spacer></v-spacer>
             <!-- 修改框弹窗 -->
-            <v-dialog v-model="dialog" width="500">
+            <v-dialog  v-model="dialog" width="500">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn icon v-bind="attrs" v-on="on">
                   <v-icon>mdi-account-edit-outline</v-icon>
@@ -106,6 +106,7 @@ import accountserves from "./account.serves";
 import { BaceUserdata, EditUserData } from "../user.interface";
 import store from "@/store";
 import router from "@/router";
+import Bus from "@/common/bus";
 
 export default {
   data() {
@@ -124,6 +125,7 @@ export default {
   },
   methods: {
     upuserdata() {
+      
       // console.log('修改基本信息');
       let userdata = {
         usernickname: this.useritems[0].data,
@@ -134,13 +136,15 @@ export default {
         startdate: this.startdate,
         companyname: this.useritems[4].data,
       };
-      console.log(this.useritems)
-      // accountserves.upUserDate(userdata).subscribe(
-      //   data=>{
-      //     // location.reload();
-      //     console.log(data)
-      //   }
-      // )
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
+      accountserves.upUserDate(userdata).subscribe((data) => {
+        if (data.range) {
+        }
+        // location.reload();
+        console.log(data);
+      });
     },
     // 给定于的循环数组定值
     suzufunction() {
