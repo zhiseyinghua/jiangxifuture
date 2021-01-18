@@ -38,7 +38,7 @@
                     暂不修改
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" text @click="dialog = false">
+                  <v-btn color="primary" text @click="upuserdata()">
                     确认修改
                   </v-btn>
                 </v-card-actions>
@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     upuserdata() {
-      console.log();
+      console.log('修改基本信息');
     },
     // 给定于的循环数组定值
     suzufunction() {
