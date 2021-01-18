@@ -102,7 +102,7 @@
 import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
 import { of } from "rxjs";
-import accountserves from "./account.serve";
+import accountserves from "./account.serves";
 import { BaceUserdata, EditUserData } from "../user.interface";
 import store from "@/store";
 import router from "@/router";
@@ -125,17 +125,30 @@ export default {
   methods: {
     upuserdata() {
       // console.log('修改基本信息');
-      
+      let a = {
+        usernickname: "123456789",
+        telephone: "184d134533",
+        usermail: "3534dsdsm",
+        userico: "uso",
+        position: "string",
+        startdate: "date",
+        companyname: "1",
+      };
+      accountserves.upUserDate(a).subscribe(
+        data=>{
+          console.log(data)
+        }
+      )
     },
     // 给定于的循环数组定值
     suzufunction() {
-     this.useritems = [
-          { name: "姓名", data: null },
-          { name: "手机", data: null },
-          { name: "邮箱", data: null },
-          { name: "位置", data: null },
-          { name: "公司", data: null },
-        ];
+      this.useritems = [
+        { name: "姓名", data: null },
+        { name: "手机", data: null },
+        { name: "邮箱", data: null },
+        { name: "位置", data: null },
+        { name: "公司", data: null },
+      ];
     },
   },
 
@@ -155,7 +168,7 @@ export default {
       console.log("account.vue 进入别的user主页");
     } else {
     }
-    this.suzufunction()
+    this.suzufunction();
     var authkeyToken = store.state.login.idtoken;
     authServies
       .asyncjiexiJwtDecjeck(authkeyToken)
