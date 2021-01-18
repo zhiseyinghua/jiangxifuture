@@ -2,6 +2,7 @@
   <div>
     <v-btn @click="goutouser">进入别人页面</v-btn>
     <v-btn @click="goutouserziji">进入自己页面</v-btn>
+     <router-view />
   </div>
 </template>
 <script>
@@ -41,24 +42,24 @@ export default {
       this.imgPreview(this.picValue);
     },
 
-    // goutouser() {
-    //   console.log("进入user");
-    //   this.$router.push({
-    //     path: "user/account",
-    //     query: { hash: "1", range: "1", index: "1" },
-    //   });
-    // },
-    // goutouserziji() {
-    //   console.log("进入user");
-    //   this.$router.push({
-    //     path: "user/account",
-    //     query: {
-    //       hash: "auth-2020-12-24",
-    //       range: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
-    //       index: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
-    //     },
-    //   });
-    // }
+    goutouser() {
+      console.log("进入user");
+      this.$router.push({
+        path: "user/account",
+        query: { hash: "1", range: "1", index: "1" },
+      });
+    },
+    goutouserziji() {
+      console.log("进入user");
+      this.$router.push({
+        path: "user/account",
+        query: {
+          hash: "auth-2020-12-24",
+          range: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
+          index: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
+        },
+      });
+    }
   },
 };
 </script>
