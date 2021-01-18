@@ -207,7 +207,7 @@ export default {
           (error) => {
             Bus.$emit("snackbar", {
               text: "验证码发送错误，请重新发送",
-              color: "green",
+              color: "pink",
               timeout: 2000,
               errorsnackbar: true,
               top: true,
