@@ -44,12 +44,7 @@
           </v-dialog>
         </v-card-actions>
         <v-divider class="mx-6 "></v-divider>
-        <v-card-actions class="justify-start ">
-          <!-- <v-btn>
-            <v-avatar size="100">
-              <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-            </v-avatar>
-          </v-btn> -->
+        <v-card-actions class="justify-start mt-4">
           <v-card-title>
             <v-avatar size="100">
               <img
@@ -57,22 +52,21 @@
                 src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
               />
             </v-avatar>
-            <v-row class="mt-3">
+            <v-row>
               <v-col>
                 <p class="ml-6 ">
                   {{ usernickname }}
                 </p>
                 <v-chip v-show="!isAdmain" class="ml-6 ">
-                 管理员
+                  管理员
                 </v-chip>
-                 <v-chip v-show="isAdmain" class="ml-4">
-                 普通用户
+                <v-chip v-show="isAdmain" class="ml-4">
+                  普通用户
                 </v-chip>
               </v-col>
             </v-row>
           </v-card-title>
         </v-card-actions>
-
         <v-row class="mx-1">
           <v-col class="d-flex mt-2 pt-0" cols="8">
             <v-card-text class="pt-0"> 邮箱 </v-card-text>
@@ -125,7 +119,7 @@ export default {
       companyname: "",
       dialog: false,
       useritems: [{}],
-      isAdmain:false
+      isAdmain: false,
     };
   },
   methods: {
@@ -148,7 +142,6 @@ export default {
           overlayvalue: false,
         });
         if (data.range) {
-          this.dialog = false;
           Bus.$emit("snackbar", {
             text: "修改成功",
             color: "green",
@@ -156,7 +149,9 @@ export default {
             errorsnackbar: true,
             top: true,
           });
-          location.reload();
+          this.dialog = false;
+          // location.reload();
+          this.$router.go(0)
         } else if ((data.code = "000116")) {
           Bus.$emit("snackbar", {
             text: "没有修改任何信息，请认真填写",
@@ -196,12 +191,12 @@ export default {
     console.log(this.$route.query);
     let authdata = authServies.jiexiJwtDecjeck(store.state.login.idtoken);
     // 判断用户是否是管理员
-    if(authdata.role = 'admin'){
-      this.isAdmain = true
+    if ((authdata.role = "admin")) {
+      this.isAdmain = true;
     } else {
-      this.isAdmain = false
+      this.isAdmain = false;
     }
-    console.warn('authdata',authdata);
+    console.warn("authdata", authdata);
     console.log("11111111111111", this, router.app.$route.query);
     let storeRange = authdata.range;
     let routeRange = router.app.$route.query;
