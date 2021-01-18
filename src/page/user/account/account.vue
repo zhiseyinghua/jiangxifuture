@@ -2,10 +2,8 @@
   <v-container>
     <!-- 页面排版 -->
     <v-row no-gutters>
-      <v-col cols="auto"></v-col>
       <v-col md="6" sm="8" cols="11" offset-md="3" offset-sm="2">
         <!-- 信息框 -->
-        <v-card>
           <v-card-actions>
             <v-card-title headline grey lighten-5>基本信息</v-card-title>
             <v-spacer></v-spacer>
@@ -45,55 +43,47 @@
               </v-card>
             </v-dialog>
           </v-card-actions>
-          <v-divider class="mx-6"></v-divider>
-          <v-card-actions class="justify-start mt-12">
+          <v-divider class="mx-6 "></v-divider>
+          <v-card-actions class="justify-start mt-12 mx-16">
             <v-btn icon x-large>
-              <v-avatar size="100">
+              <v-avatar  size="100">
                 <img
                   src="https://cdn.vuetifyjs.com/images/john.jpg"
                   alt="John"
                 />
-              </v-avatar>
-               
+              </v-avatar> 
             </v-btn>
           </v-card-actions>
-          <v-row class="mx-16 mt-1">
+          <v-row class="mx-5 mt-1">
             <v-col class="d-flex mt-2 pt-0" cols="8">
               <v-card-text> 昵称 </v-card-text>
               <v-card-text> {{ usernickname }} </v-card-text>
             </v-col>
           </v-row>
-          <v-row class="mx-16">
-            <v-col class="d-flex mt-2 pt-0" cols="8">
-              <v-card-text class="pt-0"> 登陆密码 </v-card-text>
-              <v-card-text class="pt-0"> *** </v-card-text>
-            </v-col>
-          </v-row>
-          <v-row class="mx-16">
+          <v-row class="mx-5">
             <v-col class="d-flex mt-2 pt-0" cols="8">
               <v-card-text class="pt-0"> 邮箱 </v-card-text>
               <v-card-text class="pt-0"> {{ usermail }} </v-card-text>
             </v-col>
           </v-row>
-          <v-row class="mx-16">
+          <v-row class="mx-5">
             <v-col class="d-flex mt-2 pt-0" cols="8">
               <v-card-text class="pt-0"> 位置 </v-card-text>
               <v-card-text class="pt-0"> {{ position }} </v-card-text>
             </v-col>
           </v-row>
-          <v-row class="mx-16">
+          <v-row class="mx-5">
             <v-col class="d-flex mt-2 pt-0" cols="8">
               <v-card-text class="pt-0"> 公司 </v-card-text>
               <v-card-text class="pt-0"> {{ companyname }} </v-card-text>
             </v-col>
           </v-row>
-          <v-row class="mx-16">
+          <v-row class="mx-5">
             <v-col class="d-flex mt-2 pt-0" cols="8">
               <v-card-text class="pt-0"> 注册时间 </v-card-text>
               <v-card-text class="pt-0"> {{ startdate }} </v-card-text>
             </v-col>
           </v-row>
-        </v-card>
       </v-col>
     </v-row>
   </v-container>
