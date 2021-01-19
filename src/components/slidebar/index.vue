@@ -8,10 +8,13 @@
     v-model="$store.state.drawer"
   >
     <v-list nav dense>
-      <v-list-item-group
-        active-class="deep-purple--text text--accent-4"
-      >
-        <v-list-item v-for="(item, i) in tabList" :key="i" :to="item.link" @click="handleChangeDrawer">
+      <v-list-item-group active-class="deep-purple--text text--accent-4">
+        <v-list-item
+          v-for="(item, i) in tabList"
+          :key="i"
+          :to="item.link"
+          @click="handleChangeDrawer"
+        >
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list-item-group>
@@ -35,6 +38,6 @@ export default {
     handleChangeDrawer() {
       this.$store.commit("changeDrawer");
     },
-  }
+  },
 };
 </script>
