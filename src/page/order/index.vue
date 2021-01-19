@@ -90,8 +90,11 @@
                 ></v-text-field>
                 <v-dialog v-model="mapdialog" max-width="800">
                   <template>
-                    <v-row class="justify-center">
-                      <v-col>
+                    <p class="mt-5 ml-15" >
+                      请在下面地图上选择地址并确定
+                    </p>
+                    <v-row class="justify-center  ">
+                      <v-col md="6">
                         <div>
                           <!-- <input  type="text" v-model="address" /> -->
                           <v-text-field
@@ -100,9 +103,9 @@
                           ></v-text-field>
                         </div>
                       </v-col>
-                      <v-col>
-                        <div>
-                          <v-btn>确定</v-btn>
+                      <v-col md="4">
+                        <div class="mt-4">
+                          <v-btn>确定地址</v-btn>
                         </div>
                       </v-col>
                     </v-row>
