@@ -12,7 +12,6 @@
     </div>
   </div>
 </template>
-<script src="http://webapi.amap.com/maps?v...;key=*&plugin=AMap.Geocoder"></script>
 <script>
     module.exports = {
       data: function() {
