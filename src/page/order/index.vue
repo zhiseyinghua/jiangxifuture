@@ -88,7 +88,13 @@
                   prepend-icon="mdi-map-marker"
                   v-model="localPlace"
                 ></v-text-field>
+                <v-dialog v-model="mapdialog">
+                  <template>
+                    <p>123456</p>
+                  </template>
+                </v-dialog>
               </v-col>
+
               <v-col cols="12">
                 <v-radio-group v-model="type" row dense class="mt-0">
                   <v-icon class="mr-2">mdi-ruler</v-icon>
@@ -154,7 +160,10 @@
           <v-responsive class="mx-auto" max-width="400">
             <v-btn color="primary" @click="handleSubmit"> 提交 </v-btn>
             <v-btn text @click="el = 1" class="grey lighten-2"> 返回 </v-btn>
-            <v-btn class="red accent-4 white--text float-right" @click="handleReset">
+            <v-btn
+              class="red accent-4 white--text float-right"
+              @click="handleReset"
+            >
               重置
             </v-btn>
           </v-responsive>
@@ -168,6 +177,9 @@
 export default {
   data() {
     return {
+      // 地图的弹窗
+      mapdialog: false,
+
       // valid: true,
       el: 2, //步骤序号
       //甲方信息
@@ -232,7 +244,8 @@ export default {
   },
   methods: {
     lbsamapfun() {
-      console.log(123)
+      console.log(123);
+      this.mapdialog = true
     },
     handleNextStep() {
       this.formHasErrors = false;
@@ -249,17 +262,17 @@ export default {
       this.formHasErrors = false;
       Object.keys(this.projectInfo).forEach((f) => {
         if (!this.$refs[f].validate()) this.formHasErrors = true;
-        if(!this.type) this.formHasErrors = true;
+        if (!this.type) this.formHasErrors = true;
         this.$refs[f].validate(true);
-        if(!this.formHasErrors) {
-          console.log("submit")
+        if (!this.formHasErrors) {
+          console.log("submit");
         }
       });
     },
     //表单重置
     handleReset() {
       this.errorMessages = [];
-      this.formHasErrors = false; 
+      this.formHasErrors = false;
       Object.keys(this.clientInfo).forEach((f) => {
         this.$refs[f].reset();
       });
