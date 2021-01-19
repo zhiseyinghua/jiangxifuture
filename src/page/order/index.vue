@@ -82,6 +82,7 @@
                   outlined
                   dense
                   label="地点"
+                  @click="lbsamapfun()"
                   :rules="localPlaceRules"
                   clearable
                   prepend-icon="mdi-map-marker"
@@ -168,7 +169,7 @@ export default {
   data() {
     return {
       // valid: true,
-      el: 1, //步骤序号
+      el: 2, //步骤序号
       //甲方信息
       name: "", //姓名
       phone: "", //电话
@@ -230,6 +231,9 @@ export default {
     },
   },
   methods: {
+    lbsamapfun() {
+      console.log(123)
+    },
     handleNextStep() {
       this.formHasErrors = false;
       Object.keys(this.clientInfo).forEach((f) => {
