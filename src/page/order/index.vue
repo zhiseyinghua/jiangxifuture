@@ -90,12 +90,28 @@
                 ></v-text-field>
                 <v-dialog v-model="mapdialog">
                   <template>
-                     <div style="background-color:white">
-                       <div class="toolbar">
-                        position: [{{ lng }}, {{ lat }}] address: {{ address }}
-                      </div>
-                     </div>
-                    <div style="height:600px" class="amap-page-container">
+                    <!-- <div style="height:500px;width: 400px"> -->
+                    <v-row
+                      style="background-color:white"
+                      class="justify-center"
+                    >
+                      <v-col>
+                        <div>
+                          <!-- <input  type="text" v-model="address" /> -->
+                          <v-text-field
+                            label="地址"
+                            v-model="address"
+                          ></v-text-field>
+                        </div>
+                      </v-col>
+                      <v-col>
+                        <div>
+                          <v-btn>确定</v-btn>
+                        </div>
+                      </v-col>
+                    </v-row>
+
+                    <div class="amap-page-container">
                       <el-amap
                         vid="amapDemo"
                         :zoom="zoom"
@@ -103,8 +119,8 @@
                         :events="events"
                       >
                       </el-amap>
-                     
                     </div>
+                    <!-- </div> -->
                   </template>
                 </v-dialog>
               </v-col>
