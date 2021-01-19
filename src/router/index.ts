@@ -30,7 +30,7 @@ const router = new Router({
     // newsDetail,
     taskSystems,
     order,
-    aboutUs,
+    // aboutUs,
     // {
     //   path:"/",
     //   redirect:'/user'
