@@ -88,13 +88,9 @@
                   prepend-icon="mdi-map-marker"
                   v-model="localPlace"
                 ></v-text-field>
-                <v-dialog v-model="mapdialog">
+                <v-dialog v-model="mapdialog" max-width="800">
                   <template>
-                    <!-- <div style="height:500px;width: 400px"> -->
-                    <v-row
-                      style="background-color:white"
-                      class="justify-center"
-                    >
+                    <v-row class="justify-center">
                       <v-col>
                         <div>
                           <!-- <input  type="text" v-model="address" /> -->
@@ -111,7 +107,7 @@
                       </v-col>
                     </v-row>
 
-                    <div class="amap-page-container">
+                    <div style="height:800px;" class="amap-page-container">
                       <el-amap
                         vid="amapDemo"
                         :zoom="zoom"
@@ -120,7 +116,6 @@
                       >
                       </el-amap>
                     </div>
-                    <!-- </div> -->
                   </template>
                 </v-dialog>
               </v-col>
@@ -349,3 +344,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.v-dialog {
+  background-color: white;
+}
+</style>
