@@ -8,34 +8,6 @@ import authServies from "./page/auth/auth.servies";
 import VueAxios from "vue-axios";
 import axios from "./https";
 import { AxiosElasticService } from "./common/fromaxios";
-import VueAMap from "vue-amap"
-Vue.use(VueAMap);
-VueAMap.initAMapApiLoader({
-  // 高德的key
-  key: "YOUR_KEY",
-  // 插件集合
-  plugin: [
-    "AMap.Autocomplete",
-    "AMap.PlaceSearch",
-    "AMap.Scale",
-    "AMap.OverView",
-    "AMap.ToolBar",
-    "AMap.MapType",
-    "AMap.PolyEditor",
-    "AMap.CircleEditor",
-  ],
-  // 高德 sdk 版本，默认为 1.4.4
-  v: "1.4.4",
-});
-// import VueSocketIO from "vue-socket.io";
-// Vue.use(
-//   new VueSocketIO({
-//     debug: true,
-//     // 服务器端地址
-//     connection: "http://localhost:3000",
-//     vuex: {},
-//   })
-// );
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
