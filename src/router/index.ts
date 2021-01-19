@@ -18,21 +18,22 @@ Vue.use(Router);
 const router = new Router({
   // mode: 'history',
   routes: [
-    home,
-    news,
-    // auth,
+    // aboutUs,
+    // home,
+    // news,
+    auth,
     login,
-    solution,
-    // test,
-    // user,
-    // groupChat,
-    newsDetail,
+    // solution,
+    test,
+    user,
+    groupChat,
+    // newsDetail,
     taskSystems,
     order,
     aboutUs,
     // {
     //   path:"/",
-    //   redirect:'/home'
+    //   redirect:'/user'
     // },
     // {
     //   path:"*",

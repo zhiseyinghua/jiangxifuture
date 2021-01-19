@@ -25,21 +25,21 @@ export default {
     ...mapMutations(["changeShow"]),
   },
   created: function() {
-    if (this.$route.path === "/user") {
-      this.changeShow();
-    }
-    console.log(this.$route.query);
-    let authdata = authServies.jiexiJwtDecjeck(this.$store.state.login.idtoken);
+    // if (this.$route.path === "/user") {
+    //   this.changeShow();
+    // }
+    // console.log(this.$route.query);
+    // let authdata = authServies.jiexiJwtDecjeck(this.$store.state.login.idtoken);
     
-    let storeRange = authdata.range;
-    let routeRange = this.$route.query.range;
-    console.log('1111111111111',storeRange, routeRange)
-    if (storeRange == routeRange) {
-      console.log('user.vue 进入了自己的user页面');
-    } else if (storeRange !== routeRange) {
-      console.log('user.vue 进入别的user主页');
-    } else {
-    }
+    // let storeRange = authdata.range;
+    // let routeRange = this.$route.query.range;
+    // console.log('1111111111111',storeRange, routeRange)
+    // if (storeRange == routeRange) {
+    //   console.log('user.vue 进入了自己的user页面');
+    // } else if (storeRange !== routeRange) {
+    //   console.log('user.vue 进入别的user主页');
+    // } else {
+    // }
   },
   beforeDestroy: function() {
     this.changeShow();

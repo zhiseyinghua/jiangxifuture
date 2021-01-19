@@ -59,7 +59,6 @@ export default {
       JIM: null,
     };
   },
-  created() {},
   sockets: {
     addCart: function(data) {
       console.log(

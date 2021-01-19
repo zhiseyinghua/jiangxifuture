@@ -1,13 +1,16 @@
 <template>
   <v-container fluid>
     <v-card>
-      <v-img
-        src="https://img95.699pic.com/photo/40102/8199.jpg_wh300.jpg"
-        aspect-ratio="3"
-        class="grey lighten-2 d-flex align-center"
-      >
-        <v-row>
-          <v-col cols="12" sm="6" offset-sm="3">
+      <v-responsive width="100%" aspect-ratio="3" >
+        <v-img
+          :src="require('@/assets/home/news/5.jpg')"
+          class="grey lighten-2 d-flex align-center"
+          height="100%"
+          aspect-ratio="3"
+        >
+          <v-row>
+            <v-col cols="12" sm="6" offset-sm="3">
+              <!-- <v-responsive aspect-ratio="16"> -->
               <v-text-field
                 class="white"
                 flat
@@ -17,9 +20,11 @@
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
               ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-img>
+              <!-- </v-responsive> -->
+            </v-col>
+          </v-row>
+        </v-img>
+      </v-responsive>
     </v-card>
     <v-container>
       <v-row>
@@ -32,17 +37,18 @@
           </v-breadcrumbs>
         </v-col>
         <v-col cols="12" md="6">
-          <v-toolbar
-            dense
-            flat
-            class="d-flex justify-sm-space-between justify-md-end"
-            ><v-toolbar-title class="mr-md-5">
-              <v-btn> <v-icon>mdi-email-newsletter</v-icon>集团新闻 </v-btn>
+          <v-toolbar dense flat class="d-flex justify-sm-space-between justify-md-end">
+            <v-toolbar-title class="mr-md-5">
+              <v-btn>
+                <v-icon>mdi-email-newsletter</v-icon>集团新闻
+              </v-btn>
             </v-toolbar-title>
             <v-toolbar-title>
-              <v-btn> <v-icon>mdi-microphone-variant</v-icon>媒体报道 </v-btn>
-            </v-toolbar-title></v-toolbar
-          >
+              <v-btn>
+                <v-icon>mdi-microphone-variant</v-icon>媒体报道
+              </v-btn>
+            </v-toolbar-title>
+          </v-toolbar>
         </v-col>
       </v-row>
     </v-container>
@@ -71,16 +77,20 @@ export default {
       {
         text: "首页",
         disabled: false,
-        href: "home",
+        href: "news"
       },
       {
         text: "新闻中心",
         disabled: false,
-        href: "news",
+        href: "breadcrumbs_link_1"
       },
-    ],
-     page: 1,
+      {
+        text: "Link 2",
+        disabled: true,
+        href: "breadcrumbs_link_2"
+      }
+    ]
     // toggleExclusive: undefined,
-  }),
+  })
 };
 </script>
