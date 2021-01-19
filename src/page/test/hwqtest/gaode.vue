@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input v-model="lnglat"></input>
+    
 
     <div
       :id="id"
