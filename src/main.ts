@@ -8,7 +8,22 @@ import authServies from "./page/auth/auth.servies";
 import VueAxios from "vue-axios";
 import axios from "./https";
 import { AxiosElasticService } from "./common/fromaxios";
+// @ts-ignore
+import VueAMap from "vue-amap";
 
+Vue.use(VueAMap);
+
+VueAMap.initAMapApiLoader({
+  key: "b886fb12aa5e241d4af74e4fb90bee64&",
+  plugin: [
+    "AMap.Scale",
+    "AMap.OverView",
+    "AMap.ToolBar",
+    "AMap.MapType",
+    "AMap.Geocoder",
+  ],
+  v: "1.4.4",
+});
 Vue.config.productionTip = false;
 Vue.use(VueI18n);
 const i18n = new VueI18n({
