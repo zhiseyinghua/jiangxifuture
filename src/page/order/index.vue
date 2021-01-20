@@ -99,7 +99,7 @@
                           <!-- <input  type="text" v-model="address" /> -->
                           <v-text-field
                             label="地址"
-                            v-model="address"
+                            v-model="localPlace"
                           ></v-text-field>
                         </div>
                       </v-col>
@@ -230,7 +230,7 @@ export default {
             if (status === "complete" && result.info === "OK") {
               console.log(self.$nextTick());
               if (result && result.regeocode) {
-                self.address = result.regeocode.formattedAddress;
+                self.localPlace = result.regeocode.formattedAddress;
                 self.$nextTick();
               }
             }
@@ -308,7 +308,8 @@ export default {
   methods: {
     confirmAddress(){
       console.log('confirmAddress 确定地址')
-      console.log(this.address)
+      console.log(this.localPlace)
+      
       // this.mapdialog = false
     },
     lbsamapfun() {
