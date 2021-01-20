@@ -66,6 +66,17 @@
             <v-row dense>
               <v-col cols="12">
                 <v-text-field
+                  ref="orderName"
+                  outlined
+                  dense
+                  label="任务名称"
+                  clearable
+                  prepend-icon="mdi-map-marker"
+                  v-model="localPlace"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
                   ref="localPlace"
                   outlined
                   dense
@@ -250,7 +261,7 @@ export default {
 
       // 地图的弹窗
       mapdialog: false,
-
+      orderName:'',
       // valid: true,
       el: 1, //步骤序号
       //甲方信息
