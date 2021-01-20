@@ -129,7 +129,7 @@
                     <v-text-field
                       ref="estimatedTime"
                       v-model="estimatedTime"
-                      label="预估日期"
+                      label="预估完成时间"
                       prepend-icon="mdi-calendar"
                       readonly
                       dense
@@ -169,7 +169,11 @@
                   clearable
                   prepend-icon="mdi-map"
                   v-model="area"
-                ></v-text-field>
+                >
+                 <p class="mt-2" slot="append" color="green">
+                    ：平方米
+                  </p>
+                </v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
