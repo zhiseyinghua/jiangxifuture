@@ -306,11 +306,11 @@ export default {
     },
   },
   methods: {
+    /**
+     * 关闭地图弹窗
+     */
     confirmAddress(){
-      console.log('confirmAddress 确定地址')
-      console.log(this.localPlace)
-      
-      // this.mapdialog = false
+      this.mapdialog = false
     },
     lbsamapfun() {
       console.log(123);
