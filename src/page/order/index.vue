@@ -170,7 +170,7 @@
                   prepend-icon="mdi-map"
                   v-model="area"
                 >
-                 <p class="mt-2" slot="append" color="green">
+                  <p class="mt-2" slot="append" color="green">
                     ：平方米
                   </p>
                 </v-text-field>
@@ -252,7 +252,7 @@ export default {
       mapdialog: false,
 
       // valid: true,
-      el: 2, //步骤序号
+      el: 1, //步骤序号
       //甲方信息
       name: "", //姓名
       phone: "", //电话
@@ -326,25 +326,27 @@ export default {
     },
     handleNextStep() {
       this.formHasErrors = false;
-      Object.keys(this.clientInfo).forEach((f) => {
-        if (!this.$refs[f].validate()) this.formHasErrors = true;
-        this.$refs[f].validate(true);
-      });
-      if(!this.this.$refs[1].validate())
-      if (!this.formHasErrors) {
+      // Object.keys(this.clientInfo).forEach((f) => {
+      //   if (!this.$refs[f].validate()) this.formHasErrors = true;
+      //   this.$refs[f].validate(true);
+      // });
+      // if (!this.this.$refs[1].validate())
+      //   if (!this.formHasErrors) {
+      //     this.el = 2;
+      //   }
+      if (
+        this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
+        this.$refs[Object.keys(this.clientInfo)[1]].validate()
+      ) {
         this.el = 2;
+      } else {
+        //  TODO:
+        this.$refs[Object.keys(this.clientInfo)[0]].validate(true);
+        this.$refs[Object.keys(this.clientInfo)[1]].validate(true);
+        this.formHasErrors = false
+
+        console.log("条件没通过");
       }
-      // if (
-      //   this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
-      //   this.$refs[Object.keys(this.clientInfo)[1]].validate()
-      // ) {
-      //   this.el = 2;
-      // } else {
-      //   //  TODO:
-      //   this.formHasErrors = false
-        
-      //   console.log("条件没通过");
-      // }
     },
     //提交表单
     handleSubmit() {
@@ -358,9 +360,7 @@ export default {
           console.log("submit");
         }
       });
-      if (
-        this.$refs[Object.keys(this.projectInfo)[1]].validate()
-      ) {
+      if (this.$refs[Object.keys(this.projectInfo)[1]].validate()) {
         // TODO:
       } else {
         //  TODO:
