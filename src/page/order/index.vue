@@ -42,7 +42,7 @@
                   ref="email"
                   outlined
                   dense
-                  label="邮箱"
+                  label="*邮箱（选填）"
                   required
                   :rules="emailRules"
                   clearable
@@ -64,18 +64,6 @@
           <v-card flat class="my-4 mx-auto" max-width="400">
             <v-card-subtitle class="d-md-none">项目信息</v-card-subtitle>
             <v-row dense>
-              <v-col cols="12">
-                <v-text-field
-                  ref="technician"
-                  outlined
-                  dense
-                  label="技术员"
-                  :rules="technicianRules"
-                  clearable
-                  prepend-icon="mdi-account"
-                  v-model="technician"
-                ></v-text-field>
-              </v-col>
               <v-col cols="12">
                 <v-text-field
                   ref="localPlace"
@@ -176,11 +164,23 @@
                   ref="area"
                   outlined
                   dense
-                  label="面积"
+                  label="*面积（可选）"
                   :rules="areaRules"
                   clearable
                   prepend-icon="mdi-map"
                   v-model="area"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  ref="technician"
+                  outlined
+                  dense
+                  label="*预估费用（可选）"
+                  :rules="technicianRules"
+                  clearable
+                  prepend-icon="mdi-account"
+                  v-model="technician"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -269,7 +269,7 @@ export default {
       ],
       //邮箱
       emailRules: [
-        (v) => !!v || "必填",
+        (v) => !!v || "",
         (v) =>
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
@@ -318,17 +318,25 @@ export default {
     },
     handleNextStep() {
       this.formHasErrors = false;
-      Object.keys(this.clientInfo).forEach((f) => {
-        if (!this.$refs[f].validate()) this.formHasErrors = true;
-        this.$refs[f].validate(true);
-      });
-      if (!this.formHasErrors) {
-        this.el = 2;
+      // Object.keys(this.clientInfo).forEach((f) => {
+      //   if (!this.$refs[f].validate()) this.formHasErrors = true;
+      //   this.$refs[f].validate(true);
+      // });
+      // if(!this.this.$refs[1].validate())
+      // if (!this.formHasErrors) {
+      //   this.el = 2;
+      // }
+      if(this.$refs[Object.keys(this.clientInfo)[0]].validate() && this.$refs[Object.keys(this.clientInfo)[1]].validate()){
+         this.el = 2;
+      } else {
+        //  TODO:
+        console.log("条件没通过")
       }
     },
     //提交表单
     handleSubmit() {
-      this.formHasErrors = false;
+      console.log(this.formHasErrors)
+      // this.formHasErrors = false;
       Object.keys(this.projectInfo).forEach((f) => {
         if (!this.$refs[f].validate()) this.formHasErrors = true;
         if (!this.type) this.formHasErrors = true;
