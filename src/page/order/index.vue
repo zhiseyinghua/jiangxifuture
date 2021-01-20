@@ -308,7 +308,8 @@ export default {
   methods: {
     confirmAddress(){
       console.log('confirmAddress 确定地址')
-      this.mapdialog = false
+      console.log(this.address)
+      // this.mapdialog = false
     },
     lbsamapfun() {
       console.log(123);
