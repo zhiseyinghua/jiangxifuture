@@ -258,7 +258,7 @@ export default {
       phone: "", //电话
       email: "", //邮箱
       //项目信息
-      estimatedMoney: "", //预估时间
+      estimatedMoney: "", //预估金额
       localPlace: "", //地点
       type: "realEstateTest", //项目类型
       estimatedTime: "", //预估时间
@@ -326,23 +326,25 @@ export default {
     },
     handleNextStep() {
       this.formHasErrors = false;
-      // Object.keys(this.clientInfo).forEach((f) => {
-      //   if (!this.$refs[f].validate()) this.formHasErrors = true;
-      //   this.$refs[f].validate(true);
-      // });
-      // if(!this.this.$refs[1].validate())
-      // if (!this.formHasErrors) {
-      //   this.el = 2;
-      // }
-      if (
-        this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
-        this.$refs[Object.keys(this.clientInfo)[1]].validate()
-      ) {
+      Object.keys(this.clientInfo).forEach((f) => {
+        if (!this.$refs[f].validate()) this.formHasErrors = true;
+        this.$refs[f].validate(true);
+      });
+      if(!this.this.$refs[1].validate())
+      if (!this.formHasErrors) {
         this.el = 2;
-      } else {
-        //  TODO:
-        console.log("条件没通过");
       }
+      // if (
+      //   this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
+      //   this.$refs[Object.keys(this.clientInfo)[1]].validate()
+      // ) {
+      //   this.el = 2;
+      // } else {
+      //   //  TODO:
+      //   this.formHasErrors = false
+        
+      //   console.log("条件没通过");
+      // }
     },
     //提交表单
     handleSubmit() {
@@ -357,10 +359,9 @@ export default {
         }
       });
       if (
-        this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
-        this.$refs[Object.keys(this.clientInfo)[1]].validate()
+        this.$refs[Object.keys(this.projectInfo)[1]].validate()
       ) {
-        this.el = 2;
+        // TODO:
       } else {
         //  TODO:
         console.log("条件没通过");
