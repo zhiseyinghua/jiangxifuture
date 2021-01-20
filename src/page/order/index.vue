@@ -78,7 +78,7 @@
                 ></v-text-field>
                 <v-dialog v-model="mapdialog" max-width="800">
                   <template>
-                    <p class="mt-5 ml-15" >
+                    <p class="mt-5 ml-15">
                       请在下面地图上选择地址并确定
                     </p>
                     <v-row class="justify-center  ">
@@ -181,7 +181,11 @@
                   clearable
                   prepend-icon="mdi-account"
                   v-model="estimatedMoney"
-                ></v-text-field>
+                >
+                  <p class="mt-2" slot="append" color="green">
+                    ：元
+                  </p></v-text-field
+                >
               </v-col>
             </v-row>
           </v-card>
@@ -275,8 +279,8 @@ export default {
             v
           ) || "格式错误",
       ],
-      //技术员
-      estimatedMoneyRules: [(v) => !!v || "必填"],
+      //预估费用
+      estimatedMoneyRules: [(v) => !!v || ""],
       //地点
       localPlaceRules: [(v) => !!v || "必填"],
       //类型
@@ -309,8 +313,8 @@ export default {
     /**
      * 关闭地图弹窗
      */
-    confirmAddress(){
-      this.mapdialog = false
+    confirmAddress() {
+      this.mapdialog = false;
     },
     lbsamapfun() {
       console.log(123);
@@ -326,16 +330,19 @@ export default {
       // if (!this.formHasErrors) {
       //   this.el = 2;
       // }
-      if(this.$refs[Object.keys(this.clientInfo)[0]].validate() && this.$refs[Object.keys(this.clientInfo)[1]].validate()){
-         this.el = 2;
+      if (
+        this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
+        this.$refs[Object.keys(this.clientInfo)[1]].validate()
+      ) {
+        this.el = 2;
       } else {
         //  TODO:
-        console.log("条件没通过")
+        console.log("条件没通过");
       }
     },
     //提交表单
     handleSubmit() {
-      console.log(this.formHasErrors)
+      console.log(this.formHasErrors);
       // this.formHasErrors = false;
       Object.keys(this.projectInfo).forEach((f) => {
         if (!this.$refs[f].validate()) this.formHasErrors = true;
@@ -345,11 +352,14 @@ export default {
           console.log("submit");
         }
       });
-      if(this.$refs[Object.keys(this.clientInfo)[0]].validate() && this.$refs[Object.keys(this.clientInfo)[1]].validate()){
-         this.el = 2;
+      if (
+        this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
+        this.$refs[Object.keys(this.clientInfo)[1]].validate()
+      ) {
+        this.el = 2;
       } else {
         //  TODO:
-        console.log("条件没通过")
+        console.log("条件没通过");
       }
     },
     //表单重置
