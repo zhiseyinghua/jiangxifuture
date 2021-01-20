@@ -173,14 +173,14 @@
               </v-col>
               <v-col cols="12">
                 <v-text-field
-                  ref="technician"
+                  ref="estimatedMoney"
                   outlined
                   dense
                   label="*预估费用（可选）"
-                  :rules="technicianRules"
+                  :rules="estimatedMoneyRules"
                   clearable
                   prepend-icon="mdi-account"
-                  v-model="technician"
+                  v-model="estimatedMoney"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -250,7 +250,7 @@ export default {
       phone: "", //电话
       email: "", //邮箱
       //项目信息
-      technician: "", //技术员
+      estimatedMoney: "", //预估时间
       localPlace: "", //地点
       type: "realEstateTest", //项目类型
       estimatedTime: "", //预估时间
@@ -276,7 +276,7 @@ export default {
           ) || "格式错误",
       ],
       //技术员
-      technicianRules: [(v) => !!v || "必填"],
+      estimatedMoneyRules: [(v) => !!v || "必填"],
       //地点
       localPlaceRules: [(v) => !!v || "必填"],
       //类型
@@ -298,7 +298,7 @@ export default {
     },
     projectInfo() {
       return {
-        technician: this.technician,
+        estimatedMoney: this.estimatedMoney,
         localPlace: this.localPlace,
         estimatedTime: this.estimatedTime,
         area: this.area,
@@ -345,6 +345,12 @@ export default {
           console.log("submit");
         }
       });
+      if(this.$refs[Object.keys(this.clientInfo)[0]].validate() && this.$refs[Object.keys(this.clientInfo)[1]].validate()){
+         this.el = 2;
+      } else {
+        //  TODO:
+        console.log("条件没通过")
+      }
     },
     //表单重置
     handleReset() {
