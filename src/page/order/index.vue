@@ -105,7 +105,7 @@
                       </v-col>
                       <v-col md="4">
                         <div class="mt-4">
-                          <v-btn>确定地址</v-btn>
+                          <v-btn @click="confirmAddress">确定地址</v-btn>
                         </div>
                       </v-col>
                     </v-row>
@@ -306,6 +306,10 @@ export default {
     },
   },
   methods: {
+    confirmAddress(){
+      console.log('confirmAddress 确定地址')
+      this.mapdialog = false
+    },
     lbsamapfun() {
       console.log(123);
       this.mapdialog = true;
