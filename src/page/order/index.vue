@@ -288,11 +288,11 @@ export default {
       //地点
       localPlaceRules: [(v) => !!v || "必填"],
       //类型
-      typeRules: [(v) => !!v || "必填"],
+      typeRules: [(v) => !!v || ""],
       //预估时间
-      estimatedTimeRules: [(v) => !!v || "必填"],
+      estimatedTimeRules: [(v) => !!v || ""],
       //面积
-      areaRules: [(v) => !!v || "必填", (v) => /^\d*$/.test(v) || "格式错误"],
+      areaRules: [(v) => !!v || "", (v) => /^\d*$/.test(v) || "格式错误"],
       modal: false,
     };
   },
@@ -344,7 +344,6 @@ export default {
         this.$refs[Object.keys(this.clientInfo)[0]].validate(true);
         this.$refs[Object.keys(this.clientInfo)[1]].validate(true);
         this.formHasErrors = false
-
         console.log("条件没通过");
       }
     },
@@ -352,18 +351,19 @@ export default {
     handleSubmit() {
       console.log(this.formHasErrors);
       // this.formHasErrors = false;
-      Object.keys(this.projectInfo).forEach((f) => {
-        if (!this.$refs[f].validate()) this.formHasErrors = true;
-        if (!this.type) this.formHasErrors = true;
-        this.$refs[f].validate(true);
-        if (!this.formHasErrors) {
-          console.log("submit");
-        }
-      });
+      // Object.keys(this.projectInfo).forEach((f) => {
+      //   if (!this.$refs[f].validate()) this.formHasErrors = true;
+      //   if (!this.type) this.formHasErrors = true;
+      //   this.$refs[f].validate(true);
+      //   if (!this.formHasErrors) {
+      //     console.log("submit");
+      //   }
+      // });
       if (this.$refs[Object.keys(this.projectInfo)[1]].validate()) {
         // TODO:
       } else {
         //  TODO:
+        this.$refs[Object.keys(this.projectInfo)[1]].validate(true);
         console.log("条件没通过");
       }
     },
