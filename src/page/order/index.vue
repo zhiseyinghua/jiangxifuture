@@ -222,6 +222,8 @@
 </template>
 
 <script>
+import { PutOrderOne } from "@/page/order/order.interface";
+import orderServe from "@/page/order/order.serves";
 export default {
   data() {
     let self = this;
@@ -376,7 +378,7 @@ export default {
       // });
       if (this.$refs[Object.keys(this.projectInfo)[1]].validate()) {
         // TODO: 向后端put一个order请求
-        this.putorder()
+        this.putorder();
       } else {
         this.$refs[Object.keys(this.projectInfo)[4]].validate(true);
         this.$refs[Object.keys(this.projectInfo)[1]].validate(true);
@@ -400,17 +402,48 @@ export default {
      * 向后端发请求的方法
      */
     putorder() {
-      console.log('lng',this.lng,'lat',this.lat)
-      console.log('orderName',this.orderName)
-      console.log('phone',this.phone)
-      console.log('email',this.email)
-      console.log('estimatedMoney',this.estimatedMoney)
-      console.log('localPlace',this.localPlace)
-      console.log('type',this.type)
-      console.log('estimatedTime',this.estimatedTime)
-      console.log('area',this.area)
-    }
+      authServies
+      .asyncjiexiJwtDecjeck(authkeyToken)
+      let authkey ={
 
+      }
+      let putorderdata = {
+        hash: "",
+        range: "",
+        index: "",
+        localPlace: {
+          lng: this.lng,
+          lat: this.lat,
+          local:this.localPlace,
+        },
+        type: this.type,
+        estimatedTime: this.estimatedTime,
+        area: this.area,
+        creatorkey: {
+          hash: "",
+          range: "",
+          index: "",
+        },
+        ordername: this.orderName,
+        estimatedMoney: this.estimatedMoney,
+        ONEinformation: {
+          phone:  this.phone,
+          email: this.email,
+          name: this.name,
+        },
+      };
+      console.log("lng", this.lng, "lat", this.lat);
+      console.log("orderName", this.orderName);
+      console.log("phone", this.phone);
+      console.log("email", this.email);
+      console.log("estimatedMoney", this.estimatedMoney);
+      console.log("localPlace", this.localPlace);
+      console.log("type", this.type);
+      console.log("estimatedTime", this.estimatedTime);
+      console.log("area", this.area);
+       console.log("area", this.name);
+      orderServe.putNewOrder(putorderdata);
+    },
   },
 };
 </script>
