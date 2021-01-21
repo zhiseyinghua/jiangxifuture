@@ -364,7 +364,6 @@ export default {
     },
     //提交表单
     handleSubmit() {
-      console.log(this.formHasErrors);
       this.formHasErrors = false;
       // this.formHasErrors = false;
       // Object.keys(this.projectInfo).forEach((f) => {
@@ -377,8 +376,8 @@ export default {
       // });
       if (this.$refs[Object.keys(this.projectInfo)[1]].validate()) {
         // TODO: 向后端put一个order请求
+        this.putorder()
       } else {
-        //  TODO:
         this.$refs[Object.keys(this.projectInfo)[4]].validate(true);
         this.$refs[Object.keys(this.projectInfo)[1]].validate(true);
         console.log("条件没通过");
@@ -401,7 +400,15 @@ export default {
      * 向后端发请求的方法
      */
     putorder() {
-
+      console.log('lng',this.lng,'lat',this.lat)
+      console.log('orderName',this.orderName)
+      console.log('phone',this.phone)
+      console.log('email',this.email)
+      console.log('estimatedMoney',this.estimatedMoney)
+      console.log('localPlace',this.localPlace)
+      console.log('type',this.type)
+      console.log('estimatedTime',this.estimatedTime)
+      console.log('area',this.area)
     }
 
   },
