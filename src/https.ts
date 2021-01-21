@@ -24,10 +24,12 @@ axios.interceptors.request.use(
     //   "https.ts",
     //   !(store.state === null) && isTokenExpired === false,store.state.login.idtoken,isTokenExpired
     // );
+    // @ts-ignore
     if (!(store.state.login.idtoken == null) && isTokenExpired == false) {
       isTokenExpired = true;
       // console.log("isTokenExpired", isTokenExpired);
       // 判断token是否需要刷新;
+      // @ts-ignore
       let _stoken = store.state.login.idtoken;
       let chicktokentime = AuthServies.chicktokenTime(_stoken);
       // let chicktokentime = 3;
@@ -53,8 +55,10 @@ axios.interceptors.request.use(
 
     // 判断请求是否加token
     if (AxiosElasticService.checkfuctionUrlIdtoken(config.url)) {
+      // @ts-ignore
       console.log(store.state.login.idtoken);
       console.log("http 需要加token");
+      // @ts-ignore
       config.headers.authorization = store.state.login.idtoken;
     } else {
       console.log("http 不需要加token");

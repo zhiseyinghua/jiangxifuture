@@ -45,15 +45,15 @@ export default {
     };
   },
   created () {
-    const authorization = localStorage.getItem("token");
-    axios({
-      headers: {authorization},
-      method: "post",
-      url: "/api/user/searchbyauthkey",
-    }).then((res) => {
-      this.menuList = res.data
-      console.warn(res.data);
-    });
+    // const authorization = localStorage.getItem("token");
+    // axios({
+    //   headers: {authorization},
+    //   method: "post",
+    //   url: "/api/user/searchbyauthkey",
+    // }).then((res) => {
+    //   this.menuList = res.data
+    //   console.warn(res.data);
+    // });
   },
 };
 </script>
