@@ -224,6 +224,7 @@
 <script>
 import { PutOrderOne } from "@/page/order/order.interface";
 import orderServe from "@/page/order/order.serves";
+import authServe from "@/page/auth/auth.servies";
 export default {
   data() {
     let self = this;
@@ -402,11 +403,8 @@ export default {
      * 向后端发请求的方法
      */
     putorder() {
-      authServies
-      .asyncjiexiJwtDecjeck(authkeyToken)
-      let authkey ={
+      let authdata = authServies.jiexiJwtDecjeck(authkeyToken);
 
-      }
       let putorderdata = {
         hash: "",
         range: "",
@@ -414,20 +412,20 @@ export default {
         localPlace: {
           lng: this.lng,
           lat: this.lat,
-          local:this.localPlace,
+          local: this.localPlace,
         },
         type: this.type,
         estimatedTime: this.estimatedTime,
         area: this.area,
         creatorkey: {
-          hash: "",
-          range: "",
-          index: "",
+          hash: authdata.hash,
+          range: authdata.range,
+          index: authdata.index,
         },
         ordername: this.orderName,
         estimatedMoney: this.estimatedMoney,
         ONEinformation: {
-          phone:  this.phone,
+          phone: this.phone,
           email: this.email,
           name: this.name,
         },
@@ -441,8 +439,12 @@ export default {
       console.log("type", this.type);
       console.log("estimatedTime", this.estimatedTime);
       console.log("area", this.area);
-       console.log("area", this.name);
-      orderServe.putNewOrder(putorderdata);
+      console.log("area", this.name);
+      orderServe.putNewOrder(putorderdata).subscribe(
+        (data)=>{
+          console.log('order.indesx.vue putorder',data)
+        }
+      )
     },
   },
 };
