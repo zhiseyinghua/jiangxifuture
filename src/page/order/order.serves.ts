@@ -11,7 +11,8 @@ export default class OrderServe {
   static putNewOrder(putorderdata:PutOrderOne) : Observable<any>{
     return AxiosElasticService.AxiosService(
       "post",
-      OrderConfig.zone + "/" + OrderConfig.putorder
+      OrderConfig.zone + "/" + OrderConfig.putorder,
+      putorderdata
     ).pipe(
       map((data) => {
         console.log("OrderServe putNewOrder", data);

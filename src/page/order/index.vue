@@ -224,7 +224,7 @@
 <script>
 import { PutOrderOne } from "@/page/order/order.interface";
 import orderServe from "@/page/order/order.serves";
-import authServe from "@/page/auth/auth.servies";
+import authServies from "@/page/auth/auth.servies";
 import Bus from "@/common/bus";
 
 export default {
@@ -405,6 +405,7 @@ export default {
      * 向后端发请求的方法
      */
     putorder() {
+      var authkeyToken = this.$store.state.login.idtoken;
       let authdata = authServies.jiexiJwtDecjeck(authkeyToken);
 
       let putorderdata = {
@@ -442,9 +443,9 @@ export default {
       console.log("estimatedTime", this.estimatedTime);
       console.log("area", this.area);
       console.log("area", this.name);
-       Bus.$emit("overlayvalue", {
-          overlayvalue: true,
-        });
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
       orderServe.putNewOrder(putorderdata).subscribe((data) => {
         Bus.$emit("overlayvalue", {
           overlayvalue: false,
@@ -459,7 +460,7 @@ export default {
         console.log("order.indesx.vue putorder", data);
       });
       (err) => {
-         Bus.$emit("overlayvalue", {
+        Bus.$emit("overlayvalue", {
           overlayvalue: false,
         });
         Bus.$emit("snackbar", {
