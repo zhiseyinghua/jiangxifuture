@@ -12,6 +12,9 @@ export default {
         },
         {
             path:"group", name: "group", component: () => import('@/page/task_systems/taskDetail/group.vue')
+        },
+        {
+            path:"projectDetail", name: "projectDetail", component: () => import('@/page/task_systems/taskDetail/projectDetail.vue')
         }
     ]
 }

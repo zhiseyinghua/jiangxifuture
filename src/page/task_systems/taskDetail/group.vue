@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card>
+    <v-card max-width="800" class="mx-auto">
       <v-card-actions>
         <v-btn> 所有成员 </v-btn>
         <v-btn> 访客 </v-btn>
@@ -20,7 +20,7 @@
           <v-list-item>
             <v-row>
               <v-col cols="2">
-                <v-list-item-action style="width:100%">
+                <v-list-item-action style="width: 100%">
                   <v-list-item-avatar>
                     <img
                       src="https://cdn.vuetifyjs.com/images/john.jpg"
@@ -28,7 +28,7 @@
                     />
                   </v-list-item-avatar>
                   <v-list-item-action-text class="mx-auto"
-                    >咚咚呱咚咚呱咚咚呱咚咚呱</v-list-item-action-text
+                    >咚咚呱咚咚呱咚咚呱</v-list-item-action-text
                   >
                   <v-list-item-action-text class="mx-auto"
                     >超级管理员</v-list-item-action-text
@@ -43,7 +43,7 @@
           <v-list-item>
             <v-row>
               <v-col cols="2">
-                <v-list-item-action style="width:100%">
+                <v-list-item-action style="width: 100%">
                   <v-list-item-avatar>
                     <img
                       src="https://cdn.vuetifyjs.com/images/john.jpg"
@@ -62,7 +62,6 @@
           </v-list-item>
           <v-divider></v-divider>
         </template>
-        
       </v-list>
     </v-card>
   </v-container>
@@ -73,6 +72,5 @@ export default {
   data: function () {
     return {};
   },
-  
 };
 </script>

@@ -230,6 +230,7 @@ export default {
     },
   },
   methods: {
+    //下一步
     handleNextStep() {
       this.formHasErrors = false;
       Object.keys(this.clientInfo).forEach((f) => {
