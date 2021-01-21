@@ -1,6 +1,6 @@
 import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 import { OrderConfig } from "./order.common";
 import { PutOrderOne } from "./order.interface";
 
@@ -17,7 +17,7 @@ export default class OrderServe {
         console.log("OrderServe putNewOrder", data);
         return data["data"];
       }),
-      
+      delay(2000)
     );
   }
 }

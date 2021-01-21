@@ -225,6 +225,8 @@
 import { PutOrderOne } from "@/page/order/order.interface";
 import orderServe from "@/page/order/order.serves";
 import authServe from "@/page/auth/auth.servies";
+import Bus from "@/common/bus";
+
 export default {
   data() {
     let self = this;
@@ -440,11 +442,25 @@ export default {
       console.log("estimatedTime", this.estimatedTime);
       console.log("area", this.area);
       console.log("area", this.name);
-      orderServe.putNewOrder(putorderdata).subscribe(
-        (data)=>{
-          console.log('order.indesx.vue putorder',data)
-        }
-      )
+      orderServe.putNewOrder(putorderdata).subscribe((data) => {
+        Bus.$emit("snackbar", {
+          text: "创建任务成功",
+          color: "green",
+          timeout: 2000,
+          errorsnackbar: true,
+          top: true,
+        });
+        console.log("order.indesx.vue putorder", data);
+      });
+      (err) => {
+        Bus.$emit("snackbar", {
+          text: "服务器错误",
+          color: "green",
+          timeout: 2000,
+          errorsnackbar: true,
+          top: true,
+        });
+      };
     },
   },
 };
