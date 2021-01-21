@@ -67,12 +67,13 @@
               <v-col cols="12">
                 <v-text-field
                   ref="orderName"
+                  :rules="orderNameRules"
                   outlined
                   dense
                   label="任务名称"
                   clearable
                   prepend-icon="mdi-map-marker"
-                  v-model="localPlace"
+                  v-model="orderName"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -261,9 +262,9 @@ export default {
 
       // 地图的弹窗
       mapdialog: false,
-      orderName:'',
+      orderName: "",
       // valid: true,
-      el: 1, //步骤序号
+      el: 2, //步骤序号
       //甲方信息
       name: "", //姓名
       phone: "", //电话
@@ -298,6 +299,8 @@ export default {
       estimatedMoneyRules: [(v) => !!v || ""],
       //地点
       localPlaceRules: [(v) => !!v || "必填"],
+      // 项目名
+      orderNameRules: [(v) => !!v || "必填"],
       //类型
       typeRules: [(v) => !!v || ""],
       //预估时间
@@ -321,6 +324,7 @@ export default {
         localPlace: this.localPlace,
         estimatedTime: this.estimatedTime,
         area: this.area,
+        orderName: this.orderName,
       };
     },
   },
@@ -354,13 +358,14 @@ export default {
         //  TODO:
         this.$refs[Object.keys(this.clientInfo)[0]].validate(true);
         this.$refs[Object.keys(this.clientInfo)[1]].validate(true);
-        this.formHasErrors = false
+        this.formHasErrors = false;
         console.log("条件没通过");
       }
     },
     //提交表单
     handleSubmit() {
       console.log(this.formHasErrors);
+      this.formHasErrors = false;
       // this.formHasErrors = false;
       // Object.keys(this.projectInfo).forEach((f) => {
       //   if (!this.$refs[f].validate()) this.formHasErrors = true;
@@ -371,9 +376,10 @@ export default {
       //   }
       // });
       if (this.$refs[Object.keys(this.projectInfo)[1]].validate()) {
-        // TODO:
+        // TODO: 向后端put一个order请求
       } else {
         //  TODO:
+        this.$refs[Object.keys(this.projectInfo)[4]].validate(true);
         this.$refs[Object.keys(this.projectInfo)[1]].validate(true);
         console.log("条件没通过");
       }
@@ -390,6 +396,14 @@ export default {
       });
       this.el = 1;
     },
+
+    /**
+     * 向后端发请求的方法
+     */
+    putorder() {
+
+    }
+
   },
 };
 </script>
