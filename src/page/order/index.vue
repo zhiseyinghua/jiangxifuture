@@ -442,7 +442,13 @@ export default {
       console.log("estimatedTime", this.estimatedTime);
       console.log("area", this.area);
       console.log("area", this.name);
+       Bus.$emit("overlayvalue", {
+          overlayvalue: true,
+        });
       orderServe.putNewOrder(putorderdata).subscribe((data) => {
+        Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
         Bus.$emit("snackbar", {
           text: "创建任务成功",
           color: "green",
@@ -453,9 +459,12 @@ export default {
         console.log("order.indesx.vue putorder", data);
       });
       (err) => {
+         Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
         Bus.$emit("snackbar", {
           text: "服务器错误",
-          color: "green",
+          color: "pink",
           timeout: 2000,
           errorsnackbar: true,
           top: true,
