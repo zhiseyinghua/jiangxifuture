@@ -105,7 +105,7 @@ import { BaceUserdata, EditUserData } from "../user.interface";
 import store from "@/store";
 import router from "@/router";
 import Bus from "@/common/bus";
-import Moment from "moment"
+import Moment from "moment";
 
 export default {
   data() {
@@ -152,7 +152,7 @@ export default {
           });
           this.dialog = false;
           // location.reload();
-          this.$router.go(0)
+          this.$router.go(0);
         } else if ((data.code = "000116")) {
           Bus.$emit("snackbar", {
             text: "没有修改任何信息，请认真填写",
@@ -197,8 +197,8 @@ export default {
     } else {
       this.isAdmain = false;
     }
-    this.startdate = Moment(authdata.timestamp).format("L")
-    console.log(this.startdate)
+    this.startdate = Moment(authdata.timestamp).format("L");
+    console.log(this.startdate);
     let storeRange = authdata.range;
     let routeRange = router.app.$route.query;
     console.log("1111111111111", storeRange, routeRange);

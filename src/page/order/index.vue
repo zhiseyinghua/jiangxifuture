@@ -42,7 +42,7 @@
                   ref="email"
                   outlined
                   dense
-                  label="邮箱"
+                  label="*邮箱（选填）"
                   required
                   :rules="emailRules"
                   clearable
@@ -66,14 +66,14 @@
             <v-row dense>
               <v-col cols="12">
                 <v-text-field
-                  ref="technician"
+                  ref="orderName"
+                  :rules="orderNameRules"
                   outlined
                   dense
-                  label="技术员"
-                  :rules="technicianRules"
+                  label="任务名称"
                   clearable
-                  prepend-icon="mdi-account"
-                  v-model="technician"
+                  prepend-icon="mdi-map-marker"
+                  v-model="orderName"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -82,12 +82,47 @@
                   outlined
                   dense
                   label="地点"
+                  @click="lbsamapfun()"
                   :rules="localPlaceRules"
                   clearable
                   prepend-icon="mdi-map-marker"
                   v-model="localPlace"
                 ></v-text-field>
+                <v-dialog v-model="mapdialog" max-width="800">
+                  <template>
+                    <p class="mt-5 ml-15">
+                      请在下面地图上选择地址并确定
+                    </p>
+                    <v-row class="justify-center  ">
+                      <v-col md="6">
+                        <div>
+                          <!-- <input  type="text" v-model="address" /> -->
+                          <v-text-field
+                            label="地址"
+                            v-model="localPlace"
+                          ></v-text-field>
+                        </div>
+                      </v-col>
+                      <v-col md="4">
+                        <div class="mt-4">
+                          <v-btn @click="confirmAddress">确定地址</v-btn>
+                        </div>
+                      </v-col>
+                    </v-row>
+
+                    <div style="height:800px;" class="amap-page-container">
+                      <el-amap
+                        vid="amapDemo"
+                        :zoom="zoom"
+                        class="amap-demo"
+                        :events="events"
+                      >
+                      </el-amap>
+                    </div>
+                  </template>
+                </v-dialog>
               </v-col>
+
               <v-col cols="12">
                 <v-radio-group v-model="type" row dense class="mt-0">
                   <v-icon class="mr-2">mdi-ruler</v-icon>
@@ -106,7 +141,7 @@
                     <v-text-field
                       ref="estimatedTime"
                       v-model="estimatedTime"
-                      label="预估日期"
+                      label="预估完成时间"
                       prepend-icon="mdi-calendar"
                       readonly
                       dense
@@ -141,19 +176,42 @@
                   ref="area"
                   outlined
                   dense
-                  label="面积"
+                  label="*面积（可选）"
                   :rules="areaRules"
                   clearable
                   prepend-icon="mdi-map"
                   v-model="area"
-                ></v-text-field>
+                >
+                  <p class="mt-2" slot="append" color="green">
+                    ：平方米
+                  </p>
+                </v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  ref="estimatedMoney"
+                  outlined
+                  dense
+                  label="*预估费用（可选）"
+                  :rules="estimatedMoneyRules"
+                  clearable
+                  prepend-icon="mdi-account"
+                  v-model="estimatedMoney"
+                >
+                  <p class="mt-2" slot="append" color="green">
+                    ：元
+                  </p></v-text-field
+                >
               </v-col>
             </v-row>
           </v-card>
           <v-responsive class="mx-auto" max-width="400">
             <v-btn color="primary" @click="handleSubmit"> 提交 </v-btn>
             <v-btn text @click="el = 1" class="grey lighten-2"> 返回 </v-btn>
-            <v-btn class="red accent-4 white--text float-right" @click="handleReset">
+            <v-btn
+              class="red accent-4 white--text float-right"
+              @click="handleReset"
+            >
               重置
             </v-btn>
           </v-responsive>
@@ -164,17 +222,60 @@
 </template>
 
 <script>
+import { PutOrderOne } from "@/page/order/order.interface";
+import orderServe from "@/page/order/order.serves";
+import authServies from "@/page/auth/auth.servies";
+import Bus from "@/common/bus";
+
 export default {
   data() {
+    let self = this;
     return {
+      zoom: 12,
+      address: "",
+      events: {
+        click(e) {
+          let { lng, lat } = e.lnglat;
+          self.lng = lng;
+          self.lat = lat;
+          console.log("start start", window.AMap);
+          // 这里通过高德 SDK 完成。
+          var geocoder = new window.AMap.Geocoder({
+            radius: 1000,
+            extensions: "all",
+          });
+          console.log(
+            "start start",
+            new window.AMap.Geocoder({
+              radius: 1000,
+              extensions: "all",
+            })
+          );
+          geocoder.getAddress([lng, lat], function(status, result) {
+            if (status === "complete" && result.info === "OK") {
+              console.log(self.$nextTick());
+              if (result && result.regeocode) {
+                self.localPlace = result.regeocode.formattedAddress;
+                self.$nextTick();
+              }
+            }
+          });
+        },
+      },
+      lng: 0,
+      lat: 0,
+
+      // 地图的弹窗
+      mapdialog: false,
+      orderName: "",
       // valid: true,
-      el: 1, //步骤序号
+      el: 2, //步骤序号
       //甲方信息
       name: "", //姓名
       phone: "", //电话
       email: "", //邮箱
       //项目信息
-      technician: "", //技术员
+      estimatedMoney: "", //预估金额
       localPlace: "", //地点
       type: "realEstateTest", //项目类型
       estimatedTime: "", //预估时间
@@ -193,22 +294,24 @@ export default {
       ],
       //邮箱
       emailRules: [
-        (v) => !!v || "必填",
+        (v) => !!v || "",
         (v) =>
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
             v
           ) || "格式错误",
       ],
-      //技术员
-      technicianRules: [(v) => !!v || "必填"],
+      //预估费用
+      estimatedMoneyRules: [(v) => !!v || ""],
       //地点
       localPlaceRules: [(v) => !!v || "必填"],
+      // 项目名
+      orderNameRules: [(v) => !!v || "必填"],
       //类型
-      typeRules: [(v) => !!v || "必填"],
+      typeRules: [(v) => !!v || ""],
       //预估时间
-      estimatedTimeRules: [(v) => !!v || "必填"],
+      estimatedTimeRules: [(v) => !!v || ""],
       //面积
-      areaRules: [(v) => !!v || "必填", (v) => /^\d*$/.test(v) || "格式错误"],
+      areaRules: [(v) => !!v || "", (v) => /^\d*$/.test(v) || "格式错误"],
       modal: false,
     };
   },
@@ -222,41 +325,73 @@ export default {
     },
     projectInfo() {
       return {
-        technician: this.technician,
+        estimatedMoney: this.estimatedMoney,
         localPlace: this.localPlace,
         estimatedTime: this.estimatedTime,
         area: this.area,
+        orderName: this.orderName,
       };
     },
   },
   methods: {
-    //下一步
+    /**
+     * 关闭地图弹窗
+     */
+    confirmAddress() {
+      this.mapdialog = false;
+    },
+    lbsamapfun() {
+      console.log(123);
+      this.mapdialog = true;
+    },
     handleNextStep() {
       this.formHasErrors = false;
-      Object.keys(this.clientInfo).forEach((f) => {
-        if (!this.$refs[f].validate()) this.formHasErrors = true;
-        this.$refs[f].validate(true);
-      });
-      if (!this.formHasErrors) {
+      // Object.keys(this.clientInfo).forEach((f) => {
+      //   if (!this.$refs[f].validate()) this.formHasErrors = true;
+      //   this.$refs[f].validate(true);
+      // });
+      // if (!this.this.$refs[1].validate())
+      //   if (!this.formHasErrors) {
+      //     this.el = 2;
+      //   }
+      if (
+        this.$refs[Object.keys(this.clientInfo)[0]].validate() &&
+        this.$refs[Object.keys(this.clientInfo)[1]].validate()
+      ) {
         this.el = 2;
+      } else {
+        //  TODO:
+        this.$refs[Object.keys(this.clientInfo)[0]].validate(true);
+        this.$refs[Object.keys(this.clientInfo)[1]].validate(true);
+        this.formHasErrors = false;
+        console.log("条件没通过");
       }
     },
     //提交表单
     handleSubmit() {
       this.formHasErrors = false;
-      Object.keys(this.projectInfo).forEach((f) => {
-        if (!this.$refs[f].validate()) this.formHasErrors = true;
-        if(!this.type) this.formHasErrors = true;
-        this.$refs[f].validate(true);
-        if(!this.formHasErrors) {
-          console.log("submit")
-        }
-      });
+      // this.formHasErrors = false;
+      // Object.keys(this.projectInfo).forEach((f) => {
+      //   if (!this.$refs[f].validate()) this.formHasErrors = true;
+      //   if (!this.type) this.formHasErrors = true;
+      //   this.$refs[f].validate(true);
+      //   if (!this.formHasErrors) {
+      //     console.log("submit");
+      //   }
+      // });
+      if (this.$refs[Object.keys(this.projectInfo)[1]].validate()) {
+        // TODO: 向后端put一个order请求
+        this.putorder();
+      } else {
+        this.$refs[Object.keys(this.projectInfo)[4]].validate(true);
+        this.$refs[Object.keys(this.projectInfo)[1]].validate(true);
+        console.log("条件没通过");
+      }
     },
     //表单重置
     handleReset() {
       this.errorMessages = [];
-      this.formHasErrors = false; 
+      this.formHasErrors = false;
       Object.keys(this.clientInfo).forEach((f) => {
         this.$refs[f].reset();
       });
@@ -265,6 +400,84 @@ export default {
       });
       this.el = 1;
     },
+
+    /**
+     * 向后端发请求的方法
+     */
+    putorder() {
+      var authkeyToken = this.$store.state.login.idtoken;
+      let authdata = authServies.jiexiJwtDecjeck(authkeyToken);
+
+      let putorderdata = {
+        hash: "",
+        range: "",
+        index: "",
+        localPlace: {
+          lng: this.lng,
+          lat: this.lat,
+          local: this.localPlace,
+        },
+        type: this.type,
+        estimatedTime: this.estimatedTime,
+        area: this.area,
+        creatorkey: {
+          hash: authdata.hash,
+          range: authdata.range,
+          index: authdata.index,
+        },
+        ordername: this.orderName,
+        estimatedMoney: this.estimatedMoney,
+        ONEinformation: {
+          phone: this.phone,
+          email: this.email,
+          name: this.name,
+        },
+      };
+      console.log("lng", this.lng, "lat", this.lat);
+      console.log("orderName", this.orderName);
+      console.log("phone", this.phone);
+      console.log("email", this.email);
+      console.log("estimatedMoney", this.estimatedMoney);
+      console.log("localPlace", this.localPlace);
+      console.log("type", this.type);
+      console.log("estimatedTime", this.estimatedTime);
+      console.log("area", this.area);
+      console.log("area", this.name);
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
+      orderServe.putNewOrder(putorderdata).subscribe((data) => {
+        Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
+        Bus.$emit("snackbar", {
+          text: "创建任务成功",
+          color: "green",
+          timeout: 2000,
+          errorsnackbar: true,
+          top: true,
+        });
+        console.log("order.indesx.vue putorder", data);
+      });
+      (err) => {
+        Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
+        Bus.$emit("snackbar", {
+          text: "服务器错误",
+          color: "pink",
+          timeout: 2000,
+          errorsnackbar: true,
+          top: true,
+        });
+      };
+    },
   },
 };
 </script>
+
+<style>
+.v-dialog {
+  background-color: white;
+}
+</style>
