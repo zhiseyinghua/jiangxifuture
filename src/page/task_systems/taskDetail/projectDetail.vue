@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div class="grey--text" style="font-size: 3em;">
-      Size
+    <div class="font-weight-medium" style="font-size: 1.5em;">
+      任务详情
     </div>
     <v-divider class="mt-5"></v-divider>
     <!-- <v-simple-table>
