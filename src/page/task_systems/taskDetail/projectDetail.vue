@@ -1,6 +1,9 @@
 <template>
   <v-container>
-    <v-divider class="mt-12"></v-divider>
+    <div class="grey--text" style="font-size: 3em;">
+      Size
+    </div>
+    <v-divider class="mt-5"></v-divider>
     <!-- <v-simple-table>
       <template v-slot:default>
         <thead>
