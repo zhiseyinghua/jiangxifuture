@@ -4,22 +4,29 @@
       任务详情
     </div>
     <v-divider class="mt-5"></v-divider>
-    <!-- <v-simple-table>
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">名字</th>
-            <th class="text-left">值</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in desserts" :key="item.name">
-            <td>{{ item.name }}</td>
-            <td>{{ item.calories }}</td>
-          </tr>
-        </tbody>
+    <v-menu offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn text v-bind="attrs" v-on="on">
+          <v-icon large color="green darken-2">
+            mdi-alarm-check
+          </v-icon>
+          <v-icon large color="green darken-2">
+            mdi-alarm
+          </v-icon>
+          <v-icon large color="green darken-2">
+            mdi-alarm-off
+          </v-icon>
+        </v-btn>
       </template>
-    </v-simple-table> -->
+      <v-list>
+        <v-list-item>
+          <v-list-item-title>完成</v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-title>完成</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </v-container>
 </template>
 
