@@ -45,7 +45,7 @@ module.exports = {
           type: "binary",
         },
         wbout = XLSX.write(wb, wopts);
-
+      console.log('wbout',wbout)
       FileSaver.saveAs(
         new Blob([this.s2ab(wbout)], {
           type: "application/octet-stream;charset=utf-8",
