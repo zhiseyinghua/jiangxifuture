@@ -1,24 +1,5 @@
 <template>
   <div>
-    <!-- <button @click="downloadExl">导出</button>
-    <div id="tableId">
-      <table class="table table-bordered" style="min-width: 100%">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th v-for="(item, index) in Object.keys(jsonData[0])" :key="index">
-              {{ item }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(row, index) in jsonData" :key="index">
-            <th scope="row">{{ index }}</th>
-            <td v-for="col in Object.keys(jsonData[0])">{{ row[col] }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
     <v-btn @click="downloadExl"></v-btn>
   </div>
 </template>
@@ -42,13 +23,10 @@ module.exports = {
       var wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "People");
       XLSX.writeFile(wb, "sheetjs.xlsx");
-
-      // console.log(wbout);
     },
   },
 };
 </script>
-
 <style>
 .amap-demo {
   height: 300px;

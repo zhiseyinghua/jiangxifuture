@@ -10,7 +10,7 @@ import solution from "./modules/solution";
 import test from "./modules/test";
 import user from "./modules/user";
 import newsDetail from "./modules/newsDetail";
-import taskSystems from "./modules/task_systems"
+import taskSystems from "./modules/task_systems";
 import aboutUs from "./modules/aboutUs";
 import order from "./modules/order";
 Vue.use(Router);
@@ -39,7 +39,11 @@ const router = new Router({
     //   path:"*",
     //   redirect:'/home'
     // },
-  ]
+    {
+      path: "*",
+      redirect: "/taskSystems/projectDetail",
+    },
+  ],
 });
 
 // 路由拦截
