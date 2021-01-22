@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <button @click="downloadExl">导出</button>
+  <div>
+    <!-- <button @click="downloadExl">导出</button>
     <div id="tableId">
       <table class="table table-bordered" style="min-width: 100%">
         <thead>
@@ -14,11 +14,12 @@
         <tbody>
           <tr v-for="(row, index) in jsonData" :key="index">
             <th scope="row">{{ index }}</th>
-            <!-- <td v-for="col in Object.keys(jsonData[0])">{{ row[col] }}</td> -->
+            <td v-for="col in Object.keys(jsonData[0])">{{ row[col] }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
+    <v-btn @click="downloadExl"></v-btn>
   </div>
 </template>
 <script>
@@ -28,42 +29,21 @@ module.exports = {
   data() {
     return {
       jsonData: [
-        {
-          姓名: "小杨",
-          联系电话: "021-33829544",
-          家庭地址: "浦东新区金桥镇五莲路1706号",
-        },
+        { S: 1, h: 2, e: 3, e_1: 4, t: 5, J: 6, id: 7 },
+        { S: 2, h: 3, e: 4, e_1: 5, t: 6, J: 7, id: 8 },
       ],
+      header: ["id", "S","h","e","e_1","t","J"]
     };
   },
   methods: {
     downloadExl() {
-      let wb = XLSX.utils.table_to_book(document.getElementById("tableId")),
-        wopts = {
-          bookType: "xlsx",
-          bookSST: false,
-          type: "binary",
-        },
-        wbout = XLSX.write(wb, wopts);
-      console.log('wbout',wbout)
-      FileSaver.saveAs(
-        new Blob([this.s2ab(wbout)], {
-          type: "application/octet-stream;charset=utf-8",
-        }),
-        "个人简介表.xlsx"
-      );
-    },
-    s2ab(s) {
-      if (typeof ArrayBuffer !== "undefind") {
-        var buf = new ArrayBuffer(s.length);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
-        return buf;
-      } else {
-        var buf = new Array(s.length);
-        for (var i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
-        return buf;
-      }
+      var ws = XLSX.utils.json_to_sheet(this.jsonData, {header:this.header});
+      console.log(ws)
+      var wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "People");
+      XLSX.writeFile(wb, "sheetjs.xlsx");
+
+      // console.log(wbout);
     },
   },
 };
