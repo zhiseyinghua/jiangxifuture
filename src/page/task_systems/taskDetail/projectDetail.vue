@@ -55,20 +55,20 @@
       <v-col>
         <div>
           <v-row>
-          <v-col>
-            <v-avatar size="70">
-              <img
-                alt="user"
-                src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3846290151,2766954484&fm=26&gp=0.jpg"
-              />
-            </v-avatar>
-          </v-col>
-          <v-col>
-            <p class="">
-              John Doe
-            </p>
-          </v-col>
-        </v-row>
+            <v-col>
+              <v-avatar size="70">
+                <img
+                  alt="user"
+                  src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3846290151,2766954484&fm=26&gp=0.jpg"
+                />
+              </v-avatar>
+            </v-col>
+            <v-col>
+              <p class="">
+                John Doe
+              </p>
+            </v-col>
+          </v-row>
         </div>
       </v-col>
     </v-row>
