@@ -55,7 +55,7 @@
       <v-col>
         <div>
           <v-row>
-            <v-col>
+            <v-col cols="3">
               <v-avatar size="70">
                 <img
                   alt="user"
@@ -63,7 +63,7 @@
                 />
               </v-avatar>
             </v-col>
-            <v-col>
+            <v-col class="mt-5">
               <p class="">
                 John Doe
               </p>
@@ -71,7 +71,53 @@
           </v-row>
         </div>
       </v-col>
+      <v-col>
+        <div>
+          <v-btn text style="height:80px" v-bind="attrs" v-on="on">
+            <v-row>
+              <v-col>
+                <v-icon v-show="true" size="70" color="green darken-2">
+                  mdi-alarm-off
+                </v-icon>
+              </v-col>
+              <v-col class="mt-2">
+                <div style="font-size: 1.5em;" class="grey--text mb-2">
+                  开始时间
+                </div>
+                <p>2020.8.23</p>
+              </v-col>
+            </v-row>
+          </v-btn>
+        </div>
+      </v-col>
+
+      <v-col>
+        <div>
+          <v-btn text style="height:80px" v-bind="attrs" v-on="on">
+            <v-row>
+              <v-col>
+                <v-icon v-show="true" size="70" color="green darken-2">
+                  mdi-alarm-off
+                </v-icon>
+              </v-col>
+              <v-col class="mt-2">
+                <div style="font-size: 1.5em;" class="grey--text mb-2">
+                  截止时间
+                </div>
+                <p>2020.8.23</p>
+              </v-col>
+            </v-row>
+          </v-btn>
+        </div>
+      </v-col>
     </v-row>
+    <v-divider class="mt-5 mb-3"></v-divider>
+    <div class="font-weight-medium" style="font-size: 1em;">
+      任务信息
+    </div>
+    <div class="font-weight-medium" style="font-size: 1em;">
+      任务信息
+    </div>
   </v-container>
 </template>
 
