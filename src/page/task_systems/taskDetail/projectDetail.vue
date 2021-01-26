@@ -112,11 +112,34 @@
       </v-col>
     </v-row>
     <v-divider class="mt-5 mb-3"></v-divider>
-    <div class="font-weight-medium" style="font-size: 1em;">
-      任务信息
+    <div>
+      <div style=" display: inline-block;">
+        <v-icon
+          large
+          color="black darken-2"
+          style="font-size: 2.3em; display: inline-block;"
+        >
+          list
+        </v-icon>
+      </div>
+      <div
+        style="display: inline-block;"
+        class="font-weight-medium mt-2 ml-1"
+      >
+        任务信息
+      </div>
     </div>
-    <div class="font-weight-medium" style="font-size: 1em;">
-      任务信息
+
+    <div class="ml-5">
+      <div>
+        <v-row>
+          <v-col>
+            项目名称 ：
+          </v-col>
+          <v-col> </v-col>
+          <v-col> </v-col>
+        </v-row>
+      </div>
     </div>
   </v-container>
 </template>
