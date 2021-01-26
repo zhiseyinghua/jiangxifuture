@@ -124,19 +124,21 @@
       </div>
       <div
         style="display: inline-block;"
-        class="font-weight-medium mt-2 ml-1"
+        class="font-weight-medium mt-2 ml-1 "
       >
         任务信息
       </div>
     </div>
 
-    <div class="ml-5">
+    <div class="ml-5 mt-4">
       <div>
         <v-row>
           <v-col>
-            项目名称 ：
+            <div>项目名称 ：</div>
           </v-col>
-          <v-col> </v-col>
+          <v-col>
+            <div>任务类型 ：</div>
+          </v-col>
           <v-col> </v-col>
         </v-row>
       </div>
