@@ -6,7 +6,7 @@
       <div class="mb-2">实际派发时间 ：</div>
       <div >
         <v-text-field
-          full-width = "false"
+         
           value="John Doe"
           disabled
         ></v-text-field>

@@ -212,10 +212,42 @@
       <div>
         <div class="mb-2 grey--text">项目时间详情 ：</div>
         <div class="mt-6 ml-6">
-          <div class="mb-2">实际派发时间 ：</div>
-          <div style="witch:100px">
+          <span>实际派发时间 ：</span>
+          <span ><v-btn>改为当前时间</v-btn></span>
+          <span>
             <v-text-field
-              style="witch:100px"
+              height="20px"
+              style="width: 100px;"
+              value="John Doe"
+              disabled
+            ></v-text-field>
+          </span>
+
+          <div class="">技术员实际完成时间 ：</div>
+          <div>
+            <v-text-field
+              height="20px"
+              style="width: 100px;"
+              value="John Doe"
+              disabled
+            ></v-text-field>
+          </div>
+
+          <div class="">实际派发时间 ：</div>
+          <div>
+            <v-text-field
+              height="20px"
+              style="width: 100px;"
+              value="John Doe"
+              disabled
+            ></v-text-field>
+          </div>
+
+          <div class="">实际派发时间 ：</div>
+          <div>
+            <v-text-field
+              height="20px"
+              style="width: 100px;"
               value="John Doe"
               disabled
             ></v-text-field>
