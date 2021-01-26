@@ -4,15 +4,14 @@
     <v-btn @click="goutouserziji">进入自己页面</v-btn>
     <div class="mt-6 ml-6">
       <div class="mb-2">实际派发时间 ：</div>
-      <div style="witch:100px">
+      <div >
         <v-text-field
-          style="witch:100px"
+          full-width = "false"
           value="John Doe"
           disabled
         ></v-text-field>
       </div>
       <div class="mb-2">技术员实际完成时间 ：</div>
-
     </div>
     <router-view />
   </div>
