@@ -56,7 +56,7 @@ export default {
     });
     // 提示的时间
     Bus.$on("snackbar", (msg) => {
-      console.log('overlay.vue start')
+      console.log("overlay.vue start");
       this.right = msg.right;
       this.bottom = msg.bottom;
       this.centered = msg.centered;
