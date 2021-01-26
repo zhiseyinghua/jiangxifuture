@@ -2,7 +2,18 @@
   <div>
     <v-btn @click="goutouser">进入别人页面</v-btn>
     <v-btn @click="goutouserziji">进入自己页面</v-btn>
+    <div class="mt-6 ml-6">
+      <div class="mb-2">实际派发时间 ：</div>
+      <div style="witch:100px">
+        <v-text-field
+          style="witch:100px"
+          value="John Doe"
+          disabled
+        ></v-text-field>
+      </div>
+      <div class="mb-2">技术员实际完成时间 ：</div>
 
+    </div>
     <router-view />
   </div>
 </template>
@@ -21,18 +32,18 @@ export default {
   },
   created: function() {
     const authorization = localStorage.getItem("token");
-    axios({
-      method: "post",
-      url: "api/team/insertteaminfo",
-      headers: { authorization },
-      data: {
-        teamname: "future time",
-        projectname: "web3",
-        projectprogress: "0",
-      },
-    }).then((res) => {
-      console.log(res);
-    });
+    // axios({
+    //   method: "post",
+    //   url: "api/team/insertteaminfo",
+    //   headers: { authorization },
+    //   data: {
+    //     teamname: "future time",
+    //     projectname: "web3",
+    //     projectprogress: "0",
+    //   },
+    // }).then((res) => {
+    //   console.log(res);
+    // });
   },
   methods: {
     upload(e) {
