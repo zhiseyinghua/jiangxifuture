@@ -2,7 +2,8 @@
   <div>
     <v-btn @click="goutouser">进入别人页面</v-btn>
     <v-btn @click="goutouserziji">进入自己页面</v-btn>
-     <router-view />
+
+    <router-view />
   </div>
 </template>
 <script>
@@ -59,7 +60,7 @@ export default {
           index: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
         },
       });
-    }
+    },
   },
 };
 </script>

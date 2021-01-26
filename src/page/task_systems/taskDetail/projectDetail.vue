@@ -122,33 +122,135 @@
           list
         </v-icon>
       </div>
-      <div
-        style="display: inline-block;"
-        class="font-weight-medium mt-2 ml-1 "
-      >
+      <div style="display: inline-block;" class="font-weight-medium mt-2 ml-1 ">
         任务信息
       </div>
     </div>
 
-    <div class="ml-5 mt-4">
+    <div class="ml-12 mt-7">
       <div>
         <v-row>
           <v-col>
-            <div>项目名称 ：</div>
+            <div class="grey--text">项目名称 ：</div>
+            <div class="mt-2">
+              <div style=" display: inline-block;">
+                <v-icon
+                  large
+                  color=""
+                  style="font-size: 2.3em; display: inline-block;"
+                >
+                  assignment
+                </v-icon>
+              </div>
+              <div
+                style="display: inline-block;"
+                class="font-weight-medium mt-2 ml-1 "
+              >
+                我的项目
+              </div>
+            </div>
           </v-col>
           <v-col>
-            <div>任务类型 ：</div>
+            <div class="grey--text">任务类型 ：</div>
+            <div class="mt-2">
+              <div style=" display: inline-block;">
+                <v-icon
+                  large
+                  color=""
+                  style="font-size: 2.3em; display: inline-block;"
+                >
+                  note
+                </v-icon>
+              </div>
+              <div
+                style="display: inline-block;"
+                class="font-weight-medium mt-2 ml-1 "
+              >
+                不动产测试
+              </div>
+            </div>
           </v-col>
-          <v-col> </v-col>
         </v-row>
       </div>
     </div>
+
+    <div class="ml-12 mt-7">
+      <div>
+        <v-row>
+          <v-col>
+            <div class=" mt-12">
+              <div>
+                <div class="mb-2 grey--text">甲方信息 ：</div>
+                <div class="mt-6 ml-6">
+                  <div class="mb-2">名称 ：{{ ONEinformation.name }}</div>
+                  <div class="mb-2">电话 ：{{ ONEinformation.phone }}</div>
+                  <div class="mb-2">邮箱 ：{{ ONEinformation.email }}</div>
+                  <v-btn class="mt-3">修改甲方信息</v-btn>
+                </div>
+              </div>
+            </div>
+          </v-col>
+          <v-col>
+            <div class=" mt-12">
+              <div>
+                <div class="mb-2 grey--text">其他信息 ：</div>
+                <div class="mt-6 ml-6">
+                  <div class="mb-2">任务面积 ：{{ ONEinformation.name }}</div>
+                  <div class="mb-2">实际费用 ：{{ ONEinformation.phone }}</div>
+                  <v-btn class="mt-11">修改其他信息</v-btn>
+                </div>
+              </div>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+    </div>
+
+    <!-- <v-divider class="mt-5 mb-12"></v-divider> -->
+
+    <div class="ml-12 mt-12">
+      <div>
+        <div class="mb-2 grey--text">项目时间详情 ：</div>
+        <div class="mt-6 ml-6">
+          <div class="mb-2">实际派发时间 ：</div>
+          <div style="witch:100px">
+            <v-text-field
+              style="witch:100px"
+              value="John Doe"
+              disabled
+            ></v-text-field>
+          </div>
+          <div class="mb-2">
+            技术员实际完成时间 ：{{ ONEinformation.email }}
+          </div>
+          <div class="mb-2">外业完成时间 ：{{ ONEinformation.name }}</div>
+          <div class="mb-2">内业完成时间 ：{{ ONEinformation.phone }}</div>
+          <div class="mb-2">合同完成时间 ：{{ ONEinformation.email }}</div>
+          <div class="mb-2">金额到账时间 ：{{ ONEinformation.name }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="widch:10px">
+      <v-text-field
+        style="widch:100px"
+        value="John Doe123456789"
+        disabled
+      ></v-text-field>
+    </div>
+    <div style="height:100px"></div>
   </v-container>
 </template>
 
 <script>
 export default {
   data: () => ({
+    ONEinformation: {
+      phone: "18779868511",
+      // 邮箱
+      email: "1870132537@qq.com",
+      name: "黄文强",
+    },
     desserts: [
       {
         name: "项目名称",
