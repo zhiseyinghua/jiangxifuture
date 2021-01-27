@@ -210,6 +210,54 @@
 
     <div class="ml-12 mt-12">
       <div>
+        <v-card elevation="0" style="width: 500px;" class="overflow-hidden">
+          <v-toolbar flat>
+            <!-- <v-icon>mdi-account</v-icon> -->
+            <v-toolbar-title class="mb-2 grey--text">
+              项目时间详情
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="purple darken-3"
+              fab
+              small
+              @click="isEditing = !isEditing"
+            >
+              <v-icon v-if="isEditing">
+                mdi-close
+              </v-icon>
+              <v-icon v-else>
+                mdi-pencil
+              </v-icon>
+            </v-btn>
+          </v-toolbar>
+          <v-card-text>
+            <v-text-field
+              :disabled="!isEditing"
+              color="white"
+              label="Name"
+            ></v-text-field>
+            <v-autocomplete
+              :disabled="!isEditing"
+              :items="states"
+              :filter="customFilter"
+              color="white"
+              item-text="name"
+              label="State"
+            ></v-autocomplete>
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn :disabled="!isEditing" color="success" @click="save">
+              Save
+            </v-btn>
+          </v-card-actions>
+          <v-snackbar v-model="hasSaved" :timeout="2000" absolute bottom left>
+            Your profile has been updated
+          </v-snackbar>
+        </v-card>
+
         <div class="mb-2 grey--text">项目时间详情 ：</div>
         <div class="mt-6 ml-6">
           <span>实际派发时间 ：</span>
@@ -258,7 +306,7 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              :disabled="disabled" 
+              :disabled="disabled"
               @click:append="changedata()"
             ></v-text-field>
           </div>
@@ -283,12 +331,12 @@
     </div>
 
     <v-dialog v-model="dialog" width="500">
-        <v-date-picker
-          v-model="picker"
-          :first-day-of-week="0"
-          locale="zh-cn"
-        ></v-date-picker>
-        <v-btn x-large color="primary" @click="updatapaifa()">确定</v-btn>
+      <v-date-picker
+        v-model="picker"
+        :first-day-of-week="0"
+        locale="zh-cn"
+      ></v-date-picker>
+      <v-btn x-large color="primary" @click="updatapaifa()">确定</v-btn>
     </v-dialog>
 
     <div style="height:100px" @click="changedata()"></div>
@@ -298,11 +346,21 @@
 <script>
 export default {
   data: () => ({
+    hasSaved: false,
+    isEditing: null,
+    model: null,
+    states: [
+      { name: "Florida", abbr: "FL", id: 1 },
+      { name: "Georgia", abbr: "GA", id: 2 },
+      { name: "Nebraska", abbr: "NE", id: 3 },
+      { name: "California", abbr: "CA", id: 4 },
+      { name: "New York", abbr: "NY", id: 5 },
+    ],
 
-    disabled:true, 
+    disabled: true,
     // 用户选择的时间，用于判断选择的是那个时间（例如：派发时间、操作员时间）
     timeselect: "",
-    dialog:false,
+    dialog: false,
     password: "Password",
     // 时间选择器选择的时间
     picker: new Date().toISOString().substr(0, 10),
@@ -312,8 +370,6 @@ export default {
       email: "1870132537@qq.com",
       name: "黄文强",
     },
-    
-    
   }),
   watch: {
     picker(val) {
@@ -321,18 +377,32 @@ export default {
     },
   },
   methods: {
-    changedata(){
-      this.dialog = true
-      this.timeselect="timeAfterDistribution";
+    customFilter(item, queryText, itemText) {
+      const textOne = item.name.toLowerCase();
+      const textTwo = item.abbr.toLowerCase();
+      const searchText = queryText.toLowerCase();
+
+      return (
+        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
+      );
+    },
+    save() {
+      this.isEditing = !this.isEditing;
+      this.hasSaved = true;
+    },
+
+
+    changedata() {
+      this.dialog = true;
+      this.timeselect = "timeAfterDistribution";
     },
     show() {
       console.log("111111111111");
     },
     updatapaifa() {
-      console.log(this.timeselect)
-
+      console.log(this.timeselect);
     },
-    abs(){}
+    abs() {},
   },
 };
 </script>
