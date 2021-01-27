@@ -309,6 +309,10 @@ export default {
       email: "1870132537@qq.com",
       name: "黄文强",
     },
+    ordertiem:{
+      // 实际派发时间
+      timeAfterDistribution:""
+    }
   }),
   watch: {
     picker(val) {
@@ -323,6 +327,7 @@ export default {
       console.log("111111111111");
     },
     updatapaifa() {
+      this.timeselect = "timeAfterDistribution"
       console.log('更新 派发')
     }
   },
