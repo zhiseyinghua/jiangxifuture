@@ -73,7 +73,7 @@
       </v-col>
       <v-col>
         <div>
-          <v-btn text style="height:80px" >
+          <v-btn text style="height:80px">
             <v-row>
               <v-col>
                 <v-icon v-show="true" size="70" color="green darken-2">
@@ -213,14 +213,14 @@
         <div class="mb-2 grey--text">项目时间详情 ：</div>
         <div class="mt-6 ml-6">
           <span>实际派发时间 ：</span>
-         
+
           <span>
             <v-text-field
               height="20px"
               style="width: 150px;"
               value="John Doe"
               disabled
-              append-outer-icon="create"
+              :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append-outer-icon="show4 = !show4"
             ></v-text-field>
           </span>
@@ -242,7 +242,6 @@
               style="width: 100px;"
               value="John Doe"
               disabled
-              
             ></v-text-field>
           </div>
 
@@ -266,7 +265,6 @@
       </div>
     </div>
 
-   
     <div style="height:100px"></div>
   </v-container>
 </template>
@@ -274,6 +272,9 @@
 <script>
 export default {
   data: () => ({
+
+     show4: false,
+
     ONEinformation: {
       phone: "18779868511",
       // 邮箱
