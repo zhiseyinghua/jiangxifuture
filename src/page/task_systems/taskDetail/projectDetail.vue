@@ -216,7 +216,7 @@
 
           <span>
             <v-text-field
-              append-icon="mdi-eye-off"
+              append-icon="create"
               style="width: 150px;"
               value="John Doe"
               @click:append="show()"
@@ -225,31 +225,49 @@
 
           <div class="">技术员实际完成时间 ：</div>
           <div>
-            <v-text-field
-              height="20px"
-              style="width: 100px;"
+             <v-text-field
+              append-icon="create"
+              style="width: 150px;"
               value="John Doe"
-              disabled
+              @click:append="show()"
             ></v-text-field>
           </div>
 
           <div class="">实际派发时间 ：</div>
           <div>
             <v-text-field
-              height="20px"
-              style="width: 100px;"
+              append-icon="create"
+              style="width: 150px;"
               value="John Doe"
-              disabled
+              @click:append="show()"
             ></v-text-field>
           </div>
 
           <div class="">实际派发时间 ：</div>
           <div>
-            <v-text-field
-              height="20px"
-              style="width: 100px;"
+             <v-text-field
+              append-icon="create"
+              style="width: 150px;"
               value="John Doe"
-              disabled
+              @click:append="show()"
+            ></v-text-field>
+          </div>
+
+          <div>
+             <v-text-field
+              append-icon="create"
+              style="width: 150px;"
+              value="John Doe"
+              @click:append="show()"
+            ></v-text-field>
+          </div>
+
+          <div>
+             <v-text-field
+              append-icon="create"
+              style="width: 150px;"
+              value="John Doe"
+              @click:append="show()"
             ></v-text-field>
           </div>
           <div class="mb-2">
@@ -262,13 +280,7 @@
         </div>
       </div>
     </div>
-    <span>
-      <v-text-field
-       :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-        value="Pa"
-        @click:append="show4 = !show4"
-      ></v-text-field>
-    </span>
+    
     <div style="height:100px"></div>
   </v-container>
 </template>
@@ -284,48 +296,7 @@ export default {
       email: "1870132537@qq.com",
       name: "黄文强",
     },
-    desserts: [
-      {
-        name: "项目名称",
-        calories: "洪城项目",
-      },
-      {
-        name: "Ice cream sandwich",
-        calories: 237,
-      },
-      {
-        name: "Eclair",
-        calories: 262,
-      },
-      {
-        name: "Cupcake",
-        calories: 305,
-      },
-      {
-        name: "Gingerbread",
-        calories: 356,
-      },
-      {
-        name: "Jelly bean",
-        calories: 375,
-      },
-      {
-        name: "Lollipop",
-        calories: 392,
-      },
-      {
-        name: "Honeycomb",
-        calories: 408,
-      },
-      {
-        name: "Donut",
-        calories: 452,
-      },
-      {
-        name: "KitKat",
-        calories: 518,
-      },
-    ],
+    
   }),
   methods: {
     abs() {},
