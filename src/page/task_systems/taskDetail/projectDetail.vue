@@ -11,18 +11,18 @@
             <v-btn text style="height:80px" v-bind="attrs" v-on="on">
               <v-row>
                 <v-col>
-                  <v-icon v-show="false" color="green darken-2">
+                  <v-icon v-show="false" size="55" color="green darken-2">
                     mdi-alarm-check
                   </v-icon>
-                  <v-icon v-show="false" color="green darken-2">
+                  <v-icon v-show="false" size="55" color="green darken-2">
                     mdi-alarm
                   </v-icon>
-                  <v-icon v-show="true" size="70" color="green darken-2">
+                  <v-icon v-show="true" size="55" color="green darken-2">
                     mdi-alarm-off
                   </v-icon>
                 </v-col>
-                <v-col class="mt-2">
-                  <div style="font-size: 1.5em;" class="grey--text mb-2">
+                <v-col class="">
+                  <div style="font-size: 1.5em;" class="grey--text mb-1">
                     进行时
                   </div>
                   <p>当前状态</p>
@@ -31,7 +31,7 @@
             </v-btn>
           </template>
           <v-list>
-            <!-- <v-list-item @click="abs">
+            <v-list-item @click="abs">
               <v-list-item-title>
                 <v-icon>mdi-alarm-off</v-icon>
                 <span>完成</span>
@@ -48,7 +48,7 @@
                 <v-icon>mdi-alarm-off</v-icon>
                 <span>进行时</span>
               </v-list-item-title>
-            </v-list-item> -->
+            </v-list-item>
           </v-list>
         </v-menu>
       </v-col>
@@ -56,7 +56,7 @@
         <div>
           <v-row>
             <v-col cols="3">
-              <v-avatar size="70">
+              <v-avatar size="55">
                 <img
                   alt="user"
                   src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3846290151,2766954484&fm=26&gp=0.jpg"
@@ -76,12 +76,12 @@
           <v-btn text style="height:80px">
             <v-row>
               <v-col>
-                <v-icon v-show="true" size="70" color="green darken-2">
+                <v-icon v-show="true" size="55" color="green darken-2">
                   mdi-alarm-off
                 </v-icon>
               </v-col>
-              <v-col class="mt-2">
-                <div style="font-size: 1.5em;" class="grey--text mb-2">
+              <v-col class="">
+                <div style="font-size: 1.5em;" class="grey--text mb-1">
                   开始时间
                 </div>
                 <p>2020.8.23</p>
@@ -96,12 +96,12 @@
           <v-btn text style="height:80px">
             <v-row>
               <v-col>
-                <v-icon v-show="true" size="70" color="green darken-2">
+                <v-icon v-show="true" size="55" color="green darken-2">
                   mdi-alarm-off
                 </v-icon>
               </v-col>
-              <v-col class="mt-2">
-                <div style="font-size: 1.5em;" class="grey--text mb-2">
+              <v-col class="">
+                <div style="font-size: 1.5em;" class="grey--text mb-1">
                   截止时间
                 </div>
                 <p>2020.8.23</p>
@@ -219,7 +219,7 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="updatapaifa()"
+              @click:append="changedata()"
             ></v-text-field>
           </span>
 
@@ -229,7 +229,7 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show()"
+              @click:append="changedata()"
             ></v-text-field>
           </div>
 
@@ -239,7 +239,7 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show()"
+              @click:append="changedata()"
             ></v-text-field>
           </div>
 
@@ -249,7 +249,7 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show()"
+              @click:append="changedata()"
             ></v-text-field>
           </div>
 
@@ -258,7 +258,8 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show()"
+              :disabled="disabled" 
+              @click:append="changedata()"
             ></v-text-field>
           </div>
 
@@ -267,7 +268,7 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show()"
+              @click:append="changedata()"
             ></v-text-field>
           </div>
           <div class="mb-2">
@@ -287,7 +288,7 @@
           :first-day-of-week="0"
           locale="zh-cn"
         ></v-date-picker>
-        <v-btn x-large color="primary">确定</v-btn>
+        <v-btn x-large color="primary" @click="updatapaifa()">确定</v-btn>
     </v-dialog>
 
     <div style="height:100px" @click="changedata()"></div>
@@ -297,9 +298,11 @@
 <script>
 export default {
   data: () => ({
+
+    disabled:true, 
     // 用户选择的时间，用于判断选择的是那个时间（例如：派发时间、操作员时间）
     timeselect: "",
-    dialog:true,
+    dialog:false,
     password: "Password",
     // 时间选择器选择的时间
     picker: new Date().toISOString().substr(0, 10),
@@ -309,10 +312,8 @@ export default {
       email: "1870132537@qq.com",
       name: "黄文强",
     },
-    ordertiem:{
-      // 实际派发时间
-      timeAfterDistribution:""
-    }
+    
+    
   }),
   watch: {
     picker(val) {
@@ -320,16 +321,18 @@ export default {
     },
   },
   methods: {
-    changedata(value){
-      this.value
+    changedata(){
+      this.dialog = true
+      this.timeselect="timeAfterDistribution";
     },
     show() {
       console.log("111111111111");
     },
     updatapaifa() {
-      this.timeselect = "timeAfterDistribution"
-      console.log('更新 派发')
-    }
+      console.log(this.timeselect)
+
+    },
+    abs(){}
   },
 };
 </script>
