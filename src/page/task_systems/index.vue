@@ -1,15 +1,15 @@
 <template>
   <div>
-    <toolbar />
+    <!-- <toolbar /> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
-import toolbar from "./toolbar";
+// import toolbar from "./toolbar";
 export default {
-  components: { toolbar },
+  // components: { toolbar },
   methods: {
     ...mapMutations(["changeShow"]),
   },

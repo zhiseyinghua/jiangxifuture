@@ -208,12 +208,18 @@
 
     <!-- <v-divider class="mt-5 mb-12"></v-divider> -->
 
-    <div class="ml-12 mt-12">
+    <!-- <div class="ml-12 mt-12">
       <div>
         <div class="mb-2 grey--text">项目时间详情 ：</div>
         <div class="mt-6 ml-6">
           <span>实际派发时间 ：</span>
-          <span ><v-btn>改为当前时间</v-btn></span>
+          <span  style="margin-left:60px; margin-top:50px"
+            ><v-btn text>
+              <v-icon large >
+                create
+              </v-icon></v-btn
+            ></span
+          >
           <span>
             <v-text-field
               height="20px"
@@ -261,7 +267,7 @@
           <div class="mb-2">金额到账时间 ：{{ ONEinformation.name }}</div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div style="widch:10px">
       <v-text-field

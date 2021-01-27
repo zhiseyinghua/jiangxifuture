@@ -122,27 +122,27 @@ export default {
     ],
   }),
   methods: {
-    // handleCreateGroup() {
-    //   this.dialog = false;
-    //   const teamname = this.teamName;
-    //   const authorization = localStorage.getItem("token");
-    //   axios({
-    //     method: "post",
-    //     url: "/api/team/insertteaminfo",
-    //     headers: { authorization },
-    //     data: {
-    //       teamid: "4",
-    //       teamname,
-    //       projectid: "1",
-    //       projectname: "web",
-    //       projectprogress: "20",
-    //       type: "normal",
-    //       description: "second",
-    //     },
-    //   }).then((res) => {
-    //     console.log(res.data);
-    //   });
-    // },
+    handleCreateGroup() {
+      this.dialog = false;
+      const teamname = this.teamName;
+      const authorization = localStorage.getItem("token");
+      axios({
+        method: "post",
+        url: "/api/team/insertteaminfo",
+        headers: { authorization },
+        data: {
+          teamid: "4",
+          teamname,
+          projectid: "1",
+          projectname: "web",
+          projectprogress: "20",
+          type: "normal",
+          description: "second",
+        },
+      }).then((res) => {
+        console.log(res.data);
+      });
+    },
   },
   mounted: function() {
     
