@@ -217,11 +217,9 @@
           <span>
             <v-text-field
               :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.emailMatch]"
-              :type="show4 ? 'text' : 'password'"
               style="width: 150px;"
               value="John Doe"
-              @click:append-outer-icon="show4 = !show4"
+              @click:append="show4 = !show4"
             ></v-text-field>
           </span>
 
@@ -264,7 +262,13 @@
         </div>
       </div>
     </div>
-
+    <span>
+      <v-text-field
+       :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+        value="Pa"
+        @click:append="show4 = !show4"
+      ></v-text-field>
+    </span>
     <div style="height:100px"></div>
   </v-container>
 </template>
@@ -272,11 +276,7 @@
 <script>
 export default {
   data: () => ({
-    rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => v.length >= 8 || "Min 8 characters",
-      emailMatch: () => `The email and password you entered don't match`,
-    },
+     password: "Password",
 
     show4: false,
     ONEinformation: {
