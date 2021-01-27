@@ -31,7 +31,7 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item @click="abs">
+            <!-- <v-list-item @click="abs">
               <v-list-item-title>
                 <v-icon>mdi-alarm-off</v-icon>
                 <span>完成</span>
@@ -48,7 +48,7 @@
                 <v-icon>mdi-alarm-off</v-icon>
                 <span>进行时</span>
               </v-list-item-title>
-            </v-list-item>
+            </v-list-item> -->
           </v-list>
         </v-menu>
       </v-col>
@@ -219,13 +219,13 @@
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show()"
+              @click:append="updatapaifa()"
             ></v-text-field>
           </span>
 
           <div class="">技术员实际完成时间 ：</div>
           <div>
-             <v-text-field
+            <v-text-field
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
@@ -245,7 +245,7 @@
 
           <div class="">实际派发时间 ：</div>
           <div>
-             <v-text-field
+            <v-text-field
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
@@ -254,7 +254,7 @@
           </div>
 
           <div>
-             <v-text-field
+            <v-text-field
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
@@ -263,7 +263,7 @@
           </div>
 
           <div>
-             <v-text-field
+            <v-text-field
               append-icon="create"
               style="width: 150px;"
               value="John Doe"
@@ -280,28 +280,50 @@
         </div>
       </div>
     </div>
-    
-    <div style="height:100px"></div>
+
+    <v-dialog v-model="dialog" width="500">
+        <v-date-picker
+          v-model="picker"
+          :first-day-of-week="0"
+          locale="zh-cn"
+        ></v-date-picker>
+        <v-btn x-large color="primary">确定</v-btn>
+    </v-dialog>
+
+    <div style="height:100px" @click="changedata()"></div>
   </v-container>
 </template>
 
 <script>
 export default {
   data: () => ({
-     password: "Password",
-
+    // 用户选择的时间，用于判断选择的是那个时间（例如：派发时间、操作员时间）
+    timeselect: "",
+    dialog:true,
+    password: "Password",
+    // 时间选择器选择的时间
+    picker: new Date().toISOString().substr(0, 10),
     ONEinformation: {
       phone: "18779868511",
       // 邮箱
       email: "1870132537@qq.com",
       name: "黄文强",
     },
-    
   }),
+  watch: {
+    picker(val) {
+      console.log(val);
+    },
+  },
   methods: {
-    abs() {},
-    show(){
+    changedata(value){
+      this.value
+    },
+    show() {
       console.log("111111111111");
+    },
+    updatapaifa() {
+      console.log('更新 派发')
     }
   },
 };
