@@ -216,10 +216,10 @@
 
           <span>
             <v-text-field
-              :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+              append-icon="mdi-eye-off"
               style="width: 150px;"
               value="John Doe"
-              @click:append="show4 = !show4"
+              @click:append="show()"
             ></v-text-field>
           </span>
 
@@ -278,7 +278,6 @@ export default {
   data: () => ({
      password: "Password",
 
-    show4: false,
     ONEinformation: {
       phone: "18779868511",
       // 邮箱
@@ -330,6 +329,9 @@ export default {
   }),
   methods: {
     abs() {},
+    show(){
+      console.log("111111111111");
+    }
   },
 };
 </script>
