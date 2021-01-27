@@ -216,11 +216,11 @@
 
           <span>
             <v-text-field
-              height="20px"
+              :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.emailMatch]"
+              :type="show4 ? 'text' : 'password'"
               style="width: 150px;"
               value="John Doe"
-              disabled
-              :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
               @click:append-outer-icon="show4 = !show4"
             ></v-text-field>
           </span>
@@ -272,9 +272,13 @@
 <script>
 export default {
   data: () => ({
+    rules: {
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 8 || "Min 8 characters",
+      emailMatch: () => `The email and password you entered don't match`,
+    },
 
-     show4: false,
-
+    show4: false,
     ONEinformation: {
       phone: "18779868511",
       // 邮箱
