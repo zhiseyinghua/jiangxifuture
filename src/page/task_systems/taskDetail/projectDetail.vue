@@ -171,6 +171,9 @@
               项目时间详情
             </v-toolbar-title>
             <v-spacer></v-spacer>
+            <v-btn :disabled="!isEditing" color="success" @click="save">
+              Save
+            </v-btn>
             <v-btn color=" darken-3" fab small @click="isEditing = !isEditing">
               <v-icon v-if="isEditing">
                 mdi-close
@@ -244,9 +247,9 @@
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!isEditing" color="success" @click="save">
+            <!-- <v-btn :disabled="!isEditing" color="success" @click="save">
               Save
-            </v-btn>
+            </v-btn> -->
           </v-card-actions>
           <!-- <v-snackbar v-model="hasSaved" :timeout="2000" absolute bottom left>
             Your profile has been updated
