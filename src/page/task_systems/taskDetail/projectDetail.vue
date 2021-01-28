@@ -217,12 +217,7 @@
               项目时间详情
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn
-              color="purple darken-3"
-              fab
-              small
-              @click="isEditing = !isEditing"
-            >
+            <v-btn color=" darken-3" fab small @click="isEditing = !isEditing">
               <v-icon v-if="isEditing">
                 mdi-close
               </v-icon>
@@ -232,19 +227,65 @@
             </v-btn>
           </v-toolbar>
           <v-card-text>
+            <span>实际派发时间 ：</span>
+
             <v-text-field
+              filled
               :disabled="!isEditing"
-              color="white"
-              label="Name"
+              append-icon="create"
+              value="John Doe"
+              @click:append="changedata()"
             ></v-text-field>
-            <v-autocomplete
+
+            <div class="">技术员实际完成时间 ：</div>
+            <v-text-field
+              filled
               :disabled="!isEditing"
-              :items="states"
-              :filter="customFilter"
-              color="white"
-              item-text="name"
-              label="State"
-            ></v-autocomplete>
+              append-icon="create"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+
+            <div class="">实际派发时间 ：</div>
+            <v-text-field
+              filled
+              :disabled="!isEditing"
+              append-icon="create"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+
+            <div class="">实际派发时间 ：</div>
+            <v-text-field
+              filled
+              :disabled="!isEditing"
+              append-icon="create"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+
+            <v-text-field
+              filled
+              :disabled="!isEditing"
+              append-icon="create"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+
+            <v-text-field
+              filled
+              :disabled="!isEditing"
+              append-icon="create"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+            <div class="mb-2">
+              技术员实际完成时间 ：{{ ONEinformation.email }}
+            </div>
+            <div class="mb-2">外业完成时间 ：{{ ONEinformation.name }}</div>
+            <div class="mb-2">内业完成时间 ：{{ ONEinformation.phone }}</div>
+            <div class="mb-2">合同完成时间 ：{{ ONEinformation.email }}</div>
+            <div class="mb-2">金额到账时间 ：{{ ONEinformation.name }}</div>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
@@ -253,80 +294,13 @@
               Save
             </v-btn>
           </v-card-actions>
-          <v-snackbar v-model="hasSaved" :timeout="2000" absolute bottom left>
+          <!-- <v-snackbar v-model="hasSaved" :timeout="2000" absolute bottom left>
             Your profile has been updated
-          </v-snackbar>
+          </v-snackbar> -->
         </v-card>
 
         <div class="mb-2 grey--text">项目时间详情 ：</div>
-        <div class="mt-6 ml-6">
-          <span>实际派发时间 ：</span>
-
-          <span>
-            <v-text-field
-              append-icon="create"
-              style="width: 150px;"
-              value="John Doe"
-              @click:append="changedata()"
-            ></v-text-field>
-          </span>
-
-          <div class="">技术员实际完成时间 ：</div>
-          <div>
-            <v-text-field
-              append-icon="create"
-              style="width: 150px;"
-              value="John Doe"
-              @click:append="changedata()"
-            ></v-text-field>
-          </div>
-
-          <div class="">实际派发时间 ：</div>
-          <div>
-            <v-text-field
-              append-icon="create"
-              style="width: 150px;"
-              value="John Doe"
-              @click:append="changedata()"
-            ></v-text-field>
-          </div>
-
-          <div class="">实际派发时间 ：</div>
-          <div>
-            <v-text-field
-              append-icon="create"
-              style="width: 150px;"
-              value="John Doe"
-              @click:append="changedata()"
-            ></v-text-field>
-          </div>
-
-          <div>
-            <v-text-field
-              append-icon="create"
-              style="width: 150px;"
-              value="John Doe"
-              :disabled="disabled"
-              @click:append="changedata()"
-            ></v-text-field>
-          </div>
-
-          <div>
-            <v-text-field
-              append-icon="create"
-              style="width: 150px;"
-              value="John Doe"
-              @click:append="changedata()"
-            ></v-text-field>
-          </div>
-          <div class="mb-2">
-            技术员实际完成时间 ：{{ ONEinformation.email }}
-          </div>
-          <div class="mb-2">外业完成时间 ：{{ ONEinformation.name }}</div>
-          <div class="mb-2">内业完成时间 ：{{ ONEinformation.phone }}</div>
-          <div class="mb-2">合同完成时间 ：{{ ONEinformation.email }}</div>
-          <div class="mb-2">金额到账时间 ：{{ ONEinformation.name }}</div>
-        </div>
+        <div class="mt-6 ml-6"></div>
       </div>
     </div>
 
@@ -390,7 +364,6 @@ export default {
       this.isEditing = !this.isEditing;
       this.hasSaved = true;
     },
-
 
     changedata() {
       this.dialog = true;
