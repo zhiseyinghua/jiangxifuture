@@ -27,7 +27,7 @@
       </v-col>
       <v-col>
         <div>
-          <v-btn text style="height:80px">
+          <v-btn @click="starttime()" text style="height:80px">
             <v-row>
               <v-col>
                 <v-icon v-show="true" size="55" color="green darken-2">
@@ -167,11 +167,11 @@
         <v-card elevation="0" style="width: 500px;" class="overflow-hidden">
           <v-toolbar flat>
             <!-- <v-icon>mdi-account</v-icon> -->
-            <v-toolbar-title class="mb-2 grey--text">
+            <v-toolbar-title class="mb-2  grey--text">
               项目时间详情
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!isEditing" color="success" @click="save">
+            <v-btn class="mr-6" :disabled="!isEditing" color="success" @click="save">
               Save
             </v-btn>
             <v-btn color=" darken-3" fab small @click="isEditing = !isEditing">
@@ -189,7 +189,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="create"
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
@@ -198,7 +198,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="create"
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
@@ -207,7 +207,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="create"
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
@@ -216,7 +216,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="create"
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
@@ -224,7 +224,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="create"
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
@@ -232,7 +232,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="create"
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
@@ -269,8 +269,9 @@
       ></v-date-picker>
       <v-btn x-large color="primary" @click="updatapaifa()">确定</v-btn>
     </v-dialog>
-
     <div style="height:100px" @click="changedata()"></div>
+    // 修改甲方信息
+    
   </v-container>
 </template>
 
@@ -333,6 +334,11 @@ export default {
       console.log(this.timeselect);
     },
     abs() {},
+    
+    starttime() {
+      this.dialog = true
+      console.log("好的")
+    }
   },
 };
 </script>
