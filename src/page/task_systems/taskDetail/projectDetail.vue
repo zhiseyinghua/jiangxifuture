@@ -139,7 +139,7 @@
                   <div class="mb-2">名称 ：{{ ONEinformation.name }}</div>
                   <div class="mb-2">电话 ：{{ ONEinformation.phone }}</div>
                   <div class="mb-2">邮箱 ：{{ ONEinformation.email }}</div>
-                  <v-btn class="mt-3">修改甲方信息</v-btn>
+                  <v-btn class="mt-3" @click="changefristPart()">修改甲方信息</v-btn>
                 </div>
               </div>
             </div>
@@ -334,10 +334,14 @@ export default {
       console.log(this.timeselect);
     },
     abs() {},
-    
+
     starttime() {
       this.dialog = true
       console.log("好的")
+    },
+
+    changefristPart() {
+      console.log('changefristPart')
     }
   },
 };
