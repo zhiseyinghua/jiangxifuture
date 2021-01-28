@@ -5,53 +5,7 @@
     </div>
     <v-divider class="mt-5 mb-12"></v-divider>
     <v-row>
-      <v-col>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn text style="height:80px" v-bind="attrs" v-on="on">
-              <v-row>
-                <v-col>
-                  <v-icon v-show="false" size="55" color="green darken-2">
-                    mdi-alarm-check
-                  </v-icon>
-                  <v-icon v-show="false" size="55" color="green darken-2">
-                    mdi-alarm
-                  </v-icon>
-                  <v-icon v-show="true" size="55" color="green darken-2">
-                    mdi-alarm-off
-                  </v-icon>
-                </v-col>
-                <v-col class="">
-                  <div style="font-size: 1.5em;" class="grey--text mb-1">
-                    进行时
-                  </div>
-                  <p>当前状态</p>
-                </v-col>
-              </v-row>
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item @click="abs">
-              <v-list-item-title>
-                <v-icon>mdi-alarm-off</v-icon>
-                <span>完成</span>
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item @click="abs">
-              <v-list-item-title>
-                <v-icon>mdi-alarm-off</v-icon>
-                <span>未完成</span>
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item @click="abs">
-              <v-list-item-title>
-                <v-icon>mdi-alarm-off</v-icon>
-                <span>进行时</span>
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-col>
+      
       <v-col>
         <div>
           <v-row>
@@ -299,7 +253,7 @@
           </v-snackbar> -->
         </v-card>
 
-        <div class="mb-2 grey--text">项目时间详情 ：</div>
+        
         <div class="mt-6 ml-6"></div>
       </div>
     </div>
