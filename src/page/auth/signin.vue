@@ -109,7 +109,6 @@
 <script>
 import authServies from "./auth.servies";
 import Bus from "../../common/bus.js";
-import colors from "vuetify/es5/util/colors";
 import { AuthConfig } from "./auth.common";
 export default {
   data() {

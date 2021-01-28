@@ -5,7 +5,6 @@
     </div>
     <v-divider class="mt-5 mb-12"></v-divider>
     <v-row>
-      
       <v-col>
         <div>
           <v-row>
@@ -55,7 +54,7 @@
                 </v-icon>
               </v-col>
               <v-col class="">
-                <div style="font-size: 1.5em;" class="grey--text mb-1" >
+                <div style="font-size: 1.5em;" class="grey--text mb-1">
                   任务完成时间
                 </div>
                 <p>2020.8.23</p>
@@ -139,7 +138,9 @@
                   <div class="mb-2">名称 ：{{ ONEinformation.name }}</div>
                   <div class="mb-2">电话 ：{{ ONEinformation.phone }}</div>
                   <div class="mb-2">邮箱 ：{{ ONEinformation.email }}</div>
-                  <v-btn class="mt-3" @click="changefristPart()">修改甲方信息</v-btn>
+                  <v-btn class="mt-3" @click="changefristPart()"
+                    >修改甲方信息</v-btn
+                  >
                 </div>
               </div>
             </div>
@@ -171,7 +172,12 @@
               项目时间详情
             </v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn class="mr-6" :disabled="!isEditing" color="success" @click="save">
+            <v-btn
+              class="mr-6"
+              :disabled="!isEditing"
+              color="success"
+              @click="save"
+            >
               Save
             </v-btn>
             <v-btn color=" darken-3" fab small @click="isEditing = !isEditing">
@@ -185,7 +191,7 @@
           </v-toolbar>
           <v-card-text>
             <span>实际派发时间 ：</span>
-
+            <!-- timeAfterDistribution -->
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -195,6 +201,7 @@
             ></v-text-field>
 
             <div class="">技术员实际完成时间 ：</div>
+            <!-- technicianCompletionTime -->
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -203,7 +210,8 @@
               @click:append="changedata()"
             ></v-text-field>
 
-            <div class="">实际派发时间 ：</div>
+            <div class="">外业完成时间 ：</div>
+            <!-- completionTime -->
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -212,7 +220,28 @@
               @click:append="changedata()"
             ></v-text-field>
 
-            <div class="">实际派发时间 ：</div>
+            <div class="">内业完成时间 ：</div>
+            <!-- insidePagesFinish -->
+            <v-text-field
+              filled
+              :disabled="!isEditing"
+              append-icon="date_range"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+
+            <div class="">金额到账时间 ：</div>
+            <!-- timeReceiptAmount -->
+            <v-text-field
+              filled
+              :disabled="!isEditing"
+              append-icon="date_range"
+              value="John Doe"
+              @click:append="changedata()"
+            ></v-text-field>
+
+            <div class="">合同完成时间 ：</div>
+            <!-- contractCompleted -->
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -256,7 +285,6 @@
           </v-snackbar> -->
         </v-card>
 
-        
         <div class="mt-6 ml-6"></div>
       </div>
     </div>
@@ -271,7 +299,6 @@
     </v-dialog>
     <div style="height:100px" @click="changedata()"></div>
     // 修改甲方信息
-    
   </v-container>
 </template>
 
@@ -337,23 +364,23 @@ export default {
 
     starttime() {
       this.timeselect = "timeselect";
-      console.log("timeselect")
-      this.dialog = true
+      console.log("timeselect");
+      this.dialog = true;
     },
 
     changefristPart() {
       this.timeselect = "orderstart";
-        console.log("orderstart")
-      console.log("changefristPart")
+      console.log("orderstart");
+      console.log("changefristPart");
     },
 
     // 任务完成时间
-    changecontractCompleted(){
+    changecontractCompleted() {
       this.timeselect = "changecontractCompleted";
-      console.log("changecontractCompleted")
-      this.dialog = true
-      console.log("changecontractCompleted")
-    }
+      console.log("changecontractCompleted");
+      this.dialog = true;
+      console.log("changecontractCompleted");
+    },
   },
 };
 </script>
