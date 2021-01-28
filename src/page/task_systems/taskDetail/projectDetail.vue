@@ -342,7 +342,11 @@ export default {
     },
 
     changefristPart() {
-      console.log('changefristPart')
+      console.log("changefristPart")
+    },
+
+    changecontractCompleted(){
+      console.log("changecontractCompleted")
     }
   },
 };
