@@ -47,7 +47,7 @@
 
       <v-col>
         <div>
-          <v-btn text style="height:80px">
+          <v-btn @click="changecontractCompleted()" text style="height:80px">
             <v-row>
               <v-col>
                 <v-icon v-show="true" size="55" color="green darken-2">
@@ -55,7 +55,7 @@
                 </v-icon>
               </v-col>
               <v-col class="">
-                <div style="font-size: 1.5em;" class="grey--text mb-1">
+                <div style="font-size: 1.5em;" class="grey--text mb-1" >
                   截止时间
                 </div>
                 <p>2020.8.23</p>
@@ -345,7 +345,11 @@ export default {
       console.log("changefristPart")
     },
 
+    // 任务完成时间
     changecontractCompleted(){
+      this.timeselect = "changecontractCompleted";
+      console.log("changecontractCompleted")
+      this.dialog = true
       console.log("changecontractCompleted")
     }
   },
