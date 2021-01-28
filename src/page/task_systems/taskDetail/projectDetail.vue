@@ -336,8 +336,9 @@ export default {
     abs() {},
 
     starttime() {
+      this.timeselect = "timeselect";
+      console.log("timeselect")
       this.dialog = true
-      console.log("好的")
     },
 
     changefristPart() {
