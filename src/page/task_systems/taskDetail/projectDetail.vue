@@ -56,7 +56,7 @@
               </v-col>
               <v-col class="">
                 <div style="font-size: 1.5em;" class="grey--text mb-1" >
-                  截止时间
+                  任务完成时间
                 </div>
                 <p>2020.8.23</p>
               </v-col>
@@ -342,6 +342,8 @@ export default {
     },
 
     changefristPart() {
+      this.timeselect = "orderstart";
+        console.log("orderstart")
       console.log("changefristPart")
     },
 
