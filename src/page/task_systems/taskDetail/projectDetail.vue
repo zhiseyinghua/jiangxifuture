@@ -301,6 +301,7 @@
 </template>
 
 <script>
+import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 export default {
   data: () => ({
     hasSaved: false,
@@ -338,7 +339,6 @@ export default {
       const textOne = item.name.toLowerCase();
       const textTwo = item.abbr.toLowerCase();
       const searchText = queryText.toLowerCase();
-
       return (
         textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
       );
@@ -356,9 +356,9 @@ export default {
       console.log("111111111111");
     },
 
-    // 更新所有的时间
+    // 更新所有的时间参数
     updatapaifa() {
-      console.log("更新所有的时间")
+      console.log("更新所有的时间");
       console.log(this.timeselect);
     },
     abs() {},

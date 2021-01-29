@@ -2,7 +2,7 @@ import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
-export default class projectDetail {
+export default class ProjectDetailClass {
   public static updateOrderstartTime(): Observable<any> {
     // return AxiosElasticService.AxiosService().pipe(
     //     map(data=>{
