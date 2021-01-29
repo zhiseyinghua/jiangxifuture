@@ -356,13 +356,6 @@ export default {
       console.log("111111111111");
     },
 
-    // 更新所有的时间参数
-    updatapaifa() {
-      console.log("更新所有的时间");
-      console.log(this.timeselect);
-    },
-    abs() {},
-
     starttime() {
       this.timeselect = "orderstartTime";
       console.log(this.timeselect);
@@ -381,6 +374,11 @@ export default {
       console.log("changecontractCompleted");
       this.dialog = true;
       console.log("changecontractCompleted");
+    },
+     // 更新所有的时间参数
+    updatapaifa() {
+      console.log("更新所有的时间");
+      console.log(this.timeselect);
     },
   },
 };

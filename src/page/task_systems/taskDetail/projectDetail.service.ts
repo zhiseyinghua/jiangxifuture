@@ -3,7 +3,7 @@ import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 
 export default class ProjectDetailClass {
-  public static updateOrderstartTime(): Observable<any> {
+  public static updateOrderstartTime(choose: string): Observable<any> {
     // return AxiosElasticService.AxiosService().pipe(
     //     map(data=>{
     //         return data
@@ -11,7 +11,7 @@ export default class ProjectDetailClass {
     // )
     return of(Date.parse(new Date() + "")).pipe(
         map(data=>{
-            console.log(data)
+            console.log("data",data)
             return data;
         })
     )
