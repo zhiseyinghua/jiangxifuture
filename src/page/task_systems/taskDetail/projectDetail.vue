@@ -37,7 +37,7 @@
                 <div style="font-size: 1.5em;" class="grey--text mb-1">
                   开始时间
                 </div>
-                <p>2020.8.23</p>
+                <p>{{orderstartTime}}</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -305,6 +305,11 @@ import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.ser
 import { data } from '@/page/test/hwqtest/execel-test.vue';
 export default {
   data: () => ({
+    // 任务开始时间
+    orderstartTime:null,
+
+
+
     hasSaved: false,
     isEditing: null,
     model: null,
@@ -382,8 +387,8 @@ export default {
       console.log(this.timeselect);
       ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
         (data=>{
-          console.log("data",data);
-          
+          console.log("data",data,this.timeselect);
+          this[this.timeselect] = data
         })
       )
     },
