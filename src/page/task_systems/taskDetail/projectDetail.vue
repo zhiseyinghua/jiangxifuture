@@ -178,7 +178,7 @@
               color="success"
               @click="save"
             >
-              Save
+              保存
             </v-btn>
             <v-btn color=" darken-3" fab small @click="isEditing = !isEditing">
               <v-icon v-if="isEditing">
@@ -225,7 +225,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon=""
+              append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
