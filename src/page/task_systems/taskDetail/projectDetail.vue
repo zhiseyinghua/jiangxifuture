@@ -380,9 +380,10 @@ export default {
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
-      ProjectDetailClass.updateOrderstartTime().subscribe(
+      ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
         (data=>{
-          console.log("data",data)
+          console.log("data",data);
+          
         })
       )
     },

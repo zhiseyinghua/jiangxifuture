@@ -11,7 +11,7 @@ export default class ProjectDetailClass {
     // )
     return of(Date.parse(new Date() + "")).pipe(
         map(data=>{
-            console.log("data",data)
+            console.log("data",choose)
             return data;
         })
     )
