@@ -314,7 +314,7 @@ export default {
       { name: "California", abbr: "CA", id: 4 },
       { name: "New York", abbr: "NY", id: 5 },
     ],
-
+    
     disabled: true,
     // 用户选择的时间，用于判断选择的是那个时间（例如：派发时间、操作员时间）
     timeselect: "",
