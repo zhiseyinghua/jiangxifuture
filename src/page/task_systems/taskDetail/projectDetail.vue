@@ -302,6 +302,7 @@
 
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
+import { data } from '@/page/test/hwqtest/execel-test.vue';
 export default {
   data: () => ({
     hasSaved: false,
@@ -379,6 +380,11 @@ export default {
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
+      ProjectDetailClass.updateOrderstartTime().subscribe(
+        (data=>{
+          console.log("data",data)
+        })
+      )
     },
   },
 };
