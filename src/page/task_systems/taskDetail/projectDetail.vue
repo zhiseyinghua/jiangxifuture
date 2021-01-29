@@ -161,7 +161,6 @@
       </div>
     </div>
 
-
     <div class="ml-12 mt-12">
       <div>
         <v-card elevation="0" style="width: 500px;" class="overflow-hidden">
@@ -203,7 +202,7 @@
             <!-- technicianCompletionTime -->
             <v-text-field
               filled
-              :disabled="!isEditing" 
+              :disabled="!isEditing"
               append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
@@ -314,7 +313,7 @@ export default {
       { name: "California", abbr: "CA", id: 4 },
       { name: "New York", abbr: "NY", id: 5 },
     ],
-    
+
     disabled: true,
     // 用户选择的时间，用于判断选择的是那个时间（例如：派发时间、操作员时间）
     timeselect: "",
