@@ -204,7 +204,7 @@
             <!-- technicianCompletionTime -->
             <v-text-field
               filled
-              :disabled="!isEditing"
+              :disabled="!isEditing" 
               append-icon="date_range"
               value="John Doe"
               @click:append="changedata()"
@@ -225,7 +225,7 @@
             <v-text-field
               filled
               :disabled="!isEditing"
-              append-icon="date_range"
+              append-icon=""
               value="John Doe"
               @click:append="changedata()"
             ></v-text-field>
