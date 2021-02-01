@@ -152,7 +152,7 @@
                 <div class="mt-6 ml-6">
                   <div class="mb-2">任务面积 ：{{ ONEinformation.name }}</div>
                   <div class="mb-2">实际费用 ：{{ ONEinformation.phone }}</div>
-                  <v-btn class="mt-11">修改其他信息</v-btn>
+                  <v-btn @click="changeOtherinformation" class="mt-11">修改其他信息</v-btn>
                 </div>
               </div>
             </div>
@@ -163,7 +163,7 @@
 
     <div class="ml-12 mt-12">
       <div>
-        <v-card elevation="0" style="width: 500px;" class="overflow-hidden">
+        <v-card elevation="0" style="width: 350px;" class="overflow-hidden">
           <v-toolbar flat>
             <!-- <v-icon>mdi-account</v-icon> -->
             <v-toolbar-title class="mb-2  grey--text">
@@ -248,6 +248,8 @@
               @click:append="changedata()"
             ></v-text-field>
 
+            <div class="">金额到账时间 ：</div>
+            <!-- timeReceiptAmount -->
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -293,9 +295,48 @@
 
     // 修改甲方信息
     <v-dialog v-model="firstdialog" width="500">
-      <v-card class="ma-10" flat>
-        <p>修改甲方参数</p>
-        <v-text-field label="名称" outlined clearable dense> </v-text-field>
+      <v-card>
+        <v-card-title class="headline grey lighten-5">
+          修改甲方参数</v-card-title
+        >
+        <v-card class="ma-10" flat>
+          <v-text-field label="名称" outlined clearable dense> </v-text-field>
+          <v-text-field label="电话" outlined clearable dense> </v-text-field>
+          <v-text-field label="邮箱" outlined clearable dense> </v-text-field>
+        </v-card>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn color="primary" text @click="dialog = false">
+            暂不修改
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="upuserdata()">
+            确认修改
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    // 修改其他信息
+    <v-dialog v-model="otherdialog" width="500">
+      <v-card>
+        <v-card-title class="headline grey lighten-5">
+          修改其他信息</v-card-title
+        >
+        <v-card class="ma-10" flat>
+          <v-text-field label="名称" outlined clearable dense> </v-text-field>
+          <v-text-field label="电话" outlined clearable dense> </v-text-field>
+          <v-text-field label="邮箱" outlined clearable dense> </v-text-field>
+        </v-card>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-btn color="primary" text @click="firstdialog = false">
+            暂不修改
+          </v-btn>
+          <v-spacer></v-spacer>
+          <!-- <v-btn color="primary" text @click="upuserdata()">
+            确认修改
+          </v-btn> -->
+        </v-card-actions>
       </v-card>
     </v-dialog>
 
@@ -305,7 +346,6 @@
 
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
-import { data } from "@/page/test/hwqtest/execel-test.vue";
 export default {
   data: () => ({
     // 任务开始时间
@@ -330,7 +370,9 @@ export default {
     // 修改时间参数 通用
     dialog: false,
     // 修改甲方信息弹窗
-    firstdialog: true,
+    firstdialog: false,
+     // 修改其他信息弹窗
+    otherdialog:false,
     password: "Password",
     // 时间选择器选择的时间
     picker: new Date().toISOString().substr(0, 10),
@@ -403,6 +445,11 @@ export default {
         }
       );
     },
+    // 修改其他信息
+    changeOtherinformation(){
+      console.log('changeOtherinformation');
+       this.otherdialog = true;
+    }
   },
 };
 </script>
