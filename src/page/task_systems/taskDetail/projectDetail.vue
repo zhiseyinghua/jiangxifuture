@@ -152,7 +152,9 @@
                 <div class="mt-6 ml-6">
                   <div class="mb-2">任务面积 ：{{ ONEinformation.name }}</div>
                   <div class="mb-2">实际费用 ：{{ ONEinformation.phone }}</div>
-                  <v-btn @click="changeOtherinformation" class="mt-11">修改其他信息</v-btn>
+                  <v-btn @click="changeOtherinformation" class="mt-11"
+                    >修改其他信息</v-btn
+                  >
                 </div>
               </div>
             </div>
@@ -194,7 +196,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              v-model="timeAfterDistribution" 
+              v-model="timeAfterDistribution"
               @click:append="changeTimeAfterDistributiondata()"
             ></v-text-field>
 
@@ -204,7 +206,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              v-model="technicianCompletionTime" 
+              v-model="technicianCompletionTime"
               @click:append="changeTechnicianCompletionTime()"
             ></v-text-field>
 
@@ -257,7 +259,6 @@
               value=""
               @click:append="changedata()"
             ></v-text-field>
-
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
@@ -336,11 +337,9 @@ export default {
   data: () => ({
     // 时间参数
     // 实际派发时间
-    timeAfterDistribution:null,
+    timeAfterDistribution: null,
     // 技术员实际完成时间
-    technicianCompletionTime:null,
-
-
+    technicianCompletionTime: null,
 
     // 任务开始时间
     orderstartTime: null,
@@ -364,8 +363,8 @@ export default {
     dialog: false,
     // 修改甲方信息弹窗
     firstdialog: false,
-     // 修改其他信息弹窗
-    otherdialog:false,
+    // 修改其他信息弹窗
+    otherdialog: false,
     password: "Password",
     // 时间选择器选择的时间
     picker: new Date().toISOString().substr(0, 10),
@@ -439,9 +438,9 @@ export default {
       );
     },
     // 修改其他信息
-    changeOtherinformation(){
-      console.log('changeOtherinformation');
-       this.otherdialog = true;
+    changeOtherinformation() {
+      console.log("changeOtherinformation");
+      this.otherdialog = true;
     },
 
     // 更改派发时间参数
@@ -451,8 +450,10 @@ export default {
     },
     // 更改派发时间参数
     changeTechnicianCompletionTime() {
-      console.log("changeTechnicianCompletionTime")
-    }
+      console.log("changeTechnicianCompletionTime");
+      this.dialog = true;
+      this.timeselect = "technicianCompletionTime";
+    },
   },
 };
 </script>
