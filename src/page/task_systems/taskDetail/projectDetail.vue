@@ -194,8 +194,8 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
-              @click:append="changedata()"
+              v-model="timeAfterDistribution" 
+              @click:append="changeTimeAfterDistributiondata()"
             ></v-text-field>
 
             <div class="">技术员实际完成时间 ：</div>
@@ -204,8 +204,8 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
-              @click:append="changedata()"
+              v-model="technicianCompletionTime" 
+              @click:append="changeTechnicianCompletionTime()"
             ></v-text-field>
 
             <div class="">外业完成时间 ：</div>
@@ -214,7 +214,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
+              value=""
               @click:append="changedata()"
             ></v-text-field>
 
@@ -224,7 +224,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
+              value=""
               @click:append="changedata()"
             ></v-text-field>
 
@@ -234,7 +234,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
+              value=""
               @click:append="changedata()"
             ></v-text-field>
 
@@ -244,7 +244,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
+              value=""
               @click:append="changedata()"
             ></v-text-field>
 
@@ -254,24 +254,10 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value="John Doe"
+              value=""
               @click:append="changedata()"
             ></v-text-field>
 
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              value="John Doe"
-              @click:append="changedata()"
-            ></v-text-field>
-            <div class="mb-2">
-              技术员实际完成时间 ：{{ ONEinformation.email }}
-            </div>
-            <div class="mb-2">外业完成时间 ：{{ ONEinformation.name }}</div>
-            <div class="mb-2">内业完成时间 ：{{ ONEinformation.phone }}</div>
-            <div class="mb-2">合同完成时间 ：{{ ONEinformation.email }}</div>
-            <div class="mb-2">金额到账时间 ：{{ ONEinformation.name }}</div>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
@@ -348,11 +334,18 @@
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 export default {
   data: () => ({
+    // 时间参数
+    // 实际派发时间
+    timeAfterDistribution:null,
+    // 技术员实际完成时间
+    technicianCompletionTime:null,
+
+
+
     // 任务开始时间
     orderstartTime: null,
     // 任务结束时间
     orderendTime: null,
-
     hasSaved: false,
     isEditing: null,
     model: null,
@@ -449,6 +442,16 @@ export default {
     changeOtherinformation(){
       console.log('changeOtherinformation');
        this.otherdialog = true;
+    },
+
+    // 更改派发时间参数
+    changeTimeAfterDistributiondata() {
+      this.dialog = true;
+      this.timeselect = "timeAfterDistribution";
+    },
+    // 更改派发时间参数
+    changeTechnicianCompletionTime() {
+      console.log("changeTechnicianCompletionTime")
     }
   },
 };
