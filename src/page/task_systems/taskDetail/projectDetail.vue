@@ -216,7 +216,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value=""
+              v-model="completionTime"
               @click:append="changedata()"
             ></v-text-field>
 
@@ -340,6 +340,9 @@ export default {
     timeAfterDistribution: null,
     // 技术员实际完成时间
     technicianCompletionTime: null,
+    // 外业完成时间
+    completionTime:null,
+
 
     // 任务开始时间
     orderstartTime: null,
