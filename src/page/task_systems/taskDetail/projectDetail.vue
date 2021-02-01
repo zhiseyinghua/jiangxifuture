@@ -57,7 +57,7 @@
                 <div style="font-size: 1.5em;" class="grey--text mb-1">
                   任务完成时间
                 </div>
-                <p>2020.8.23</p>
+                <p>{{orderendTime}}</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -274,19 +274,13 @@
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <!-- <v-btn :disabled="!isEditing" color="success" @click="save">
-              Save
-            </v-btn> -->
           </v-card-actions>
-          <!-- <v-snackbar v-model="hasSaved" :timeout="2000" absolute bottom left>
-            Your profile has been updated
-          </v-snackbar> -->
         </v-card>
 
         <div class="mt-6 ml-6"></div>
       </div>
     </div>
-
+    // 修改时间参数 通用
     <v-dialog v-model="dialog" width="500">
       <v-date-picker
         v-model="picker"
@@ -297,6 +291,11 @@
     </v-dialog>
     <div style="height:100px" @click="changedata()"></div>
     // 修改甲方信息
+
+    <v-dialog v-model="firstdialog" width="500">
+      <p>修改甲方参数</p>
+    </v-dialog>
+    <div style="height:100px" @click="changedata()"></div>
   </v-container>
 </template>
 
@@ -307,7 +306,8 @@ export default {
   data: () => ({
     // 任务开始时间
     orderstartTime:null,
-
+    // 任务结束时间
+    orderendTime:null,
 
 
     hasSaved: false,
@@ -324,7 +324,10 @@ export default {
     disabled: true,
     // 用户选择的时间，用于判断选择的是那个时间（例如：派发时间、操作员时间）
     timeselect: "",
+    // 修改时间参数 通用
     dialog: false,
+    // 修改甲方信息弹窗
+    firstdialog: true,
     password: "Password",
     // 时间选择器选择的时间
     picker: new Date().toISOString().substr(0, 10),
@@ -369,17 +372,22 @@ export default {
     },
 
     changefristPart() {
-      this.timeselect = "orderstart";
-      console.log("orderstart");
       console.log("changefristPart");
+      this.firstdialog = true
     },
 
     // 任务完成时间
     changecontractCompleted() {
-      this.timeselect = "changecontractCompleted";
-      console.log("changecontractCompleted");
+      this.timeselect = "orderendTime";
+      console.log("orderendTime");
       this.dialog = true;
-      console.log("changecontractCompleted");
+      console.log("orderendTime");
+       ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
+        (data=>{
+          console.log("data",data,this.timeselect);
+          this[this.timeselect] = data
+        })
+      )
     },
      // 更新所有的时间参数
     updatapaifa() {
