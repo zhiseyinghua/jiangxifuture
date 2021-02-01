@@ -37,7 +37,7 @@
                 <div style="font-size: 1.5em;" class="grey--text mb-1">
                   开始时间
                 </div>
-                <p>{{orderstartTime}}</p>
+                <p>{{ orderstartTime }}</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -57,7 +57,7 @@
                 <div style="font-size: 1.5em;" class="grey--text mb-1">
                   任务完成时间
                 </div>
-                <p>{{orderendTime}}</p>
+                <p>{{ orderendTime }}</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -290,25 +290,28 @@
       <v-btn x-large color="primary" @click="updatapaifa()">确定</v-btn>
     </v-dialog>
     <div style="height:100px" @click="changedata()"></div>
-    // 修改甲方信息
 
+    // 修改甲方信息
     <v-dialog v-model="firstdialog" width="500">
-      <p>修改甲方参数</p>
+      <v-card class="ma-10" flat>
+        <p>修改甲方参数</p>
+        <v-text-field label="名称" outlined clearable dense> </v-text-field>
+      </v-card>
     </v-dialog>
+
     <div style="height:100px" @click="changedata()"></div>
   </v-container>
 </template>
 
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
-import { data } from '@/page/test/hwqtest/execel-test.vue';
+import { data } from "@/page/test/hwqtest/execel-test.vue";
 export default {
   data: () => ({
     // 任务开始时间
-    orderstartTime:null,
+    orderstartTime: null,
     // 任务结束时间
-    orderendTime:null,
-
+    orderendTime: null,
 
     hasSaved: false,
     isEditing: null,
@@ -373,7 +376,7 @@ export default {
 
     changefristPart() {
       console.log("changefristPart");
-      this.firstdialog = true
+      this.firstdialog = true;
     },
 
     // 任务完成时间
@@ -382,23 +385,23 @@ export default {
       console.log("orderendTime");
       this.dialog = true;
       console.log("orderendTime");
-       ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
-        (data=>{
-          console.log("data",data,this.timeselect);
-          this[this.timeselect] = data
-        })
-      )
+      ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
+        (data) => {
+          console.log("data", data, this.timeselect);
+          this[this.timeselect] = data;
+        }
+      );
     },
-     // 更新所有的时间参数
+    // 更新所有的时间参数
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
       ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
-        (data=>{
-          console.log("data",data,this.timeselect);
-          this[this.timeselect] = data
-        })
-      )
+        (data) => {
+          console.log("data", data, this.timeselect);
+          this[this.timeselect] = data;
+        }
+      );
     },
   },
 };
