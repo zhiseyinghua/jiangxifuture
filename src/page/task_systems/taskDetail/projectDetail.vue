@@ -217,7 +217,7 @@
               :disabled="!isEditing"
               append-icon="date_range"
               v-model="completionTime"
-              @click:append="changedata()"
+              @click:append="changeCompletionTime()"
             ></v-text-field>
 
             <div class="">内业完成时间 ：</div>
@@ -226,8 +226,8 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value=""
-              @click:append="changedata()"
+              v-model="insidePagesFinish"
+              @click:append="changInsidePagesFinish()"
             ></v-text-field>
 
             <div class="">金额到账时间 ：</div>
@@ -342,6 +342,8 @@ export default {
     technicianCompletionTime: null,
     // 外业完成时间
     completionTime:null,
+    // 内业完成时间
+    insidePagesFinish:null,
 
 
     // 任务开始时间
@@ -457,6 +459,17 @@ export default {
       this.dialog = true;
       this.timeselect = "technicianCompletionTime";
     },
+    // 更改外业完成时间
+    changeCompletionTime() {
+      console.log("changeCompletionTime");
+      this.dialog = true;
+      this.timeselect = "completionTime";
+    },
+    changInsidePagesFinish() {
+      console.log("changInsidePagesFinish");
+      this.dialog = true;
+      this.timeselect = "insidePagesFinish"
+    }
   },
 };
 </script>
