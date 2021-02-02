@@ -230,24 +230,14 @@
               @click:append="changInsidePagesFinish()"
             ></v-text-field>
 
-            <div class="">金额到账时间 ：</div>
-            <!-- timeReceiptAmount -->
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              value=""
-              @click:append="changedata()"
-            ></v-text-field>
-
             <div class="">合同完成时间 ：</div>
             <!-- contractCompleted -->
             <v-text-field
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value=""
-              @click:append="changedata()"
+              v-model="contractCompleted"
+              @click:append="changeContractCompleted()"
             ></v-text-field>
 
             <div class="">金额到账时间 ：</div>
@@ -256,7 +246,7 @@
               filled
               :disabled="!isEditing"
               append-icon="date_range"
-              value=""
+              v-model="timeReceiptAmount"
               @click:append="changedata()"
             ></v-text-field>
           </v-card-text>
@@ -269,7 +259,7 @@
         <div class="mt-6 ml-6"></div>
       </div>
     </div>
-    // 修改时间参数 通用
+    <!-- 修改时间参数 通用 -->
     <v-dialog v-model="dialog" width="500">
       <v-date-picker
         v-model="picker"
@@ -280,7 +270,7 @@
     </v-dialog>
     <div style="height:100px" @click="changedata()"></div>
 
-    // 修改甲方信息
+    <!-- 修改甲方信息 -->
     <v-dialog v-model="firstdialog" width="500">
       <v-card>
         <v-card-title class="headline grey lighten-5">
@@ -303,7 +293,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    // 修改其他信息
+    <!-- 修改其他信息 -->
     <v-dialog v-model="otherdialog" width="500">
       <v-card>
         <v-card-title class="headline grey lighten-5">
@@ -341,11 +331,13 @@ export default {
     // 技术员实际完成时间
     technicianCompletionTime: null,
     // 外业完成时间
-    completionTime:null,
+    completionTime: null,
     // 内业完成时间
-    insidePagesFinish:null,
-
-
+    insidePagesFinish: null,
+    // 合同完成时间
+    contractCompleted: null,
+    // 金额到账时间
+    timeReceiptAmount: null,
     // 任务开始时间
     orderstartTime: null,
     // 任务结束时间
@@ -399,10 +391,6 @@ export default {
       this.hasSaved = true;
     },
 
-    changedata() {
-      this.dialog = true;
-      this.timeselect = "timeAfterDistribution";
-    },
     show() {
       console.log("111111111111");
     },
@@ -465,11 +453,18 @@ export default {
       this.dialog = true;
       this.timeselect = "completionTime";
     },
+    // 内业完成时间
     changInsidePagesFinish() {
       console.log("changInsidePagesFinish");
       this.dialog = true;
-      this.timeselect = "insidePagesFinish"
-    }
+      this.timeselect = "insidePagesFinish";
+    },
+    // 合同完成时间
+    changeContractCompleted() {
+      console.log("contractCompleted");
+      this.dialog = true;
+      this.timeselect = "contractCompleted";
+    },
   },
 };
 </script>
