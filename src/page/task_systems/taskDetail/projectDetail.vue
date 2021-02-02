@@ -247,7 +247,7 @@
               :disabled="!isEditing"
               append-icon="date_range"
               v-model="timeReceiptAmount"
-              @click:append="changedata()"
+              @click:append="changeTimeReceiptAmount()"
             ></v-text-field>
           </v-card-text>
           <v-divider></v-divider>
@@ -465,6 +465,12 @@ export default {
       this.dialog = true;
       this.timeselect = "contractCompleted";
     },
+    // 金额到账时间
+    changeTimeReceiptAmount() {
+      console.log("changeTimeReceiptAmount");
+      this.dialog = true;
+      this.timeselect = "timeReceiptAmount";
+    }
   },
 };
 </script>
