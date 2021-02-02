@@ -19,4 +19,5 @@ export default class ProjectDetailClass {
       })
     );
   }
+  // public static update
 }

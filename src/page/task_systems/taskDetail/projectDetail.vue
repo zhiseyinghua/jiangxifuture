@@ -300,9 +300,8 @@
           修改其他信息</v-card-title
         >
         <v-card class="ma-10" flat>
-          <v-text-field label="名称" outlined clearable dense> </v-text-field>
-          <v-text-field label="电话" outlined clearable dense> </v-text-field>
-          <v-text-field label="邮箱" outlined clearable dense> </v-text-field>
+          <v-text-field label="任务面积" outlined clearable dense> </v-text-field>
+          <v-text-field label="实际费用" outlined clearable dense> </v-text-field>
         </v-card>
         <v-divider></v-divider>
         <v-card-actions>
@@ -310,9 +309,9 @@
             暂不修改
           </v-btn>
           <v-spacer></v-spacer>
-          <!-- <v-btn color="primary" text @click="upuserdata()">
+          <v-btn color="primary" text >
             确认修改
-          </v-btn> -->
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
