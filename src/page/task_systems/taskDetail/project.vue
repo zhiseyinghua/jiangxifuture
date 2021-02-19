@@ -53,7 +53,11 @@ export default {
   watch: {
     page() {
       console.log(this.page);
-      orderServe.getfigure("1","9")
+      orderServe.getfigure(this.page * 12- 12,this.page * 12).subscribe(
+        ((data)=>{
+          console.log(data)
+        })
+      )
     },
   },
   created() {
