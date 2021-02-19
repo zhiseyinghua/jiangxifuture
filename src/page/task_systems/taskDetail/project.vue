@@ -6,7 +6,7 @@
       </v-btn>
     </v-sheet>
     <v-row>
-      <v-col v-for="i in 9" :key="i" cols="12" md="4">
+      <v-col v-for="i in order.length" :key="i" cols="12" md="4">
         <v-card>
           <v-card-actions class="float-right my-2"
             ><v-btn
@@ -15,15 +15,15 @@
               class="light-blue--text text--accent-4"
               >详情</v-btn
             ></v-card-actions
-          >
-          <v-card-title class="text-center">项目名称：吴城测绘</v-card-title>
+          >{{ i}}
+          <!-- <v-card-title class="text-center">项目名称：吴城测绘</v-card-title>
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
           <v-card-text> 名字： 咚咚呱 </v-card-text>
           <v-card-text> 电话： 17607924259 </v-card-text>
           <v-card-subtitle>项目信息</v-card-subtitle>
           <v-card-text> 地点： 吴城 </v-card-text>
           <v-card-text> 面积： 200亩 </v-card-text>
-          <v-card-text> 类型： 不动产测绘 </v-card-text>
+          <v-card-text> 类型： 不动产测绘 </v-card-text> -->
         </v-card>
       </v-col>
     </v-row>
@@ -48,7 +48,7 @@ export default {
     return {
       page: 2,
       ordercount: 6,
-      
+      order:[]
     };
   },
   watch: {
@@ -63,7 +63,8 @@ export default {
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure("1"," 9").subscribe((data) => {
+    orderServe.getfigure(this.page - 1,12).subscribe((data) => {
+      this.order = data.list
       console.log(data);
     });
   },
