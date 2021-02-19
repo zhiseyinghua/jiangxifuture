@@ -13,12 +13,12 @@ export default {
   methods: {
     ...mapMutations(["changeShow"]),
   },
-  created: function () {
+  created: function() {
     if (this.$route.path.indexOf("/taskSystems") === 0) {
       this.changeShow();
     }
   },
-  beforeDestroy: function () {
+  beforeDestroy: function() {
     this.changeShow();
   },
 };
