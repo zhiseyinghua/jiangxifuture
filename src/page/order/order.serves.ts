@@ -31,7 +31,7 @@ export default class OrderServe {
       OrderConfig.zone + "/" + "getfigure"
     ).pipe(
       map((data) => {
-        return data;
+        return data['data'];
       })
     );
   }

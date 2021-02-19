@@ -72,9 +72,6 @@ import axios from "axios";
 export default {
   data() {
     return {};
-  },
-  created() {
-    console.log("group 创建");
-  },
+  }
 };
 </script>
