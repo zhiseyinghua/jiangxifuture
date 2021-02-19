@@ -28,7 +28,11 @@ export default class OrderServe {
   public static getfigure(from: string, size: string) {
     return AxiosElasticService.AxiosService(
       "post",
-      OrderConfig.zone + "/" + "getfigure"
+      OrderConfig.zone + "/" + "getfigure",
+      {
+        "from":from,
+        "size":size
+      }
     ).pipe(
       map((data) => {
         return data['data'];

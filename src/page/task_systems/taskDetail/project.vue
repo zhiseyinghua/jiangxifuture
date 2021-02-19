@@ -46,13 +46,19 @@ import orderServe from "@/page/order/order.serves";
 export default {
   data() {
     return {
-      page: 1,
+      page: 2,
       ordercount: 6,
     };
   },
+  watch: {
+    page() {
+      console.log(this.page);
+      orderServe.getfigure("1","9")
+    },
+  },
   created() {
     console.log("group 创建");
-    orderServe.getfigure("1", 3).subscribe((data) => {
+    orderServe.getfigure("1"," 3").subscribe((data) => {
       console.log(data);
     });
   },
