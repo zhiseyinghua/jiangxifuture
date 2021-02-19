@@ -53,7 +53,7 @@ export default {
   watch: {
     page() {
       console.log(this.page);
-      orderServe.getfigure(this.page * 12- 12,this.page * 12).subscribe(
+      orderServe.getfigure(this.page * 12 - 12, 12).subscribe(
         ((data)=>{
           console.log(data)
         })
@@ -62,7 +62,7 @@ export default {
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure("1"," 3").subscribe((data) => {
+    orderServe.getfigure("1"," 9").subscribe((data) => {
       console.log(data);
     });
   },
