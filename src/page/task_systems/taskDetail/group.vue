@@ -66,11 +66,15 @@
     </v-card>
   </v-container>
 </template>
+
 <script>
 import axios from "axios";
 export default {
-  data: function () {
+  data() {
     return {};
+  },
+  created() {
+    console.log("group 创建");
   },
 };
 </script>
