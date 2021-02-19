@@ -48,6 +48,7 @@ export default {
     return {
       page: 2,
       ordercount: 6,
+      
     };
   },
   watch: {
