@@ -27,12 +27,18 @@
         </v-card>
       </v-col>
     </v-row>
+    <br />
+    <br />
+    <br />
     <div class="text-center">
-    <v-pagination
-      v-model="page"
-      :length="6"
-    ></v-pagination>
-  </div>
+      <v-pagination
+        v-model="page"
+        :length="100"
+        :total-visible="7"
+      ></v-pagination>
+    </div>
+    <br />
+    <br />
   </v-container>
 </template>
 <script>
@@ -41,16 +47,14 @@ export default {
   data() {
     return {
       page: 1,
-      ordercount:6 
+      ordercount: 6,
     };
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure("1",3).subscribe(
-      (data=>{
-        console.log(data)
-      })
-    )
+    orderServe.getfigure("1", 3).subscribe((data) => {
+      console.log(data);
+    });
   },
 };
 </script>
