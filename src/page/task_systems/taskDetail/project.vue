@@ -15,7 +15,7 @@
               class="light-blue--text text--accent-4"
               >详情</v-btn
             ></v-card-actions
-          >{{ i}}
+          >{{ i }}
           <!-- <v-card-title class="text-center">项目名称：吴城测绘</v-card-title>
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
           <v-card-text> 名字： 咚咚呱 </v-card-text>
@@ -48,23 +48,21 @@ export default {
     return {
       page: 2,
       ordercount: 6,
-      order:[]
+      order: [],
     };
   },
   watch: {
     page() {
       console.log(this.page);
-      orderServe.getfigure(this.page * 12 - 12, 12).subscribe(
-        ((data)=>{
-          console.log(data);
-        })
-      )
+      orderServe.getfigure(this.page * 12 - 12, 12).subscribe((data) => {
+        console.log(data);
+      });
     },
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure(this.page - 1,12).subscribe((data) => {
-      this.order = data.list
+    orderServe.getfigure(this.page - 1, 12).subscribe((data) => {
+      this.order = data.list;
       console.log(data);
     });
   },
