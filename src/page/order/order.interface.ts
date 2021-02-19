@@ -28,3 +28,8 @@ export interface PutOrderOne extends CommonInterfaceElact {
     lat: number;
     local: string;
   }
+
+export interface CommonqueryInterface {
+  list:any[],
+  maxsize: number
+}

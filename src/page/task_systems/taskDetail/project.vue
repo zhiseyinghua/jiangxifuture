@@ -55,7 +55,7 @@ export default {
       console.log(this.page);
       orderServe.getfigure(this.page * 12 - 12, 12).subscribe(
         ((data)=>{
-          console.log(data)
+          console.log(data);
         })
       )
     },
