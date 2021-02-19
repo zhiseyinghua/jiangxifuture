@@ -19,5 +19,15 @@ export default class ProjectDetailClass {
       })
     );
   }
-  // public static update
+  
+  /**
+   *
+   */
+  public static getfigure(from: string, size: string) {
+    return AxiosElasticService.AxiosService("post", "figure/getfigure").pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  }
 }
