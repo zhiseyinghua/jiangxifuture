@@ -6,7 +6,7 @@
       </v-btn>
     </v-sheet>
     <v-row>
-      <v-col v-for="i in order.length" :key="i" cols="12" md="4">
+      <v-col v-for="i in order" :key="i" cols="12" md="4">
         <v-card>
           <v-card-actions class="float-right my-2"
             ><v-btn
@@ -16,14 +16,14 @@
               >详情</v-btn
             ></v-card-actions
           >{{ i }}
-          <!-- <v-card-title class="text-center">项目名称：吴城测绘</v-card-title>
+          <v-card-title class="text-center">项目名称：{{i.ordername}}</v-card-title>
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
-          <v-card-text> 名字： 咚咚呱 </v-card-text>
+          <v-card-text> 名字： {{i.ordername}} </v-card-text>
           <v-card-text> 电话： 17607924259 </v-card-text>
           <v-card-subtitle>项目信息</v-card-subtitle>
           <v-card-text> 地点： 吴城 </v-card-text>
           <v-card-text> 面积： 200亩 </v-card-text>
-          <v-card-text> 类型： 不动产测绘 </v-card-text> -->
+          <v-card-text> 类型： 不动产测绘 </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -55,7 +55,8 @@ export default {
     page() {
       console.log(this.page);
       orderServe.getfigure(this.page * 12 - 12, 12).subscribe((data) => {
-        console.log(data);
+        this.order = data.list
+        // console.log(data);
       });
     },
   },
