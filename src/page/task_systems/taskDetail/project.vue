@@ -57,6 +57,7 @@ export default {
       console.log(this.page);
       orderServe.getfigure(this.page * 12 - 12, 12).subscribe((data) => {
         this.order = data.list
+        
         // console.log(data);
       });
     },
@@ -65,7 +66,7 @@ export default {
     console.log("group 创建");
     orderServe.getfigure(this.page - 1, 12).subscribe((data) => {
       this.order = data.list;
-      Math.ceil(data.)
+      this.pagination = Math.ceil(data['maxsize']/12)
       console.log(data);
     });
   },
