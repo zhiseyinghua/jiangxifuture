@@ -1,6 +1,6 @@
 import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 
 export default class ProjectDetailClass {
   /**
@@ -16,7 +16,8 @@ export default class ProjectDetailClass {
       map((data) => {
         console.log("data", choose);
         return data;
-      })
+      }),
+      delay(4000)
     );
   }
 

@@ -18,7 +18,7 @@
             </v-col>
             <v-col class="mt-5">
               <p class="">
-                {{userName}}
+                {{ userName }}
               </p>
             </v-col>
           </v-row>
@@ -266,9 +266,15 @@
         :first-day-of-week="0"
         locale="zh-cn"
       ></v-date-picker>
-      <v-btn x-large color="primary" @click="updatapaifa()">确定</v-btn>
+      <v-btn
+        x-large
+        color="primary"
+        :loading="lodingbutton"
+        @click="updatapaifa()"
+        >确定</v-btn
+      >
     </v-dialog>
-    <div style="height:100px" @click="changedata()"></div>
+    <div style="height:100px"></div>
 
     <!-- 修改甲方信息 -->
     <v-dialog v-model="firstdialog" width="500">
@@ -318,16 +324,20 @@
       </v-card>
     </v-dialog>
 
-    <div style="height:100px" @click="changedata()"></div>
+    <div style="height:40px"></div>
   </v-container>
 </template>
 
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import userServes from "@/page/user/user.serves";
+import Bus from "@/common/bus";
 export default {
   data: () => ({
-    userName:"",
+    // 弹窗的button
+    lodingbutton: false,
+    // 用户名字
+    userName: "",
     // 时间参数
     // 实际派发时间
     timeAfterDistribution: null,
@@ -381,17 +391,19 @@ export default {
     },
   },
   created() {
-    let routedata = JSON.parse(unescape(this.$route.query.id))  
+    let routedata = JSON.parse(unescape(this.$route.query.id));
     console.log(routedata);
     console.log();
-    userServes.getUserInformation({
-      hash:routedata.creatorkey.hash,
-      range:routedata.creatorkey.range,
-      index:routedata.creatorkey.index
-    }).subscribe((data)=>{
-      console.log(data)
-      this.userName = data.usernickname
-    })
+    userServes
+      .getUserInformation({
+        hash: routedata.creatorkey.hash,
+        range: routedata.creatorkey.range,
+        index: routedata.creatorkey.index,
+      })
+      .subscribe((data) => {
+        console.log(data);
+        this.userName = data.usernickname;
+      });
   },
   methods: {
     customFilter(item, queryText, itemText) {
@@ -439,10 +451,25 @@ export default {
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
+      this.lodingbutton = true;
       ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
         (data) => {
+          this.lodingbutton = false;
+          this.dialog = false;
           console.log("data", data, this.timeselect);
           this[this.timeselect] = data;
+        },
+        (err) => {
+          this.lodingbutton = false;
+          this.dialog = false;
+          console.log(err);
+          Bus.$emit("snackbar", {
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
         }
       );
     },
