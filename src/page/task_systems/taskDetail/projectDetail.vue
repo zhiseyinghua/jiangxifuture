@@ -12,13 +12,13 @@
               <v-avatar size="55">
                 <img
                   alt="user"
-                  src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3846290151,2766954484&fm=26&gp=0.jpg"
+                  src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F12%2F50%2F1656f5fcc066ff0.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616405735&t=3323fee2f6a9ffffbf0fdfef5cd8eff9"
                 />
               </v-avatar>
             </v-col>
             <v-col class="mt-5">
               <p class="">
-                John Doe
+                {{userName}}
               </p>
             </v-col>
           </v-row>
@@ -327,6 +327,7 @@ import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.ser
 import userServes from "@/page/user/user.serves";
 export default {
   data: () => ({
+    userName:"",
     // 时间参数
     // 实际派发时间
     timeAfterDistribution: null,
@@ -389,6 +390,7 @@ export default {
       index:routedata.creatorkey.index
     }).subscribe((data)=>{
       console.log(data)
+      this.userName = data.usernickname
     })
   },
   methods: {
