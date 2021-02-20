@@ -94,7 +94,7 @@ export default {
         // query: {
         //   id: JSON.stringify(value),
         // },
-        query: { id: strItem },
+        query: { id: escape(strItem) },
       });
     },
   },

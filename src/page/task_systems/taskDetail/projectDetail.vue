@@ -380,16 +380,16 @@ export default {
     },
   },
   created() {
-    let routedata = this.$route.query.id
+    let routedata = JSON.parse(unescape(this.$route.query.id))  
     console.log(routedata);
-    // console.log(JSON.parse(routedata.strItem));
-    // userServes.getUserInformation({
-    //   hash:routedata.creatorkey.hash,
-    //   range:routedata.creatorkey.range,
-    //   index:routedata.creatorkey.index
-    // }).subscribe((data)=>{
-    //   console.log(data)
-    // })
+    console.log();
+    userServes.getUserInformation({
+      hash:routedata.creatorkey.hash,
+      range:routedata.creatorkey.range,
+      index:routedata.creatorkey.index
+    }).subscribe((data)=>{
+      console.log(data)
+    })
   },
   methods: {
     customFilter(item, queryText, itemText) {
