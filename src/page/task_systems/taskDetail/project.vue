@@ -69,7 +69,6 @@ export default {
       console.log(this.page);
       orderServe.getfigure(this.page * 12 - 12 + "", "12").subscribe((data) => {
         this.order = data.list;
-
         // console.log(data);
       });
     },
