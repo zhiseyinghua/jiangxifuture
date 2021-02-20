@@ -1,79 +1,78 @@
 <template>
-  <div>
-    <!-- 这是一个导航栏 -->
-    <v-app-bar style=" position: fixed; z-index:4">
-      <div></div>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <v-btn router-link to="home" text>
-          {{ $t("lang.home.homeOverview") }}
-          <!-- 首页概括 -->
-        </v-btn>
-      </v-toolbar-title>
-
-      <v-toolbar-title>
-        <v-btn router-link to="news" text>
-          {{ $t("lang.home.newCenter") }}
-          <!-- 新闻中心 -->
-        </v-btn>
-      </v-toolbar-title>
-
-      <v-toolbar-title>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark v-bind="attrs" v-on="on">
-              {{ $t("lang.home.newCenter") }}
-              <!-- 新闻中心 -->
-            </v-btn>
-          </template>
-          <v-card>
-            <a
-              ><v-list-item>
-                <v-list-item-title link>
-                  <v-btn>123</v-btn>
-                </v-list-item-title>
-              </v-list-item>
-            </a>
-            <a
-              ><v-list-item>
-                <v-list-item-title link>
-                  <v-btn>123</v-btn>
-                </v-list-item-title>
-              </v-list-item>
-            </a>
-          </v-card>
-        </v-menu>
-      </v-toolbar-title>
+  <!-- 这是一个导航栏 -->
+  <v-app-bar app flat hide-on-scroll>
+    <v-container class="d-flex align-center" app fluid >
+      <!-- <div>{{$store.state.login}}</div> -->
+      <div>
+        <v-img
+          :src="require('@/assets/logo.png')"
+          aspect-ratio="1"
+          width="56"
+        ></v-img>
+      </div>
+      <v-toolbar
+        dense
+        flat
+        max-width="500"
+        class="d-none d-md-flex transparent"
+      >
+        <v-toolbar-title>
+          <v-btn to="home" text>
+            {{ $t("lang.home.homeOverview") }}
+            <!-- 首页概括 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="news" text>
+            {{ $t("lang.home.newCenter") }}
+            <!-- 新闻中心 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="solution" text>
+            {{ $t("lang.home.totalSolution") }}
+            <!-- 解决方案 -->
+          </v-btn>
+        </v-toolbar-title>
+        <v-toolbar-title>
+          <v-btn to="aboutUs" text>
+            {{ $t("lang.home.aboutUs") }}
+            <!-- 关于我们-->
+          </v-btn>
+        </v-toolbar-title>
+      </v-toolbar>
       <v-spacer></v-spacer>
-      <v-avatar color="primary" size="45"></v-avatar>
-      <v-btn v-on:click="changeLangEvent" text>
+      <!-- 搜索框 -->
+      <!-- <v-text-field
+        class="white"
+        flat
+        dense
+        hide-details="auto"
+        label="Search"
+        prepend-inner-icon="mdi-magnify"
+        solo-inverted
+      ></v-text-field> -->
+      <!-- 切换语言 -->
+      <!-- <v-btn v-on:click="changeLangEvent" text class="d-none d-sm-flex">
         {{ $t("lang.home.cutLanguage") }}
-        <!-- 切换语言 -->
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </v-app-bar>
-  </div>
+        
+      </v-btn> -->
+      <v-app-bar-nav-icon
+        class="d-flex d-md-none"
+        @click.stop="handleChangeDrawer"
+      ></v-app-bar-nav-icon>
+      <!-- <div class="d-none d-md-flex"><v-btn text to="login">登陆</v-btn><v-btn text to="auth">注册</v-btn></div> -->
+    </v-container>
+  </v-app-bar>
 </template>
 <script>
-import router from "@/router";
 export default {
   name: "home",
   data() {
     return {};
   },
+  
   methods: {
-    /**
-     * 去首页的方法
-     */
-    handleGoHome() {
-      router.push("/home");
-    },
-    handleGoNews() {
-      router.push("/news");
-    },
-
     changeLangEvent() {
       if (this.$i18n.locale === "zh-CN") {
         this.$i18n.locale = "en-US"; //关键语句
@@ -82,6 +81,10 @@ export default {
         this.$i18n.locale = "zh-CN"; //关键语句
         console.log("zh-CN");
       }
+    },
+    //改变navigation-drawer显示和隐藏的函数
+    handleChangeDrawer() {
+      this.$store.commit("changeDrawer");
     },
   },
 };

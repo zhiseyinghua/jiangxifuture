@@ -1,98 +1,52 @@
+/**
+  *官网首页
+ */
 <template>
-  <div>
-    <!-- <div class="min_container" @scroll="scrollEvent"></div>
-    <div class="go_more" v-if="more_show" @click="GoMore">加载更多</div>
-    <div class="go_more" v-else>没有更多评价了</div> -->
-    <!-- 这是一个轮播图 -->
-    <v-carousel hide-delimiters cycle>
-      <v-carousel-item
-        v-for="(item, i) in items"
-        :key="i"
-        :src="item.src"
-      ></v-carousel-item>
-    </v-carousel>
-
-    <!-- 一段文字介绍 -->
-    <div class="bannerSlogan">
-      <div>
-        <div class="enSlogan">
-          了解我们的产品
-        </div>
-        <div class="cnSlogan">
-          专业专注，提供涵盖测绘地理信息全产业链的产品和服务
-        </div>
-      </div>
-    </div>
-
-    <!-- 我们的产品 -->
-    <vm-deviceCard :devicemsg="devicemsg"></vm-deviceCard>
-  </div>
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12">
+        <v-carousel hide-delimiters cycle height="100%">
+          <v-carousel-item
+            :aspect-ratio="16 / 7"
+            v-for="(item, i) in items"
+            :key="i"
+            :src="item.src"
+          ></v-carousel-item>
+        </v-carousel>
+      </v-col>
+    </v-row>
+    <!-- 新闻中心组件 -->
+    <news />
+    <!-- 解决方案组件 -->
+    <solutions />
+  </v-container>
 </template>
 <script>
-/**
- * 这个是网站的首页
- */
-import deviceCard from "@/page/home/library/deviceCard.vue";
+import news from "./news-com";
+import solutions from "./solutions-com";
 export default {
-  
-  // mounted() {
-  //   window.addEventListener("scroll", this.handleScroll, true);
-  // },
-  components: {
-    "vm-deviceCard": deviceCard,
-  },
   name: "homepage",
+  components: { news, solutions },
   data() {
     return {
-      scrollTop: 111,
-      devicemsg: {
-        url: "http",
-      },
+      // 轮播图
       items: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+          src: require("@/assets/home/banner/1.png"),
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+          src: require("@/assets/home/banner/2.png"),
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+          src: require("@/assets/home/banner/3.png"),
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+          src: require("@/assets/home/banner/4.png"),
         },
       ],
     };
   },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    // handleScroll(e) {
-    //   this.scrollTop =
-    //     e.target.documentElement.scrollTop || e.target.body.scrollTop; // 执行代码
-    // },
-  },
 };
 </script>
-
-<style>
-.enSlogan {
-  margin: auto;
-  display: block;
-  font-size: 50px;
-}
-.bannerSlogan {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 20px;
-  text-align: center;
-  color: gray;
-  pointer-events: none;
-}
-.cnSlogan {
-  font-size: 25px;
-}
+<style lang="scss" scoped>
 </style>

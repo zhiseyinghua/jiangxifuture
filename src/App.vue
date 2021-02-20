@@ -1,62 +1,67 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
+    <overlay style="z-index:500"></overlay>
+    <tabbar v-if="$store.state.isShow"></tabbar>
+    <slidebar></slidebar>
     <v-main>
-      <tabbar></tabbar>
       <router-view></router-view>
     </v-main>
+    <foot v-if="$store.state.isShow"></foot>
   </v-app>
 </template>
 
 <script>
 import tabbar from "@/components/tabbar";
+import slidebar from "@/components/slidebar";
+import foot from "@/components/foot";
+import overlay from "@/components/overlay";
+import authServies from "@/page/auth/auth.servies";
+import Bus from "@/common/bus";
+
 export default {
   data() {
     return {
-     scrolled: false
+      scrolled: false,
     };
   },
-  components: { tabbar },
-  methods: {
-    handleScroll() {
-      this.scrolled = window.scrollY > 0;
-    },
+  created: function () {
+    // 在程序初始化获取本地的token，如果本地不存在token则跳转至登录页面
+    console.log(
+      "app.vue this.$store.state.login.token == null",
+      this.$store.state.login.idtoken == null,
+      this.$store.state.login.idtoken
+    );
+    if (this.$store.state.login.token == null) {
+      authServies.getLocalstore().subscribe(
+        (data) => {
+          authServies.dispatchlogintoken(data);
+        },
+        (err) => {
+          Bus.$emit("snackbar", {
+            text: "请认真填写表单",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        }
+      );
+    }
   },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll,true);
+  //监听路由变化，每次跳转路由都让页面回到最顶上
+  watch: {
+		$route: function(to, from) {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+},
+  components: {
+    tabbar,
+    slidebar,
+    foot,
+    overlay,
   },
 };
 </script>
 
-<style lang="scss">
-* {
-  margin: 0;
-  padding: 0;
-}
-ul,
-ol {
-  list-style: none;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-body {
-  margin: 0px;
-}
-</style>
+<style lang="scss"></style>

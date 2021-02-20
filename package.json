@@ -1,5 +1,5 @@
 {
-  "name": "vue3-project",
+  "name": "futuretime",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,8 +9,16 @@
   },
   "dependencies": {
     "@mdi/font": "^5.8.55",
+    "ali-oss": "^6.13.1",
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "js-md5": "^0.7.3",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "rxjs": "^6.6.3",
     "vue": "^2.6.11",
+    "vue-amap": "^0.5.10",
+    "vue-axios": "^3.2.0",
     "vue-class-component": "^7.2.3",
     "vue-i18n": "^8.22.2",
     "vue-property-decorator": "^8.4.2",
@@ -19,6 +27,8 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.12.11",
+    "@types/node": "^14.14.16",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",
