@@ -32,8 +32,10 @@
             地点： {{ item.localPlace.local }}
           </v-card-text>
           <v-card-text v-else> 地址： 未填写 </v-card-text>
-          <v-card-text> 面积： {{ item.area }} </v-card-text>
-          <v-card-text> 类型： {{ item.type }} </v-card-text>
+          <v-card-text v-if="item.area"> 面积： {{ item.area }} </v-card-text>
+          <v-card-text v-else> 面积：  未填写 </v-card-text>
+          <v-card-text v-if="item.type"> 类型： {{ item.type }} </v-card-text>
+          <v-card-text v-else> 类型： 未填写 </v-card-text>
         </v-card>
       </v-col>
     </v-row>
