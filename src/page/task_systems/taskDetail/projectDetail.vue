@@ -380,8 +380,9 @@ export default {
     },
   },
   created() {
-    let routedata = this.$route.query
-    console.log( routedata.creatorkey);
+    let routedata = this.$route.query.id
+    console.log(routedata);
+    // console.log(JSON.parse(routedata.strItem));
     // userServes.getUserInformation({
     //   hash:routedata.creatorkey.hash,
     //   range:routedata.creatorkey.range,

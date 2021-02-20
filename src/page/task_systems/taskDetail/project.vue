@@ -19,7 +19,7 @@
           <v-card-title class="text-center"
             >项目名称：{{ item.ordername }}</v-card-title
           >
-          <v-card-subtitle > 甲方信息 </v-card-subtitle>
+          <v-card-subtitle> 甲方信息 </v-card-subtitle>
           <v-card-text
             v-if="item.ONEinformation.name && item.ONEinformation.name != ''"
           >
@@ -83,12 +83,20 @@ export default {
   },
   methods: {
     toprojectDetail(value) {
-      console.log(value)
-      // this.$router.push({
-      //   path: "/taskSystems/projectDetail",
-      //   query: value,
-      // });
-    }
-  }
+      let strItem = JSON.stringify(value);
+      let creatorkey = {
+        hash: "auth-2020-12-24",
+        index: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
+        range: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
+      };
+      this.$router.push({
+        path: "/taskSystems/projectDetail",
+        // query: {
+        //   id: JSON.stringify(value),
+        // },
+        query: { id: strItem },
+      });
+    },
+  },
 };
 </script>
