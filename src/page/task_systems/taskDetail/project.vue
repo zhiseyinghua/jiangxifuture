@@ -18,12 +18,12 @@
           >{{ i }}
           <v-card-title class="text-center">项目名称：{{i.ordername}}</v-card-title>
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
-          <v-card-text> 名字： {{i.ordername}} </v-card-text>
-          <v-card-text> 电话： 17607924259 </v-card-text>
+          <v-card-text> 名字： {{i.ONEinformation.name}} </v-card-text>
+          <v-card-text> 电话： {{i.ONEinformation.phone}} </v-card-text>
           <v-card-subtitle>项目信息</v-card-subtitle>
-          <v-card-text> 地点： 吴城 </v-card-text>
-          <v-card-text> 面积： 200亩 </v-card-text>
-          <v-card-text> 类型： 不动产测绘 </v-card-text>
+          <v-card-text> 地点： {{i.localPlace.local}} </v-card-text>
+          <v-card-text> 面积： {{i.area}} </v-card-text>
+          <v-card-text> 类型： {{i.type}} </v-card-text>
         </v-card>
       </v-col>
     </v-row>
