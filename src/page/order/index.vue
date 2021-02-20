@@ -72,7 +72,7 @@
                   dense
                   label="任务名称"
                   clearable
-                  prepend-icon="mdi-map-marker"
+                  prepend-icon="mdi-hammer-wrench"
                   v-model="orderName"
                 ></v-text-field>
               </v-col>
@@ -182,9 +182,9 @@
                   prepend-icon="mdi-map"
                   v-model="area"
                 >
-                  <p class="mt-2" slot="append" color="green">
-                    ：平方米
-                  </p>
+                  <template v-slot:append>
+                    <p class="my-auto">㎡</p>
+                  </template>
                 </v-text-field>
               </v-col>
               <v-col cols="12">
@@ -195,12 +195,12 @@
                   label="*预估费用（可选）"
                   :rules="estimatedMoneyRules"
                   clearable
-                  prepend-icon="mdi-account"
+                  prepend-icon="mdi-gold"
                   v-model="estimatedMoney"
                 >
-                  <p class="mt-2" slot="append" color="green">
-                    ：元
-                  </p></v-text-field
+                  <template v-slot:append>
+                    <p>￥</p>
+                  </template></v-text-field
                 >
               </v-col>
             </v-row>
