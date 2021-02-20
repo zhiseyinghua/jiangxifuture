@@ -84,10 +84,11 @@ export default {
   },
   methods: {
     toprojectDetail(value) {
-      this.$router.push({
-        path: "/taskSystems/projectDetail",
-        query: value,
-      });
+      console.log(value)
+      // this.$router.push({
+      //   path: "/taskSystems/projectDetail",
+      //   query: value,
+      // });
     }
   }
 };

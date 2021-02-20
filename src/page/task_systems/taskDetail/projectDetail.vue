@@ -380,8 +380,15 @@ export default {
     },
   },
   created() {
-    console.log(this.$route.query);
-      
+    let routedata = this.$route.query
+    console.log( routedata.creatorkey);
+    // userServes.getUserInformation({
+    //   hash:routedata.creatorkey.hash,
+    //   range:routedata.creatorkey.range,
+    //   index:routedata.creatorkey.index
+    // }).subscribe((data)=>{
+    //   console.log(data)
+    // })
   },
   methods: {
     customFilter(item, queryText, itemText) {

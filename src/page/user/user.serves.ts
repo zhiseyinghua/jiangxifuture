@@ -7,6 +7,7 @@ import { UserConfig } from "./user.config";
 
 export default class UserServe {
   static getUserInformation(key: CommonInterfaceElact): Observable<any> {
+    // console.log(key);
     return AxiosElasticService.AxiosService(
       "post",
       "user/searchbyuserid",
