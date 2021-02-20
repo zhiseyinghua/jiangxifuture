@@ -1,9 +1,22 @@
+import { CommonInterfaceElact } from "@/common/common.interface";
 import { AxiosElasticService } from "@/common/fromaxios";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
+
 import { UserConfig } from "./user.config";
 
 export default class UserServe {
-  
+  static getUserInformation(key: CommonInterfaceElact): Observable<any> {
+    return AxiosElasticService.AxiosService(
+      "post",
+      "user/searchbyuserid",
+      key
+    ).pipe(
+      map((data) => {
+        console.log(data);
+      })
+    );
+  }
 }
 // <v-btn v-on:click="getuserdata"> get user data</v-btn>
 // methods:{
