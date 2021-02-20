@@ -6,7 +6,7 @@ export const OrderConfig = {
     getfigure:'getfigure',
     orderType:{
       oneTimeTest:"一次性测试",
-      oneTimeTest:"一次性测试",
+      realEstateTest:"不动产测试",
     }
   };
   

@@ -36,11 +36,10 @@ export default class OrderServe {
     ).pipe(
       map((data) => {
         let newData = data["data"];
-        newData.list.forEach((element,index) => {
-          element.
-
+        newData.list.forEach((element:any) => {
+          // @ts-ignore
+          element.type = OrderConfig.orderType[element.type]
         });
-
         return newData;
       })
     );
