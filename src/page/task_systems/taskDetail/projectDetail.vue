@@ -324,6 +324,7 @@
 
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
+import userServes from "@/page/user/user.serves";
 export default {
   data: () => ({
     // 时间参数
@@ -379,7 +380,8 @@ export default {
     },
   },
   created() {
-    console.log(this.$route.query)    
+    console.log(this.$route.query);
+      
   },
   methods: {
     customFilter(item, queryText, itemText) {
