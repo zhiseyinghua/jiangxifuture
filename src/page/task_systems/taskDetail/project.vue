@@ -6,7 +6,7 @@
       </v-btn>
     </v-sheet>
     <v-row>
-      <v-col v-for="i in order" :key="i" cols="12" md="4">
+      <v-col v-for="(item,index) in order" :key="index" cols="12" md="4">
         <v-card>
           <v-card-actions class="float-right my-2"
             ><v-btn
@@ -15,15 +15,25 @@
               class="light-blue--text text--accent-4"
               >详情</v-btn
             ></v-card-actions
-          >{{ i }}
-          <v-card-title class="text-center">项目名称：{{i.ordername}}</v-card-title>
+          >{{ item }}
+          <v-card-title class="text-center"
+            >项目名称：{{ item.ordername }}</v-card-title
+          >
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
-          <v-card-text> 名字： {{i.ONEinformation.name}} </v-card-text>
-          <v-card-text> 电话： {{i.ONEinformation.phone}} </v-card-text>
+          <v-card-text
+            v-if="item.ONEinformation.name && item.ONEinformation.name != ''"
+          >
+            名字： {{ item.ONEinformation.name }}
+          </v-card-text>
+          <v-card-text v-else> 名字： 未填写 </v-card-text>
+          <v-card-text> 电话： {{ item.ONEinformation.phone }} </v-card-text>
           <v-card-subtitle>项目信息</v-card-subtitle>
-          <v-card-text> 地点： {{i.localPlace.local}} </v-card-text>
-          <v-card-text> 面积： {{i.area}} </v-card-text>
-          <v-card-text> 类型： {{i.type}} </v-card-text>
+          <v-card-text v-if="item.localPlace.local">
+            地点： {{ item.localPlace.local }}
+          </v-card-text>
+          <v-card-text v-else> 地址： 未填写 </v-card-text>
+          <v-card-text> 面积： {{ item.area }} </v-card-text>
+          <v-card-text> 类型： {{ item.type }} </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -46,7 +56,7 @@ import orderServe from "@/page/order/order.serves";
 export default {
   data() {
     return {
-      pagination:6,
+      pagination: 6,
       page: 2,
       ordercount: 6,
       order: [],
@@ -55,18 +65,18 @@ export default {
   watch: {
     page() {
       console.log(this.page);
-      orderServe.getfigure(this.page * 12 - 12, 12).subscribe((data) => {
-        this.order = data.list
-        
+      orderServe.getfigure((this.page * 12 - 12) + '', "12").subscribe((data) => {
+        this.order = data.list;
+
         // console.log(data);
       });
     },
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure(this.page - 1, 12).subscribe((data) => {
+    orderServe.getfigure((this.page - 1)+ '', "12").subscribe((data) => {
       this.order = data.list;
-      this.pagination = Math.ceil(data['maxsize']/12)
+      this.pagination = Math.ceil(data["maxsize"] / 12);
       console.log(data);
     });
   },

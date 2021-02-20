@@ -1,6 +1,6 @@
 <template>
   <div>
-    <toolbar />
+    <!-- <toolbar /> -->
     <router-view></router-view>
   </div>
 </template>
@@ -11,15 +11,15 @@ import toolbar from "./toolbar";
 export default {
   components: { toolbar },
   methods: {
-    ...mapMutations(["changeShow"]),
+    // ...mapMutations(["changeShow"]),
   },
-  created: function() {
-    if (this.$route.path.indexOf("/taskSystems") === 0) {
-      this.changeShow();
-    }
-  },
-  beforeDestroy: function() {
-    this.changeShow();
-  },
+  // created: function() {
+  //   if (this.$route.path.indexOf("/taskSystems") === 0) {
+  //     this.changeShow();
+  //   }
+  // },
+  // beforeDestroy: function() {
+  //   this.changeShow();
+  // },
 };
 </script>
