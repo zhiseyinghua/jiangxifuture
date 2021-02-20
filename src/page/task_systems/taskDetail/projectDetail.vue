@@ -378,6 +378,9 @@ export default {
       console.log(val);
     },
   },
+  created() {
+    console.log(this.$route.query)    
+  },
   methods: {
     customFilter(item, queryText, itemText) {
       const textOne = item.name.toLowerCase();

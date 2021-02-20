@@ -6,20 +6,20 @@
       </v-btn>
     </v-sheet>
     <v-row>
-      <v-col v-for="(item,index) in order" :key="index" cols="12" md="4">
+      <v-col v-for="(item, index) in order" :key="index" cols="12" md="4">
         <v-card>
           <v-card-actions class="float-right my-2"
             ><v-btn
-              to="/taskSystems/projectDetail"
+              @click="toprojectDetail(item)"
               text
               class="light-blue--text text--accent-4"
               >详情</v-btn
             ></v-card-actions
-          >{{ item }}
+          >
           <v-card-title class="text-center"
             >项目名称：{{ item.ordername }}</v-card-title
           >
-          <v-card-subtitle> 甲方信息 </v-card-subtitle>
+          <v-card-subtitle > 甲方信息 </v-card-subtitle>
           <v-card-text
             v-if="item.ONEinformation.name && item.ONEinformation.name != ''"
           >
@@ -33,7 +33,7 @@
           </v-card-text>
           <v-card-text v-else> 地址： 未填写 </v-card-text>
           <v-card-text v-if="item.area"> 面积： {{ item.area }} </v-card-text>
-          <v-card-text v-else> 面积：  未填写 </v-card-text>
+          <v-card-text v-else> 面积： 未填写 </v-card-text>
           <v-card-text v-if="item.type"> 类型： {{ item.type }} </v-card-text>
           <v-card-text v-else> 类型： 未填写 </v-card-text>
         </v-card>
@@ -67,7 +67,7 @@ export default {
   watch: {
     page() {
       console.log(this.page);
-      orderServe.getfigure((this.page * 12 - 12) + '', "12").subscribe((data) => {
+      orderServe.getfigure(this.page * 12 - 12 + "", "12").subscribe((data) => {
         this.order = data.list;
 
         // console.log(data);
@@ -76,11 +76,19 @@ export default {
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure((this.page - 1)+ '', "12").subscribe((data) => {
+    orderServe.getfigure(this.page - 1 + "", "12").subscribe((data) => {
       this.order = data.list;
       this.pagination = Math.ceil(data["maxsize"] / 12);
       console.log(data);
     });
   },
+  methods: {
+    toprojectDetail(value) {
+      this.$router.push({
+        path: "/taskSystems/projectDetail",
+        query: value,
+      });
+    }
+  }
 };
 </script>
