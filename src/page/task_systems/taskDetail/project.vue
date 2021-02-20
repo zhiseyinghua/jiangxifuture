@@ -33,7 +33,7 @@
     <div class="text-center">
       <v-pagination
         v-model="page"
-        :length="100"
+        :length="pagination"
         :total-visible="7"
       ></v-pagination>
     </div>
@@ -46,6 +46,7 @@ import orderServe from "@/page/order/order.serves";
 export default {
   data() {
     return {
+      pagination:6,
       page: 2,
       ordercount: 6,
       order: [],
@@ -64,6 +65,7 @@ export default {
     console.log("group 创建");
     orderServe.getfigure(this.page - 1, 12).subscribe((data) => {
       this.order = data.list;
+      Math.ceil(data.)
       console.log(data);
     });
   },
