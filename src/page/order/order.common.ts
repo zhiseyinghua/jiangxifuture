@@ -3,7 +3,10 @@ export const OrderConfig = {
     // 向后端put一条任务数据
     putorder:'putorder',
     // search所有的订单数据
-    getfigure:'getfigure'
-  
+    getfigure:'getfigure',
+    orderType:{
+      oneTimeTest:"一次性测试",
+      oneTimeTest:"一次性测试",
+    }
   };
   

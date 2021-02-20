@@ -30,12 +30,18 @@ export default class OrderServe {
       "post",
       OrderConfig.zone + "/" + "getfigure",
       {
-        "from":from,
-        "size":size
+        from: from,
+        size: size,
       }
     ).pipe(
       map((data) => {
-        return data['data'];
+        let newData = data["data"];
+        newData.list.forEach((element,index) => {
+          element.
+
+        });
+
+        return newData;
       })
     );
   }
