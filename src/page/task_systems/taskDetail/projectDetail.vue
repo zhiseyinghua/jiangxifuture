@@ -331,6 +331,7 @@
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import userServes from "@/page/user/user.serves";
+import {OrderInterface} from "@/page/task_systems/taskDetail/projectDetail.interface"
 import Bus from "@/common/bus";
 export default {
   data: () => ({
@@ -392,6 +393,8 @@ export default {
   },
   created() {
     let routedata = JSON.parse(unescape(this.$route.query.id));
+    // 将路由拿到的order信息赋值
+
     console.log(routedata);
     console.log();
     userServes
