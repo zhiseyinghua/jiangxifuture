@@ -150,8 +150,8 @@
               <div>
                 <div class="mb-2 grey--text">其他信息 ：</div>
                 <div class="mt-6 ml-6">
-                  <div class="mb-2">任务面积 ：{{ ONEinformation.name }}</div>
-                  <div class="mb-2">实际费用 ：{{ ONEinformation.phone }}</div>
+                  <div class="mb-2">任务面积 ：{{ area }}</div>
+                  <div class="mb-2">实际费用 ：{{ realMoney }}</div>
                   <v-btn @click="changeOtherinformation" class="mt-11"
                     >修改其他信息</v-btn
                   >
@@ -564,7 +564,7 @@ export default {
       this.dialog = true;
       this.timeselect = "timeReceiptAmount";
     },
-    // 更新信息
+    // 更新甲方信息
     updataOneInformation() {
       Bus.$emit("overlayvalue", {
         overlayvalue: true,
@@ -580,9 +580,17 @@ export default {
         Bus.$emit("overlayvalue", {
           overlayvalue: false,
         });
-        if (data.code == "000203" || data.range) {
+        if (data.range) {
           Bus.$emit("snackbar", {
             text: "修改成功",
+            color: "green",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        } else if (data.code == "000203") {
+          Bus.$emit("snackbar", {
+            text: "未修改",
             color: "green",
             timeout: 2000,
             errorsnackbar: true,
@@ -621,9 +629,19 @@ export default {
         Bus.$emit("overlayvalue", {
           overlayvalue: false,
         });
-        if (data.code == "000202" || data.range) {
+        if (data.range) {
           Bus.$emit("snackbar", {
             text: "修改成功",
+            color: "green",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+          this.area = data.area;
+          this.realMoney = data.realMoney;
+        } else if (data.code == "000202") {
+          Bus.$emit("snackbar", {
+            text: "未修改",
             color: "green",
             timeout: 2000,
             errorsnackbar: true,
