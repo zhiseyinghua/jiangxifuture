@@ -317,7 +317,7 @@
             暂不修改
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text>
+          <v-btn color="primary" @click="updateOtherInformation()" text>
             确认修改
           </v-btn>
         </v-card-actions>
@@ -543,13 +543,24 @@ export default {
       };
       // this.ONEinformation = {
       orderServe.updateOneInformation(data).subscribe((data) => {
+        this.firstdialog = false
         Bus.$emit("overlayvalue", {
           overlayvalue: false,
+        });
+        Bus.$emit("snackbar", {
+          text: "修改成功",
+          color: "green",
+          timeout: 2000,
+          errorsnackbar: true,
+          top: true,
         });
         console.log(data);
       });
       console.log("修改甲方信息");
     },
+    updateOtherInformation() {
+      console.log("123456");
+    }
   },
 };
 </script>

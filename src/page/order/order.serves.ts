@@ -46,7 +46,7 @@ export default class OrderServe {
   }
   /**
    * 修改甲方信息
-   * @param data 
+   * @param data
    */
   public static updateOneInformation(data: UpdateFirstinformation) {
     return AxiosElasticService.AxiosService(
@@ -57,7 +57,15 @@ export default class OrderServe {
       map((data) => {
         return data["data"];
       }),
-      delay(9000)
+      delay(1000)
+    );
+  }
+
+  public static updateOtherInformationF(data: UpdateFirstinformation) {
+    return AxiosElasticService.AxiosService(
+      "post",
+      OrderConfig.zone + "/" + "firstinformation",
+      data
     );
   }
 }
