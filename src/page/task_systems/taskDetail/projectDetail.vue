@@ -536,11 +536,7 @@ export default {
         hash:this.orderkey.hash,
         range:this.orderkey.range,
         index:this.orderkey.index,
-        ONEinformation:{
-          phone:"1870132537",
-          email:"",
-          name:""
-        }
+        ONEinformation:this.ONEinformation
       }
       // this.ONEinformation = {
       orderServe.updateOneInformation(data).subscribe(
