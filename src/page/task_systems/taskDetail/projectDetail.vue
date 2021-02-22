@@ -293,7 +293,7 @@
             暂不修改
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="upuserdata()">
+          <v-btn color="primary" text @click="updataOneInformation()">
             确认修改
           </v-btn>
         </v-card-actions>
@@ -519,6 +519,13 @@ export default {
       this.dialog = true;
       this.timeselect = "timeReceiptAmount";
     },
+
+    updataOneInformation() {
+      // this.ONEinformation = {
+
+      // }
+      console.log("修改甲方信息")
+    }
   },
 };
 </script>

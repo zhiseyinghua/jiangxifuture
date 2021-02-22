@@ -44,4 +44,10 @@ export default class OrderServe {
       })
     );
   }
+  public updateOneInformation() {
+    return AxiosElasticService.AxiosService(
+      "post",
+      OrderConfig.zone + "/" + ""
+    )
+  }
 }
