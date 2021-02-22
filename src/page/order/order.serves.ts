@@ -56,7 +56,8 @@ export default class OrderServe {
     ).pipe(
       map((data) => {
         return data["data"];
-      })
+      }),
+      delay(9000)
     );
   }
 }

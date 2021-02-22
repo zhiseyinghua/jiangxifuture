@@ -334,14 +334,14 @@ import { CommonInterfaceElact } from "@/common/common.interface";
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import orderServe from "@/page/order/order.serves";
 import userServes from "@/page/user/user.serves";
-import {UpdateFirstinformation} from "@/page/task_systems/taskDetail/projectDetail.interface"
+import { UpdateFirstinformation } from "@/page/task_systems/taskDetail/projectDetail.interface";
 import { OrderInterface } from "@/page/task_systems/taskDetail/projectDetail.interface";
-import moment from 'moment';
+import moment from "moment";
 import Bus from "@/common/bus";
 export default {
   data: () => ({
     //这个订单的key
-    orderkey:null,
+    orderkey: null,
 
     // 弹窗的button
     lodingbutton: false,
@@ -403,10 +403,10 @@ export default {
     let routedata = JSON.parse(unescape(this.$route.query.id));
     // 将路由拿到的order信息赋值
     this.orderkey = {
-      hash:routedata.hash,
-      range:routedata.range,
-      index:routedata.range
-    }
+      hash: routedata.hash,
+      range: routedata.range,
+      index: routedata.range,
+    };
     console.log(routedata);
     console.log();
     userServes
@@ -473,7 +473,7 @@ export default {
           this.dialog = false;
           console.log("data", data, this.timeselect);
           // this[this.timeselect] = data;
-          this[this.timeselect] = moment(data).format('ll')
+          this[this.timeselect] = moment(data).format("ll");
         },
         (err) => {
           this.lodingbutton = false;
@@ -532,20 +532,24 @@ export default {
     },
 
     updataOneInformation() {
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
       let data = {
-        hash:this.orderkey.hash,
-        range:this.orderkey.range,
-        index:this.orderkey.index,
-        ONEinformation:this.ONEinformation
-      }
+        hash: this.orderkey.hash,
+        range: this.orderkey.range,
+        index: this.orderkey.index,
+        ONEinformation: this.ONEinformation,
+      };
       // this.ONEinformation = {
-      orderServe.updateOneInformation(data).subscribe(
-        (data)=>{
-          console.log(data)
-        }
-      )
-      console.log("修改甲方信息")
-    }
+      orderServe.updateOneInformation(data).subscribe((data) => {
+        Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
+        console.log(data);
+      });
+      console.log("修改甲方信息");
+    },
   },
 };
 </script>
