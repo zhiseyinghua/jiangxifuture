@@ -481,8 +481,7 @@ export default {
       this.hasSaved = true;
     },
 
-    show() {
-    },
+    show() {},
 
     starttime() {
       this.timeselect = "orderstartTime";
@@ -543,37 +542,37 @@ export default {
 
     // 更改派发时间参数
     changeTimeAfterDistributiondata() {
-      this.dialog = true;
+      this.timedialog = true;
       this.timeselect = "timeAfterDistribution";
     },
     // 更改派发时间参数
     changeTechnicianCompletionTime() {
       console.log("changeTechnicianCompletionTime");
-      this.dialog = true;
+      this.timedialog = true;
       this.timeselect = "technicianCompletionTime";
     },
     // 更改外业完成时间
     changeCompletionTime() {
       console.log("changeCompletionTime");
-      this.dialog = true;
+      this.timedialog = true;
       this.timeselect = "completionTime";
     },
     // 内业完成时间
     changInsidePagesFinish() {
       console.log("changInsidePagesFinish");
-      this.dialog = true;
+      this.timedialog = true;
       this.timeselect = "insidePagesFinish";
     },
     // 合同完成时间
     changeContractCompleted() {
       console.log("contractCompleted");
-      this.dialog = true;
+      this.timedialog = true;
       this.timeselect = "contractCompleted";
     },
     // 金额到账时间
     changeTimeReceiptAmount() {
       console.log("changeTimeReceiptAmount");
-      this.dialog = true;
+      this.timedialog = true;
       this.timeselect = "timeReceiptAmount";
     },
     // 更新甲方信息
@@ -670,12 +669,12 @@ export default {
           });
         }
       });
-      
     },
     // 确认时间
     replacePaifa() {
-        console.log(确认)
-      }
+      console.log("确认时间");
+      this[this.timeselect] = moment(data).format("ll");
+    },
   },
 };
 </script>
