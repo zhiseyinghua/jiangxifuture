@@ -362,13 +362,9 @@
 </template>
 
 <script>
-import { CommonInterfaceElact } from "@/common/common.interface";
-
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import orderServe from "@/page/order/order.serves";
 import userServes from "@/page/user/user.serves";
-import { UpdateFirstinformation } from "@/page/task_systems/taskDetail/projectDetail.interface";
-import { OrderInterface } from "@/page/task_systems/taskDetail/projectDetail.interface";
 import moment from "moment";
 import Bus from "@/common/bus";
 export default {
