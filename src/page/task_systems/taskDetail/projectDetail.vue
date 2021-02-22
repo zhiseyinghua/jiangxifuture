@@ -46,7 +46,7 @@
 
       <v-col>
         <div>
-          <v-btn @click="changecontractCompleted()" text style="height:80px">
+          <v-btn @click="changeTaskCompleted()" text style="height:80px">
             <v-row>
               <v-col>
                 <v-icon v-show="true" size="55" color="green darken-2">
@@ -231,7 +231,7 @@
             ></v-text-field>
 
             <div class="">合同完成时间 ：</div>
-            <!-- contractCompleted -->
+            contractCompleted
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -262,7 +262,7 @@
     <!-- 修改时间参数 通用 -->
     <v-dialog v-model="dialog" width="500">
       <v-date-picker
-        v-model="picker"
+        v-model="pickertime"
         :first-day-of-week="0"
         locale="zh-cn"
       ></v-date-picker>
@@ -431,7 +431,8 @@ export default {
     otherdialog: false,
     password: "Password",
     // 时间选择器选择的时间
-    picker: new Date().toISOString().substr(0, 10),
+    pickertime: null,
+    picker:null,
     ONEinformation: {
       phone: "18779868511",
       // 邮箱
@@ -442,7 +443,7 @@ export default {
     realMoney: null,
   }),
   watch: {
-    picker(val) {
+    pickertime(val) {
       console.log(val);
     },
   },
@@ -476,9 +477,17 @@ export default {
         textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
       );
     },
+    // 更新项目时间参数
     save() {
       this.isEditing = !this.isEditing;
       this.hasSaved = true;
+      let manytime = {
+        hash: this.orderkey.hash,
+        range: this.orderkey.range,
+        index: this.orderkey.index,
+        ONEinformation: this.ONEinformation,
+      }
+      orderServe.updateOrderManyTime().subscribe
     },
 
     show() {},
@@ -495,24 +504,19 @@ export default {
     },
 
     // 任务完成时间
-    changecontractCompleted() {
+    changeTaskCompleted() {
       this.timeselect = "orderendTime";
       console.log("orderendTime");
       this.dialog = true;
       console.log("orderendTime");
-      ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
-        (data) => {
-          console.log("data", data, this.timeselect);
-          this[this.timeselect] = data;
-        }
-      );
+      
     },
     // 更新所有的时间参数
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
       this.lodingbutton = true;
-      ProjectDetailClass.updateOrderstartTime(this.timeselect).subscribe(
+      ProjectDetailClass.updateOrderstartTime(this.timeselect,this.pickertime).subscribe(
         (data) => {
           this.lodingbutton = false;
           this.dialog = false;
@@ -673,8 +677,11 @@ export default {
     // 确认时间
     replacePaifa() {
       console.log("确认时间");
-      this[this.timeselect] = moment(data).format("ll");
+      this.timedialog = false
+      this[this.timeselect] = moment(this.picker).format("ll");
     },
+
+    
   },
 };
 </script>

@@ -6,15 +6,14 @@ export default class ProjectDetailClass {
   /**
    * 更改时间
    */
-  public static updateOrderstartTime(choose: string): Observable<any> {
+  public static updateOrderstartTime(choose: string,time:number): Observable<any> {
     // return AxiosElasticService.AxiosService().pipe(
     //     map(data=>{
     //         return data
     //     })
     // )
-
-    console.log("111111111111111111111111111111111111111111",choose);
-    return of(Date.parse(new Date() + "")).pipe(
+    console.log("dfddddddddddddddddddddd",choose,time)
+    return of(time).pipe(
       map((data) => {
         console.log("data", choose);
         return data;
@@ -22,4 +21,8 @@ export default class ProjectDetailClass {
       delay(500)
     );
   }
+
+  
+
+  
 }

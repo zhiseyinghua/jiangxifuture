@@ -111,3 +111,21 @@ export interface UpdateOtherFormation extends CommonInterfaceElact {
   realMoney: string;
   // 实际费用
 }
+
+/**
+ * 修改时间参数
+ */
+export interface UpdateTime extends CommonInterfaceElact {
+  // 实际派发时间
+  timeAfterDistribution: Number;
+  // 技术员实际完成时间
+  technicianCompletionTime: Number;
+  // 外业完成时间
+  completionTime: Number;
+  // 内业完成时间
+  insidePagesFinish: Number;
+  // 合同完成时间
+  contractCompleted: Number;
+  // 金额到账时间
+  timeReceiptAmount: Number;
+}
