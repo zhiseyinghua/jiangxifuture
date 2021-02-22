@@ -559,7 +559,7 @@ export default {
       console.log("修改甲方信息");
     },
     updateOtherInformation() {
-      console.log("123456");
+      
     }
   },
 };
