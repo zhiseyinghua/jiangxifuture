@@ -231,7 +231,6 @@
             ></v-text-field>
 
             <div class="">合同完成时间 ：</div>
-            contractCompleted
             <v-text-field
               filled
               :disabled="!isEditing"
@@ -485,9 +484,24 @@ export default {
         hash: this.orderkey.hash,
         range: this.orderkey.range,
         index: this.orderkey.index,
-        ONEinformation: this.ONEinformation,
+        timeAfterDistribution: this.timeAfterDistribution,
+        technicianCompletionTime: this.technicianCompletionTime,
+        completionTime: this.completionTime,
+        insidePagesFinish: this.insidePagesFinish,
+        contractCompleted: this.contractCompleted,
+        timeReceiptAmount: this.timeReceiptAmount,
       };
-      orderServe.updateOrderManyTime().subscribe;
+      orderServe.updateOrderManyTime(manytime).subscribe((data) => {
+        console.log(data);
+        if (data.range) {
+          this.timeAfterDistribution = data.timeAfterDistribution;
+          this.technicianCompletionTime = data.technicianCompletionTime;
+          this.completionTime = data.completionTime;
+          this.insidePagesFinish = data.insidePagesFinish;
+          this.contractCompleted = data.contractCompleted;
+          this.timeReceiptAmount = data.timeReceiptAmount;
+        }
+      });
     },
 
     show() {},

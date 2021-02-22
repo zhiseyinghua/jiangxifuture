@@ -2,7 +2,12 @@ import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
 import { delay, map } from "rxjs/operators";
 import { OrderConfig } from "./order.common";
-import { PutOrderOne, UpdateFirstinformation, UpdateOtherFormation, UpdateTime } from "./order.interface";
+import {
+  PutOrderOne,
+  UpdateFirstinformation,
+  UpdateOtherFormation,
+  UpdateTime,
+} from "./order.interface";
 
 export default class OrderServe {
   /**
@@ -63,7 +68,7 @@ export default class OrderServe {
 
   /**
    * 修改订单的其他信息
-   * @param data 
+   * @param data
    */
   public static updateOtherInformationF(data: UpdateOtherFormation) {
     return AxiosElasticService.AxiosService(
@@ -71,26 +76,27 @@ export default class OrderServe {
       OrderConfig.zone + "/" + "other_information",
       data
     ).pipe(
-      map((data)=>{
-        return data['data']
+      map((data) => {
+        return data["data"];
       }),
       delay(1000)
-    )
+    );
   }
 
   /**
    * 修改时间信息
    * @param data
    */
-  public static updateOrderManyTime(data:UpdateTime) {
+  public static updateOrderManyTime(data: UpdateTime) {
     return AxiosElasticService.AxiosService(
       "post",
       OrderConfig.zone + "/" + "update_time",
       data
     ).pipe(
-      map(data=>{
-        console.log(data)
-      })
-    )
+      map((data) => {
+        return data["data"];
+      }),
+      delay(1000)
+    );
   }
 }
