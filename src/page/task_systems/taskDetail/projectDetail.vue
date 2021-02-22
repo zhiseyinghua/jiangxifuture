@@ -491,17 +491,37 @@ export default {
         contractCompleted: this.contractCompleted,
         timeReceiptAmount: this.timeReceiptAmount,
       };
-      orderServe.updateOrderManyTime(manytime).subscribe((data) => {
-        console.log(data);
-        if (data.range) {
-          this.timeAfterDistribution = data.timeAfterDistribution;
-          this.technicianCompletionTime = data.technicianCompletionTime;
-          this.completionTime = data.completionTime;
-          this.insidePagesFinish = data.insidePagesFinish;
-          this.contractCompleted = data.contractCompleted;
-          this.timeReceiptAmount = data.timeReceiptAmount;
+      orderServe.updateOrderManyTime(manytime).subscribe(
+        (data) => {
+          console.log(data);
+          if (data.range) {
+            this.timeAfterDistribution = data.timeAfterDistribution;
+            this.technicianCompletionTime = data.technicianCompletionTime;
+            this.completionTime = data.completionTime;
+            this.insidePagesFinish = data.insidePagesFinish;
+            this.contractCompleted = data.contractCompleted;
+            this.timeReceiptAmount = data.timeReceiptAmount;
+            Bus.$emit("snackbar", {
+              text: "修改成功",
+              color: "green",
+              timeout: 2000,
+              errorsnackbar: true,
+              top: true,
+            });
+          }
+        },
+        (err) => {
+          this.dialog = false;
+          console.log(err);
+          Bus.$emit("snackbar", {
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
         }
-      });
+      );
     },
 
     show() {},
