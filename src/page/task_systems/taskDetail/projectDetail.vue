@@ -447,7 +447,56 @@ export default {
     },
   },
   created() {
+    //     localPlace: OrderlocalPlaceInterface;
+
+    // // 创建者
+    // creator: CommonInterfaceElact;
+    // // 技术员
+    // technician: CommonInterfaceElact;
+    // // 实际派发时间
+    // timeAfterDistribution: String;
+    // // 技术员实际完成时间
+    // technicianCompletionTime: String;
+    // // 外业完成时间
+    // completionTime: String;
+    // // 内业完成时间
+    // insidePagesFinish: String;
+    // // 合同完成时间
+    // contractCompleted: String;
+    // // 金额到账时间
+    // timeReceiptAmount: String;
+    // // 预估费用
+    // estimatedMoney: string;
+    // // 实际费用
+    // realMoney: string;
+    // // 甲方信息
+    // ONEinformation: {
+    //   // 电话
+    //   phone: string;
+    //   // 邮箱
+    //   email: string;
+    //   name: string;
+    // };
+    // timestamp: Number;
+    // // 在哪个所属团队发的任务
+    // creatorkey?: CommonInterfaceElact;
+    // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
+    routedata.orderstartTime = this.routedata.orderstartTime;
+    routedata.orderendTime = this.routedata.orderendTime;
+    routedata.figuetime = this.routedata.figuetime;
+    routedata.type = this.routedata.type;
+
+    routedata.area = this.routedata.area;
+    routedata.timeAfterDistribution = this.routedata.timeAfterDistribution;
+    routedata.technicianCompletionTime = this.routedata.technicianCompletionTime;
+    routedata.completionTime = this.routedata.completionTime;
+    routedata.insidePagesFinish = this.routedata.insidePagesFinish;
+    routedata.contractCompleted = this.routedata.contractCompleted;
+    routedata.timeReceiptAmount = this.routedata.timeReceiptAmount;
+    routedata.estimatedMoney = this.routedata.estimatedMoney;
+    routedata.realMoney = this.routedata.realMoney;
+    routedata.ONEinformation = this.routedata.ONEinformation;
     // 将路由拿到的order信息赋值
     this.orderkey = {
       hash: routedata.hash,
@@ -513,7 +562,7 @@ export default {
               errorsnackbar: true,
               top: true,
             });
-          } else if(data.code) {
+          } else if (data.code) {
             Bus.$emit("snackbar", {
               text: "未修改",
               color: "green",
@@ -523,12 +572,12 @@ export default {
             });
           } else {
             Bus.$emit("snackbar", {
-            text: "服务器错误",
-            color: "pink",
-            timeout: 2000,
-            errorsnackbar: true,
-            top: true,
-          });
+              text: "服务器错误",
+              color: "pink",
+              timeout: 2000,
+              errorsnackbar: true,
+              top: true,
+            });
           }
         },
         (err) => {
