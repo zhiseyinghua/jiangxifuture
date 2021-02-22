@@ -331,7 +331,8 @@
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import userServes from "@/page/user/user.serves";
-import {OrderInterface} from "@/page/task_systems/taskDetail/projectDetail.interface"
+import { OrderInterface } from "@/page/task_systems/taskDetail/projectDetail.interface";
+import moment from 'moment';
 import Bus from "@/common/bus";
 export default {
   data: () => ({
@@ -460,7 +461,10 @@ export default {
           this.lodingbutton = false;
           this.dialog = false;
           console.log("data", data, this.timeselect);
-          this[this.timeselect] = data;
+          // this[this.timeselect] = data;
+          this[this.timeselect] = moment()
+            .subtract(6, "days")
+            .calendar();
         },
         (err) => {
           this.lodingbutton = false;
