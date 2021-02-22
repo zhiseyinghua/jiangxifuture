@@ -478,6 +478,9 @@ export default {
     },
     // 更新项目时间参数
     save() {
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
       this.isEditing = !this.isEditing;
       this.hasSaved = true;
       let manytime = {
@@ -493,7 +496,9 @@ export default {
       };
       orderServe.updateOrderManyTime(manytime).subscribe(
         (data) => {
-          console.log(data);
+          Bus.$emit("overlayvalue", {
+            overlayvalue: false,
+          });
           if (data.range) {
             this.timeAfterDistribution = data.timeAfterDistribution;
             this.technicianCompletionTime = data.technicianCompletionTime;
@@ -508,11 +513,28 @@ export default {
               errorsnackbar: true,
               top: true,
             });
+          } else if(data.code) {
+            Bus.$emit("snackbar", {
+              text: "未修改",
+              color: "green",
+              timeout: 2000,
+              errorsnackbar: true,
+              top: true,
+            });
+          } else {
+            Bus.$emit("snackbar", {
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
           }
         },
         (err) => {
-          this.dialog = false;
-          console.log(err);
+          Bus.$emit("overlayvalue", {
+            overlayvalue: false,
+          });
           Bus.$emit("snackbar", {
             text: "服务器错误",
             color: "pink",
