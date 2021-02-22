@@ -584,7 +584,7 @@ export default {
             errorsnackbar: true,
             top: true,
           });
-          this.ONEinformation = data.ONEinformation
+          this.ONEinformation = data.ONEinformation;
         } else if (data.code == "000203") {
           Bus.$emit("snackbar", {
             text: "未修改",
