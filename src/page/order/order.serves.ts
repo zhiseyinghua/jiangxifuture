@@ -2,7 +2,7 @@ import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
 import { delay, map } from "rxjs/operators";
 import { OrderConfig } from "./order.common";
-import { PutOrderOne } from "./order.interface";
+import { PutOrderOne, UpdateFirstinformation } from "./order.interface";
 
 export default class OrderServe {
   /**
@@ -36,22 +36,27 @@ export default class OrderServe {
     ).pipe(
       map((data) => {
         let newData = data["data"];
-        newData.list.forEach((element:any) => {
+        newData.list.forEach((element: any) => {
           // @ts-ignore
-          element.type = OrderConfig.orderType[element.type]
+          element.type = OrderConfig.orderType[element.type];
         });
         return newData;
       })
     );
   }
-  public static updateOneInformation() {
+  /**
+   * 修改甲方信息
+   * @param data 
+   */
+  public static updateOneInformation(data: UpdateFirstinformation) {
     return AxiosElasticService.AxiosService(
       "post",
-      OrderConfig.zone + "/" + "firstinformation"
+      OrderConfig.zone + "/" + "firstinformation",
+      data
     ).pipe(
-      map((data)=>{
-        return data['data']
+      map((data) => {
+        return data["data"];
       })
-    )
+    );
   }
 }

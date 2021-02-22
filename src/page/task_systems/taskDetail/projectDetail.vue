@@ -329,14 +329,20 @@
 </template>
 
 <script>
+import { CommonInterfaceElact } from "@/common/common.interface";
+
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import orderServe from "@/page/order/order.serves";
 import userServes from "@/page/user/user.serves";
+import {UpdateFirstinformation} from "@/page/task_systems/taskDetail/projectDetail.interface"
 import { OrderInterface } from "@/page/task_systems/taskDetail/projectDetail.interface";
 import moment from 'moment';
 import Bus from "@/common/bus";
 export default {
   data: () => ({
+    //这个订单的key
+    orderkey:null,
+
     // 弹窗的button
     lodingbutton: false,
     // 用户名字
@@ -396,7 +402,11 @@ export default {
   created() {
     let routedata = JSON.parse(unescape(this.$route.query.id));
     // 将路由拿到的order信息赋值
-
+    this.orderkey = {
+      hash:routedata.hash,
+      range:routedata.range,
+      index:routedata.range
+    }
     console.log(routedata);
     console.log();
     userServes
@@ -522,14 +532,22 @@ export default {
     },
 
     updataOneInformation() {
+      let data = {
+        hash:this.orderkey.hash,
+        range:this.orderkey.range,
+        index:this.orderkey.index,
+        ONEinformation:{
+          phone:"1870132537",
+          email:"",
+          name:""
+        }
+      }
       // this.ONEinformation = {
-      orderServe.updateOneInformation().subscribe(
+      orderServe.updateOneInformation(data).subscribe(
         (data)=>{
           console.log(data)
         }
       )
-      // }
-      
       console.log("修改甲方信息")
     }
   },

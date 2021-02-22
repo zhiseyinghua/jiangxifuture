@@ -55,3 +55,17 @@ export interface OrderInterface extends CommonInterfaceElact {
     // 在哪个所属团队发的任务
     creatorkey?: CommonInterfaceElact;
   }
+
+  
+/**
+ * 更改甲方信息接口
+ */
+export interface UpdateFirstinformation extends CommonInterfaceElact {
+  ONEinformation: {
+    // 电话
+    phone: string;
+    // 邮箱
+    email: string;
+    name: string;
+  };
+}
