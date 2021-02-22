@@ -530,7 +530,7 @@ export default {
       this.dialog = true;
       this.timeselect = "timeReceiptAmount";
     },
-
+    // 更新信息
     updataOneInformation() {
       Bus.$emit("overlayvalue", {
         overlayvalue: true,
