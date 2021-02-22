@@ -61,11 +61,20 @@ export default class OrderServe {
     );
   }
 
+  /**
+   * 修改订单的其他信息
+   * @param data 
+   */
   public static updateOtherInformationF(data: UpdateOtherFormation) {
     return AxiosElasticService.AxiosService(
       "post",
-      OrderConfig.zone + "/" + "firstinformation",
+      OrderConfig.zone + "/" + "other_information",
       data
-    );
+    ).pipe(
+      map((data)=>{
+        return data['data']
+      }),
+      delay(1000)
+    )
   }
 }

@@ -283,9 +283,30 @@
           修改甲方参数</v-card-title
         >
         <v-card class="ma-10" flat>
-          <v-text-field label="名称" outlined clearable dense> </v-text-field>
-          <v-text-field label="电话" outlined clearable dense> </v-text-field>
-          <v-text-field label="邮箱" outlined clearable dense> </v-text-field>
+          <v-text-field
+            v-model="ONEinformation.name"
+            label="名称"
+            outlined
+            clearable
+            dense
+          >
+          </v-text-field>
+          <v-text-field
+            v-model="ONEinformation.phone"
+            label="电话"
+            outlined
+            clearable
+            dense
+          >
+          </v-text-field>
+          <v-text-field
+            v-model="ONEinformation.email"
+            label="邮箱"
+            outlined
+            clearable
+            dense
+          >
+          </v-text-field>
         </v-card>
         <v-divider></v-divider>
         <v-card-actions>
@@ -306,9 +327,21 @@
           修改其他信息</v-card-title
         >
         <v-card class="ma-10" flat>
-          <v-text-field label="任务面积" outlined clearable dense>
+          <v-text-field
+            v-model="area"
+            label="任务面积"
+            outlined
+            clearable
+            dense
+          >
           </v-text-field>
-          <v-text-field label="实际费用" outlined clearable dense>
+          <v-text-field
+            v-model="realMoney"
+            label="实际费用"
+            outlined
+            clearable
+            dense
+          >
           </v-text-field>
         </v-card>
         <v-divider></v-divider>
@@ -342,7 +375,6 @@ export default {
   data: () => ({
     //这个订单的key
     orderkey: null,
-
     // 弹窗的button
     lodingbutton: false,
     // 用户名字
@@ -393,6 +425,8 @@ export default {
       email: "1870132537@qq.com",
       name: "黄文强",
     },
+    area: null,
+    realMoney: null,
   }),
   watch: {
     picker(val) {
@@ -541,19 +575,28 @@ export default {
         index: this.orderkey.index,
         ONEinformation: this.ONEinformation,
       };
-      // this.ONEinformation = {
       orderServe.updateOneInformation(data).subscribe((data) => {
         this.firstdialog = false;
         Bus.$emit("overlayvalue", {
           overlayvalue: false,
         });
-        Bus.$emit("snackbar", {
-          text: "修改成功",
-          color: "green",
-          timeout: 2000,
-          errorsnackbar: true,
-          top: true,
-        });
+        if (data.code == "000203" || data.range) {
+          Bus.$emit("snackbar", {
+            text: "修改成功",
+            color: "green",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        } else {
+          Bus.$emit("snackbar", {
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        }
         console.log(data);
       });
       console.log("修改甲方信息");
@@ -562,9 +605,40 @@ export default {
       Bus.$emit("overlayvalue", {
         overlayvalue: true,
       });
-      orderServe.updateOtherInformationF().subscribe(()=>{
-        console.log("123456789")
-      })
+      let data = {
+        hash: this.orderkey.hash,
+        range: this.orderkey.range,
+        index: this.orderkey.index,
+        area: this.area,
+        realMoney: this.realMoney,
+      };
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
+      orderServe.updateOtherInformationF(data).subscribe((data) => {
+        console.log(data);
+        this.otherdialog = false;
+        Bus.$emit("overlayvalue", {
+          overlayvalue: false,
+        });
+        if (data.code == "000202" || data.range) {
+          Bus.$emit("snackbar", {
+            text: "修改成功",
+            color: "green",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        } else {
+          Bus.$emit("snackbar", {
+            text: "服务器错误",
+            color: "pink",
+            timeout: 2000,
+            errorsnackbar: true,
+            top: true,
+          });
+        }
+      });
     },
   },
 };
