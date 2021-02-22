@@ -432,7 +432,7 @@ export default {
     password: "Password",
     // 时间选择器选择的时间
     pickertime: null,
-    picker:null,
+    picker: null,
     ONEinformation: {
       phone: "18779868511",
       // 邮箱
@@ -486,8 +486,8 @@ export default {
         range: this.orderkey.range,
         index: this.orderkey.index,
         ONEinformation: this.ONEinformation,
-      }
-      orderServe.updateOrderManyTime().subscribe
+      };
+      orderServe.updateOrderManyTime().subscribe;
     },
 
     show() {},
@@ -509,14 +509,16 @@ export default {
       console.log("orderendTime");
       this.dialog = true;
       console.log("orderendTime");
-      
     },
     // 更新所有的时间参数
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
       this.lodingbutton = true;
-      ProjectDetailClass.updateOrderstartTime(this.timeselect,this.pickertime).subscribe(
+      ProjectDetailClass.updateOrderstartTime(
+        this.timeselect,
+        this.pickertime
+      ).subscribe(
         (data) => {
           this.lodingbutton = false;
           this.dialog = false;
@@ -677,11 +679,9 @@ export default {
     // 确认时间
     replacePaifa() {
       console.log("确认时间");
-      this.timedialog = false
+      this.timedialog = false;
       this[this.timeselect] = moment(this.picker).format("ll");
     },
-
-    
   },
 };
 </script>
