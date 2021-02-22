@@ -543,7 +543,7 @@ export default {
       };
       // this.ONEinformation = {
       orderServe.updateOneInformation(data).subscribe((data) => {
-        this.firstdialog = false
+        this.firstdialog = false;
         Bus.$emit("overlayvalue", {
           overlayvalue: false,
         });
@@ -559,8 +559,13 @@ export default {
       console.log("修改甲方信息");
     },
     updateOtherInformation() {
-      
-    }
+      Bus.$emit("overlayvalue", {
+        overlayvalue: true,
+      });
+      orderServe.updateOtherInformationF().subscribe(()=>{
+        console.log("123456789")
+      })
+    },
   },
 };
 </script>

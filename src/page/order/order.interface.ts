@@ -102,3 +102,12 @@ export interface UpdateFirstinformation extends CommonInterfaceElact {
     name: string;
   };
 }
+
+/**
+ * 更新其他信息的接口
+ */
+export interface UpdateOtherFormation extends CommonInterfaceElact {
+  area: string;
+  realMoney: string;
+  // 实际费用
+}

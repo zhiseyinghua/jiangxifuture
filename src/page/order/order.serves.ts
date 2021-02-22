@@ -2,7 +2,7 @@ import { AxiosElasticService } from "@/common/fromaxios";
 import { Observable } from "rxjs";
 import { delay, map } from "rxjs/operators";
 import { OrderConfig } from "./order.common";
-import { PutOrderOne, UpdateFirstinformation } from "./order.interface";
+import { PutOrderOne, UpdateFirstinformation, UpdateOtherFormation } from "./order.interface";
 
 export default class OrderServe {
   /**
@@ -61,7 +61,7 @@ export default class OrderServe {
     );
   }
 
-  public static updateOtherInformationF(data: UpdateFirstinformation) {
+  public static updateOtherInformationF(data: UpdateOtherFormation) {
     return AxiosElasticService.AxiosService(
       "post",
       OrderConfig.zone + "/" + "firstinformation",
