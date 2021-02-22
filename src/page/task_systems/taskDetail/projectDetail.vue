@@ -325,7 +325,7 @@
         </v-card>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn color="primary" text @click="dialog = false">
+          <v-btn color="primary" text @click="firstdialog = false">
             暂不修改
           </v-btn>
           <v-spacer></v-spacer>
@@ -361,7 +361,7 @@
         </v-card>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn color="primary" text @click="firstdialog = false">
+          <v-btn color="primary" text @click="otherdialog = false">
             暂不修改
           </v-btn>
           <v-spacer></v-spacer>
