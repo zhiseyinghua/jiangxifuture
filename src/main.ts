@@ -10,9 +10,11 @@ import axios from "./https";
 import { AxiosElasticService } from "./common/fromaxios";
 // @ts-ignore
 import VueAMap from "vue-amap";
+import moment from 'moment';
+
 
 Vue.use(VueAMap);
-
+moment.locale('zh-cn'); // 'en'
 // VueAMap.initAMapApiLoader({
 //   key: "b886fb12aa5e241d4af74e4fb90bee64&",
 //   plugin: [

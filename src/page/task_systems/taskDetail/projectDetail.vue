@@ -462,9 +462,7 @@ export default {
           this.dialog = false;
           console.log("data", data, this.timeselect);
           // this[this.timeselect] = data;
-          this[this.timeselect] = moment()
-            .subtract(6, "days")
-            .calendar();
+          this[this.timeselect] = moment(data).format('ll')
         },
         (err) => {
           this.lodingbutton = false;
