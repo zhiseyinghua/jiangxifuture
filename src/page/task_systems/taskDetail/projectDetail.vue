@@ -482,22 +482,6 @@ export default {
     // creatorkey?: CommonInterfaceElact;
     // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
-    routedata.orderstartTime = this.routedata.orderstartTime;
-    routedata.orderendTime = this.routedata.orderendTime;
-    routedata.figuetime = this.routedata.figuetime;
-    routedata.type = this.routedata.type;
-
-    routedata.area = this.routedata.area;
-    routedata.timeAfterDistribution = this.routedata.timeAfterDistribution;
-    routedata.technicianCompletionTime = this.routedata.technicianCompletionTime;
-    routedata.completionTime = this.routedata.completionTime;
-    routedata.insidePagesFinish = this.routedata.insidePagesFinish;
-    routedata.contractCompleted = this.routedata.contractCompleted;
-    routedata.timeReceiptAmount = this.routedata.timeReceiptAmount;
-    routedata.estimatedMoney = this.routedata.estimatedMoney;
-    routedata.realMoney = this.routedata.realMoney;
-    routedata.ONEinformation = this.routedata.ONEinformation;
-    // 将路由拿到的order信息赋值
     this.orderkey = {
       hash: routedata.hash,
       range: routedata.range,
@@ -515,6 +499,22 @@ export default {
         console.log(data);
         this.userName = data.usernickname;
       });
+    this.orderstartTime = routedata.orderstartTime;
+    this.orderendTime = routedata.orderendTime;
+    this.figuetime = routedata.figuetime;
+    this.type = routedata.type;
+
+    this.area = routedata.area;
+    this.timeAfterDistribution = routedata.timeAfterDistribution;
+    this.technicianCompletionTime = routedata.technicianCompletionTime;
+    this.completionTime = routedata.completionTime;
+    this.insidePagesFinish = routedata.insidePagesFinish;
+    this.contractCompleted = routedata.contractCompleted;
+    this.timeReceiptAmount = routedata.timeReceiptAmount;
+    this.estimatedMoney = routedata.estimatedMoney;
+    this.realMoney = routedata.realMoney;
+    this.ONEinformation = routedata.ONEinformation;
+    // 将路由拿到的order信息赋值
   },
   methods: {
     customFilter(item, queryText, itemText) {
