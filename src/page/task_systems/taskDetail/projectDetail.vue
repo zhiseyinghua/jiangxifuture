@@ -274,6 +274,22 @@
         >确定</v-btn
       >
     </v-dialog>
+    <!-- 用于修改项目时间弹窗 -->
+    <v-dialog v-model="timedialog" width="500">
+      <v-date-picker
+        v-model="picker"
+        :first-day-of-week="0"
+        locale="zh-cn"
+      ></v-date-picker>
+      <v-btn
+        x-large
+        color="primary"
+        :loading="lodingbutton"
+        @click="replacePaifa()"
+        >确定</v-btn
+      >
+    </v-dialog>
+
     <div style="height:100px"></div>
 
     <!-- 修改甲方信息 -->
@@ -369,6 +385,7 @@ import moment from "moment";
 import Bus from "@/common/bus";
 export default {
   data: () => ({
+    timedialog: false,
     //这个订单的key
     orderkey: null,
     // 弹窗的button
@@ -465,7 +482,6 @@ export default {
     },
 
     show() {
-      console.log("111111111111");
     },
 
     starttime() {
@@ -654,7 +670,12 @@ export default {
           });
         }
       });
+      
     },
+    // 确认时间
+    replacePaifa() {
+        console.log(确认)
+      }
   },
 };
 </script>

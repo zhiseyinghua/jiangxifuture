@@ -12,6 +12,8 @@ export default class ProjectDetailClass {
     //         return data
     //     })
     // )
+
+    console.log("111111111111111111111111111111111111111111",choose);
     return of(Date.parse(new Date() + "")).pipe(
       map((data) => {
         console.log("data", choose);
