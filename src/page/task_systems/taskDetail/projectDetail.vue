@@ -330,6 +330,7 @@
 
 <script>
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
+import orderServe from "@/page/order/order.serves";
 import userServes from "@/page/user/user.serves";
 import { OrderInterface } from "@/page/task_systems/taskDetail/projectDetail.interface";
 import moment from 'moment';
@@ -522,7 +523,11 @@ export default {
 
     updataOneInformation() {
       // this.ONEinformation = {
-
+      orderServe.updateOneInformation().subscribe(
+        (data)=>{
+          console.log(data)
+        }
+      )
       // }
       
       console.log("修改甲方信息")

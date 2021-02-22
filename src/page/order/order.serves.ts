@@ -44,7 +44,7 @@ export default class OrderServe {
       })
     );
   }
-  public updateOneInformation() {
+  public static updateOneInformation() {
     return AxiosElasticService.AxiosService(
       "post",
       OrderConfig.zone + "/" + "firstinformation"

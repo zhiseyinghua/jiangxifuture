@@ -17,9 +17,7 @@ export default class ProjectDetailClass {
         console.log("data", choose);
         return data;
       }),
-      delay(1000)
+      delay(500)
     );
   }
-
-  
 }
