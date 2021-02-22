@@ -47,7 +47,11 @@ export default class OrderServe {
   public updateOneInformation() {
     return AxiosElasticService.AxiosService(
       "post",
-      OrderConfig.zone + "/" + ""
+      OrderConfig.zone + "/" + "firstinformation"
+    ).pipe(
+      map((data)=>{
+        return data['data']
+      })
     )
   }
 }

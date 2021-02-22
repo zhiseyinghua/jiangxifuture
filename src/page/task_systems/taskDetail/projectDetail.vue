@@ -524,6 +524,7 @@ export default {
       // this.ONEinformation = {
 
       // }
+      
       console.log("修改甲方信息")
     }
   },
