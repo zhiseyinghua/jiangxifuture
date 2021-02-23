@@ -259,18 +259,8 @@
       </div>
     </div>
     <!-- 地图位置 -->
-    <div class="amap-page-container">
-      <div :style="{ width: '100%', height: '300px' }">
-        <el-amap vid="amap" :plugin="plugin" class="amap-demo" :center="center">
-        </el-amap>
-      </div>
-      <div class="toolbar">
-        <span v-if="loaded"> location: lng = {{ lng }} lat = {{ lat }} </span>
-        <span v-else>正在定位</span>
-      </div>
-      <div v-on:click="req_post()">
-        查询周边
-      </div>
+    <div style="height:600px" class="amap-page-container">
+      <el-amap vid="amapDemo" :zoom="zoom" class="amap-demo"> </el-amap>
     </div>
 
     <!-- 修改时间参数 通用 -->
@@ -388,6 +378,7 @@
     </v-dialog>
 
     <div style="height:40px"></div>
+    <v-btn @click="testwenqianghuang()"></v-btn>
   </v-container>
 </template>
 
@@ -397,6 +388,9 @@ import orderServe from "@/page/order/order.serves";
 import userServes from "@/page/user/user.serves";
 import moment from "moment";
 import Bus from "@/common/bus";
+import { lazyAMapApiLoaderInstance } from "vue-amap";
+import { map } from "rxjs/operators";
+
 export default {
   data: () => ({
     timedialog: false,
@@ -456,41 +450,9 @@ export default {
     area: null,
     realMoney: null,
 
+    zoom: 12,
     center: [0, 0],
-    lng: 0,
-    lat: 0,
-    loaded: false,
-    plugin: [
-      {
-        enableHighAccuracy: true, //是否使用高精度定位，默认:true
-        timeout: 100, //超过10秒后停止定位，默认：无穷大
-        maximumAge: 0, //定位结果缓存0毫秒，默认：0
-        convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-        showButton: true, //显示定位按钮，默认：true
-        buttonPosition: "RB", //定位按钮停靠位置，默认：'LB'，左下角
-        showMarker: true, //定位成功后在定位到的位置显示点标记，默认：true
-        showCircle: true, //定位成功后用圆圈表示定位精度范围，默认：true
-        panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
-        zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：f
-        extensions: "all",
-        pName: "Geolocation",
-        events: {
-          init(o) {
-            // o 是高德地图定位插件实例
-            o.getCurrentPosition((status, result) => {
-              console.log(result);
-              if (result && result.position) {
-                self.lng = result.position.lng;
-                self.lat = result.position.lat;
-                self.center = [self.lng, self.lat];
-                self.loaded = true;
-                self.$nextTick();
-              }
-            });
-          },
-        },
-      },
-    ],
+    address: "",
   }),
   watch: {
     pickertime(val) {
@@ -499,48 +461,28 @@ export default {
   },
   created() {
     //     localPlace: OrderlocalPlaceInterface;
-
-    // // 创建者
-    // creator: CommonInterfaceElact;
-    // // 技术员
-    // technician: CommonInterfaceElact;
-    // // 实际派发时间
-    // timeAfterDistribution: String;
-    // // 技术员实际完成时间
-    // technicianCompletionTime: String;
-    // // 外业完成时间
-    // completionTime: String;
-    // // 内业完成时间
-    // insidePagesFinish: String;
-    // // 合同完成时间
-    // contractCompleted: String;
-    // // 金额到账时间
-    // timeReceiptAmount: String;
-    // // 预估费用
-    // estimatedMoney: string;
-    // // 实际费用
-    // realMoney: string;
-    // // 甲方信息
-    // ONEinformation: {
-    //   // 电话
-    //   phone: string;
-    //   // 邮箱
-    //   email: string;
-    //   name: string;
-    // };
-    // timestamp: Number;
-    // // 在哪个所属团队发的任务
-    // creatorkey?: CommonInterfaceElact;
     // 初始化页面所有数据
-    this.localPlace
     let routedata = JSON.parse(unescape(this.$route.query.id));
+    // this.center = [routedata.lng, routedata.lat];
     this.orderkey = {
       hash: routedata.hash,
       range: routedata.range,
       index: routedata.range,
     };
     console.log(routedata);
-    console.log();
+    lazyAMapApiLoaderInstance.load().then(() => {
+      // your code ...
+      console.log("map");
+      // this.map = new AMap.Map("amapContainer", {
+      //   position: new AMap.LngLat(12.59996, 31.197646),
+      //   center: new AMap.LngLat(12.59996, 31.197646),
+      // });
+
+      // var marker = new window.AMap.Marker({
+      //   position: new AMap.LngLat(116.39, 39.9), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+      // });
+      // this.map.add(marker); //添加到地图
+    });
     userServes
       .getUserInformation({
         hash: routedata.creatorkey.hash,
@@ -551,11 +493,12 @@ export default {
         console.log(data);
         this.userName = data.usernickname;
       });
+
     this.orderstartTime = routedata.orderstartTime;
     this.orderendTime = routedata.orderendTime;
     this.figuetime = routedata.figuetime;
     this.type = routedata.type;
-    this.center = [routedata.lat,routedata.lng]
+
     this.area = routedata.area;
     this.timeAfterDistribution = routedata.timeAfterDistribution;
     this.technicianCompletionTime = routedata.technicianCompletionTime;
@@ -566,7 +509,6 @@ export default {
     this.estimatedMoney = routedata.estimatedMoney;
     this.realMoney = routedata.realMoney;
     this.ONEinformation = routedata.ONEinformation;
-    
     // 将路由拿到的order信息赋值
   },
   methods: {
