@@ -456,7 +456,7 @@ export default {
     area: null,
     realMoney: null,
 
-    center: [121.59996, 31.197646],
+    center: [0, 0],
     lng: 0,
     lat: 0,
     loaded: false,
@@ -532,6 +532,7 @@ export default {
     // // 在哪个所属团队发的任务
     // creatorkey?: CommonInterfaceElact;
     // 初始化页面所有数据
+    this.localPlace
     let routedata = JSON.parse(unescape(this.$route.query.id));
     this.orderkey = {
       hash: routedata.hash,
@@ -554,7 +555,7 @@ export default {
     this.orderendTime = routedata.orderendTime;
     this.figuetime = routedata.figuetime;
     this.type = routedata.type;
-
+    this.center = [routedata.lat,routedata.lng]
     this.area = routedata.area;
     this.timeAfterDistribution = routedata.timeAfterDistribution;
     this.technicianCompletionTime = routedata.technicianCompletionTime;
@@ -565,6 +566,7 @@ export default {
     this.estimatedMoney = routedata.estimatedMoney;
     this.realMoney = routedata.realMoney;
     this.ONEinformation = routedata.ONEinformation;
+    
     // 将路由拿到的order信息赋值
   },
   methods: {
