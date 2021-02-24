@@ -273,7 +273,9 @@
             </div>
           </v-col>
           <v-col>
-            
+            <v-toolbar-title class="mb-2  grey--text">
+              地址：  {{address}}
+            </v-toolbar-title>
             <div class="mt-12" style="width:600px">
               <!-- 地图位置 -->
               <div id="amap-cointainer"></div>
@@ -497,7 +499,7 @@ export default {
       var m1 = new AMap.Marker({
         position: [routedata.localPlace.lat, routedata.localPlace.lng],
       });
-
+      routedata.localPlace = this.address
       this.map.add(m1);
     });
   },
@@ -822,5 +824,4 @@ export default {
 #amap-cointainer {
   height: 500px;
 }
-
 </style>
