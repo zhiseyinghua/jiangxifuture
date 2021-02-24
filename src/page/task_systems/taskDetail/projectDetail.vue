@@ -163,103 +163,124 @@
       </div>
     </div>
 
-    <div class="ml-12 mt-12">
+    <div class="ml-12 mt-7">
       <div>
-        <v-card elevation="0" style="width: 350px;" class="overflow-hidden">
-          <v-toolbar flat>
-            <!-- <v-icon>mdi-account</v-icon> -->
-            <v-toolbar-title class="mb-2  grey--text">
-              项目时间详情
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn
-              class="mr-6"
-              :disabled="!isEditing"
-              color="success"
-              @click="save"
-            >
-              保存
-            </v-btn>
-            <v-btn color=" darken-3" fab small @click="isEditing = !isEditing">
-              <v-icon v-if="isEditing">
-                mdi-close
-              </v-icon>
-              <v-icon v-else>
-                mdi-pencil
-              </v-icon>
-            </v-btn>
-          </v-toolbar>
-          <v-card-text>
-            <span>实际派发时间 ：</span>
-            <!-- timeAfterDistribution -->
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              v-model="timeAfterDistribution"
-              @click:append="changeTimeAfterDistributiondata()"
-            ></v-text-field>
+        <v-row>
+          <v-col>
+            <div class="mt-12">
+              <div>
+                <v-card
+                  elevation="0"
+                  style="width: 350px;"
+                  class="overflow-hidden"
+                >
+                  <v-toolbar flat>
+                    <!-- <v-icon>mdi-account</v-icon> -->
+                    <v-toolbar-title class="mb-2  grey--text">
+                      项目时间详情
+                    </v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      class="mr-6"
+                      :disabled="!isEditing"
+                      color="success"
+                      @click="save"
+                    >
+                      保存
+                    </v-btn>
+                    <v-btn
+                      color=" darken-3"
+                      fab
+                      small
+                      @click="isEditing = !isEditing"
+                    >
+                      <v-icon v-if="isEditing">
+                        mdi-close
+                      </v-icon>
+                      <v-icon v-else>
+                        mdi-pencil
+                      </v-icon>
+                    </v-btn>
+                  </v-toolbar>
+                  <v-card-text>
+                    <span>实际派发时间 ：</span>
+                    <!-- timeAfterDistribution -->
+                    <v-text-field
+                      filled
+                      :disabled="!isEditing"
+                      append-icon="date_range"
+                      v-model="timeAfterDistribution"
+                      @click:append="changeTimeAfterDistributiondata()"
+                    ></v-text-field>
 
-            <div class="">技术员实际完成时间 ：</div>
-            <!-- technicianCompletionTime -->
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              v-model="technicianCompletionTime"
-              @click:append="changeTechnicianCompletionTime()"
-            ></v-text-field>
+                    <div class="">技术员实际完成时间 ：</div>
+                    <!-- technicianCompletionTime -->
+                    <v-text-field
+                      filled
+                      :disabled="!isEditing"
+                      append-icon="date_range"
+                      v-model="technicianCompletionTime"
+                      @click:append="changeTechnicianCompletionTime()"
+                    ></v-text-field>
 
-            <div class="">外业完成时间 ：</div>
-            <!-- completionTime -->
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              v-model="completionTime"
-              @click:append="changeCompletionTime()"
-            ></v-text-field>
+                    <div class="">外业完成时间 ：</div>
+                    <!-- completionTime -->
+                    <v-text-field
+                      filled
+                      :disabled="!isEditing"
+                      append-icon="date_range"
+                      v-model="completionTime"
+                      @click:append="changeCompletionTime()"
+                    ></v-text-field>
 
-            <div class="">内业完成时间 ：</div>
-            <!-- insidePagesFinish -->
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              v-model="insidePagesFinish"
-              @click:append="changInsidePagesFinish()"
-            ></v-text-field>
+                    <div class="">内业完成时间 ：</div>
+                    <!-- insidePagesFinish -->
+                    <v-text-field
+                      filled
+                      :disabled="!isEditing"
+                      append-icon="date_range"
+                      v-model="insidePagesFinish"
+                      @click:append="changInsidePagesFinish()"
+                    ></v-text-field>
 
-            <div class="">合同完成时间 ：</div>
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              v-model="contractCompleted"
-              @click:append="changeContractCompleted()"
-            ></v-text-field>
+                    <div class="">合同完成时间 ：</div>
+                    <v-text-field
+                      filled
+                      :disabled="!isEditing"
+                      append-icon="date_range"
+                      v-model="contractCompleted"
+                      @click:append="changeContractCompleted()"
+                    ></v-text-field>
 
-            <div class="">金额到账时间 ：</div>
-            <!-- timeReceiptAmount -->
-            <v-text-field
-              filled
-              :disabled="!isEditing"
-              append-icon="date_range"
-              v-model="timeReceiptAmount"
-              @click:append="changeTimeReceiptAmount()"
-            ></v-text-field>
-          </v-card-text>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-          </v-card-actions>
-        </v-card>
+                    <div class="">金额到账时间 ：</div>
+                    <!-- timeReceiptAmount -->
+                    <v-text-field
+                      filled
+                      :disabled="!isEditing"
+                      append-icon="date_range"
+                      v-model="timeReceiptAmount"
+                      @click:append="changeTimeReceiptAmount()"
+                    ></v-text-field>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
 
-        <div class="mt-6 ml-6"></div>
+                <div class="mt-6 ml-6"></div>
+              </div>
+            </div>
+          </v-col>
+          <v-col>
+            <div class="mt-12" style="width:600px">
+              <!-- 地图位置 -->
+              <div id="amap-cointainer"></div>
+            </div>
+          </v-col>
+        </v-row>
       </div>
     </div>
-    <!-- 地图位置 -->
-    <div id="amap-cointainer"></div>
 
     <!-- 修改时间参数 通用 -->
     <v-dialog v-model="dialog" width="500">
@@ -798,9 +819,7 @@ export default {
 
 <style>
 #amap-cointainer {
-  height: 200px;
+  height: 500px;
 }
-.amap-demo {
-  height: 300px;
-}
+
 </style>
