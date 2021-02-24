@@ -11,8 +11,13 @@
     </div>
     <div>
     <date-picker v-model="time1" valueType="format"></date-picker>
-    <date-picker v-model="time2" type="datetime"></date-picker>
+    <date-picker v-model="time2" type="datetime">
+      <template v-slot:footer>
+        <v-btn>确定</v-btn>
+      </template>
+    </date-picker>
     <date-picker v-model="time3" range></date-picker>
+    <v-btn @click="test()">df</v-btn>
   </div>
     <router-view />
   </div>
@@ -28,7 +33,6 @@ import store from "@/store";
 import router from "@/router";
 export default {
   components: { DatePicker },
-
   data: function() {
     return {
       time1: null,
@@ -58,6 +62,9 @@ export default {
     // });
   },
   methods: {
+    test() {
+      console.log("11",this.time2)
+    },
     upload(e) {
       console.log(e);
       let files = e.target.files || e.dataTransfer.files;

@@ -286,8 +286,17 @@
     </div>
 
     <!-- 修改时间参数 通用 -->
-    <v-dialog v-model="dialog" width="500">
-      <v-date-picker
+    <v-dialog v-model="dialog" width="250">
+      <date-picker :v-show="false" :open="dialog" v-model="pickertime" type="datetime">
+        <v-btn
+          x-large
+          color="primary"
+          :loading="lodingbutton"
+          @click="updatapaifa()"
+          >确定</v-btn
+        >
+      </date-picker>
+      <!-- <v-date-picker
         v-model="pickertime"
         :first-day-of-week="0"
         locale="zh-cn"
@@ -298,7 +307,7 @@
         :loading="lodingbutton"
         @click="updatapaifa()"
         >确定</v-btn
-      >
+      > -->
     </v-dialog>
     <!-- 用于修改项目时间弹窗 -->
     <v-dialog v-model="timedialog" width="500">
@@ -398,7 +407,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-     <date-picker v-model="time2" type="datetime"></date-picker>
+
     <div style="height:40px"></div>
     <v-btn @click="testwenqianghuang()"></v-btn>
   </v-container>

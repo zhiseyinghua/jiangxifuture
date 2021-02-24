@@ -15,7 +15,7 @@
               </v-expansion-panel-header>
               <v-expansion-panel-content>
              
-                    <v-menu
+                    <!-- <v-menu
                       ref="menu"
                       v-model="menu"
                       :close-on-content-click="false"
@@ -47,9 +47,9 @@
                           OK
                         </v-btn>
                       </v-date-picker>
-                    </v-menu>
+                    </v-menu> -->
                   <v-spacer></v-spacer>
-                    <v-dialog
+                    <!-- <v-dialog
                       ref="dialog"
                       v-model="modal"
                       :return-value.sync="date"
@@ -79,7 +79,7 @@
                           OK
                         </v-btn>
                       </v-date-picker>
-                    </v-dialog>
+                    </v-dialog> -->
                     <v-btn>生成表单</v-btn>
                     <!-- <v-menu
                       v-model="menu2"
