@@ -14,8 +14,7 @@
                 生成表单
               </v-expansion-panel-header>
               <v-expansion-panel-content>
-                <v-row>
-                  <v-col cols="12" sm="6" md="4">
+             
                     <v-menu
                       ref="menu"
                       v-model="menu"
@@ -23,7 +22,7 @@
                       :return-value.sync="date"
                       transition="scale-transition"
                       offset-y
-                      min-width="auto"
+                      min-width="50"
                     >
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
@@ -49,9 +48,7 @@
                         </v-btn>
                       </v-date-picker>
                     </v-menu>
-                  </v-col>
                   <v-spacer></v-spacer>
-                  <v-col cols="12" sm="6" md="4">
                     <v-dialog
                       ref="dialog"
                       v-model="modal"
@@ -83,8 +80,6 @@
                         </v-btn>
                       </v-date-picker>
                     </v-dialog>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
                     <v-btn>生成表单</v-btn>
                     <!-- <v-menu
                       v-model="menu2"
@@ -109,9 +104,7 @@
                         @input="menu2 = false"
                       ></v-date-picker>
                     </v-menu> -->
-                  </v-col>
                   <v-spacer></v-spacer>
-                </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
