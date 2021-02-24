@@ -259,9 +259,7 @@
       </div>
     </div>
     <!-- 地图位置 -->
-    <div style="height:600px">
-      <el-amap class="amap-box" :vid="'amap-vue'"></el-amap>
-    </div>
+    <div id="amap-cointainer"></div>
 
     <!-- 修改时间参数 通用 -->
     <v-dialog v-model="dialog" width="500">
@@ -459,23 +457,37 @@ export default {
       console.log(val);
     },
   },
+  mounted() {
+    let routedata = JSON.parse(unescape(this.$route.query.id));
+    console.log(
+      "1111111111",
+      routedata.localPlace.lng,
+      routedata.localPlace.lat
+    );
+    lazyAMapApiLoaderInstance.load().then(() => {
+      this.map = new AMap.Map("amap-cointainer", {
+        zoom: 13, //级别
+        center: new AMap.LngLat(
+          routedata.localPlace.lat,
+          routedata.localPlace.lng
+        ),
+      });
+      var m1 = new AMap.Marker({
+        position: [routedata.localPlace.lat, routedata.localPlace.lng],
+      });
+
+      this.map.add(m1);
+    });
+  },
   created() {
     //     localPlace: OrderlocalPlaceInterface;
     // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
-    // this.center = [routedata.lng, routedata.lat];
     this.orderkey = {
       hash: routedata.hash,
       range: routedata.range,
       index: routedata.range,
     };
-    console.log(routedata);
-    lazyAMapApiLoaderInstance.load().then(() => {
-      // your code ...
-      window.map = new AMap.Map("amapContainer", {
-        center: new AMap.LngLat(11.59996, 31.197646),
-      });
-    });
 
     // var marker = new window.AMap.Marker({
     //   position: new AMap.LngLat(116.39, 39.9), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
@@ -497,7 +509,6 @@ export default {
     this.orderendTime = routedata.orderendTime;
     this.figuetime = routedata.figuetime;
     this.type = routedata.type;
-
     this.area = routedata.area;
     this.timeAfterDistribution = routedata.timeAfterDistribution;
     this.technicianCompletionTime = routedata.technicianCompletionTime;
@@ -786,6 +797,9 @@ export default {
 </script>
 
 <style>
+#amap-cointainer {
+  height: 200px;
+}
 .amap-demo {
   height: 300px;
 }
