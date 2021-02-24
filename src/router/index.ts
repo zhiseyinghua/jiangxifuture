@@ -29,7 +29,7 @@ const router = new Router({
     groupChat,
     // newsDetail,
     taskSystems,
-    // order,
+    order,
     // aboutUs,
     // {
     //   path:"/",

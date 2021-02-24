@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-sheet class="my-3">
-      <v-btn class="green darken-1 white--text">
+      <v-btn :to="{ path: '/order' }" class="green darken-1 white--text">
         +新建项目
       </v-btn>
     </v-sheet>
