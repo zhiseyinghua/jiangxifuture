@@ -8,6 +8,7 @@
           </v-btn>
         </v-col>
         <v-col>
+          <v-expansion-panels>
             <v-expansion-panel>
               <v-expansion-panel-header>
                 生成表单
@@ -113,6 +114,7 @@
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
+          </v-expansion-panels>
         </v-col>
       </v-row>
     </v-sheet>
