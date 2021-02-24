@@ -4,19 +4,22 @@
     <v-btn @click="goutouserziji">进入自己页面</v-btn>
     <div class="mt-6 ml-6">
       <div class="mb-2">实际派发时间 ：</div>
-      <div >
-        <v-text-field
-         
-          value="John Doe"
-          disabled
-        ></v-text-field>
+      <div>
+        <v-text-field value="John Doe" disabled></v-text-field>
       </div>
       <div class="mb-2">技术员实际完成时间 ：</div>
     </div>
+    <div>
+    <date-picker v-model="time1" valueType="format"></date-picker>
+    <date-picker v-model="time2" type="datetime"></date-picker>
+    <date-picker v-model="time3" range></date-picker>
+  </div>
     <router-view />
   </div>
 </template>
 <script>
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 import axios from "axios";
 import authServies from "@/page/auth/auth.servies";
 import { switchMap } from "rxjs/operators";
@@ -24,10 +27,20 @@ import { of } from "rxjs";
 import store from "@/store";
 import router from "@/router";
 export default {
+  components: { DatePicker },
+
   data: function() {
     return {
+      time1: null,
+      time2: null,
+      time3: null,
       companyname: "",
     };
+  },
+  watch:{
+    time1() {
+      console.log(this.time1)
+    }
   },
   created: function() {
     const authorization = localStorage.getItem("token");

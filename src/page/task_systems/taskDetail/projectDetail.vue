@@ -274,7 +274,7 @@
           </v-col>
           <v-col>
             <v-toolbar-title class="mb-2  grey--text">
-              地址：  {{address}}
+              地址： {{ address }}
             </v-toolbar-title>
             <div class="mt-12" style="width:600px">
               <!-- 地图位置 -->
@@ -398,13 +398,15 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
+     <date-picker v-model="time2" type="datetime"></date-picker>
     <div style="height:40px"></div>
     <v-btn @click="testwenqianghuang()"></v-btn>
   </v-container>
 </template>
 
 <script>
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 import ProjectDetailClass from "@/page/task_systems/taskDetail/projectDetail.service";
 import orderServe from "@/page/order/order.serves";
 import userServes from "@/page/user/user.serves";
@@ -414,7 +416,11 @@ import { lazyAMapApiLoaderInstance } from "vue-amap";
 import { map } from "rxjs/operators";
 
 export default {
+  components: { DatePicker },
   data: () => ({
+    time1: null,
+    time2: null,
+    time3: null,
     timedialog: false,
     //这个订单的key
     orderkey: null,
@@ -499,7 +505,7 @@ export default {
       var m1 = new AMap.Marker({
         position: [routedata.localPlace.lat, routedata.localPlace.lng],
       });
-      routedata.localPlace.local = this.address
+      routedata.localPlace.local = this.address;
       this.map.add(m1);
     });
   },
@@ -649,6 +655,7 @@ export default {
     updatapaifa() {
       console.log("更新所有的时间");
       console.log(this.timeselect);
+      console.log(this.pickertime);
       this.lodingbutton = true;
       ProjectDetailClass.updateOrderstartTime(
         this.timeselect,

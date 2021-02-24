@@ -4,14 +4,17 @@ import router from "@/router";
 import store from "@/store";
 import vuetify from "@/plugins/vuetify";
 import VueI18n from "vue-i18n";
-import authServies from "./page/auth/auth.servies";
 import VueAxios from "vue-axios";
 import axios from "./https";
-import { AxiosElasticService } from "./common/fromaxios";
 // @ts-ignore
 import VueAMap from "vue-amap";
 
 import moment from 'moment';
+
+
+
+
+// Local register
 
 
 Vue.use(VueAMap);

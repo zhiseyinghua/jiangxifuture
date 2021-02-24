@@ -12,7 +12,7 @@ export default class ProjectDetailClass {
     //         return data
     //     })
     // )
-    console.log("dfddddddddddddddddddddd",choose,time)
+    console.log("dfddddddddddddddddddddd",choose, time)
     return of(time).pipe(
       map((data) => {
         console.log("data", choose);
