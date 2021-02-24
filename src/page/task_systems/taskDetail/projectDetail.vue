@@ -286,15 +286,21 @@
     </div>
 
     <!-- 修改时间参数 通用 -->
-    <v-dialog v-model="dialog" width="250">
-      <date-picker :v-show="false" :open="dialog" v-model="pickertime" type="datetime">
-        <v-btn
-          x-large
-          color="primary"
-          :loading="lodingbutton"
-          @click="updatapaifa()"
-          >确定</v-btn
-        >
+    <v-dialog v-model="dialog">
+      <date-picker
+        :v-show="false"
+        :open="dialog"
+        v-model="pickertime"
+        type="datetime"
+      >
+        <template v-slot:footer>
+          <v-btn
+            x-large
+            :loading="lodingbutton"
+            @click="updatapaifa()"
+            >确定</v-btn
+          >
+        </template>
       </date-picker>
       <!-- <v-date-picker
         v-model="pickertime"
@@ -838,6 +844,13 @@ export default {
 </script>
 
 <style>
+.v-dialog {
+  display: none;
+}
+.mx-datepicker-popup {
+  margin-top: 300px;
+  margin-left: 40%;
+}
 #amap-cointainer {
   height: 500px;
 }
