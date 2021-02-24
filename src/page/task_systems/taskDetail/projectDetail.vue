@@ -499,7 +499,7 @@ export default {
       var m1 = new AMap.Marker({
         position: [routedata.localPlace.lat, routedata.localPlace.lng],
       });
-      routedata.localPlace = this.address
+      routedata.localPlace.local = this.address
       this.map.add(m1);
     });
   },
@@ -507,6 +507,7 @@ export default {
     //     localPlace: OrderlocalPlaceInterface;
     // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
+    console.log(routedata);
     this.orderkey = {
       hash: routedata.hash,
       range: routedata.range,
