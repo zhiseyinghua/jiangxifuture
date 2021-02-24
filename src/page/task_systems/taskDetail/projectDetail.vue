@@ -273,6 +273,7 @@
             </div>
           </v-col>
           <v-col>
+            
             <div class="mt-12" style="width:600px">
               <!-- 地图位置 -->
               <div id="amap-cointainer"></div>
