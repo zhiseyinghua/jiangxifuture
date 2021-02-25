@@ -57,12 +57,28 @@
                 <div style="font-size: 1.5em;" class="grey--text mb-1">
                   任务完成时间
                 </div>
-                <p>{{ orderendTime }}</p>
+
+                <p
+                  v-if="
+                    orderendTime != null &&
+                      orderendTime != '' &&
+                      orderendTime != 'Invalid date'
+                  "
+                >
+                  {{ orderendTime }}
+                </p>
+                <p v-else>未完成</p>
               </v-col>
             </v-row>
           </v-btn>
           <div style="display: inline-block;">
-            <v-btn  depressed color="error" @click="cleanoutTime()">未完成（清除时间）</v-btn>
+            <v-btn
+              :loading="deletetimeB"
+              depressed
+              color="error"
+              @click="cleanoutTime()"
+              >未完成（清除时间）</v-btn
+            >
           </div>
         </div>
       </v-col>
@@ -465,6 +481,8 @@ import { map, switchMap, tap } from "rxjs/operators";
 export default {
   components: { DatePicker },
   data: () => ({
+    // 这个button的loading
+    deletetimeB: false,
     timedialog: false,
     //这个订单的key
     orderkey: null,
@@ -650,7 +668,16 @@ export default {
      * 清除完成时间
      */
     cleanoutTime() {
-      orderServe.qingchuendtime("orderendTime", null, this.orderkey)
+      this.deletetimeB = true;
+      orderServe.qingchuendtime("orderendTime", null, this.orderkey).subscribe(
+        (data) => {
+          this.deletetimeB = false;
+          this.orderendTime = null;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     },
     // 修改其他信息
     changeOtherinformation() {
