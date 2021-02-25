@@ -3,9 +3,16 @@
     <v-sheet class="my-3">
       <v-row>
         <v-col>
-          <v-btn :to="{ path: '/order' }" class="green darken-1 white--text">
+          <v-btn
+            :to="{ path: '/order' }"
+            class="primary darken-1 white--text mr-10"
+          >
             +新建项目
           </v-btn>
+          <div style="display: inline-block;">
+            <v-select :items="items" label="全部" solo></v-select>
+          </div>
+          
         </v-col>
         <v-col>
           <v-expansion-panels>
@@ -14,8 +21,7 @@
                 生成表单
               </v-expansion-panel-header>
               <v-expansion-panel-content>
-             
-                    <!-- <v-menu
+                <!-- <v-menu
                       ref="menu"
                       v-model="menu"
                       :close-on-content-click="false"
@@ -48,8 +54,8 @@
                         </v-btn>
                       </v-date-picker>
                     </v-menu> -->
-                  <v-spacer></v-spacer>
-                    <!-- <v-dialog
+                <v-spacer></v-spacer>
+                <!-- <v-dialog
                       ref="dialog"
                       v-model="modal"
                       :return-value.sync="date"
@@ -80,8 +86,8 @@
                         </v-btn>
                       </v-date-picker>
                     </v-dialog> -->
-                    <v-btn>生成表单</v-btn>
-                    <!-- <v-menu
+                <v-btn>生成表单</v-btn>
+                <!-- <v-menu
                       v-model="menu2"
                       :close-on-content-click="false"
                       :nudge-right="40"
@@ -104,7 +110,7 @@
                         @input="menu2 = false"
                       ></v-date-picker>
                     </v-menu> -->
-                  <v-spacer></v-spacer>
+                <v-spacer></v-spacer>
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
@@ -127,12 +133,18 @@
           >
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
           <v-card-text
-            v-if="item.ONEinformation && item.ONEinformation.name && item.ONEinformation.name != ''"
+            v-if="
+              item.ONEinformation &&
+                item.ONEinformation.name &&
+                item.ONEinformation.name != ''
+            "
           >
             名字： {{ item.ONEinformation.name }}
           </v-card-text>
           <v-card-text v-else> 名字： 未填写 </v-card-text>
-          <v-card-text> 电话： {{ item.ONEinformation && item.ONEinformation.phone }} </v-card-text>
+          <v-card-text>
+            电话： {{ item.ONEinformation && item.ONEinformation.phone }}
+          </v-card-text>
           <v-card-subtitle>项目信息</v-card-subtitle>
           <v-card-text v-if="item.localPlace && item.localPlace.local">
             地点： {{ item.localPlace.local }}
@@ -164,6 +176,7 @@ import orderServe from "@/page/order/order.serves";
 export default {
   data() {
     return {
+      items: ["全部", "已完成"],
       pagination: 6,
       page: 1,
       ordercount: 6,
@@ -190,7 +203,7 @@ export default {
   methods: {
     toprojectDetail(value) {
       let strItem = JSON.stringify(value);
-     
+
       this.$router.push({
         path: "/taskSystems/projectDetail",
         // query: {

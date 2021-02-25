@@ -3,6 +3,7 @@
     <div class="font-weight-medium" style="font-size: 1.5em;">
       任务详情
     </div>
+    
     <v-divider class="mt-5 mb-12"></v-divider>
     <v-row>
       <v-col>
