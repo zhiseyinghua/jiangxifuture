@@ -127,14 +127,14 @@
           >
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
           <v-card-text
-            v-if="item.ONEinformation.name && item.ONEinformation.name != ''"
+            v-if="item.ONEinformation && item.ONEinformation.name && item.ONEinformation.name != ''"
           >
             名字： {{ item.ONEinformation.name }}
           </v-card-text>
           <v-card-text v-else> 名字： 未填写 </v-card-text>
-          <v-card-text> 电话： {{ item.ONEinformation.phone }} </v-card-text>
+          <v-card-text> 电话： {{ item.ONEinformation && item.ONEinformation.phone }} </v-card-text>
           <v-card-subtitle>项目信息</v-card-subtitle>
-          <v-card-text v-if="item.localPlace.local">
+          <v-card-text v-if="item.localPlace && item.localPlace.local">
             地点： {{ item.localPlace.local }}
           </v-card-text>
           <v-card-text v-else> 地址： 未填写 </v-card-text>
@@ -165,7 +165,7 @@ export default {
   data() {
     return {
       pagination: 6,
-      page: 2,
+      page: 1,
       ordercount: 6,
       order: [],
     };
@@ -190,11 +190,7 @@ export default {
   methods: {
     toprojectDetail(value) {
       let strItem = JSON.stringify(value);
-      let creatorkey = {
-        hash: "auth-2020-12-24",
-        index: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
-        range: "682c4b8f-2749-4d65-aaa1-488e7f53d403",
-      };
+     
       this.$router.push({
         path: "/taskSystems/projectDetail",
         // query: {

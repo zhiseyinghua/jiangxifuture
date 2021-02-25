@@ -1,18 +1,19 @@
 import { CommonInterfaceElact } from "@/common/common.interface";
 
 
+
 export interface OrderInterface extends CommonInterfaceElact {
   // 地点
   localPlace: OrderlocalPlaceInterface;
   // 任务结束时间
-  orderendTime: String;
+  orderendTime: Number;
   // 任务开始时间
-  orderstartTime: String;
+  orderstartTime: Number;
   // figuetime:string;
   // 不动产测试   一次性测试
   type: 'realEstateTest' | 'oneTimeTest';
   // 预估时间
-  estimatedTime: String;
+  estimatedTime: Number;
   // 面积
   area: any;
   // 创建者
@@ -20,17 +21,17 @@ export interface OrderInterface extends CommonInterfaceElact {
   // 技术员
   technician: CommonInterfaceElact;
   // 实际派发时间
-  timeAfterDistribution: String;
+  timeAfterDistribution: Number;
   // 技术员实际完成时间
-  technicianCompletionTime: String;
+  technicianCompletionTime: Number;
   // 外业完成时间
-  completionTime: String;
+  completionTime: Number;
   // 内业完成时间
-  insidePagesFinish: String;
+  insidePagesFinish: Number;
   // 合同完成时间
-  contractCompleted: String;
+  contractCompleted: Number;
   // 金额到账时间
-  timeReceiptAmount: String;
+  timeReceiptAmount: Number;
   // 预估费用
   estimatedMoney: string;
   // 实际费用
@@ -60,7 +61,7 @@ export interface PutOrderOne extends CommonInterfaceElact {
   ordername: string;
   localPlace: OrderlocalPlaceInterface;
   type: OrderType;
-  estimatedTime: String;
+  estimatedTime: Number;
   area: string;
   creatorkey: CommonInterfaceElact;
   // 预估费用
@@ -73,10 +74,39 @@ export interface PutOrderOne extends CommonInterfaceElact {
     email: string;
     name: string;
   };
-  timestamp: number;
+  timestamp: Number;
 }
 
 export type OrderType = 'realEstateTest' | 'oneTimeTest';
+const data: PutOrderOne = {
+  hash: '',
+  range: '',
+  index: '',
+  localPlace: {
+    lng: 123,
+    lat: 123,
+    local: '',
+  },
+  type: 'oneTimeTest',
+  estimatedTime: 123654789,
+  area: '123',
+  creatorkey: {
+    hash: '',
+    range: '',
+    index: '',
+  },
+  ordername: '123',
+  estimatedMoney: '123',
+  // 甲方信息
+  ONEinformation: {
+    // 电话
+    phone: 'string',
+    // 邮箱
+    email: '123',
+    name: '123',
+  },
+  timestamp: 123,
+};
 
 /**
  * 更改甲方信息接口
@@ -108,19 +138,5 @@ export interface UpdateOneMessage extends CommonInterfaceElact {
   value: string;
 }
 
-export interface UpdateTime extends CommonInterfaceElact {
-  // 实际派发时间
-  timeAfterDistribution: String;
-  // 技术员实际完成时间
-  technicianCompletionTime: String;
-  // 外业完成时间
-  completionTime: String;
-  // 内业完成时间
-  insidePagesFinish: String;
-  // 合同完成时间
-  contractCompleted: String;
-  // 金额到账时间
-  timeReceiptAmount: String;
-}
 
 
