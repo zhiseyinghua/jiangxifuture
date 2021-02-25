@@ -575,6 +575,7 @@ export default {
         this.timeReceiptAmount = data.timeReceiptAmount;
         this.estimatedMoney = data.estimatedMoney;
         this.realMoney = data.realMoney;
+        this.estimatedTime = data.estimatedTime
         this.ONEinformation = data.ONEinformation;
         lazyAMapApiLoaderInstance.load().then(() => {
           this.map = new AMap.Map("amap-cointainer", {
@@ -673,9 +674,9 @@ export default {
     },
     // 预估完成时间
     estimatedTimeF() {
-      console.log("contractCompleted");
+      console.log("estimatedTime");
       this.dialog = true;
-      this.timeselect = "contractCompleted";
+      this.timeselect = "estimatedTime";
     },
 
     // 合同完成时间

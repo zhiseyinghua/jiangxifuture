@@ -120,26 +120,33 @@ export default class OrderServe {
       key
     ).pipe(
       map((data) => {
-        data.data.orderendTime = moment(data.orderendTime).format("LLL");
-        data.data.orderstartTime = moment(data.orderstartTime).format("LLL");
+        data.data.orderendTime = moment(data.data.orderendTime).format("LLL");
+        data.data.orderstartTime = moment(data.data.orderstartTime).format("LLL");
         data.data.timeAfterDistribution = moment(
-          data.timeAfterDistribution
+          data.data.timeAfterDistribution
         ).format("LLL");
         data.data.technicianCompletionTime = moment(
-          data.technicianCompletionTime
+          data.data.technicianCompletionTime
         ).format("LLL");
-        data.data.completionTime = moment(data.completionTime).format("LLL");
-        data.data.insidePagesFinish = moment(data.insidePagesFinish).format(
+        data.data.completionTime = moment(data.data.completionTime).format("LLL");
+        data.data.insidePagesFinish = moment(data.data.insidePagesFinish).format(
           "LLL"
         );
-        data.data.contractCompleted = moment(data.contractCompleted).format(
+        data.data.contractCompleted = moment(data.data.contractCompleted).format(
           "LLL"
         );
-        data.data.timeReceiptAmount = moment(data.timeReceiptAmount).format(
+        // 
+        data.data.timeReceiptAmount = moment(data.data.timeReceiptAmount).format(
           "LLL"
         );
+        data.data.estimatedTime = moment(data.data.estimatedTime).format(
+          "LLL"
+        );
+         // @ts-ignore
+        data.data.type = OrderConfig.orderType[data.data.type];
         return data["data"];
       })
+      // estimatedTime
     );
     // console.log("dfddddddddddddddddddddd",choose, time)
     // return of(time).pipe(
