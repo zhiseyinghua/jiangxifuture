@@ -36,6 +36,30 @@ export default class OrderServe {
     // );
   }
 
+  public static qingchuendtime(
+    choose: string,
+    time: number,
+    key: CommonInterfaceElact
+  ): Observable<any> {
+    return AxiosElasticService.AxiosService("post", "/figure/one_message", {
+      ...key,
+      which: choose,
+      value: time,
+    }).pipe(
+      map((data) => {
+        return data["data"];
+      })
+    );
+    // console.log("dfddddddddddddddddddddd",choose, time)
+    // return of(time).pipe(
+    //   map((data) => {
+    //     console.log("data", choose);
+    //     return data;
+    //   }),
+    //   delay(500)
+    // );
+  }
+
   /**
    *
    */
@@ -121,28 +145,30 @@ export default class OrderServe {
     ).pipe(
       map((data) => {
         data.data.orderendTime = moment(data.data.orderendTime).format("LLL");
-        data.data.orderstartTime = moment(data.data.orderstartTime).format("LLL");
+        data.data.orderstartTime = moment(data.data.orderstartTime).format(
+          "LLL"
+        );
         data.data.timeAfterDistribution = moment(
           data.data.timeAfterDistribution
         ).format("LLL");
         data.data.technicianCompletionTime = moment(
           data.data.technicianCompletionTime
         ).format("LLL");
-        data.data.completionTime = moment(data.data.completionTime).format("LLL");
-        data.data.insidePagesFinish = moment(data.data.insidePagesFinish).format(
+        data.data.completionTime = moment(data.data.completionTime).format(
           "LLL"
         );
-        data.data.contractCompleted = moment(data.data.contractCompleted).format(
-          "LLL"
-        );
-        // 
-        data.data.timeReceiptAmount = moment(data.data.timeReceiptAmount).format(
-          "LLL"
-        );
-        data.data.estimatedTime = moment(data.data.estimatedTime).format(
-          "LLL"
-        );
-         // @ts-ignore
+        data.data.insidePagesFinish = moment(
+          data.data.insidePagesFinish
+        ).format("LLL");
+        data.data.contractCompleted = moment(
+          data.data.contractCompleted
+        ).format("LLL");
+        //
+        data.data.timeReceiptAmount = moment(
+          data.data.timeReceiptAmount
+        ).format("LLL");
+        data.data.estimatedTime = moment(data.data.estimatedTime).format("LLL");
+        // @ts-ignore
         data.data.type = OrderConfig.orderType[data.data.type];
         return data["data"];
       })

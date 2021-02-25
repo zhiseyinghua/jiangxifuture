@@ -61,6 +61,9 @@
               </v-col>
             </v-row>
           </v-btn>
+          <div style="display: inline-block;">
+            <v-btn  depressed color="error" @click="cleanoutTime()">未完成（清除时间）</v-btn>
+          </div>
         </div>
       </v-col>
     </v-row>
@@ -99,7 +102,7 @@
                 style="display: inline-block;"
                 class="font-weight-medium mt-2 ml-1 "
               >
-                {{ordername}}
+                {{ ordername }}
               </div>
             </div>
           </v-col>
@@ -119,7 +122,7 @@
                 style="display: inline-block;"
                 class="font-weight-medium mt-2 ml-1 "
               >
-                {{type}}
+                {{ type }}
               </div>
             </div>
           </v-col>
@@ -466,7 +469,7 @@ export default {
     //这个订单的key
     orderkey: null,
     //预估时间
-    estimatedTime:null,
+    estimatedTime: null,
     // 弹窗的button
     lodingbutton: false,
     // 用户名字
@@ -485,7 +488,7 @@ export default {
     // 金额到账时间
     timeReceiptAmount: null,
     type: null,
-    ordername:null,
+    ordername: null,
     // 任务开始时间
     orderstartTime: null,
     // 任务结束时间
@@ -531,7 +534,7 @@ export default {
       console.log(val);
     },
   },
-  
+
   created() {
     //     localPlace: OrderlocalPlaceInterface;
     // 初始化页面所有数据
@@ -560,8 +563,8 @@ export default {
         })
       )
       .subscribe((data) => {
-        this.ordername = data.ordername
-        console.log("11111111111111111111111111111111",data);
+        this.ordername = data.ordername;
+        console.log("11111111111111111111111111111111", data);
         this.orderstartTime = data.orderstartTime;
         this.orderendTime = data.orderendTime;
         this.figuetime = data.figuetime;
@@ -575,7 +578,7 @@ export default {
         this.timeReceiptAmount = data.timeReceiptAmount;
         this.estimatedMoney = data.estimatedMoney;
         this.realMoney = data.realMoney;
-        this.estimatedTime = data.estimatedTime
+        this.estimatedTime = data.estimatedTime;
         this.ONEinformation = data.ONEinformation;
         lazyAMapApiLoaderInstance.load().then(() => {
           this.map = new AMap.Map("amap-cointainer", {
@@ -585,7 +588,7 @@ export default {
           var m1 = new AMap.Marker({
             position: [data.localPlace.lng, data.localPlace.lat],
           });
-          this.address  =  data.localPlace.local
+          this.address = data.localPlace.local;
           this.map.add(m1);
         });
       });
@@ -642,6 +645,12 @@ export default {
             });
           }
         );
+    },
+    /**
+     * 清除完成时间
+     */
+    cleanoutTime() {
+      orderServe.qingchuendtime("orderendTime", null, this.orderkey)
     },
     // 修改其他信息
     changeOtherinformation() {
