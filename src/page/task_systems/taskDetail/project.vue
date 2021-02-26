@@ -13,7 +13,13 @@
             class="mr-10"
             style="height:100px; width:150px; display: inline-block;"
           >
-            <v-select :items="items" label="全部" dense solo></v-select>
+            <v-select
+              :items="items"
+              value="全部"
+              @change="changeRoute"
+              dense
+              solo
+            ></v-select>
           </div>
           <div style="display: inline-block;">
             <section>
@@ -149,7 +155,7 @@ export default {
           // ddd
           weekdaysShort: ["七", "六", "五", "四", "三", "二", "一"],
           // dd
-          weekdaysMin:  ["七", "六", "五", "四", "三", "二", "一"],
+          weekdaysMin: ["七", "六", "五", "四", "三", "二", "一"],
         },
         monthBeforeYear: false,
       },
@@ -173,22 +179,36 @@ export default {
   },
   created() {
     console.log("group 创建");
-    orderServe.getfigure(this.page - 1 + "", "12").subscribe((data) => {
-      this.order = data.list;
-      this.pagination = Math.ceil(data["maxsize"] / 12);
-      console.log(data);
-    });
+    this.getallfigure();
   },
   methods: {
+    changeRoute(val) {
+      console.log(val);
+      if ((val = "完成")) {
+        // 获取全部表单
+        getallfigure();
+      } else {
+        // 获取已完成表单
+        getallfigure();
+      }
+    },
+
+    // 跳转至单个任务页面
     toprojectDetail(value) {
       let strItem = JSON.stringify(value);
 
       this.$router.push({
         path: "/taskSystems/projectDetail",
-        // query: {
-        //   id: JSON.stringify(value),
-        // },
+
         query: { id: escape(strItem) },
+      });
+    },
+    // 获取全部表单
+    getallfigure() {
+      orderServe.getfigure(this.page - 1 + "", "12").subscribe((data) => {
+        this.order = data.list;
+        this.pagination = Math.ceil(data["maxsize"] / 12);
+        console.log(data);
       });
     },
   },
