@@ -33,18 +33,6 @@
               ></date-picker>
             </section>
           </div>
-          <!-- <date-picker
-            :v-show="false"
-            :open="dialog"
-            v-model="pickertime"
-            type="datetime"
-          >
-            <template v-slot:footer>
-              <v-btn x-large :loading="lodingbutton" @click="updatapaifa()"
-                >确定</v-btn
-              >
-            </template>
-          </date-picker> -->
         </v-col>
       </v-row>
     </v-sheet>
@@ -185,12 +173,13 @@ export default {
   methods: {
     changeRoute(val) {
       console.log(val);
-      if ((val = "全部")) {
+      if (val == "全部") {
         // 获取全部表单
         this.getallfigure();
       } else {
         // 获取已完成表单
-        this.getallfigure();
+        console.log(val)
+        this.byOrderEndTimeGetOrder();
       }
     },
 
@@ -213,6 +202,14 @@ export default {
         console.log(data);
       });
     },
+    byOrderEndTimeGetOrder(){
+      console.log("获取已完成的表单")
+      orderServe.byOrderEndTimeOrder(this.page - 1 + "", "12").subscribe((data) => {
+        this.order = data.list;
+        this.pagination = Math.ceil(data["maxsize"] / 12);
+        console.log(data);
+      });
+    }
   },
 };
 </script>

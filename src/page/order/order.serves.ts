@@ -203,6 +203,11 @@ export default class OrderServe {
   //   );
   // }
 
+  /**
+   * 根据OrderEndTime获取order
+   * @param from 
+   * @param size 
+   */
   public static byOrderEndTimeOrder(from:string,size:string) :Observable<any>{
     return AxiosElasticService.AxiosService(
       "POST",
