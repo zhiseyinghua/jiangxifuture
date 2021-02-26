@@ -202,4 +202,19 @@ export default class OrderServe {
   //     delay(1000)
   //   );
   // }
+
+  public static byOrderEndTimeOrder(from:string,size:string) :Observable<any>{
+    return AxiosElasticService.AxiosService(
+      "POST",
+      OrderConfig.zone + "/" + "order_end_time_order",
+      {
+        from:from,
+        size:size
+      }
+    ).pipe(
+      map((data)=>{
+        return data['data']
+      })
+    )
+  }
 }

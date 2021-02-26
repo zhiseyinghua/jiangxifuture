@@ -201,7 +201,7 @@ export default {
       this.$router.push({
         path: "/taskSystems/projectDetail",
 
-        query: { id: escape(strItem) },
+        query: { id: escape(strItem)},
       });
     },
     // 获取全部表单
