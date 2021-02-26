@@ -9,111 +9,36 @@
           >
             +新建项目
           </v-btn>
-          <div style="display: inline-block;">
-            <v-select :items="items" label="全部" solo></v-select>
+          <div
+            class="mr-10"
+            style="height:100px; width:150px; display: inline-block;"
+          >
+            <v-select :items="items" label="全部" dense solo></v-select>
           </div>
-          
-        </v-col>
-        <v-col>
-          <v-expansion-panels>
-            <v-expansion-panel>
-              <v-expansion-panel-header>
-                生成表单
-              </v-expansion-panel-header>
-              <v-expansion-panel-content>
-                <!-- <v-menu
-                      ref="menu"
-                      v-model="menu"
-                      :close-on-content-click="false"
-                      :return-value.sync="date"
-                      transition="scale-transition"
-                      offset-y
-                      min-width="50"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          v-model="date"
-                          label="Picker in menu"
-                          prepend-icon="mdi-calendar"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker v-model="date" no-title scrollable>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="menu = false">
-                          Cancel
-                        </v-btn>
-                        <v-btn
-                          text
-                          color="primary"
-                          @click="$refs.menu.save(date)"
-                        >
-                          OK
-                        </v-btn>
-                      </v-date-picker>
-                    </v-menu> -->
-                <v-spacer></v-spacer>
-                <!-- <v-dialog
-                      ref="dialog"
-                      v-model="modal"
-                      :return-value.sync="date"
-                      persistent
-                      width="290px"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          v-model="date"
-                          label="Picker in dialog"
-                          prepend-icon="mdi-calendar"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker v-model="date" scrollable>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="modal = false">
-                          Cancel
-                        </v-btn>
-                        <v-btn
-                          text
-                          color="primary"
-                          @click="$refs.dialog.save(date)"
-                        >
-                          OK
-                        </v-btn>
-                      </v-date-picker>
-                    </v-dialog> -->
-                <v-btn>生成表单</v-btn>
-                <!-- <v-menu
-                      v-model="menu2"
-                      :close-on-content-click="false"
-                      :nudge-right="40"
-                      transition="scale-transition"
-                      offset-y
-                      min-width="auto"
-                    >
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-text-field
-                          v-model="date"
-                          label="Picker without buttons"
-                          prepend-icon="mdi-calendar"
-                          readonly
-                          v-bind="attrs"
-                          v-on="on"
-                        ></v-text-field>
-                      </template>
-                      <v-date-picker
-                        v-model="date"
-                        @input="menu2 = false"
-                      ></v-date-picker>
-                    </v-menu> -->
-                <v-spacer></v-spacer>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
+          <div style="display: inline-block;">
+            <section>
+              <p>date range</p>
+              <date-picker
+                :lang="lang"
+                v-model="value1"
+                type="date"
+                range
+                placeholder="Select date range"
+              ></date-picker>
+            </section>
+          </div>
+          <!-- <date-picker
+            :v-show="false"
+            :open="dialog"
+            v-model="pickertime"
+            type="datetime"
+          >
+            <template v-slot:footer>
+              <v-btn x-large :loading="lodingbutton" @click="updatapaifa()"
+                >确定</v-btn
+              >
+            </template>
+          </date-picker> -->
         </v-col>
       </v-row>
     </v-sheet>
@@ -172,10 +97,64 @@
   </v-container>
 </template>
 <script>
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 import orderServe from "@/page/order/order.serves";
 export default {
+  components: { DatePicker },
   data() {
     return {
+      lang: {
+        formatLocale: {
+          // MMMM
+          months: [
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月",
+            "九月",
+            "十月",
+            "十一月",
+            "十二月",
+          ],
+          // MMM
+          monthsShort: [
+            "一月",
+            "二月",
+            "三月",
+            "四月",
+            "五月",
+            "六月",
+            "七月",
+            "八月",
+            "九月",
+            "十月",
+            "十一月",
+            "十二月",
+          ],
+          // dddd
+          weekdays: [
+            "星期一",
+            "星期二",
+            "星期三",
+            "星期四",
+            "星期五",
+            "星期六",
+            "星期七",
+          ],
+          // ddd
+          weekdaysShort: ["七", "六", "五", "四", "三", "二", "一"],
+          // dd
+          weekdaysMin:  ["七", "六", "五", "四", "三", "二", "一"],
+        },
+        monthBeforeYear: false,
+      },
+
+      value1: [new Date(2019, 9, 8), new Date(2019, 9, 19)],
       items: ["全部", "已完成"],
       pagination: 6,
       page: 1,

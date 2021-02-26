@@ -3,7 +3,7 @@
     <div class="font-weight-medium" style="font-size: 1.5em;">
       任务详情
     </div>
-    
+
     <v-divider class="mt-5 mb-12"></v-divider>
     <v-row>
       <v-col>
@@ -58,7 +58,6 @@
                 <div style="font-size: 1.5em;" class="grey--text mb-1">
                   任务完成时间
                 </div>
-
                 <p
                   v-if="
                     orderendTime != null &&
@@ -367,6 +366,7 @@
     <!-- 修改时间参数 通用 -->
     <v-dialog v-model="dialog">
       <date-picker
+        :lang="lang"
         :v-show="false"
         :open="dialog"
         v-model="pickertime"
@@ -482,6 +482,56 @@ import { map, switchMap, tap } from "rxjs/operators";
 export default {
   components: { DatePicker },
   data: () => ({
+    lang: {
+      formatLocale: {
+        // MMMM
+        months: [
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月",
+        ],
+        // MMM
+        monthsShort: [
+          "一月",
+          "二月",
+          "三月",
+          "四月",
+          "五月",
+          "六月",
+          "七月",
+          "八月",
+          "九月",
+          "十月",
+          "十一月",
+          "十二月",
+        ],
+        // dddd
+        weekdays: [
+          "星期一",
+          "星期二",
+          "星期三",
+          "星期四",
+          "星期五",
+          "星期六",
+          "星期七",
+        ],
+        // ddd
+        weekdaysShort: ["七", "六", "五", "四", "三", "二", "一"],
+        // dd
+        weekdaysMin: ["七", "六", "五", "四", "三", "二", "一"],
+      },
+      monthBeforeYear: false,
+    },
+
     // 这个button的loading
     deletetimeB: false,
     timedialog: false,
