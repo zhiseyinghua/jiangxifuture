@@ -687,15 +687,12 @@ export default {
     },
     // 更新所有的时间参数
     updatapaifa() {
-      console.log("更新所有的时间");
-      console.log(this.timeselect);
-      console.log(this.pickertime);
       this.lodingbutton = true;
       orderServe
         .updateOrderstartTime(this.timeselect, this.pickertime, this.orderkey)
         .subscribe(
           (data) => {
-            console.log("1111111111111111",data)
+            console.log("1111111111111111", data);
             this.lodingbutton = false;
             this.dialog = false;
             console.log("data", data, this.timeselect);

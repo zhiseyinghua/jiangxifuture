@@ -16,14 +16,14 @@ export default class OrderServe {
     time: number,
     key: CommonInterfaceElact
   ): Observable<any> {
-    console.log("1111111111111111111",time)
+    console.log("1111111111111111111", time);
     return AxiosElasticService.AxiosService("post", "/figure/one_message", {
       ...key,
       which: choose,
       value: time.valueOf(),
     }).pipe(
       map((data) => {
-        console.log("11111111111111111111",data)
+        console.log("11111111111111111111", data);
         data.data.value = moment(data.data.value).format("LLL");
         return data["data"];
       })
@@ -101,6 +101,7 @@ export default class OrderServe {
         newData.list.forEach((element: any) => {
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
+          element.orderstartTime = moment(element.orderstartTime).format("LLL");
         });
         return newData;
       })

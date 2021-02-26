@@ -62,6 +62,7 @@
           <v-card-title class="text-center"
             >项目名称：{{ item.ordername }}</v-card-title
           >
+           <v-card-text> 开始时间： {{ item.orderstartTime }} </v-card-text>
           <v-card-subtitle> 甲方信息 </v-card-subtitle>
           <v-card-text
             v-if="
@@ -184,12 +185,12 @@ export default {
   methods: {
     changeRoute(val) {
       console.log(val);
-      if ((val = "完成")) {
+      if ((val = "全部")) {
         // 获取全部表单
-        getallfigure();
+        this.getallfigure();
       } else {
         // 获取已完成表单
-        getallfigure();
+        this.getallfigure();
       }
     },
 
@@ -205,6 +206,7 @@ export default {
     },
     // 获取全部表单
     getallfigure() {
+      console.log("获取全部表单")
       orderServe.getfigure(this.page - 1 + "", "12").subscribe((data) => {
         this.order = data.list;
         this.pagination = Math.ceil(data["maxsize"] / 12);
