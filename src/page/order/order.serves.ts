@@ -147,79 +147,74 @@ export default class OrderServe {
       key
     ).pipe(
       map((data) => {
-        data.data.orderendTime = moment(data.data.orderendTime).format("LLL");
-        data.data.orderstartTime = moment(data.data.orderstartTime).format(
-          "LLL"
+        data.data.orderendTime = OrderServe.checkouttime(
+          data.data.orderendTime
         );
-        data.data.timeAfterDistribution = moment(
+        data.data.orderstartTime = OrderServe.checkouttime(
+          data.data.orderstartTime
+        );
+        data.data.timeAfterDistribution = OrderServe.checkouttime(
           data.data.timeAfterDistribution
-        ).format("LLL");
-        data.data.technicianCompletionTime = moment(
-          data.data.technicianCompletionTime
-        ).format("LLL");
-        data.data.completionTime = moment(data.data.completionTime).format(
-          "LLL"
         );
-        data.data.insidePagesFinish = moment(
+        data.data.technicianCompletionTime = OrderServe.checkouttime(
+          data.data.technicianCompletionTime
+        );
+        data.data.completionTime = OrderServe.checkouttime(
+          data.data.completionTime
+        );
+        data.data.insidePagesFinish = OrderServe.checkouttime(
           data.data.insidePagesFinish
-        ).format("LLL");
-        data.data.contractCompleted = moment(
+        );
+        data.data.contractCompleted = OrderServe.checkouttime(
           data.data.contractCompleted
-        ).format("LLL");
+        );
         //
-        data.data.timeReceiptAmount = moment(
+        data.data.timeReceiptAmount = OrderServe.checkouttime(
           data.data.timeReceiptAmount
-        ).format("LLL");
-        data.data.estimatedTime = moment(data.data.estimatedTime).format("LLL");
+        );
+        data.data.estimatedTime = OrderServe.checkouttime(
+          data.data.estimatedTime
+        );
         // @ts-ignore
         data.data.type = OrderConfig.orderType[data.data.type];
         return data["data"];
       })
       // estimatedTime
     );
-    // console.log("dfddddddddddddddddddddd",choose, time)
-    // return of(time).pipe(
-    //   map((data) => {
-    //     console.log("data", choose);
-    //     return data;
-    //   }),
-    //   delay(500)
-    // );
   }
   /**
    * 修改时间信息
    * @param data
    */
-  // public static updateOrderManyTime(data: UpdateTime) {
-  //   return AxiosElasticService.AxiosService(
-  //     "post",
-  //     OrderConfig.zone + "/" + "update_time",
-  //     data
-  //   ).pipe(
-  //     map((data) => {
-  //       return data["data"];
-  //     }),
-  //     delay(1000)
-  //   );
-  // }
 
   /**
    * 根据OrderEndTime获取order
-   * @param from 
-   * @param size 
+   * @param from
+   * @param size
    */
-  public static byOrderEndTimeOrder(from:string,size:string) :Observable<any>{
+  public static byOrderEndTimeOrder(
+    from: string,
+    size: string
+  ): Observable<any> {
     return AxiosElasticService.AxiosService(
       "POST",
       OrderConfig.zone + "/" + "order_end_time_order",
       {
-        from:from,
-        size:size
+        from: from,
+        size: size,
       }
     ).pipe(
-      map((data)=>{
-        return data['data']
+      map((data) => {
+        return data["data"];
       })
-    )
+    );
+  }
+
+  public static checkouttime(params: any) {
+    if (params && params != null && params != "null") {
+      return moment(params.completionTime).format("LLL");
+    } else {
+      return null;
+    }
   }
 }

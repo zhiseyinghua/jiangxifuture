@@ -364,18 +364,14 @@
     </div>
 
     <!-- 修改时间参数 通用 -->
-    <v-dialog v-model="dialog">
-      <date-picker
-        :lang="lang"
-        :v-show="false"
-        :open="dialog"
-        v-model="pickertime"
-        type="datetime"
-      >
+    <v-dialog  width="250" v-model="dialog">
+      <date-picker type="datetime" :open="pickerdialog" :lang="lang" v-model="pickertime">
         <template v-slot:footer>
-          <v-btn x-large :loading="lodingbutton" @click="updatapaifa()"
-            >确定</v-btn
-          >
+          <div>
+            <v-btn x-large :loading="lodingbutton" @click="updatapaifa()"
+              >确定</v-btn
+            >
+          </div>
         </template>
       </date-picker>
     </v-dialog>
@@ -482,6 +478,7 @@ import { map, switchMap, tap } from "rxjs/operators";
 export default {
   components: { DatePicker },
   data: () => ({
+    pickerdialog: false,
     lang: {
       formatLocale: {
         // MMMM
@@ -601,6 +598,19 @@ export default {
   watch: {
     pickertime(val) {
       console.log(val);
+    },
+    dialog(val) {
+      console.log("1111111111111111", val);
+      if (val == true) {
+        console.log("弹出", val);
+        setTimeout(() => {
+          this.pickerdialog = true;
+        }, 400);
+      } else {
+        console.log("收", val);
+        console.log("222222222222222222222222");
+        this.pickerdialog = false;
+      }
     },
   },
 
@@ -882,15 +892,8 @@ export default {
 };
 </script>
 
-<style>
-.mx-datepicker-popup {
-  margin-top: 300px;
-  margin-left: 40%;
-}
+<style scoped>
 #amap-cointainer {
   height: 500px;
-}
-.mx-datepicker {
-  display: none;
 }
 </style>
