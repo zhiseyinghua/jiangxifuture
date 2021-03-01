@@ -8,7 +8,7 @@
               :to="{ path: '/order' }"
               class="primary darken-1 white--text mr-10"
             >
-              +新建项目
+              +0
             </v-btn>
             <div
               class="mr-10"
@@ -27,10 +27,13 @@
                 <date-picker
                   :lang="lang"
                   v-model="value1"
-                  type="date"
                   range
                   placeholder="选择任务的区间"
-                ></date-picker>
+                  type="date"
+                  :show-time-panel="showTimeRangePanel"
+                  @close="handleRangeClose"
+                >
+                </date-picker>
               </section>
             </div>
           </v-col>
@@ -217,9 +220,8 @@ export default {
         this.order = data.list;
         this.pagination = Math.ceil(data["maxsize"] / 12);
         console.log(data);
-        
       });
-      this.ischoose = "all"
+      this.ischoose = "all";
     },
     byOrderEndTimeGetOrder() {
       console.log("获取已完成的表单");
@@ -229,9 +231,8 @@ export default {
           this.order = data.list;
           this.pagination = Math.ceil(data["maxsize"] / 12);
           console.log(data);
-          
         });
-        this.ischoose = ""
+      this.ischoose = "";
     },
   },
 };
