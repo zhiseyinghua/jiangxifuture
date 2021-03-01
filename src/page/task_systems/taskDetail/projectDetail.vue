@@ -364,8 +364,13 @@
     </div>
 
     <!-- 修改时间参数 通用 -->
-    <v-dialog  width="250" v-model="dialog">
-      <date-picker type="datetime" :open="pickerdialog" :lang="lang" v-model="pickertime">
+    <v-dialog width="250" v-model="dialog">
+      <date-picker
+        type="datetime"
+        :open="pickerdialog"
+        :lang="lang"
+        v-model="pickertime"
+      >
         <template v-slot:footer>
           <div>
             <v-btn x-large :loading="lodingbutton" @click="updatapaifa()"
