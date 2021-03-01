@@ -222,5 +222,5 @@ export default class OrderServe {
     }
   }
 
-  public static
+  public static 
 }
