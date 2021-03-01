@@ -156,16 +156,30 @@ export default {
       page: 1,
       ordercount: 6,
       order: [],
+      ischoose: "all",
     };
   },
   watch: {
     page() {
-      this.order = [];
-      console.log(this.page);
-      orderServe.getfigure(this.page * 12 - 12 + "", "12").subscribe((data) => {
-        this.order = data.list;
-        // console.log(data);
-      });
+      if (this.ischoose == "all") {
+        this.order = [];
+        console.log(this.page);
+        orderServe
+          .getfigure(this.page * 12 - 12 + "", "12")
+          .subscribe((data) => {
+            this.order = data.list;
+            // console.log(data);
+          });
+      } else {
+        this.order = [];
+        console.log(this.page);
+        orderServe
+          .byOrderEndTimeOrder(this.page * 12 - 12 + "", "12")
+          .subscribe((data) => {
+            this.order = data.list;
+            // console.log(data);
+          });
+      }
     },
   },
   created() {
@@ -203,7 +217,9 @@ export default {
         this.order = data.list;
         this.pagination = Math.ceil(data["maxsize"] / 12);
         console.log(data);
+        
       });
+      this.ischoose = "all"
     },
     byOrderEndTimeGetOrder() {
       console.log("获取已完成的表单");
@@ -213,7 +229,9 @@ export default {
           this.order = data.list;
           this.pagination = Math.ceil(data["maxsize"] / 12);
           console.log(data);
+          
         });
+        this.ischoose = ""
     },
   },
 };
