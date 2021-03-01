@@ -210,6 +210,10 @@ export default class OrderServe {
     );
   }
 
+  /**
+   *
+   * @param params
+   */
   public static checkouttime(params: any) {
     if (params && params != null && params != "null") {
       return moment(params.completionTime).format("LLL");
@@ -217,4 +221,6 @@ export default class OrderServe {
       return null;
     }
   }
+
+  public static
 }

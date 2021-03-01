@@ -30,7 +30,6 @@
                   range
                   placeholder="选择任务的区间"
                   type="date"
-                  :show-time-panel="showTimeRangePanel"
                   @close="handleRangeClose"
                 >
                 </date-picker>
@@ -234,6 +233,9 @@ export default {
         });
       this.ischoose = "";
     },
+    handleRangeClose() {
+      // this.
+    }
   },
 };
 </script>
