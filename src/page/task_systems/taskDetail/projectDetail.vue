@@ -169,10 +169,15 @@
               <div>
                 <div class="mb-2 grey--text">其他信息 ：</div>
                 <div class="mt-6 ml-6">
-                  <div class="mb-2">预估费用 ：{{ estimatedMoney }}</div>
-                  <div class="mb-2">任务面积 ：{{ area }}</div>
-                  <div class="mb-2">实际费用 ：{{ realMoney }}</div>
-                  
+                  <span class="mb-2">预估费用 ：{{ estimatedMoney }}</span>
+                  <span v-show="estimatedMoney">元</span>
+                  <div></div>
+                  <span class="mb-2">任务面积 ：{{ area }}</span>
+                  <span v-show="area">平方米</span>
+                   <div></div>
+                  <span class="mb-2">实际费用 ：{{ realMoney }}</span>
+                  <span v-show="realMoney">元</span>
+                   <div></div>
                   <v-btn @click="changeOtherinformation" class="mt-11"
                     >修改其他信息</v-btn
                   >
@@ -443,6 +448,9 @@
             clearable
             dense
           >
+            <template v-slot:append>
+              <p class="my-auto">㎡</p>
+            </template>
           </v-text-field>
           <v-text-field
             v-model="realMoney"
@@ -450,7 +458,10 @@
             outlined
             clearable
             dense
-          >
+            ><template v-slot:append>
+              <p>￥</p>
+            </template>
+            >
           </v-text-field>
         </v-card>
         <v-divider></v-divider>

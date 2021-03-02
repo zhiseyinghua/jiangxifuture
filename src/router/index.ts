@@ -25,8 +25,8 @@ const router = new Router({
     login,
     // solution,
     test,
-    user,
-    groupChat,
+    // user,
+    // groupChat,
     // newsDetail,
     taskSystems,
     order,
@@ -39,10 +39,10 @@ const router = new Router({
     //   path:"*",
     //   redirect:'/home'
     // },
-    // {
-    //   path: "*",
-    //   redirect: "/taskSystems/projectDetail",
-    // },
+    {
+      path: "*",
+      redirect: "/taskSystems/project",
+    },
   ],
 });
 

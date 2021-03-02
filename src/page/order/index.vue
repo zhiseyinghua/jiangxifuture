@@ -269,7 +269,7 @@ export default {
       mapdialog: false,
       orderName: "",
       // valid: true,
-      el: 2, //步骤序号
+      el: 1, //步骤序号
       //甲方信息
       name: "", //姓名
       phone: "", //电话
@@ -433,16 +433,6 @@ export default {
           name: this.name,
         },
       };
-      console.log("lng", this.lng, "lat", this.lat);
-      console.log("orderName", this.orderName);
-      console.log("phone", this.phone);
-      console.log("email", this.email);
-      console.log("estimatedMoney", this.estimatedMoney);
-      console.log("localPlace", this.localPlace);
-      console.log("type", this.type);
-      console.log("estimatedTime", this.estimatedTime);
-      console.log("area", this.area);
-      console.log("area", this.name);
       Bus.$emit("overlayvalue", {
         overlayvalue: true,
       });
@@ -457,7 +447,8 @@ export default {
           errorsnackbar: true,
           top: true,
         });
-        console.log("order.indesx.vue putorder", data);
+        // console.log("order.indesx.vue putorder", data);
+        this.$router.push({path:"taskSystems/project"})
       });
       (err) => {
         Bus.$emit("overlayvalue", {

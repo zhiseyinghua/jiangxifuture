@@ -1,7 +1,14 @@
 <template>
   <v-app-bar app>
+    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-img
+      src="http://chuantu.xyz/t6/741/1614717476x1700338588.png"
+      max-height="50"
+      max-width="50"
+    ></v-img>
+
     <!-- 团队列表 -->
-    <v-menu offset-y>
+    <!-- <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn text v-bind="attrs" v-on="on">
           团队<v-icon>expand_more</v-icon>
@@ -55,7 +62,7 @@
           </v-list-item-action>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
 
     <v-spacer></v-spacer>
     <!-- 工具栏 -->
@@ -74,7 +81,7 @@
 
     <v-spacer></v-spacer>
     <!-- 信息设置 -->
-    <v-menu offset-y>
+    <!-- <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn text v-bind="attrs" v-on="on">
           <v-avatar color="indigo" size="18"> </v-avatar>
@@ -94,7 +101,15 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
+    <v-btn text v-bind="attrs" v-on="on">
+      <v-avatar size="30">
+                <img
+                  alt="user"
+                  src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3723801689,3918778516&fm=26&gp=0.jpg"
+                />
+              </v-avatar>
+    </v-btn>
   </v-app-bar>
 </template>
 
@@ -107,14 +122,15 @@ export default {
     groupList: [{ title: "团队一" }],
     toolbarList: [
       { title: "项目", link: "/taskSystems/project", id: 1 },
-      { title: "进展", link: "/taskSystems/progresses", id: 2 },
       { divider: true, id: 3 },
-      { title: "日历", link: "/", id: 4 },
-      { title: "汇报", link: "/", id: 5 },
-      { divider: true, id: 6 },
-      { title: "动态", link: "/", id: 7 },
-      { title: "团队", link: "/taskSystems/group", id: 8 },
-      { title: "我自己", link: "/", id: 9 },
+      { title: "进展", link: "/taskSystems/progresses", id: 2 },
+
+      // { title: "日历", link: "/", id: 4 },
+      // { title: "汇报", link: "/", id: 5 },
+      // { divider: true, id: 6 },
+      // { title: "动态", link: "/", id: 7 },
+      // { title: "团队", link: "/taskSystems/group", id: 8 },
+      // { title: "我自己", link: "/", id: 9 },
     ],
     setDate: [
       { title: "个人设置", subTitle: "头像、姓名、密码、通知等" },
@@ -144,8 +160,6 @@ export default {
       });
     },
   },
-  mounted: function() {
-    
-  }
+  mounted: function() {},
 };
 </script>
