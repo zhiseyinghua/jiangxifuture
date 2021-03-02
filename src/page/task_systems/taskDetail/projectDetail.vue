@@ -169,8 +169,10 @@
               <div>
                 <div class="mb-2 grey--text">其他信息 ：</div>
                 <div class="mt-6 ml-6">
+                  <div class="mb-2">预估费用 ：{{ estimatedMoney }}</div>
                   <div class="mb-2">任务面积 ：{{ area }}</div>
                   <div class="mb-2">实际费用 ：{{ realMoney }}</div>
+                  
                   <v-btn @click="changeOtherinformation" class="mt-11"
                     >修改其他信息</v-btn
                   >

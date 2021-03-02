@@ -61,6 +61,24 @@
       <v-row>
         <v-col v-for="(item, index) in order" :key="index" cols="12" md="4">
           <v-card>
+            <v-app-bar
+              v-if="
+                item.orderendTime != null &&
+                  item.orderendTime != '' &&
+                  item.orderendTime != 'Invalid date'
+              "
+              flat
+              color="teal accent-4"
+            >
+              <v-toolbar-title class="title white--text pl-0">
+                已完成
+              </v-toolbar-title></v-app-bar
+            >
+            <v-app-bar v-else flat color="red darken-2">
+              <v-toolbar-title class="title white--text pl-0">
+                未完成
+              </v-toolbar-title></v-app-bar
+            >
             <v-card-actions class="float-right my-2"
               ><v-btn
                 @click="toprojectDetail(item)"
@@ -92,8 +110,8 @@
               地点： {{ item.localPlace.local }}
             </v-card-text>
             <v-card-text v-else> 地址： 未填写 </v-card-text>
-            <v-card-text v-if="item.area"> 面积： {{ item.area }} </v-card-text>
-            <v-card-text v-else> 面积： 未填写 </v-card-text>
+            <!-- <v-card-text v-if="item.area"> 面积： {{ item.area }} </v-card-text>
+            <v-card-text v-else> 面积： 未填写 </v-card-text> -->
             <v-card-text v-if="item.type"> 类型： {{ item.type }} </v-card-text>
             <v-card-text v-else> 类型： 未填写 </v-card-text>
           </v-card>
@@ -156,15 +174,15 @@ export default {
         "任务开始时间",
         "任务类型",
         "预估时间",
-        "面积",
+        "面积(单位平方米)",
         "实际派发时间",
         "技术员实际完成时间",
         "外业完成时间",
         "内业完成时间",
         "合同完成时间",
         "金额到账时间",
-        "预估费用",
-        "实际费用",
+        "预估费用(单位元)",
+        "实际费用(单位元)",
         "甲方电话",
         "甲方邮箱",
         "甲方名字",
@@ -326,14 +344,13 @@ export default {
         });
     },
     createEx() {
-      let data =  orderServe.createExcel(this.order)
+      let data = orderServe.createExcel(this.order);
       var ws = XLSX.utils.json_to_sheet(data, { header: this.header });
       console.log(ws);
       var wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "People");
       XLSX.writeFile(wb, "sheetjs.xlsx");
- 
-    }
+    },
   },
 };
 </script>

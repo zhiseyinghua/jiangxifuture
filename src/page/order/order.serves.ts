@@ -85,8 +85,34 @@ export default class OrderServe {
         let newData = data["data"];
         newData.list.forEach((element: any) => {
           // @ts-ignore
+          element.orderendTime = OrderServe.checkouttime(element.orderendTime);
+          element.orderstartTime = OrderServe.checkouttime(
+            element.orderstartTime
+          );
+          element.timeAfterDistribution = OrderServe.checkouttime(
+            element.timeAfterDistribution
+          );
+          element.technicianCompletionTime = OrderServe.checkouttime(
+            element.technicianCompletionTime
+          );
+          element.completionTime = OrderServe.checkouttime(
+            element.completionTime
+          );
+          element.insidePagesFinish = OrderServe.checkouttime(
+            element.insidePagesFinish
+          );
+          element.contractCompleted = OrderServe.checkouttime(
+            element.contractCompleted
+          );
+          //
+          element.timeReceiptAmount = OrderServe.checkouttime(
+            element.timeReceiptAmount
+          );
+          element.estimatedTime = OrderServe.checkouttime(
+            element.estimatedTime
+          );
+          // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
-          element.orderstartTime = moment(element.orderstartTime).format("LLL");
         });
         return newData;
       })
@@ -121,8 +147,7 @@ export default class OrderServe {
     ).pipe(
       map((data) => {
         return data["data"];
-      }),
-      delay(1000)
+      })
     );
   }
   public static bykeygetorder(key: CommonInterfaceElact): Observable<any> {
@@ -193,8 +218,34 @@ export default class OrderServe {
         let newData = data["data"];
         newData.list.forEach((element: any) => {
           // @ts-ignore
+          element.orderendTime = OrderServe.checkouttime(element.orderendTime);
+          element.orderstartTime = OrderServe.checkouttime(
+            element.orderstartTime
+          );
+          element.timeAfterDistribution = OrderServe.checkouttime(
+            element.timeAfterDistribution
+          );
+          element.technicianCompletionTime = OrderServe.checkouttime(
+            element.technicianCompletionTime
+          );
+          element.completionTime = OrderServe.checkouttime(
+            element.completionTime
+          );
+          element.insidePagesFinish = OrderServe.checkouttime(
+            element.insidePagesFinish
+          );
+          element.contractCompleted = OrderServe.checkouttime(
+            element.contractCompleted
+          );
+          //
+          element.timeReceiptAmount = OrderServe.checkouttime(
+            element.timeReceiptAmount
+          );
+          element.estimatedTime = OrderServe.checkouttime(
+            element.estimatedTime
+          );
+          // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
-          element.orderstartTime = moment(element.orderstartTime).format("LLL");
         });
         return newData;
       })
@@ -232,8 +283,34 @@ export default class OrderServe {
         let newData = data["data"];
         newData.forEach((element: any) => {
           // @ts-ignore
+          element.orderendTime = OrderServe.checkouttime(element.orderendTime);
+          element.orderstartTime = OrderServe.checkouttime(
+            element.orderstartTime
+          );
+          element.timeAfterDistribution = OrderServe.checkouttime(
+            element.timeAfterDistribution
+          );
+          element.technicianCompletionTime = OrderServe.checkouttime(
+            element.technicianCompletionTime
+          );
+          element.completionTime = OrderServe.checkouttime(
+            element.completionTime
+          );
+          element.insidePagesFinish = OrderServe.checkouttime(
+            element.insidePagesFinish
+          );
+          element.contractCompleted = OrderServe.checkouttime(
+            element.contractCompleted
+          );
+          //
+          element.timeReceiptAmount = OrderServe.checkouttime(
+            element.timeReceiptAmount
+          );
+          element.estimatedTime = OrderServe.checkouttime(
+            element.estimatedTime
+          );
+          // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
-          element.orderstartTime = moment(element.orderstartTime).format("LLL");
         });
         return newData;
       })
@@ -241,31 +318,35 @@ export default class OrderServe {
   }
 
   public static createExcel(data: any[]) {
-    let jsonData: any[] = [] ;
+    let jsonData: any[] = [];
     data.forEach((ele, index) => {
+      if (!ele.realMoney || ele.realMoney != null) {
+        ele.realMoney = "";
+      } else {
+      }
       let data = {
         序列: index,
         任务名称: ele.ordername,
         任务地点: ele.localPlace.local,
-        任务结束时间:ele.orderendTime,
+        任务结束时间: ele.orderendTime,
         任务开始时间: ele.orderstartTime,
         任务类型: ele.type,
         预估时间: ele.estimatedTime,
-        面积: ele.area,
+        "面积(单位平方米)": ele.area,
         实际派发时间: ele.timeAfterDistribution,
         技术员实际完成时间: ele.technicianCompletionTime,
         外业完成时间: ele.completionTime,
         内业完成时间: ele.insidePagesFinish,
         合同完成时间: ele.contractCompleted,
         金额到账时间: ele.timeReceiptAmount,
-        预估费用: ele.estimatedMoney,
-        实际费用: ele.realMoney,
+        "预估费用(单位元)": ele.estimatedMoney ,
+        "实际费用(单位元)": ele.realMoney ,
         甲方电话: ele.ONEinformation.phone,
         甲方邮箱: ele.ONEinformation.email,
-        甲方名字: ele.ONEinformation.name
+        甲方名字: ele.ONEinformation.name,
       };
-      jsonData.push(data)
+      jsonData.push(data);
     });
-     return jsonData
+    return jsonData;
   }
 }
