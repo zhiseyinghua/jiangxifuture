@@ -201,7 +201,7 @@ export default class OrderServe {
       OrderConfig.zone + "/" + "order_end_time_order",
       {
         from: from,
-        size: size,
+        size: size
       }
     ).pipe(
       map((data) => {
