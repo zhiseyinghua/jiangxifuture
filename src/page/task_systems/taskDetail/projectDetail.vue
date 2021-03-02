@@ -605,7 +605,6 @@ export default {
       console.log(val);
     },
     dialog(val) {
-      console.log("1111111111111111", val);
       if (val == true) {
         console.log("弹出", val);
         setTimeout(() => {
@@ -613,14 +612,12 @@ export default {
         }, 400);
       } else {
         console.log("收", val);
-        console.log("222222222222222222222222");
         this.pickerdialog = false;
       }
     },
   },
 
   created() {
-    //     localPlace: OrderlocalPlaceInterface;
     // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
     console.log(routedata);
@@ -648,7 +645,6 @@ export default {
       )
       .subscribe((data) => {
         this.ordername = data.ordername;
-        console.log("11111111111111111111111111111111", data);
         this.orderstartTime = data.orderstartTime;
         this.orderendTime = data.orderendTime;
         this.figuetime = data.figuetime;
