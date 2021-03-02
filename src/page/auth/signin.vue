@@ -2,10 +2,10 @@
   <v-row class="my-16">
     <v-col cols="10" md="6" offset="1" sm="8" offset-sm="2" offset-md="3">
       <v-card shaped>
-        <v-btn v-on:click="rbytokengettoken">换token</v-btn>
+        <!-- <v-btn v-on:click="rbytokengettoken">换token</v-btn>
         <v-btn v-on:click="signup">注册</v-btn>
         <v-btn v-on:click="sendMsg">loading</v-btn>
-        <v-btn v-on:click="sendMsgtishyi">提示</v-btn>
+        <v-btn v-on:click="sendMsgtishyi">提示</v-btn> -->
         <!-- <v-btn v-on:click="storeButton">storetest</v-btn> -->
 
         <v-row no-gutters>
@@ -101,7 +101,7 @@
             </v-form>
           </v-col>
         </v-row>
-        <v-btn @click="tianxiebiaodantest"> 填写表单test </v-btn>
+        <!-- <v-btn @click="tianxiebiaodantest"> 填写表单test </v-btn> -->
       </v-card>
     </v-col>
   </v-row>
@@ -257,6 +257,7 @@ export default {
         };
         authServies.signupAuth(signData).subscribe(
           (data) => {
+            this.$router.push({ path: "taskSystems/project" });
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });

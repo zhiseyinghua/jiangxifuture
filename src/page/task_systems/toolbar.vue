@@ -102,13 +102,13 @@
         </v-list-item>
       </v-list>
     </v-menu> -->
-    <v-btn text v-bind="attrs" v-on="on">
+    <v-btn text >
       <v-avatar size="30">
-                <img
-                  alt="user"
-                  src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3723801689,3918778516&fm=26&gp=0.jpg"
-                />
-              </v-avatar>
+        <img
+          alt="user"
+          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3723801689,3918778516&fm=26&gp=0.jpg"
+        />
+      </v-avatar>
     </v-btn>
   </v-app-bar>
 </template>

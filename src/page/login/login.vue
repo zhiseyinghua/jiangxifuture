@@ -2,9 +2,9 @@
   <v-row class="my-16">
     <v-col cols="10" md="4" offset="1" sm="8" offset-sm="2" offset-md="4">
       <v-card shaped>
-        <v-btn @click="testjoin">test填写</v-btn>
+        <!-- <v-btn @click="testjoin">test填写</v-btn>
         <v-btn @click="passwordlogin">登录</v-btn>
-        <v-btn @click="sendSMSTime">发送短信</v-btn>
+        <v-btn @click="sendSMSTime">发送短信</v-btn> -->
         <v-row no-gutters>
           <v-col cols="8" offset="2">
             <v-toolbar flat> </v-toolbar>
@@ -65,14 +65,14 @@
                         >
                           登录
                         </v-btn>
-                        <v-row class="caption">
-                          <a
+                        <v-row  class="mt-3">
+                          <!-- <a
                             target="_blank"
                             href="http://vuetifyjs.com"
                             @click.stop
                           >
-                            忘记密码？
-                          </a>
+                            立即注册？
+                          </a> -->
                           <v-spacer></v-spacer>
                           <a
                             target="_blank"
@@ -143,7 +143,7 @@
                         >
                           登录
                         </v-btn>
-                        <v-row class="caption">
+                        <v-row class="mt-3">
                           <v-spacer></v-spacer>
                           <a
                             target="_blank"
@@ -242,6 +242,7 @@ export default {
       });
       loginServe.userLogin(this.password, this.moblie).subscribe(
         (data) => {
+          this.$router.push({ path: "taskSystems/project" });
           if (data.status && data.status == "success") {
             Bus.$emit("snackbar", {
               text: "登录成功",
@@ -373,8 +374,10 @@ export default {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
-            // console.log("login.vue sMSLogin data", data);
+            
+            
             if (data.status && data.status == "success") {
+              console.log("login.vue sMSLogin data", data);
               Bus.$emit("snackbar", {
                 text: "登录成功",
                 color: "green",
@@ -382,6 +385,8 @@ export default {
                 errorsnackbar: true,
                 top: true,
               });
+
+              this.$router.push({ path: "taskSystems/project" });
               // authServies.logintest(data.data.idtoken);
             } else if (data.code && data.code == "000001") {
               Bus.$emit("snackbar", {
@@ -435,3 +440,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <overlay style="z-index:500"></overlay>
-    <tabbar v-if="$store.state.isShow"></tabbar>
+    <tabbar></tabbar>
     <slidebar></slidebar>
     <v-main>
       <router-view></router-view>
@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import tabbar from "@/components/tabbar";
+// import tabbar from "@/components/tabbar";
+import tabbar from "@/page/task_systems/toolbar"
 import slidebar from "@/components/slidebar";
 import foot from "@/components/foot";
 import overlay from "@/components/overlay";
