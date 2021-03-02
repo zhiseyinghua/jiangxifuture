@@ -8,16 +8,19 @@ import { UserConfig } from "./user.config";
 export default class UserServe {
   static getUserInformation(key: CommonInterfaceElact): Observable<any> {
     // console.log(key);
-    return AxiosElasticService.AxiosService(
-      "post",
-      "user/searchbyuserid",
-      key
-    ).pipe(
-      map((data) => {
-        return data['data']
-        console.log(data);
-      })
-    );
+    // return AxiosElasticService.AxiosService(
+    //   "post",
+    //   "user/searchbyuserid",
+    //   key
+    // ).pipe(
+    //   map((data) => {
+    //     return data['data']
+    //     console.log(data);
+    //   })
+    // );
+    return of({
+      usernickname:"管理员用户"
+    })
   }
 }
 // <v-btn v-on:click="getuserdata"> get user data</v-btn>
