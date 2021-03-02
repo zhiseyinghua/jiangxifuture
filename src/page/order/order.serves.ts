@@ -192,21 +192,24 @@ export default class OrderServe {
    * @param from
    * @param size
    */
-  public static byOrderEndTimeOrder(
-    from: string,
-    size: string
+  public static byOrderTimeOrder(
+    timeWhich: string,
+    maxtime: Number,
+    mintime: Number
   ): Observable<any> {
     return AxiosElasticService.AxiosService(
       "POST",
-      OrderConfig.zone + "/" + "order_end_time_order",
+      OrderConfig.zone + "/" + "order_time_order",
       {
-        from: from,
-        size: size,
+        timeWhich: "orderstartTime",
+        maxtime: 1712281609000,
+        mintime: 0,
       }
     ).pipe(
       map((data) => {
         return data["data"];
-      })
+      }),
+      delay(1000)
     );
   }
 
@@ -221,6 +224,4 @@ export default class OrderServe {
       return null;
     }
   }
-
-  public static 
 }

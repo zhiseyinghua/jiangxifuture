@@ -8,7 +8,7 @@
               :to="{ path: '/order' }"
               class="primary darken-1 white--text mr-10"
             >
-              +0
+              创建任务
             </v-btn>
             <div
               class="mr-10"
@@ -84,6 +84,7 @@
       <br />
       <div class="text-center">
         <v-pagination
+          :v-show="isshowpagination"
           v-model="page"
           :length="pagination"
           :total-visible="7"
@@ -102,6 +103,8 @@ export default {
   components: { DatePicker },
   data() {
     return {
+      value1: null,
+      isshowpagination:true,
       lang: {
         formatLocale: {
           // MMMM
@@ -234,8 +237,15 @@ export default {
       this.ischoose = "";
     },
     handleRangeClose() {
-      // this.
-    }
+     this.order = [];
+      console.log(this.list)
+      console.log(this.value1);
+      orderServe
+        .byOrderTimeOrder("orderstartTime", 1712281609000, 0)
+        .subscribe((data) => {
+          this.order = data;
+        });
+    },
   },
 };
 </script>
