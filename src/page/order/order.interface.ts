@@ -3,6 +3,8 @@ import { CommonInterfaceElact } from "@/common/common.interface";
 
 
 export interface OrderInterface extends CommonInterfaceElact {
+  // 任务名字
+  ordername:string
   // 地点
   localPlace: OrderlocalPlaceInterface;
   // 任务结束时间

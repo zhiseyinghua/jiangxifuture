@@ -151,7 +151,7 @@ export default {
     // 加入聊天室
     enGroupfun() {
       console.log("加入聊天室方法", this);
-      this.JIM.enterChatroom({ 'id': 46768436 })
+      this.JIM.enterChatroom({ id: 46768436 })
         .onSuccess(function(data) {
           console.log("加入聊天室成功，持续抓取信息中...");
           onRoomMsg();

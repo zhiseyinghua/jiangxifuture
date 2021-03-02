@@ -28,14 +28,6 @@ export default class OrderServe {
         return data["data"];
       })
     );
-    // console.log("dfddddddddddddddddddddd",choose, time)
-    // return of(time).pipe(
-    //   map((data) => {
-    //     console.log("data", choose);
-    //     return data;
-    //   }),
-    //   delay(500)
-    // );
   }
 
   public static qingchuendtime(
@@ -52,14 +44,6 @@ export default class OrderServe {
         return data["data"];
       })
     );
-    // console.log("dfddddddddddddddddddddd",choose, time)
-    // return of(time).pipe(
-    //   map((data) => {
-    //     console.log("data", choose);
-    //     return data;
-    //   }),
-    //   delay(500)
-    // );
   }
 
   /**
@@ -201,14 +185,19 @@ export default class OrderServe {
       OrderConfig.zone + "/" + "order_end_time_order",
       {
         from: from,
-        size: size
+        size: size,
       }
     ).pipe(
       map((data) => {
-        return data["data"];
+        let newData = data["data"];
+        newData.list.forEach((element: any) => {
+          // @ts-ignore
+          element.type = OrderConfig.orderType[element.type];
+          element.orderstartTime = moment(element.orderstartTime).format("LLL");
+        });
+        return newData;
       })
     );
-    
   }
 
   public static checkouttime(params: any) {
@@ -219,29 +208,35 @@ export default class OrderServe {
     }
   }
 
-   /**
+  /**
    * 根据OrderEndTime获取order
    * @param from
    * @param size
    */
   public static byOrderTimeOrder(
     timeWhich: string,
-    maxtime: Number,
-    mintime: Number
+    mintime: Number,
+    maxtime: Number
+    
   ): Observable<any> {
     return AxiosElasticService.AxiosService(
       "POST",
       OrderConfig.zone + "/" + "order_time_order",
       {
-        timeWhich: "orderstartTime",
-        maxtime: 1712281609000,
-        mintime: 0,
+        timeWhich: timeWhich,
+        mintime: mintime,
+        maxtime: maxtime,
       }
     ).pipe(
       map((data) => {
-        return data["data"];
-      }),
-      delay(1000)
+        let newData = data["data"];
+        newData.forEach((element: any) => {
+          // @ts-ignore
+          element.type = OrderConfig.orderType[element.type];
+          element.orderstartTime = moment(element.orderstartTime).format("LLL");
+        });
+        return newData;
+      })
     );
   }
 }

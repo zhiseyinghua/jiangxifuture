@@ -35,9 +35,29 @@
                 </date-picker>
               </section>
             </div>
+            <div class="fabC">
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    @click="createEx"
+                    color="primary"
+                    fab
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <v-icon>
+                      arrow_circle_down
+                    </v-icon>
+                  </v-btn>
+                </template>
+                <span>将当前页面的任务生成表格</span>
+              </v-tooltip>
+            </div>
           </v-col>
         </v-row>
       </v-sheet>
+      <div v-if="order.length != 0"></div>
+      <div v-else justify="center" align="center">没有找到任务</div>
       <v-row>
         <v-col v-for="(item, index) in order" :key="index" cols="12" md="4">
           <v-card>
@@ -95,6 +115,8 @@
   </div>
 </template>
 <script>
+var XLSX = require("xlsx");
+var FileSaver = require("file-saver");
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import orderServe from "@/page/order/order.serves";
@@ -102,6 +124,51 @@ export default {
   components: { DatePicker },
   data() {
     return {
+      //  用于生成ex的模板数据
+      jsonData: [
+        {
+          序列: 1,
+          任务名称: 1,
+          任务地点: 2,
+          任务结束时间: 3,
+          任务开始时间: 4,
+          任务类型: 5,
+          预估时间: 6,
+          面积: 7,
+          实际派发时间: 8,
+          技术员实际完成时间: 9,
+          外业完成时间: 10,
+          内业完成时间: 11,
+          合同完成时间: 12,
+          金额到账时间: 13,
+          预估费用: 14,
+          实际费用: 15,
+          甲方电话: 16,
+          甲方邮箱: 17,
+          甲方名字: 18,
+        },
+      ],
+      header: [
+        "序列",
+        "任务名称",
+        "任务地点",
+        "任务结束时间",
+        "任务开始时间",
+        "任务类型",
+        "预估时间",
+        "面积",
+        "实际派发时间",
+        "技术员实际完成时间",
+        "外业完成时间",
+        "内业完成时间",
+        "合同完成时间",
+        "金额到账时间",
+        "预估费用",
+        "实际费用",
+        "甲方电话",
+        "甲方邮箱",
+        "甲方名字",
+      ],
       value1: null,
       isshowpagination: true,
       lang: {
@@ -172,6 +239,7 @@ export default {
           .getfigure(this.page * 12 - 12 + "", "12")
           .subscribe((data) => {
             this.order = data.list;
+
             // console.log(data);
           });
       } else {
@@ -192,7 +260,7 @@ export default {
   },
   methods: {
     changeRoute(val) {
-      this.isshowpagination = true
+      this.isshowpagination = true;
       this.order = [];
       console.log(val);
       if (val == "全部") {
@@ -245,19 +313,31 @@ export default {
       this.order = [];
       console.log(this.list);
       console.log(this.value1);
-
       orderServe
-        .byOrderTimeOrder("orderstartTime", 1712281609000, 0)
+        .byOrderTimeOrder(
+          "orderstartTime",
+          this.value1[0].valueOf(),
+          this.value1[1].valueOf()
+        )
         .subscribe((data) => {
           console.log(data);
+          console.log(data.length);
           this.order = data;
         });
     },
+    createEx() {
+      var ws = XLSX.utils.json_to_sheet(this.jsonData, { header: this.header });
+      console.log(ws);
+      var wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "People");
+      XLSX.writeFile(wb, "sheetjs.xlsx");
+ 
+    }
   },
 };
 </script>
 
-<style>
+<style scoped>
 /* .mx-datepicker-popup {
   margin-top: 300px;
   margin-left: 40%;
@@ -265,4 +345,10 @@ export default {
 /* .mx-datepicker {
   display: none;
 } */
+.fabC {
+  position: fixed;
+  z-index: 1;
+  right: 90px;
+  top: 100px;
+}
 </style>
