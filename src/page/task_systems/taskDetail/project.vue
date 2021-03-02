@@ -236,6 +236,9 @@ export default {
         });
       this.ischoose = "";
     },
+    /**
+     * 获取选取的表单的order
+     */
     handleRangeClose() {
      this.order = [];
       console.log(this.list)
