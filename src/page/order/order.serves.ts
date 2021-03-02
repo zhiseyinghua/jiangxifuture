@@ -192,6 +192,37 @@ export default class OrderServe {
    * @param from
    * @param size
    */
+  public static byOrderEndTimeOrder(
+    from: string,
+    size: string
+  ): Observable<any> {
+    return AxiosElasticService.AxiosService(
+      "POST",
+      OrderConfig.zone + "/" + "order_end_time_order",
+      {
+        from: from,
+        size: size,
+      }
+    ).pipe(
+      map((data) => {
+        return data["data"];
+      })
+    );
+  }
+
+  public static checkouttime(params: any) {
+    if (params && params != null && params != "null") {
+      return moment(params.completionTime).format("LLL");
+    } else {
+      return null;
+    }
+  }
+
+   /**
+   * 根据OrderEndTime获取order
+   * @param from
+   * @param size
+   */
   public static byOrderTimeOrder(
     timeWhich: string,
     maxtime: Number,
@@ -211,17 +242,5 @@ export default class OrderServe {
       }),
       delay(1000)
     );
-  }
-
-  /**
-   *
-   * @param params
-   */
-  public static checkouttime(params: any) {
-    if (params && params != null && params != "null") {
-      return moment(params.completionTime).format("LLL");
-    } else {
-      return null;
-    }
   }
 }

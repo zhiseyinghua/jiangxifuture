@@ -82,9 +82,8 @@
       <br />
       <br />
       <br />
-      <div class="text-center">
+      <div v-show="isshowpagination" class="text-center">
         <v-pagination
-          :v-show="isshowpagination"
           v-model="page"
           :length="pagination"
           :total-visible="7"
@@ -104,7 +103,7 @@ export default {
   data() {
     return {
       value1: null,
-      isshowpagination:true,
+      isshowpagination: true,
       lang: {
         formatLocale: {
           // MMMM
@@ -193,6 +192,7 @@ export default {
   },
   methods: {
     changeRoute(val) {
+      this.isshowpagination = true
       this.order = [];
       console.log(val);
       if (val == "全部") {
@@ -217,6 +217,7 @@ export default {
     },
     // 获取全部表单
     getallfigure() {
+      this.isshowpagination = true;
       console.log("获取全部表单");
       orderServe.getfigure(this.page - 1 + "", "12").subscribe((data) => {
         this.order = data.list;
@@ -240,12 +241,15 @@ export default {
      * 获取选取的表单的order
      */
     handleRangeClose() {
-     this.order = [];
-      console.log(this.list)
+      this.isshowpagination = false;
+      this.order = [];
+      console.log(this.list);
       console.log(this.value1);
+
       orderServe
         .byOrderTimeOrder("orderstartTime", 1712281609000, 0)
         .subscribe((data) => {
+          console.log(data);
           this.order = data;
         });
     },
