@@ -326,7 +326,8 @@ export default {
         });
     },
     createEx() {
-      var ws = XLSX.utils.json_to_sheet(this.jsonData, { header: this.header });
+      let data =  orderServe.createExcel(this.order)
+      var ws = XLSX.utils.json_to_sheet(data, { header: this.header });
       console.log(ws);
       var wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "People");
