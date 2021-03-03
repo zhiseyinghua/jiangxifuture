@@ -39,14 +39,14 @@ const router = new Router({
     //   path:"*",
     //   redirect:'/home'
     // },
-    {
-      path: "/",
-      redirect: "/taskSystems/project",
-    },
-    {
-      path: "*",
-      redirect: "/taskSystems/project",
-    },
+    // {
+    //   path: "/",
+    //   redirect: "/taskSystems/project",
+    // },
+    // {
+    //   path: "*",
+    //   redirect: "/taskSystems/project",
+    // },
   ],
 });
 

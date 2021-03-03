@@ -38,6 +38,7 @@ export class AxiosElasticService {
       },
       params,
     };
+    // console.log(HttpHost.localHost,urlstr)
     // console.log(
     //   "DbElasticService " + "executeInEs axiosData" + JSON.stringify(axiosData)
     // );
@@ -68,7 +69,7 @@ export class AxiosElasticService {
     //     "/" +
     //     HttpHost.check_url_with_token.bytokengettoken
     // );
-  
+
     //
     if (
       (url &&
@@ -96,15 +97,29 @@ export class AxiosElasticService {
   public static checkrouterlogin(routerPath: string): boolean {
     //@ts-nocheck
     // console.log(store.state.login.idtoken);
+    console.log(routerPath)
     let _stoken = localStorage.getItem("token");
-    let checkoutPath = ["/news", "/home"];
+    // 是否跳转转，checkout里的path不跳转
+    let checkoutPath = [ "/auth"];
+    console.log(AxiosElasticService.checkIndexOf(checkoutPath.indexOf(routerPath)));
+    console.log((_stoken != null || _stoken != "" || _stoken != undefined));
+    console.log(AxiosElasticService.checkIndexOf(checkoutPath.indexOf(routerPath)) || (_stoken != null && _stoken != "" && _stoken != undefined));
     if (
-      checkoutPath.indexOf(routerPath) &&
-      (_stoken == null || _stoken == "")
-    ) {
-      return true;
-    } else {
+      AxiosElasticService.checkIndexOf(checkoutPath.indexOf(routerPath)) || (_stoken != null && _stoken != "" && _stoken != undefined))
+     {
+      console.log("1111111111111111111111111111111111111111111111111111");
       return false;
+    } else {
+      console.log("22222222222222222222222222222222222222222222222222222");
+      return true;
+    }
+  }
+
+  public static checkIndexOf(data:Number): boolean {
+    if(data<0) {
+      return false
+    } else {
+      return true
     }
   }
 }

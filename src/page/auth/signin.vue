@@ -67,21 +67,21 @@
                   </v-btn>
                 </v-col>
               </v-row>
-              <v-checkbox
+              <!-- <v-checkbox
                 class="ma-0 pa-0"
                 color="info"
                 :rules="[rules.required]"
                 v-model="checkbox"
-              >
-                <template v-slot:label>
+              > -->
+                <!-- <template v-slot:label>
                   <div class="caption">
                     我同意
                     <a target="_blank" href="http://vuetifyjs.com" @click.stop>
                       《注册协议》
                     </a>
                   </div>
-                </template>
-              </v-checkbox>
+                </template> -->
+              <!-- </v-checkbox> -->
               <v-btn
                 block
                 class="rounded-pill"
@@ -94,7 +94,7 @@
               </v-btn>
               <div class="text-center caption">
                 已有账号？
-                <a target="_blank" href="http://vuetifyjs.com" @click.stop>
+                <a target="_blank" @click="toauth()" @click.stop>
                   直接登录
                 </a>
               </div>
@@ -147,6 +147,9 @@ export default {
     };
   },
   methods: {
+    toauth() {
+      this.$router.push({path:"/login"})
+    },
     // storeButton() {
     //   authServies
     //     .logintest('d1s2d123a1ds23a1d231321564165sdad41sad41as5d41as65d4as5d4as54ds5a4d5sa').subscribe((

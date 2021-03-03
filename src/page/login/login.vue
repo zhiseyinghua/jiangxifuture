@@ -65,7 +65,7 @@
                         >
                           登录
                         </v-btn>
-                        <v-row  class="mt-3">
+                        <v-row class="mt-3">
                           <!-- <a
                             target="_blank"
                             href="http://vuetifyjs.com"
@@ -76,8 +76,7 @@
                           <v-spacer></v-spacer>
                           <a
                             target="_blank"
-                            href="http://vuetifyjs.com"
-                            @click.stop
+                            @click="zhuce"
                           >
                             立即注册
                           </a>
@@ -147,8 +146,7 @@
                           <v-spacer></v-spacer>
                           <a
                             target="_blank"
-                            href="http://vuetifyjs.com"
-                            @click.stop
+                            @click="zhuce"
                           >
                             立即注册
                           </a>
@@ -242,8 +240,8 @@ export default {
       });
       loginServe.userLogin(this.password, this.moblie).subscribe(
         (data) => {
-          this.$router.push({ path: "taskSystems/project" });
           if (data.status && data.status == "success") {
+            this.$router.push({ path: "taskSystems/project" });
             Bus.$emit("snackbar", {
               text: "登录成功",
               color: "green",
@@ -346,6 +344,9 @@ export default {
           };
         });
     },
+    zhuce() {
+      this.$router.push({path:"/auth"})
+    },
 
     sMSLogin() {
       if (!this.$refs.form.validate()) {
@@ -374,10 +375,10 @@ export default {
             Bus.$emit("overlayvalue", {
               overlayvalue: false,
             });
-            
-            
+
             if (data.status && data.status == "success") {
               console.log("login.vue sMSLogin data", data);
+              this.$router.push({ path: "taskSystems/project" });
               Bus.$emit("snackbar", {
                 text: "登录成功",
                 color: "green",
@@ -386,7 +387,6 @@ export default {
                 top: true,
               });
 
-              this.$router.push({ path: "taskSystems/project" });
               // authServies.logintest(data.data.idtoken);
             } else if (data.code && data.code == "000001") {
               Bus.$emit("snackbar", {
@@ -441,6 +441,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
