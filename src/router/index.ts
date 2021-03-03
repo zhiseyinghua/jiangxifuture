@@ -40,6 +40,10 @@ const router = new Router({
     //   redirect:'/home'
     // },
     {
+      path: "/",
+      redirect: "/taskSystems/project",
+    },
+    {
       path: "*",
       redirect: "/taskSystems/project",
     },
