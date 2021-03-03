@@ -18,7 +18,7 @@ export default class OrderServe {
     key: CommonInterfaceElact
   ): Observable<any> {
     console.log("1111111111111111111", time);
-    return AxiosElasticService.AxiosService("post", "/figure/one_message", {
+    return AxiosElasticService.AxiosService("post", "figure/one_message", {
       ...key,
       which: choose,
       value: time.valueOf(),
@@ -36,7 +36,7 @@ export default class OrderServe {
     time: number,
     key: CommonInterfaceElact
   ): Observable<any> {
-    return AxiosElasticService.AxiosService("post", "/figure/one_message", {
+    return AxiosElasticService.AxiosService("post", "figure/one_message", {
       ...key,
       which: choose,
       value: time,
@@ -153,7 +153,7 @@ export default class OrderServe {
   public static bykeygetorder(key: CommonInterfaceElact): Observable<any> {
     return AxiosElasticService.AxiosService(
       "post",
-      "/figure/by_key_getfigure",
+      "figure/by_key_getfigure",
       key
     ).pipe(
       map((data) => {
