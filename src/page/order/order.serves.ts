@@ -111,6 +111,12 @@ export default class OrderServe {
           element.estimatedTime = OrderServe.checkouttime(
             element.estimatedTime
           );
+          element.RecordTime = OrderServe.checkouttime(
+            element.RecordTime
+          );
+          element.CollectionTime = OrderServe.checkouttime(
+            element.CollectionTime
+          );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
         });
@@ -185,6 +191,12 @@ export default class OrderServe {
         data.data.estimatedTime = OrderServe.checkouttime(
           data.data.estimatedTime
         );
+        data.data.RecordTime = OrderServe.checkouttime(
+            data.data.RecordTime
+          );
+        data.data.CollectionTime = OrderServe.checkouttime(
+            data.data.CollectionTime
+          );
         // @ts-ignore
         data.data.type = OrderConfig.orderType[data.data.type];
         return data["data"];
@@ -243,6 +255,12 @@ export default class OrderServe {
           );
           element.estimatedTime = OrderServe.checkouttime(
             element.estimatedTime
+          );
+          element.RecordTime = OrderServe.checkouttime(
+            element.RecordTime
+          );
+          element.CollectionTime = OrderServe.checkouttime(
+            element.CollectionTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -309,6 +327,12 @@ export default class OrderServe {
           element.estimatedTime = OrderServe.checkouttime(
             element.estimatedTime
           );
+          element.RecordTime = OrderServe.checkouttime(
+            element.RecordTime
+          );
+          element.CollectionTime = OrderServe.checkouttime(
+            element.CollectionTime
+          );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
         });
@@ -339,6 +363,8 @@ export default class OrderServe {
         内业完成时间: ele.insidePagesFinish,
         合同完成时间: ele.contractCompleted,
         金额到账时间: ele.timeReceiptAmount,
+        收款完成时间:ele.collectionTime,
+        备案完成时间:ele.recordTime,
         "预估费用(单位元)": ele.estimatedMoney ,
         "实际费用(单位元)": ele.realMoney ,
         甲方电话: ele.ONEinformation.phone,

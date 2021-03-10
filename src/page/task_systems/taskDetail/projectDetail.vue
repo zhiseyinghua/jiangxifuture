@@ -346,6 +346,48 @@
                         </template>
                       </v-text-field>
                     </div>
+
+                     <div class="">收款完成时间 ：</div>
+                    <!-- collectiontime -->
+
+                    <div>
+                      <v-text-field
+                        filled
+                        rounded
+                        dense
+                        readonly
+                        v-model="collectionTime"
+                      >
+                        <template v-slot:append-outer>
+                          <v-slide-x-reverse-transition mode="out-in">
+                            <v-icon @click="changeCollectionTime"
+                              >date_range</v-icon
+                            >
+                          </v-slide-x-reverse-transition>
+                        </template>
+                      </v-text-field>
+                    </div>
+
+                     <div class="">备案完成时间 ：</div>
+                    <!-- recordtime -->
+
+                    <div>
+                      <v-text-field
+                        filled
+                        rounded
+                        dense
+                        readonly
+                        v-model="recordTime"
+                      >
+                        <template v-slot:append-outer>
+                          <v-slide-x-reverse-transition mode="out-in">
+                            <v-icon @click="changeRecordTime"
+                              >date_range</v-icon
+                            >
+                          </v-slide-x-reverse-transition>
+                        </template>
+                      </v-text-field>
+                    </div>
                   </v-card-text>
                   <v-divider></v-divider>
                   <v-card-actions>
@@ -577,6 +619,10 @@ export default {
     orderstartTime: null,
     // 任务结束时间
     orderendTime: null,
+    //收款完成时间
+    collectionTime:null,
+    //备案完成时间
+    recordTime:null,
     hasSaved: false,
     model: null,
     // states: [
@@ -672,6 +718,8 @@ export default {
         this.estimatedMoney = data.estimatedMoney;
         this.realMoney = data.realMoney;
         this.estimatedTime = data.estimatedTime;
+        this.collectionTime=data.collectionTime;
+        this.recordTime=data.recordTime;
         this.ONEinformation = data.ONEinformation;
         lazyAMapApiLoaderInstance.load().then(() => {
           this.map = new AMap.Map("amap-cointainer", {
@@ -799,6 +847,16 @@ export default {
       console.log("changeTimeReceiptAmount");
       this.dialog = true;
       this.timeselect = "timeReceiptAmount";
+    },
+     changeCollectionTime() {
+      console.log("changeCollectionTime");
+      this.dialog = true;
+      this.timeselect = "collectionTime";
+    },
+     changeRecordTime() {
+      console.log("changeRecordTime");
+      this.dialog = true;
+      this.timeselect = "recordTime";
     },
     // 更新甲方信息
     updataOneInformation() {
