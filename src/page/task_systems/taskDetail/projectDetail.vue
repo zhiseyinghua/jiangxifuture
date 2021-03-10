@@ -327,6 +327,24 @@
                       </v-text-field>
                     </div>
 
+                    <div class="">任务完成时间 ：</div>
+                    <div>
+                      <v-text-field
+                        filled
+                        rounded
+                        dense
+                        readonly
+                        v-model="endTime"
+                      >
+                        <template v-slot:append-outer>
+                          <v-slide-x-reverse-transition mode="out-in">
+                            <v-icon @click="changeEndTime()"
+                              >date_range</v-icon
+                            >
+                          </v-slide-x-reverse-transition>
+                        </template>
+                      </v-text-field>
+                    </div>
                     <div class="">金额到账时间 ：</div>
                     <!-- timeReceiptAmount -->
                     <div>
@@ -623,6 +641,7 @@ export default {
     collectionTime:null,
     //备案完成时间
     recordTime:null,
+    endTime:null,
     hasSaved: false,
     model: null,
     // states: [
@@ -720,6 +739,7 @@ export default {
         this.estimatedTime = data.estimatedTime;
         this.collectionTime=data.collectionTime;
         this.recordTime=data.recordTime;
+        this.endTime=data.endTime;
         this.ONEinformation = data.ONEinformation;
         lazyAMapApiLoaderInstance.load().then(() => {
           this.map = new AMap.Map("amap-cointainer", {
@@ -857,6 +877,11 @@ export default {
       console.log("changeRecordTime");
       this.dialog = true;
       this.timeselect = "recordTime";
+    },
+     changeEndTime() {
+      console.log("changeEndTime");
+      this.dialog = true;
+      this.timeselect = "endTime";
     },
     // 更新甲方信息
     updataOneInformation() {

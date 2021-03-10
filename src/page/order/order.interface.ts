@@ -35,9 +35,11 @@ export interface OrderInterface extends CommonInterfaceElact {
     // 金额到账时间
     timeReceiptAmount: Number;
     //备案时间
-    RecordTime?: Number;
+    recordTime?: Number;
     //收款时间
-    CollectionTime: Number;
+    collectionTime: Number;
+    //实际任务结束时间
+    endTime:Number;
     // 预估费用
     estimatedMoney: string;
     // 实际费用

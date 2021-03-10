@@ -111,11 +111,14 @@ export default class OrderServe {
           element.estimatedTime = OrderServe.checkouttime(
             element.estimatedTime
           );
-          element.RecordTime = OrderServe.checkouttime(
-            element.RecordTime
+          element.recordTime = OrderServe.checkouttime(
+            element.recordTime
           );
-          element.CollectionTime = OrderServe.checkouttime(
-            element.CollectionTime
+          element.collectionTime = OrderServe.checkouttime(
+            element.collectionTime
+          );
+          element.endTime = OrderServe.checkouttime(
+            element.endTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -191,11 +194,14 @@ export default class OrderServe {
         data.data.estimatedTime = OrderServe.checkouttime(
           data.data.estimatedTime
         );
-        data.data.RecordTime = OrderServe.checkouttime(
-            data.data.RecordTime
+        data.data.recordTime = OrderServe.checkouttime(
+            data.data.recordTime
           );
-        data.data.CollectionTime = OrderServe.checkouttime(
-            data.data.CollectionTime
+          data.data.collectionTime = OrderServe.checkouttime(
+            data.data.collectionTime
+          );
+          data.data.endTime = OrderServe.checkouttime(
+            data.data.endTime
           );
         // @ts-ignore
         data.data.type = OrderConfig.orderType[data.data.type];
@@ -256,11 +262,14 @@ export default class OrderServe {
           element.estimatedTime = OrderServe.checkouttime(
             element.estimatedTime
           );
-          element.RecordTime = OrderServe.checkouttime(
-            element.RecordTime
+          element.recordTime = OrderServe.checkouttime(
+            element.recordTime
           );
-          element.CollectionTime = OrderServe.checkouttime(
-            element.CollectionTime
+          element.collectionTime = OrderServe.checkouttime(
+            element.collectionTime
+          );
+          element.endTime = OrderServe.checkouttime(
+            element.endTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -327,11 +336,14 @@ export default class OrderServe {
           element.estimatedTime = OrderServe.checkouttime(
             element.estimatedTime
           );
-          element.RecordTime = OrderServe.checkouttime(
-            element.RecordTime
+          element.recordTime = OrderServe.checkouttime(
+            element.recordTime
           );
-          element.CollectionTime = OrderServe.checkouttime(
-            element.CollectionTime
+          element.collectionTime = OrderServe.checkouttime(
+            element.collectionTime
+          );
+          element.endTime = OrderServe.checkouttime(
+            element.endTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -365,6 +377,7 @@ export default class OrderServe {
         金额到账时间: ele.timeReceiptAmount,
         收款完成时间:ele.collectionTime,
         备案完成时间:ele.recordTime,
+        实际任务结束时间:ele.endTime,
         "预估费用(单位元)": ele.estimatedMoney ,
         "实际费用(单位元)": ele.realMoney ,
         甲方电话: ele.ONEinformation.phone,
