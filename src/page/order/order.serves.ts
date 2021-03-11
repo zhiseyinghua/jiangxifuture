@@ -25,7 +25,7 @@ export default class OrderServe {
     }).pipe(
       map((data) => {
         console.log("11111111111111111111", data);
-        data.data.value = moment(data.data.value).format("LLL");
+        data.data.value = moment(data.data.value).format("LL");
         return data["data"];
       })
     );
@@ -281,7 +281,7 @@ export default class OrderServe {
 
   public static checkouttime(params: any) {
     if (params && params != null && params != "null") {
-      return moment(params.completionTime).format("LLL");
+      return moment(params.completionTime).format("LL");
     } else {
       return null;
     }
@@ -375,9 +375,9 @@ export default class OrderServe {
         内业完成时间: ele.insidePagesFinish,
         合同完成时间: ele.contractCompleted,
         金额到账时间: ele.timeReceiptAmount,
-        收款完成时间:ele.collectionTime,
-        备案完成时间:ele.recordTime,
-        实际任务结束时间:ele.endTime,
+        收款完成时间: ele.collectionTime,
+        备案完成时间: ele.recordTime,
+        实际任务结束时间: ele.endTime,
         "预估费用(单位元)": ele.estimatedMoney ,
         "实际费用(单位元)": ele.realMoney ,
         甲方电话: ele.ONEinformation.phone,

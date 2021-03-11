@@ -433,7 +433,7 @@
     <!-- 修改时间参数 通用 -->
     <v-dialog width="250" v-model="dialog">
       <date-picker
-        type="datetime"
+        type="date"
         :open="pickerdialog"
         :lang="lang"
         v-model="pickertime"
@@ -788,7 +788,7 @@ export default {
             this.lodingbutton = false;
             this.dialog = false;
             console.log("data", data, this.timeselect);
-            this[this.timeselect] = data.value;
+            this[this.timeselect] = data.value
             // this[this.timeselect] = moment(data).format("ll");
           },
           (err) => {
