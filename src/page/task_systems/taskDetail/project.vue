@@ -318,7 +318,7 @@ export default {
   },
   methods: {
      deleorder() {
-     var orderrange = this.$store.console
+     var orderrange=this.$store.s
      console.log(orderrange+'88888888888888888888888')
       this.dialog = false;
       axios({
