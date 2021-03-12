@@ -89,28 +89,28 @@ export default class OrderServe {
           element.orderstartTime = OrderServe.checkouttime(
             element.orderstartTime
           );
-          element.timeAfterDistribution = OrderServe.checkouttime(
-            element.timeAfterDistribution
-          );
-          element.technicianCompletionTime = OrderServe.checkouttime(
-            element.technicianCompletionTime
-          );
-          element.completionTime = OrderServe.checkouttime(
-            element.completionTime
-          );
-          element.insidePagesFinish = OrderServe.checkouttime(
-            element.insidePagesFinish
-          );
-          element.contractCompleted = OrderServe.checkouttime(
-            element.contractCompleted
-          );
+        //   element.timeAfterDistribution = OrderServe.checkouttime(
+        //     element.timeAfterDistribution
+        //   );
+        //   element.technicianCompletionTime = OrderServe.checkouttime(
+        //     element.technicianCompletionTime
+        //   );
+        //   element.completionTime = OrderServe.checkouttime(
+        //     element.completionTime
+        //   );
+        //   element.insidePagesFinish = OrderServe.checkouttime(
+        //     element.insidePagesFinish
+        //   );
+        //   element.contractCompleted = OrderServe.checkouttime(
+        //     element.contractCompleted
+        //   );
           //
           element.timeReceiptAmount = OrderServe.checkouttime(
             element.timeReceiptAmount
           );
-          element.estimatedTime = OrderServe.checkouttime(
-            element.estimatedTime
-          );
+        //   element.estimatedTime = OrderServe.checkouttime(
+        //     element.estimatedTime
+        //   );
           element.recordTime = OrderServe.checkouttime(
             element.recordTime
           );
@@ -172,28 +172,28 @@ export default class OrderServe {
         data.data.orderstartTime = OrderServe.checkouttime(
           data.data.orderstartTime
         );
-        data.data.timeAfterDistribution = OrderServe.checkouttime(
-          data.data.timeAfterDistribution
-        );
-        data.data.technicianCompletionTime = OrderServe.checkouttime(
-          data.data.technicianCompletionTime
-        );
-        data.data.completionTime = OrderServe.checkouttime(
-          data.data.completionTime
-        );
-        data.data.insidePagesFinish = OrderServe.checkouttime(
-          data.data.insidePagesFinish
-        );
-        data.data.contractCompleted = OrderServe.checkouttime(
-          data.data.contractCompleted
-        );
+        // data.data.timeAfterDistribution = OrderServe.checkouttime(
+        //   data.data.timeAfterDistribution
+        // );
+        // data.data.technicianCompletionTime = OrderServe.checkouttime(
+        //   data.data.technicianCompletionTime
+        // );
+        // data.data.completionTime = OrderServe.checkouttime(
+        //   data.data.completionTime
+        // );
+        // data.data.insidePagesFinish = OrderServe.checkouttime(
+        //   data.data.insidePagesFinish
+        // );
+        // data.data.contractCompleted = OrderServe.checkouttime(
+        //   data.data.contractCompleted
+        // );
         //
         data.data.timeReceiptAmount = OrderServe.checkouttime(
           data.data.timeReceiptAmount
         );
-        data.data.estimatedTime = OrderServe.checkouttime(
-          data.data.estimatedTime
-        );
+        // data.data.estimatedTime = OrderServe.checkouttime(
+        //   data.data.estimatedTime
+        // );
         data.data.recordTime = OrderServe.checkouttime(
             data.data.recordTime
           );
@@ -240,28 +240,28 @@ export default class OrderServe {
           element.orderstartTime = OrderServe.checkouttime(
             element.orderstartTime
           );
-          element.timeAfterDistribution = OrderServe.checkouttime(
-            element.timeAfterDistribution
-          );
-          element.technicianCompletionTime = OrderServe.checkouttime(
-            element.technicianCompletionTime
-          );
-          element.completionTime = OrderServe.checkouttime(
-            element.completionTime
-          );
-          element.insidePagesFinish = OrderServe.checkouttime(
-            element.insidePagesFinish
-          );
-          element.contractCompleted = OrderServe.checkouttime(
-            element.contractCompleted
-          );
+        //   element.timeAfterDistribution = OrderServe.checkouttime(
+        //     element.timeAfterDistribution
+        //   );
+        //   element.technicianCompletionTime = OrderServe.checkouttime(
+        //     element.technicianCompletionTime
+        //   );
+        //   element.completionTime = OrderServe.checkouttime(
+        //     element.completionTime
+        //   );
+        //   element.insidePagesFinish = OrderServe.checkouttime(
+        //     element.insidePagesFinish
+        //   );
+        //   element.contractCompleted = OrderServe.checkouttime(
+        //     element.contractCompleted
+        //   );
           //
           element.timeReceiptAmount = OrderServe.checkouttime(
             element.timeReceiptAmount
           );
-          element.estimatedTime = OrderServe.checkouttime(
-            element.estimatedTime
-          );
+        //   element.estimatedTime = OrderServe.checkouttime(
+        //     element.estimatedTime
+        //   );
           element.recordTime = OrderServe.checkouttime(
             element.recordTime
           );
@@ -314,28 +314,28 @@ export default class OrderServe {
           element.orderstartTime = OrderServe.checkouttime(
             element.orderstartTime
           );
-          element.timeAfterDistribution = OrderServe.checkouttime(
-            element.timeAfterDistribution
-          );
-          element.technicianCompletionTime = OrderServe.checkouttime(
-            element.technicianCompletionTime
-          );
-          element.completionTime = OrderServe.checkouttime(
-            element.completionTime
-          );
-          element.insidePagesFinish = OrderServe.checkouttime(
-            element.insidePagesFinish
-          );
-          element.contractCompleted = OrderServe.checkouttime(
-            element.contractCompleted
-          );
+        //   element.timeAfterDistribution = OrderServe.checkouttime(
+        //     element.timeAfterDistribution
+        //   );
+        //   element.technicianCompletionTime = OrderServe.checkouttime(
+        //     element.technicianCompletionTime
+        //   );
+        //   element.completionTime = OrderServe.checkouttime(
+        //     element.completionTime
+        //   );
+        //   element.insidePagesFinish = OrderServe.checkouttime(
+        //     element.insidePagesFinish
+        //   );
+        //   element.contractCompleted = OrderServe.checkouttime(
+        //     element.contractCompleted
+        //   );
           //
           element.timeReceiptAmount = OrderServe.checkouttime(
             element.timeReceiptAmount
           );
-          element.estimatedTime = OrderServe.checkouttime(
-            element.estimatedTime
-          );
+        //   element.estimatedTime = OrderServe.checkouttime(
+        //     element.estimatedTime
+        //   );
           element.recordTime = OrderServe.checkouttime(
             element.recordTime
           );
@@ -367,13 +367,13 @@ export default class OrderServe {
         任务结束时间: ele.orderendTime,
         任务开始时间: ele.orderstartTime,
         任务类型: ele.type,
-        预估时间: ele.estimatedTime,
+        // 预估时间: ele.estimatedTime,
         "面积(单位平方米)": ele.area,
-        实际派发时间: ele.timeAfterDistribution,
-        技术员实际完成时间: ele.technicianCompletionTime,
-        外业完成时间: ele.completionTime,
-        内业完成时间: ele.insidePagesFinish,
-        合同完成时间: ele.contractCompleted,
+        // 实际派发时间: ele.timeAfterDistribution,
+        // 技术员实际完成时间: ele.technicianCompletionTime,
+        // 外业完成时间: ele.completionTime,
+        // 内业完成时间: ele.insidePagesFinish,
+        // 合同完成时间: ele.contractCompleted,
         金额到账时间: ele.timeReceiptAmount,
         收款完成时间: ele.collectionTime,
         备案完成时间: ele.recordTime,
