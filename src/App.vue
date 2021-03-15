@@ -4,7 +4,9 @@
     <tabbar></tabbar>
     <slidebar></slidebar>
     <v-main>
-      <router-view></router-view>
+       <div id="app">
+      <router-view v-if="isRouterAlive"></router-view>
+      </div>
     </v-main>
     <foot v-if="$store.state.isShow"></foot>
   </v-app>
@@ -20,9 +22,16 @@ import authServies from "@/page/auth/auth.servies";
 import Bus from "@/common/bus";
 
 export default {
+  name: 'app',
+   provide() { // 注册一个方法
+    return {
+      reload: this.reload
+    }
+  },
   data() {
     return {
       scrolled: false,
+       isRouterAlive: true
     };
   },
   created: function () {
@@ -62,6 +71,14 @@ export default {
     foot,
     overlay,
   },
+   methods: {
+    reload() {
+      this.isRouterAlive = false
+      this.$nextTick(function() {
+        this.isRouterAlive = true
+      })
+    }
+  }
 };
 </script>
 
