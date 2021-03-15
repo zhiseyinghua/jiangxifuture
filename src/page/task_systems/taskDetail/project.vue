@@ -114,6 +114,44 @@
             <v-card-text v-else> 面积： 未填写 </v-card-text> -->
             <v-card-text v-if="item.type"> 类型： {{ item.type }} </v-card-text>
             <v-card-text v-else> 类型： 未填写 </v-card-text>
+             <v-dialog
+                v-model="dialog"
+                persistent
+                max-width="290"
+                >
+             <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                text
+                 v-bind="attrs"
+                 v-on="on"
+                class="light-blue--text text--accent-4 my-2 float-end-2"
+                >删除</v-btn
+              >
+             </template>
+      <v-card>
+        <v-card-title class="headline">
+            确认删除
+        </v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            取消
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="deleorder"
+          >
+            确认
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
           </v-card>
         </v-col>
       </v-row>
@@ -138,10 +176,12 @@ var FileSaver = require("file-saver");
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import orderServe from "@/page/order/order.serves";
+import axios from "axios";
 export default {
   components: { DatePicker },
   data() {
     return {
+        dialog:false,
       //  用于生成ex的模板数据
       jsonData: [
         {
@@ -277,6 +317,23 @@ export default {
     this.getallfigure();
   },
   methods: {
+     deleorder() {
+     var orderrange=this.$store.s
+     console.log(orderrange+'88888888888888888888888')
+      this.dialog = false;
+      axios({
+        method: "post",
+        url: "api/figure/deleteorder",
+        data: {
+        "hash": "",
+        "range": "",
+        "index": ""
+        },
+      }).then((res) => {
+        console.log(res.data);
+      });
+    },
+
     changeRoute(val) {
       this.isshowpagination = true;
       this.order = [];

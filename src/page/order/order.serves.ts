@@ -25,7 +25,7 @@ export default class OrderServe {
     }).pipe(
       map((data) => {
         console.log("11111111111111111111", data);
-        data.data.value = moment(data.data.value).format("LLL");
+        data.data.value = moment(data.data.value).format("LL");
         return data["data"];
       })
     );
@@ -89,27 +89,36 @@ export default class OrderServe {
           element.orderstartTime = OrderServe.checkouttime(
             element.orderstartTime
           );
-          element.timeAfterDistribution = OrderServe.checkouttime(
-            element.timeAfterDistribution
-          );
-          element.technicianCompletionTime = OrderServe.checkouttime(
-            element.technicianCompletionTime
-          );
-          element.completionTime = OrderServe.checkouttime(
-            element.completionTime
-          );
-          element.insidePagesFinish = OrderServe.checkouttime(
-            element.insidePagesFinish
-          );
-          element.contractCompleted = OrderServe.checkouttime(
-            element.contractCompleted
-          );
+        //   element.timeAfterDistribution = OrderServe.checkouttime(
+        //     element.timeAfterDistribution
+        //   );
+        //   element.technicianCompletionTime = OrderServe.checkouttime(
+        //     element.technicianCompletionTime
+        //   );
+        //   element.completionTime = OrderServe.checkouttime(
+        //     element.completionTime
+        //   );
+        //   element.insidePagesFinish = OrderServe.checkouttime(
+        //     element.insidePagesFinish
+        //   );
+        //   element.contractCompleted = OrderServe.checkouttime(
+        //     element.contractCompleted
+        //   );
           //
           element.timeReceiptAmount = OrderServe.checkouttime(
             element.timeReceiptAmount
           );
-          element.estimatedTime = OrderServe.checkouttime(
-            element.estimatedTime
+        //   element.estimatedTime = OrderServe.checkouttime(
+        //     element.estimatedTime
+        //   );
+          element.recordTime = OrderServe.checkouttime(
+            element.recordTime
+          );
+          element.collectionTime = OrderServe.checkouttime(
+            element.collectionTime
+          );
+          element.endTime = OrderServe.checkouttime(
+            element.endTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -163,28 +172,37 @@ export default class OrderServe {
         data.data.orderstartTime = OrderServe.checkouttime(
           data.data.orderstartTime
         );
-        data.data.timeAfterDistribution = OrderServe.checkouttime(
-          data.data.timeAfterDistribution
-        );
-        data.data.technicianCompletionTime = OrderServe.checkouttime(
-          data.data.technicianCompletionTime
-        );
-        data.data.completionTime = OrderServe.checkouttime(
-          data.data.completionTime
-        );
-        data.data.insidePagesFinish = OrderServe.checkouttime(
-          data.data.insidePagesFinish
-        );
-        data.data.contractCompleted = OrderServe.checkouttime(
-          data.data.contractCompleted
-        );
+        // data.data.timeAfterDistribution = OrderServe.checkouttime(
+        //   data.data.timeAfterDistribution
+        // );
+        // data.data.technicianCompletionTime = OrderServe.checkouttime(
+        //   data.data.technicianCompletionTime
+        // );
+        // data.data.completionTime = OrderServe.checkouttime(
+        //   data.data.completionTime
+        // );
+        // data.data.insidePagesFinish = OrderServe.checkouttime(
+        //   data.data.insidePagesFinish
+        // );
+        // data.data.contractCompleted = OrderServe.checkouttime(
+        //   data.data.contractCompleted
+        // );
         //
         data.data.timeReceiptAmount = OrderServe.checkouttime(
           data.data.timeReceiptAmount
         );
-        data.data.estimatedTime = OrderServe.checkouttime(
-          data.data.estimatedTime
-        );
+        // data.data.estimatedTime = OrderServe.checkouttime(
+        //   data.data.estimatedTime
+        // );
+        data.data.recordTime = OrderServe.checkouttime(
+            data.data.recordTime
+          );
+          data.data.collectionTime = OrderServe.checkouttime(
+            data.data.collectionTime
+          );
+          data.data.endTime = OrderServe.checkouttime(
+            data.data.endTime
+          );
         // @ts-ignore
         data.data.type = OrderConfig.orderType[data.data.type];
         return data["data"];
@@ -222,27 +240,36 @@ export default class OrderServe {
           element.orderstartTime = OrderServe.checkouttime(
             element.orderstartTime
           );
-          element.timeAfterDistribution = OrderServe.checkouttime(
-            element.timeAfterDistribution
-          );
-          element.technicianCompletionTime = OrderServe.checkouttime(
-            element.technicianCompletionTime
-          );
-          element.completionTime = OrderServe.checkouttime(
-            element.completionTime
-          );
-          element.insidePagesFinish = OrderServe.checkouttime(
-            element.insidePagesFinish
-          );
-          element.contractCompleted = OrderServe.checkouttime(
-            element.contractCompleted
-          );
+        //   element.timeAfterDistribution = OrderServe.checkouttime(
+        //     element.timeAfterDistribution
+        //   );
+        //   element.technicianCompletionTime = OrderServe.checkouttime(
+        //     element.technicianCompletionTime
+        //   );
+        //   element.completionTime = OrderServe.checkouttime(
+        //     element.completionTime
+        //   );
+        //   element.insidePagesFinish = OrderServe.checkouttime(
+        //     element.insidePagesFinish
+        //   );
+        //   element.contractCompleted = OrderServe.checkouttime(
+        //     element.contractCompleted
+        //   );
           //
           element.timeReceiptAmount = OrderServe.checkouttime(
             element.timeReceiptAmount
           );
-          element.estimatedTime = OrderServe.checkouttime(
-            element.estimatedTime
+        //   element.estimatedTime = OrderServe.checkouttime(
+        //     element.estimatedTime
+        //   );
+          element.recordTime = OrderServe.checkouttime(
+            element.recordTime
+          );
+          element.collectionTime = OrderServe.checkouttime(
+            element.collectionTime
+          );
+          element.endTime = OrderServe.checkouttime(
+            element.endTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -254,7 +281,7 @@ export default class OrderServe {
 
   public static checkouttime(params: any) {
     if (params && params != null && params != "null") {
-      return moment(params.completionTime).format("LLL");
+      return moment(params.completionTime).format("LL");
     } else {
       return null;
     }
@@ -287,27 +314,36 @@ export default class OrderServe {
           element.orderstartTime = OrderServe.checkouttime(
             element.orderstartTime
           );
-          element.timeAfterDistribution = OrderServe.checkouttime(
-            element.timeAfterDistribution
-          );
-          element.technicianCompletionTime = OrderServe.checkouttime(
-            element.technicianCompletionTime
-          );
-          element.completionTime = OrderServe.checkouttime(
-            element.completionTime
-          );
-          element.insidePagesFinish = OrderServe.checkouttime(
-            element.insidePagesFinish
-          );
-          element.contractCompleted = OrderServe.checkouttime(
-            element.contractCompleted
-          );
+        //   element.timeAfterDistribution = OrderServe.checkouttime(
+        //     element.timeAfterDistribution
+        //   );
+        //   element.technicianCompletionTime = OrderServe.checkouttime(
+        //     element.technicianCompletionTime
+        //   );
+        //   element.completionTime = OrderServe.checkouttime(
+        //     element.completionTime
+        //   );
+        //   element.insidePagesFinish = OrderServe.checkouttime(
+        //     element.insidePagesFinish
+        //   );
+        //   element.contractCompleted = OrderServe.checkouttime(
+        //     element.contractCompleted
+        //   );
           //
           element.timeReceiptAmount = OrderServe.checkouttime(
             element.timeReceiptAmount
           );
-          element.estimatedTime = OrderServe.checkouttime(
-            element.estimatedTime
+        //   element.estimatedTime = OrderServe.checkouttime(
+        //     element.estimatedTime
+        //   );
+          element.recordTime = OrderServe.checkouttime(
+            element.recordTime
+          );
+          element.collectionTime = OrderServe.checkouttime(
+            element.collectionTime
+          );
+          element.endTime = OrderServe.checkouttime(
+            element.endTime
           );
           // @ts-ignore
           element.type = OrderConfig.orderType[element.type];
@@ -331,14 +367,17 @@ export default class OrderServe {
         任务结束时间: ele.orderendTime,
         任务开始时间: ele.orderstartTime,
         任务类型: ele.type,
-        预估时间: ele.estimatedTime,
+        // 预估时间: ele.estimatedTime,
         "面积(单位平方米)": ele.area,
-        实际派发时间: ele.timeAfterDistribution,
-        技术员实际完成时间: ele.technicianCompletionTime,
-        外业完成时间: ele.completionTime,
-        内业完成时间: ele.insidePagesFinish,
-        合同完成时间: ele.contractCompleted,
+        // 实际派发时间: ele.timeAfterDistribution,
+        // 技术员实际完成时间: ele.technicianCompletionTime,
+        // 外业完成时间: ele.completionTime,
+        // 内业完成时间: ele.insidePagesFinish,
+        // 合同完成时间: ele.contractCompleted,
         金额到账时间: ele.timeReceiptAmount,
+        收款完成时间: ele.collectionTime,
+        备案完成时间: ele.recordTime,
+        实际任务结束时间: ele.endTime,
         "预估费用(单位元)": ele.estimatedMoney ,
         "实际费用(单位元)": ele.realMoney ,
         甲方电话: ele.ONEinformation.phone,

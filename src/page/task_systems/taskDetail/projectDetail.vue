@@ -208,9 +208,9 @@
                     <v-spacer></v-spacer>
                   </v-toolbar>
                   <v-card-text>
-                    <span>实际派发时间 ：</span>
+                    <!-- <span>实际派发时间 ：</span> -->
                     <!-- timeAfterDistribution -->
-                    <div>
+                    <!-- <div>
                       <v-text-field
                         filled
                         rounded
@@ -226,12 +226,12 @@
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
-                    </div>
+                    </div> -->
 
-                    <div class="">技术员实际完成时间 ：</div>
+                    <!-- <div class="">技术员实际完成时间 ：</div> -->
                     <!-- technicianCompletionTime -->
 
-                    <div>
+                    <!-- <div>
                       <v-text-field
                         filled
                         rounded
@@ -247,11 +247,11 @@
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
-                    </div>
+                    </div> -->
 
-                    <div class="">外业完成时间 ：</div>
+                    <!-- <div class="">外业完成时间 ：</div> -->
                     <!-- completionTime -->
-                    <div>
+                    <!-- <div>
                       <v-text-field
                         filled
                         rounded
@@ -267,11 +267,11 @@
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
-                    </div>
+                    </div> -->
 
-                    <div class="">内业完成时间 ：</div>
+                    <!-- <div class="">内业完成时间 ：</div> -->
                     <!-- insidePagesFinish -->
-                    <div>
+                    <!-- <div>
                       <v-text-field
                         filled
                         rounded
@@ -287,10 +287,10 @@
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
-                    </div>
+                    </div> -->
 
-                    <div class="">合同完成时间 ：</div>
-                    <div>
+                    <!-- <div class="">合同完成时间 ：</div> -->
+                    <!-- <div>
                       <v-text-field
                         filled
                         rounded
@@ -306,10 +306,10 @@
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
-                    </div>
+                    </div> -->
 
-                    <div class="">预估完成时间 ：</div>
-                    <div>
+                    <!-- <div class="">预估完成时间 ：</div> -->
+                    <!-- <div>
                       <v-text-field
                         filled
                         rounded
@@ -325,8 +325,26 @@
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
-                    </div>
+                    </div> -->
 
+                    <div class="">任务完成时间 ：</div>
+                    <div>
+                      <v-text-field
+                        filled
+                        rounded
+                        dense
+                        readonly
+                        v-model="endTime"
+                      >
+                        <template v-slot:append-outer>
+                          <v-slide-x-reverse-transition mode="out-in">
+                            <v-icon @click="changeEndTime()"
+                              >date_range</v-icon
+                            >
+                          </v-slide-x-reverse-transition>
+                        </template>
+                      </v-text-field>
+                    </div>
                     <div class="">金额到账时间 ：</div>
                     <!-- timeReceiptAmount -->
                     <div>
@@ -340,6 +358,48 @@
                         <template v-slot:append-outer>
                           <v-slide-x-reverse-transition mode="out-in">
                             <v-icon @click="changeTimeReceiptAmount()"
+                              >date_range</v-icon
+                            >
+                          </v-slide-x-reverse-transition>
+                        </template>
+                      </v-text-field>
+                    </div>
+
+                     <div class="">收款完成时间 ：</div>
+                    <!-- collectiontime -->
+
+                    <div>
+                      <v-text-field
+                        filled
+                        rounded
+                        dense
+                        readonly
+                        v-model="collectionTime"
+                      >
+                        <template v-slot:append-outer>
+                          <v-slide-x-reverse-transition mode="out-in">
+                            <v-icon @click="changeCollectionTime"
+                              >date_range</v-icon
+                            >
+                          </v-slide-x-reverse-transition>
+                        </template>
+                      </v-text-field>
+                    </div>
+
+                     <div class="">备案完成时间 ：</div>
+                    <!-- recordtime -->
+
+                    <div>
+                      <v-text-field
+                        filled
+                        rounded
+                        dense
+                        readonly
+                        v-model="recordTime"
+                      >
+                        <template v-slot:append-outer>
+                          <v-slide-x-reverse-transition mode="out-in">
+                            <v-icon @click="changeRecordTime"
                               >date_range</v-icon
                             >
                           </v-slide-x-reverse-transition>
@@ -373,7 +433,7 @@
     <!-- 修改时间参数 通用 -->
     <v-dialog width="250" v-model="dialog">
       <date-picker
-        type="datetime"
+        type="date"
         :open="pickerdialog"
         :lang="lang"
         v-model="pickertime"
@@ -553,22 +613,22 @@ export default {
     //这个订单的key
     orderkey: null,
     //预估时间
-    estimatedTime: null,
+    // estimatedTime: null,
     // 弹窗的button
     lodingbutton: false,
     // 用户名字
     userName: "",
     // 时间参数
     // 实际派发时间
-    timeAfterDistribution: null,
-    // 技术员实际完成时间
-    technicianCompletionTime: null,
-    // 外业完成时间
-    completionTime: null,
-    // 内业完成时间
-    insidePagesFinish: null,
-    // 合同完成时间
-    contractCompleted: null,
+    // timeAfterDistribution: null,
+    // // 技术员实际完成时间
+    // technicianCompletionTime: null,
+    // // 外业完成时间
+    // completionTime: null,
+    // // 内业完成时间
+    // insidePagesFinish: null,
+    // // 合同完成时间
+    // contractCompleted: null,
     // 金额到账时间
     timeReceiptAmount: null,
     type: null,
@@ -577,6 +637,11 @@ export default {
     orderstartTime: null,
     // 任务结束时间
     orderendTime: null,
+    //收款完成时间
+    collectionTime:null,
+    //备案完成时间
+    recordTime:null,
+    endTime:null,
     hasSaved: false,
     model: null,
     // states: [
@@ -608,7 +673,7 @@ export default {
     },
     area: null,
     realMoney: null,
-
+    estimatedMoney:null,
     zoom: 12,
     // center: [10, 10],
     address: "",
@@ -635,14 +700,13 @@ export default {
     let routedata = JSON.parse(unescape(this.$route.query.id));
     console.log(routedata);
     this.orderkey = {
-      hash: routedata.hash,
+      hash:  routedata.hash,
       range: routedata.range,
       index: routedata.range,
     };
-
     userServes
       .getUserInformation({
-        hash: routedata.creatorkey.hash,
+        hash:  routedata.creatorkey.hash,
         range: routedata.creatorkey.range,
         index: routedata.creatorkey.index,
       })
@@ -650,7 +714,7 @@ export default {
         switchMap((data) => {
           this.userName = data.usernickname;
           return orderServe.bykeygetorder({
-            hash: routedata.hash,
+            hash:  routedata.hash,
             range: routedata.range,
             index: routedata.index,
           });
@@ -663,15 +727,18 @@ export default {
         this.figuetime = data.figuetime;
         this.type = data.type;
         this.area = data.area;
-        this.timeAfterDistribution = data.timeAfterDistribution;
-        this.technicianCompletionTime = data.technicianCompletionTime;
-        this.completionTime = data.completionTime;
-        this.insidePagesFinish = data.insidePagesFinish;
-        this.contractCompleted = data.contractCompleted;
+        // this.timeAfterDistribution = data.timeAfterDistribution;
+        // this.technicianCompletionTime = data.technicianCompletionTime;
+        // this.completionTime = data.completionTime;
+        // this.insidePagesFinish = data.insidePagesFinish;
+        // this.contractCompleted = data.contractCompleted;
         this.timeReceiptAmount = data.timeReceiptAmount;
         this.estimatedMoney = data.estimatedMoney;
         this.realMoney = data.realMoney;
-        this.estimatedTime = data.estimatedTime;
+        // this.estimatedTime = data.estimatedTime;
+        this.collectionTime=data.collectionTime;
+        this.recordTime=data.recordTime;
+        this.endTime=data.endTime;
         this.ONEinformation = data.ONEinformation;
         lazyAMapApiLoaderInstance.load().then(() => {
           this.map = new AMap.Map("amap-cointainer", {
@@ -720,7 +787,7 @@ export default {
             this.lodingbutton = false;
             this.dialog = false;
             console.log("data", data, this.timeselect);
-            this[this.timeselect] = data.value;
+            this[this.timeselect] = data.value
             // this[this.timeselect] = moment(data).format("ll");
           },
           (err) => {
@@ -759,46 +826,61 @@ export default {
     },
 
     // 更改派发时间参数
-    changeTimeAfterDistributiondata() {
-      this.dialog = true;
-      this.timeselect = "timeAfterDistribution";
-    },
-    // 更改派发时间参数
-    changeTechnicianCompletionTime() {
-      console.log("changeTechnicianCompletionTime");
-      this.dialog = true;
-      this.timeselect = "technicianCompletionTime";
-    },
-    // 更改外业完成时间
-    changeCompletionTime() {
-      console.log("changeCompletionTime");
-      this.dialog = true;
-      this.timeselect = "completionTime";
-    },
-    // 内业完成时间
-    changInsidePagesFinish() {
-      console.log("changInsidePagesFinish");
-      this.dialog = true;
-      this.timeselect = "insidePagesFinish";
-    },
-    // 预估完成时间
-    estimatedTimeF() {
-      console.log("estimatedTime");
-      this.dialog = true;
-      this.timeselect = "estimatedTime";
-    },
+    // changeTimeAfterDistributiondata() {
+    //   this.dialog = true;
+    //   this.timeselect = "timeAfterDistribution";
+    // },
+    // // 更改派发时间参数
+    // changeTechnicianCompletionTime() {
+    //   console.log("changeTechnicianCompletionTime");
+    //   this.dialog = true;
+    //   this.timeselect = "technicianCompletionTime";
+    // },
+    // // 更改外业完成时间
+    // changeCompletionTime() {
+    //   console.log("changeCompletionTime");
+    //   this.dialog = true;
+    //   this.timeselect = "completionTime";
+    // },
+    // // 内业完成时间
+    // changInsidePagesFinish() {
+    //   console.log("changInsidePagesFinish");
+    //   this.dialog = true;
+    //   this.timeselect = "insidePagesFinish";
+    // },
+    // // 预估完成时间
+    // estimatedTimeF() {
+    //   console.log("estimatedTime");
+    //   this.dialog = true;
+    //   this.timeselect = "estimatedTime";
+    // },
 
-    // 合同完成时间
-    changeContractCompleted() {
-      console.log("contractCompleted");
-      this.dialog = true;
-      this.timeselect = "contractCompleted";
-    },
+    // // 合同完成时间
+    // changeContractCompleted() {
+    //   console.log("contractCompleted");
+    //   this.dialog = true;
+    //   this.timeselect = "contractCompleted";
+    // },
     // 金额到账时间
     changeTimeReceiptAmount() {
       console.log("changeTimeReceiptAmount");
       this.dialog = true;
       this.timeselect = "timeReceiptAmount";
+    },
+     changeCollectionTime() {
+      console.log("changeCollectionTime");
+      this.dialog = true;
+      this.timeselect = "collectionTime";
+    },
+     changeRecordTime() {
+      console.log("changeRecordTime");
+      this.dialog = true;
+      this.timeselect = "recordTime";
+    },
+     changeEndTime() {
+      console.log("changeEndTime");
+      this.dialog = true;
+      this.timeselect = "endTime";
     },
     // 更新甲方信息
     updataOneInformation() {
