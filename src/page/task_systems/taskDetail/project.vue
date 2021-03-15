@@ -114,12 +114,19 @@
             <v-card-text v-else> 面积： 未填写 </v-card-text> -->
             <v-card-text v-if="item.type"> 类型： {{ item.type }} </v-card-text>
             <v-card-text v-else> 类型： 未填写 </v-card-text>
+            <v-btn
+                text
+
+                 @click="oneDelete(item)"
+                class="light-blue--text text--accent-4 my-2 float-end-2"
+                >删除</v-btn
+              >
              <v-dialog
                 v-model="dialog"
                 persistent
                 max-width="290"
                 >
-             <template v-slot:activator="{ on, attrs }">
+             <!-- <template v-slot:activator="{ on, attrs }">
               <v-btn
                 text
                  v-bind="attrs"
@@ -127,7 +134,7 @@
                 class="light-blue--text text--accent-4 my-2 float-end-2"
                 >删除</v-btn
               >
-             </template>
+             </template> -->
       <v-card>
         <v-card-title class="headline">
             确认删除
@@ -144,7 +151,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="deleorder"
+            @click="deleorder(item)"
           >
             确认
           </v-btn>
@@ -177,10 +184,13 @@ import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import orderServe from "@/page/order/order.serves";
 import axios from "axios";
+import UrlConfig from "@/page/order/url.config"
 export default {
+  inject: ['reload'],
   components: { DatePicker },
   data() {
     return {
+        deleteDate:null,
         dialog:false,
       //  用于生成ex的模板数据
       jsonData: [
@@ -316,23 +326,34 @@ export default {
     console.log("group 创建");
     this.getallfigure();
   },
+  
   methods: {
-     deleorder() {
-     var orderrange=this.$store.s
-     console.log(orderrange+'88888888888888888888888')
+    oneDelete(value){
+        this.dialog = true
+        this.deleteDate = {
+            hash:value.hash,
+            range:value.range,
+            index:value.index
+        }
+        console.log(value)
+    },
+      deleorder() {
+      if(this.deleteDate == "" || this.deleteDate == undefined ) {
+          console.log("报错");
+      } else {
       this.dialog = false;
       axios({
         method: "post",
-        url: "api/figure/deleteorder",
-        data: {
-        "hash": "",
-        "range": "",
-        "index": ""
-        },
+        // url: `${api}/${figure}/${deleteorder}` ,
+        url:"/api/figure/deleteorder",
+        data: this.deleteDate
       }).then((res) => {
+        this.getallfigure()
         console.log(res.data);
       });
-    },
+      }
+      this.reload();
+    }, 
 
     changeRoute(val) {
       this.isshowpagination = true;
@@ -354,7 +375,6 @@ export default {
 
       this.$router.push({
         path: "/taskSystems/projectDetail",
-
         query: { id: escape(strItem) },
       });
     },
