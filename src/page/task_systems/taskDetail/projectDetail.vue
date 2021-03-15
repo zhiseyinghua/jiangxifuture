@@ -174,10 +174,10 @@
                   <div></div>
                   <span class="mb-2">任务面积 ：{{ area }}</span>
                   <span v-show="area">平方米</span>
-                   <div></div>
+                  <div></div>
                   <span class="mb-2">实际费用 ：{{ realMoney }}</span>
                   <span v-show="realMoney">元</span>
-                   <div></div>
+                  <div></div>
                   <v-btn @click="changeOtherinformation" class="mt-11"
                     >修改其他信息</v-btn
                   >
@@ -338,9 +338,7 @@
                       >
                         <template v-slot:append-outer>
                           <v-slide-x-reverse-transition mode="out-in">
-                            <v-icon @click="changeEndTime()"
-                              >date_range</v-icon
-                            >
+                            <v-icon @click="changeEndTime()">date_range</v-icon>
                           </v-slide-x-reverse-transition>
                         </template>
                       </v-text-field>
@@ -365,7 +363,7 @@
                       </v-text-field>
                     </div>
 
-                     <div class="">收款完成时间 ：</div>
+                    <div class="">收款完成时间 ：</div>
                     <!-- collectiontime -->
 
                     <div>
@@ -386,7 +384,7 @@
                       </v-text-field>
                     </div>
 
-                     <div class="">备案完成时间 ：</div>
+                    <div class="">备案完成时间 ：</div>
                     <!-- recordtime -->
 
                     <div>
@@ -638,10 +636,10 @@ export default {
     // 任务结束时间
     orderendTime: null,
     //收款完成时间
-    collectionTime:null,
+    collectionTime: null,
     //备案完成时间
-    recordTime:null,
-    endTime:null,
+    recordTime: null,
+    endTime: null,
     hasSaved: false,
     model: null,
     // states: [
@@ -673,7 +671,7 @@ export default {
     },
     area: null,
     realMoney: null,
-    estimatedMoney:null,
+    estimatedMoney: null,
     zoom: 12,
     // center: [10, 10],
     address: "",
@@ -696,18 +694,17 @@ export default {
   },
 
   created() {
-    
     // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
     console.log(routedata);
     this.orderkey = {
-      hash:  routedata.hash,
+      hash: routedata.hash,
       range: routedata.range,
       index: routedata.range,
     };
     userServes
       .getUserInformation({
-        hash:  routedata.creatorkey.hash,
+        hash: routedata.creatorkey.hash,
         range: routedata.creatorkey.range,
         index: routedata.creatorkey.index,
       })
@@ -715,14 +712,14 @@ export default {
         switchMap((data) => {
           this.userName = data.usernickname;
           return orderServe.bykeygetorder({
-            hash:  routedata.hash,
+            hash: routedata.hash,
             range: routedata.range,
             index: routedata.index,
           });
         })
       )
       .subscribe((data) => {
-        console.log("11111111111111111",data)
+        console.log("11111111111111111", data);
         this.ordername = data.ordername;
         this.orderstartTime = data.orderstartTime;
         this.orderendTime = data.orderendTime;
@@ -738,20 +735,23 @@ export default {
         this.estimatedMoney = data.estimatedMoney;
         this.realMoney = data.realMoney;
         // this.estimatedTime = data.estimatedTime;
-        this.collectionTime=data.collectionTime;
-        this.recordTime=data.recordTime;
-        this.endTime=data.endTime;
+        this.collectionTime = data.collectionTime;
+        this.recordTime = data.recordTime;
+        this.endTime = data.endTime;
         this.ONEinformation = data.ONEinformation;
         lazyAMapApiLoaderInstance.load().then(() => {
-          this.map = new AMap.Map("amap-cointainer", {
-            zoom: 13, //级别
-            center: new AMap.LngLat(data.localPlace.lng, data.localPlace.lat),
-          });
-          var m1 = new AMap.Marker({
-            position: [data.localPlace.lng, data.localPlace.lat],
-          });
-          this.address = data.localPlace.local;
-          this.map.add(m1);
+          setTimeout(() => {
+            this.map = new AMap.Map("amap-cointainer", {
+              zoom: 13, //级别
+              center: new AMap.LngLat(115.849579, 28.728411),
+            });
+            console.warn(data.localPlace.lng, data.localPlace.lat);
+            var m1 = new AMap.Marker({
+              position: [115.849579, 28.728411],
+            });
+            this.address = data.localPlace.local;
+            this.map.add(m1);
+          },2000);
         });
       });
 
@@ -780,7 +780,7 @@ export default {
     },
     // 更新所有的时间参数
     updatapaifa() {
-      console.log(this.pickertime)
+      console.log(this.pickertime);
       this.lodingbutton = true;
       orderServe
         .updateOrderstartTime(this.timeselect, this.pickertime, this.orderkey)
@@ -789,7 +789,7 @@ export default {
             this.lodingbutton = false;
             this.dialog = false;
             console.log("data", data, this.timeselect);
-            this[this.timeselect] = data.value
+            this[this.timeselect] = data.value;
             // this[this.timeselect] = moment(data).format("ll");
           },
           (err) => {
@@ -870,18 +870,18 @@ export default {
       this.timeselect = "timeReceiptAmount";
     },
     // 收款完成时间 ：
-     changeCollectionTime() {
+    changeCollectionTime() {
       console.log("changeCollectionTime");
       this.dialog = true;
       this.timeselect = "collectionTime";
     },
     // 备案完成时间 ：
-     changeRecordTime() {
+    changeRecordTime() {
       console.log("changeRecordTime");
       this.dialog = true;
       this.timeselect = "recordTime";
     },
-     changeEndTime() {
+    changeEndTime() {
       console.log("changeEndTime");
       this.dialog = true;
       this.timeselect = "endTime";
