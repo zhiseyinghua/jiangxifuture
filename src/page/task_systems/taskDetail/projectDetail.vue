@@ -696,6 +696,7 @@ export default {
   },
 
   created() {
+    
     // 初始化页面所有数据
     let routedata = JSON.parse(unescape(this.$route.query.id));
     console.log(routedata);
@@ -721,6 +722,7 @@ export default {
         })
       )
       .subscribe((data) => {
+        console.log("11111111111111111",data)
         this.ordername = data.ordername;
         this.orderstartTime = data.orderstartTime;
         this.orderendTime = data.orderendTime;
@@ -778,12 +780,12 @@ export default {
     },
     // 更新所有的时间参数
     updatapaifa() {
+      console.log(this.pickertime)
       this.lodingbutton = true;
       orderServe
         .updateOrderstartTime(this.timeselect, this.pickertime, this.orderkey)
         .subscribe(
           (data) => {
-            console.log("1111111111111111", data);
             this.lodingbutton = false;
             this.dialog = false;
             console.log("data", data, this.timeselect);
@@ -867,11 +869,13 @@ export default {
       this.dialog = true;
       this.timeselect = "timeReceiptAmount";
     },
+    // 收款完成时间 ：
      changeCollectionTime() {
       console.log("changeCollectionTime");
       this.dialog = true;
       this.timeselect = "collectionTime";
     },
+    // 备案完成时间 ：
      changeRecordTime() {
       console.log("changeRecordTime");
       this.dialog = true;
