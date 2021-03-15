@@ -1,11 +1,11 @@
 <template>
   <v-app-bar app>
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
-    <v-img
+    <!-- <v-img
       src="http://chuantu.xyz/t6/741/1614717476x1700338588.png"
       max-height="50"
       max-width="50"
-    ></v-img>
+    ></v-img> -->
 
     <!-- 团队列表 -->
     <!-- <v-menu offset-y>
